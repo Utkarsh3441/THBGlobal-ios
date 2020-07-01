@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Vd5-WW-raK">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Dash Board Collection View Controller-->
+        <scene sceneID="Qll-NY-Rhl">
+            <objects>
+                <viewController id="Vd5-WW-raK" customClass="DashBoardCollectionViewController" customModule="Dot_Health_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tj4-XG-AoW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ajO-7d-UHP">
+                                <rect key="frame" x="20" y="107" width="374" height="666"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ajO-7d-UHP" firstAttribute="leading" secondItem="wby-D4-KOm" secondAttribute="leading" constant="20" id="FtP-5b-FH5"/>
+                            <constraint firstItem="ajO-7d-UHP" firstAttribute="top" secondItem="wby-D4-KOm" secondAttribute="top" constant="63" id="Kbf-Xo-gNS"/>
+                            <constraint firstItem="wby-D4-KOm" firstAttribute="bottom" secondItem="ajO-7d-UHP" secondAttribute="bottom" constant="89" id="XQE-rt-acz"/>
+                            <constraint firstItem="wby-D4-KOm" firstAttribute="trailing" secondItem="ajO-7d-UHP" secondAttribute="trailing" constant="20" id="hfP-VU-OmJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wby-D4-KOm"/>
+                    </view>
+                    <connections>
+                        <outlet property="myView" destination="ajO-7d-UHP" id="tGp-ih-VuJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gJM-gW-ncC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4.3478260869565224" y="0.0"/>
+        </scene>
+    </scenes>
+</document>

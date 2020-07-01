@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HeI-nZ-0dK">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Rqe-gx-szT">
+            <objects>
+                <viewController id="A7K-bI-6Nv" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GXV-ht-LEy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="gPF-SA-KPU"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dsj-6x-UrN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4QK-ug-u7r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3002.898550724638" y="1240.8482142857142"/>
+        </scene>
+        <!--DotAppointmentsViewController-->
+        <scene sceneID="MCW-zV-utN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DotAppointmentsViewController" id="9r1-w9-zYN" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Iri-4h-9Ug"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y2F-i3-jz6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2254.3478260869565" y="1233.4821428571429"/>
+        </scene>
+        <!--Notification-->
+        <scene sceneID="U17-LN-2I6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HeI-nZ-0dK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Notification" image="bell.fill" catalog="system" id="uSF-Ng-2mV"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="o5p-Dq-FE0">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="A7K-bI-6Nv" kind="relationship" relationship="rootViewController" id="fr6-aI-KpQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C23-92-DcM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3913.04347826087" y="1240.8482142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bell.fill" catalog="system" width="128" height="124"/>
+    </resources>
+</document>

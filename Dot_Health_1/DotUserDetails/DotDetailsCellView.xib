@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" id="KGk-i7-Jjw" customClass="DotDetailsCellView" customModule="Dot_Health_1" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pGv-Yc-EJ1">
+                        <rect key="frame" x="14" y="18" width="8" height="8"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="8" id="8NT-Vx-8KJ"/>
+                            <constraint firstAttribute="height" constant="8" id="JWj-Ji-Bo6"/>
+                        </constraints>
+                        <state key="normal" image="circle.fill" catalog="system"/>
+                    </button>
+                    <textField opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" enabled="NO" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Dummy Information" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fMO-Iv-5ZW">
+                        <rect key="frame" x="124" y="5" width="118" height="34"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="13"/>
+                        <textInputTraits key="textInputTraits"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWg-Hy-Zn2">
+                        <rect key="frame" x="30" y="14" width="86" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="86" id="xEt-vW-MhN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                        <color key="textColor" red="0.2457145154" green="0.46548014879999999" blue="0.75297850369999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="fMO-Iv-5ZW" secondAttribute="bottom" constant="5" id="Nki-De-NMz"/>
+                    <constraint firstItem="CWg-Hy-Zn2" firstAttribute="leading" secondItem="pGv-Yc-EJ1" secondAttribute="trailing" constant="8" id="Tsz-Or-Buh"/>
+                    <constraint firstItem="pGv-Yc-EJ1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="afj-Cu-YKh"/>
+                    <constraint firstItem="CWg-Hy-Zn2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="dUD-Xj-cbW"/>
+                    <constraint firstItem="pGv-Yc-EJ1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="gKy-L2-qhI"/>
+                    <constraint firstItem="fMO-Iv-5ZW" firstAttribute="leading" secondItem="CWg-Hy-Zn2" secondAttribute="trailing" constant="8" id="iHQ-7N-ley"/>
+                    <constraint firstAttribute="bottom" secondItem="CWg-Hy-Zn2" secondAttribute="bottom" constant="14" id="nfF-7t-hf3"/>
+                    <constraint firstItem="fMO-Iv-5ZW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="rWC-t4-7ml"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="buttonLeadingConstraint" destination="gKy-L2-qhI" id="Vdp-9E-qhz"/>
+                <outlet property="detailText" destination="fMO-Iv-5ZW" id="gx4-DL-H3o"/>
+                <outlet property="first" destination="CWg-Hy-Zn2" id="bYO-qL-wzf"/>
+                <outlet property="indicatorButton" destination="pGv-Yc-EJ1" id="zWd-V0-zkX"/>
+            </connections>
+            <point key="canvasLocation" x="84" y="107"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="circle.fill" catalog="system" width="128" height="121"/>
+    </resources>
+</document>
