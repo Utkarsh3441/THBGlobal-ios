@@ -108,21 +108,21 @@ extension UIView {
     }
 }
 extension NSAttributedString{
-    func createAttributedString(first:String,second:String,fColor:UIColor,sColor:UIColor,fBold:Bool,sBold:Bool)->NSMutableAttributedString{
+    func createAttributedString(first:String,second:String,fColor:UIColor,sColor:UIColor,fBold:Bool,sBold:Bool,fSize:CGFloat,sSize:CGFloat)->NSMutableAttributedString{
         
         var fFont = UIFont()
         var sFont = UIFont()
         if fBold{
-             fFont = UIFont.boldSystemFont(ofSize: 13)
+            fFont = UIFont(name: Theme.mainFontBoldName, size: fSize)!//UIFont.boldSystemFont(ofSize: 13)
         }
         else{
-             fFont = UIFont.systemFont(ofSize: 13)
+             fFont =  UIFont(name: Theme.mainFontName, size: fSize)!
         }
         if sBold{
-             sFont = UIFont.boldSystemFont(ofSize: 13)
+             sFont = UIFont(name: Theme.mainFontBoldName, size: sSize)!
         }
         else{
-             sFont = UIFont.systemFont(ofSize: 13)
+             sFont =  UIFont(name: Theme.mainFontName, size: sSize)!
         }
         let attributedTitle = NSMutableAttributedString(string: first, attributes: [NSAttributedString.Key.font: fFont, NSAttributedString.Key.foregroundColor: fColor])
         

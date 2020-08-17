@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class DotAppointmentsViewController: UIViewController {
 
@@ -19,13 +20,14 @@ class DotAppointmentsViewController: UIViewController {
     @IBOutlet weak var addAppointmentButton: UIButton!
     @IBOutlet weak var searchView: UIView!
     var selectedTextField : UITextField?
-    var calenderPopover = DotCalenderViewController()
+   // var calenderPopover = DotCalenderViewController()
     var itemName: String?
     @IBOutlet weak var appointmentTableView: UITableView!
+     private let client = DotConnectionClient()
     override func viewDidLoad() {
         super.viewDidLoad()
       //  Bundle.main.loadNibNamed("DotAppointmentsViewController", owner: self, options: nil)
-         guard let vc = Bundle.main.classNamed("Dot_Health_1.DotDashboardViewController") as? DotDashboardViewController.Type else{return}
+         guard let vc = Bundle.main.classNamed("Asha_Cares.DotDashboardViewController") as? DotDashboardViewController.Type else{return}
         let vire = vc.init()
       
         vire.check()
@@ -33,15 +35,12 @@ class DotAppointmentsViewController: UIViewController {
         endDateTextField.delegate = self
         appointmentTableView.dataSource = self
         appointmentTableView.delegate = self
-        appointmentFunctions.readAppointments(complition: {[unowned self] in
-            
-            self.appointmentTableView.reloadData()
-           
-        })
-        appointmentTableView.rowHeight = 135
+        appointmentTableView.rowHeight = 120
         appointmentTableView.allowsMultipleSelection = false
         self.navigationItem.title = itemName
+        self.searchButton.createFloatingActionButton()
         self.addAppointmentButton.createFloatingActionButton()
+        getAppointments()
     }
 
     func openDatePicker(){
@@ -82,9 +81,9 @@ class DotAppointmentsViewController: UIViewController {
         let _ = appointmentDetailsVC.view
         if let cellView = sender as? UITableViewCell,  let indexOfselectedRow = self.appointmentTableView.indexPath(for: cellView)?.row{
            let selectedAppointment = MyData.appointmentModelArray[indexOfselectedRow]
-            if let appointmentDetailModel = selectedAppointment.appointmentDetailModel[indexOfselectedRow] as? AppointmentDetailModel{
+           /* if let appointmentDetailModel = selectedAppointment.appointmentDetailModel[indexOfselectedRow] as? AppointmentDetailModel{
                       appointmentDetailsVC.detailsSetup(appointmentDetailModel: appointmentDetailModel)
-                 }
+                 }*/
         }
      
         
@@ -95,8 +94,8 @@ extension DotAppointmentsViewController:UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.selectedTextField = textField
         self.openDatePicker()
-        calenderPopover.PopView = textField
-        calenderPopover.view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+     //   calenderPopover.PopView = textField
+     //   calenderPopover.view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
       // showPopup(calenderPopover, sourceView: textField)
     }
 }
@@ -126,4 +125,51 @@ extension DotAppointmentsViewController: UITableViewDataSource, UITableViewDeleg
         
     }
    
+}
+
+extension DotAppointmentsViewController{
+    
+    func getAppointments(){
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.custom)
+        // Query item for doc
+        var queryItem = [URLQueryItem]()
+        queryItem = [ URLQueryItem(name: "userId", value:"17"), URLQueryItem(name: "userType", value: "patients")]
+        let urlString = "appointments"
+        
+          // Query item for facility
+        let api : API = .api1
+        let endpoint: Endpoint = api.getPostAPIEndpointForAppointments(urlString: "\(api.rawValue)\(urlString)", queryItems: queryItem, headers: nil, body: nil)
+      
+      
+        client.callAPI(with: endpoint.request, modelParser: String.self) { [weak self] result in
+                        guard let self = self else { return }
+                        switch result {
+                        case .success(let model2Result):
+                            SVProgressHUD.dismiss()
+                            if let model = model2Result as? [DotAppointmentModel]{
+                                MyData.appointmentModelArray = model
+                                print("Fetched doctor:",MyData.appointmentModelArray)
+                                appointmentFunctions.readAppointments(complition: {[unowned self] in
+                                                  
+                                                  self.appointmentTableView.reloadData()
+                                                 
+                                              })
+                            }
+                            else{
+                                print("error occured")
+                                appointmentFunctions.readAppointments(complition: {[unowned self] in
+                                           
+                                           self.appointmentTableView.reloadData()
+                                          
+                                       })
+                                  SVProgressHUD.dismiss()
+                            }
+                        case .failure(let error):
+                            SVProgressHUD.dismiss()
+                            print("the error \(error)")
+                        }
+                    }
+        
+    }
 }

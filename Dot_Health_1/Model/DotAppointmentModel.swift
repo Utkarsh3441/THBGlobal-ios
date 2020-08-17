@@ -8,25 +8,20 @@
 
 import UIKit
 
-class DotAppointmentModel{
-    let id: UUID
-    var hospitalName: String
-    var doctorName: String
-    var issue: String
-    var date: Date
-    var time: String
-    var status: String
-    var appointmentDetailModel = [AppointmentDetailModel]()
-   
-    
-    init(hospitalName: String, doctorName: String, issue: String, date: Date, time: String, status: String,appointmentDetailModel : [AppointmentDetailModel] ) {
-        id = UUID()
-        self.hospitalName = hospitalName
-        self.doctorName = doctorName
-        self.issue = issue
-        self.date = date
-        self.time = time
-        self.status = status
-        self.appointmentDetailModel = appointmentDetailModel
-    }
+struct DotAppointmentModel:Decodable{
+    let appointment_id: Int
+    let patient_id: Int
+    let doctor_slot_id: Int
+    let facility_slot_id: Int
+    let payment_id: Int
+    let purpose: String
+    let remarks: String
+    let status: String
+    let payment_amount: Int
+    let provider_id: Int
+    let provider_name: String
+    let provider_type: String
+    let slot_date : String
+    let start_time: String
+    let end_time: String
 }

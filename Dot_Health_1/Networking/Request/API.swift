@@ -9,11 +9,22 @@
 import Foundation
 
 enum API: String {
-    case api1 = "api1/string/value"
-    case api2 = "api2/string/value"
+     case api1 = "http://104.215.179.29/v1/"
+     case patientsApi = "http://104.215.179.29/v1/patients/"
+     case api2 = "http://104.215.179.29/v1/sessions"
     
     // To get the API endpoint with request setup
-    func getAPIEndpoint(queryItems: [URLQueryItem] = [], headers: HTTPHeaders = [ : ], body: Data = Data()) -> Endpoint {
-            return Endpoint(path: self.rawValue, httpMethod: .post, headers: headers, body: body, queryItems: queryItems)
+    func getPostAPIEndpointForAll(urlString:String ,httpMethod : HTTPMethod ,queryItems: [URLQueryItem]? = [], headers: HTTPHeaders? = [ : ], body: Data? = Data()) -> Endpoint {
+            return Endpoint(path: urlString, httpMethod: httpMethod, headers: headers, body: body, queryItems: queryItems)
     }
+   func getPostAPIEndpoint(urlString:String ,queryItems: [URLQueryItem]? = [], headers: HTTPHeaders = [ : ], body: Data = Data()) -> Endpoint {
+            return Endpoint(path: urlString, httpMethod: .post, headers: headers, body: body, queryItems: queryItems)
+    }
+    func getPostAPIEndpointForAppointments(urlString:String ,queryItems: [URLQueryItem]? = [], headers: HTTPHeaders? = [ : ], body: Data? = Data()) -> Endpoint {
+            return Endpoint(path: urlString, httpMethod: .get, headers: headers, body: body, queryItems: queryItems)
+    }
+    func getPostAPIEndpointForMedication(urlString:String ,queryItems: [URLQueryItem]? = [], headers: HTTPHeaders? = [ : ], body: Data? = Data()) -> Endpoint {
+             return Endpoint(path: urlString, httpMethod: .get, headers: headers, body: body, queryItems: queryItems)
+     }
+   
 }

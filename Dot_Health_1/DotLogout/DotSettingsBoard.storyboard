@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yqt-bO-Dj8">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Dot Care Sheet-->
+        <scene sceneID="ZvG-Wo-CB0">
+            <objects>
+                <viewController id="Yqt-bO-Dj8" customClass="DotCareSheet" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rDd-0t-XXB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jIo-gn-6er">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="lt9-wZ-jpM" imageView="nOi-sB-aCQ" rowHeight="88" style="IBUITableViewCellStyleDefault" id="w9t-XB-Hjx">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="w9t-XB-Hjx" id="VmI-bH-g3u">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lt9-wZ-jpM">
+                                                    <rect key="frame" x="59" y="0.0" width="335" height="88"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="tag.circle.fill" catalog="system" id="nOi-sB-aCQ">
+                                                    <rect key="frame" x="22" y="34.5" width="20" height="19"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="tintColor" name="GradientColorDark"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Yqt-bO-Dj8" id="PJc-8o-EsB"/>
+                                    <outlet property="delegate" destination="Yqt-bO-Dj8" id="Ugf-Pj-m44"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="jIo-gn-6er" firstAttribute="trailing" secondItem="SXh-X3-KS7" secondAttribute="trailing" id="7ck-Tc-4Bs"/>
+                            <constraint firstItem="SXh-X3-KS7" firstAttribute="trailing" secondItem="jIo-gn-6er" secondAttribute="trailing" id="DVi-Jt-q9c"/>
+                            <constraint firstItem="jIo-gn-6er" firstAttribute="leading" secondItem="SXh-X3-KS7" secondAttribute="leading" id="Q74-eT-hrW"/>
+                            <constraint firstItem="SXh-X3-KS7" firstAttribute="bottom" secondItem="jIo-gn-6er" secondAttribute="bottom" id="ZWG-vU-VTN"/>
+                            <constraint firstItem="jIo-gn-6er" firstAttribute="leading" secondItem="SXh-X3-KS7" secondAttribute="leading" id="all-rc-oBd"/>
+                            <constraint firstItem="jIo-gn-6er" firstAttribute="top" secondItem="SXh-X3-KS7" secondAttribute="top" id="sGi-SY-o2X"/>
+                            <constraint firstItem="SXh-X3-KS7" firstAttribute="bottom" secondItem="jIo-gn-6er" secondAttribute="bottom" id="xiM-6l-AIf"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SXh-X3-KS7"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableviews" destination="jIo-gn-6er" id="vKY-84-6ko"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r13-sF-GcI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="166.66666666666669" y="81.696428571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="tag.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="GradientColorDark">
+            <color red="0.12156862745098039" green="0.36470588235294116" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

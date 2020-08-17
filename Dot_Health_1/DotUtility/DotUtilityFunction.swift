@@ -8,7 +8,12 @@
 
 import Foundation
 import UIKit
-
+import Security
+enum keyChainPrefix:String{
+    case loginSession = "sessions"
+    case loginUsername = "user"
+    case patientAccount = "patients"
+}
 class UtilityFunctions{
     
     static func getDateAsString(inputDate:Date)->String{
@@ -47,5 +52,78 @@ class UtilityFunctions{
         }
         label.text = status
         return label
+    }
+}
+class KeychainService {
+    class func updatePassword(service: String, account: String, data: String) {
+        guard let dataFromString = data.data(using: .utf8, allowLossyConversion: false) else {
+            return
+        }
+
+        let status = SecItemUpdate(modifierQuery(service: service, account: account), [kSecValueData: dataFromString] as CFDictionary)
+
+        checkError(status)
+    }
+
+    class func removePassword(service: String, account: String) {
+        let status = SecItemDelete(modifierQuery(service: service, account: account))
+
+        checkError(status)
+    }
+
+    class func savePassword(service: String, account: String, data: String) {
+        guard let dataFromString = data.data(using: .utf8, allowLossyConversion: false) else {
+            return
+        }
+
+        let keychainQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
+                                              kSecAttrService: service,
+                                              kSecAttrAccount: account,
+                                              kSecValueData: dataFromString]
+
+        let status = SecItemAdd(keychainQuery as CFDictionary, nil)
+
+        checkError(status)
+    }
+
+    class func loadPassword(service: String, account: String) -> String? {
+        var dataTypeRef: CFTypeRef?
+
+        let status = SecItemCopyMatching(modifierQuery(service: service, account: account), &dataTypeRef)
+
+        if status == errSecSuccess,
+            let retrievedData = dataTypeRef as? Data {
+            return String(data: retrievedData, encoding: .utf8)
+        } else {
+            checkError(status)
+
+            return nil
+        }
+    }
+
+    fileprivate static func modifierQuery(service: String, account: String) -> CFDictionary {
+        let keychainQuery: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
+                                              kSecAttrService: service,
+                                              kSecAttrAccount: account,
+                                              kSecReturnData: kCFBooleanTrue]
+
+        return keychainQuery as CFDictionary
+    }
+    class func removeUserFromKey(service:String) {
+       let secItemClasses = [kSecClassGenericPassword, kSecClassInternetPassword, kSecClassCertificate, kSecClassKey, kSecClassIdentity]
+        for itemClass in secItemClasses {
+            let spec: NSDictionary = [kSecClass: itemClass]
+            SecItemDelete(spec)
+        }
+    }
+    fileprivate static func checkError(_ status: OSStatus) {
+        if status != errSecSuccess {
+            if #available(iOS 11.3, *),
+            let err = SecCopyErrorMessageString(status, nil) {
+                print("Operation failed: \(err)")
+            } else {
+                print("Operation failed: \(status). Check the error message through https://osstatus.com.")
+            }
+        }
     }
 }

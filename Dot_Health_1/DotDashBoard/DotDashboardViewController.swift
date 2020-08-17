@@ -34,8 +34,6 @@ class DotDashboardViewController: UIViewController {
         detailsView.delegate = self
         dashboardSubview.topToBottom(of: profileDetailsView,offset: 8)
         dashboardSubview.edgesToSuperview(excluding: .top, insets: .left(8) + .right(8) + .bottom(8),usingSafeArea: true)
-        profileDetailsView.layer.borderWidth = 1
-        profileDetailsView.layer.borderColor = UIColor.black.cgColor
         collectionViewObj.setBounds(bound: dashboardSubview.bounds)
         let _ = collectionViewObj.view
         
@@ -43,15 +41,11 @@ class DotDashboardViewController: UIViewController {
         collectionViewObj.collectionSuperView = dashboardSubview
         dashboardSubview.addSubview(view ?? UIView())
         view?.edgesToSuperview()
-        self.view.alpha = 0
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         // Hide the navigation bar on the this view controller
-        UIView.animate(withDuration: 0.7) {
-            self.view.alpha = 1.0
-        }
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
@@ -81,12 +75,38 @@ class DotDashboardViewController: UIViewController {
 
 }
 extension DotDashboardViewController:setViewAutomatically,setViewControllerAutomatically{
-
+ 
+    func showActionSheet(){
+          let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        actionSheet.view.tintColor = .darkText
+        actionSheet.view.backgroundColor = .clear
+          let chat = UIAlertAction(title: "Chat", style: .default) { (action) in
+            
+           let storyboard = UIStoryboard(name: "Authorization", bundle: nil)
+                  let current = storyboard.instantiateViewController(withIdentifier: "AuthViewController") as! AuthViewController
+           self.addChildViewController(current, back: true)
+          }
+          let call = UIAlertAction(title: "Audio/Video call", style: .default) { (action) in
+            
+           let storyBoard : UIStoryboard = UIStoryboard(name: "Auth", bundle:nil)
+            let nextViewController = storyBoard.instantiateInitialViewController() as! LoginTableViewController
+            let _ = nextViewController.view
+           self.addChildViewController(nextViewController, back: true)
+              
+          }
+          let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+          
+          actionSheet.addAction(chat)
+          actionSheet.addAction(call)
+          actionSheet.addAction(cancel)
+          
+          present(actionSheet,animated: true,completion: nil)
+      }
     
     func addChildViewController(_ views:UIViewController, back: Bool) {
         self.navigationController?.pushViewController(views, animated: true)
-        self.navigationController?.navigationBar.barTintColor = Theme.tintcolor
-        self.navigationController?.navigationBar.tintColor = Theme.backgroundColor
+        self.navigationController?.navigationBar.barTintColor = Theme.accentColor
+        self.navigationController?.navigationBar.tintColor = Theme.tintcolor
         self.navigationController?.navigationBar.isTranslucent = false
       
     }
@@ -105,8 +125,4 @@ extension DotDashboardViewController:setViewAutomatically,setViewControllerAutom
         }
         
     }
-
-   
-    
-    
 }

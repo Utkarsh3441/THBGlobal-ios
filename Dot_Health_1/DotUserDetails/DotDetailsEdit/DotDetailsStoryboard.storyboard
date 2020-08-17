@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="izv-Zl-cXd">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Dot Edit Details View Controller-->
+        <scene sceneID="taa-nQ-YDl">
+            <objects>
+                <viewController storyboardIdentifier="dotEdit" id="izv-Zl-cXd" customClass="DotEditDetailsViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xXx-AR-DdD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vHX-Bv-Slx">
+                                <rect key="frame" x="0.0" y="44" width="414" height="200"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="eZc-3K-N8m">
+                                        <rect key="frame" x="8" y="24" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="EEs-a2-TPt"/>
+                                            <constraint firstAttribute="width" constant="150" id="gA4-bg-uUs"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" name="GradientColorDark"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="vwC-BX-KI6">
+                                        <rect key="frame" x="208" y="40" width="120" height="114"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvQ-qX-lOp" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="1aL-65-qsQ"/>
+                                                    <constraint firstAttribute="height" constant="30" id="TYd-YN-EOC"/>
+                                                </constraints>
+                                                <state key="normal" title="Take Photo"/>
+                                                <connections>
+                                                    <action selector="takePhotoAction:" destination="izv-Zl-cXd" eventType="touchUpInside" id="adr-cT-Jsp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AF-6D-MTX" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="42" width="120" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="eIN-yl-i24"/>
+                                                    <constraint firstAttribute="height" constant="30" id="iz3-Es-tuo"/>
+                                                </constraints>
+                                                <state key="normal" title="Upload Photo"/>
+                                                <connections>
+                                                    <action selector="uploadPhotoAction:" destination="izv-Zl-cXd" eventType="touchUpInside" id="hfZ-1C-01h"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ey-if-hL5" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="84" width="120" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="120" id="rT8-kb-o2i"/>
+                                                    <constraint firstAttribute="height" constant="30" id="vCm-zx-2db"/>
+                                                </constraints>
+                                                <state key="normal" title="Delete Photo"/>
+                                                <connections>
+                                                    <action selector="deletePhotoAction:" destination="izv-Zl-cXd" eventType="touchUpInside" id="Jiu-5y-aUU"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="eZc-3K-N8m" firstAttribute="leading" secondItem="vHX-Bv-Slx" secondAttribute="leading" constant="8" id="6oA-lo-lmg"/>
+                                    <constraint firstItem="eZc-3K-N8m" firstAttribute="top" secondItem="vHX-Bv-Slx" secondAttribute="top" constant="20" id="FdN-TM-Gmo"/>
+                                    <constraint firstItem="vwC-BX-KI6" firstAttribute="top" secondItem="vHX-Bv-Slx" secondAttribute="top" constant="40" id="K7k-8S-fpR"/>
+                                    <constraint firstItem="vwC-BX-KI6" firstAttribute="leading" secondItem="eZc-3K-N8m" secondAttribute="trailing" constant="50" id="gSp-Bs-tAP"/>
+                                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="vwC-BX-KI6" secondAttribute="bottom" constant="68" id="n2E-kE-nhS"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="GradientColorDark"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4fK-4g-NiD">
+                                <rect key="frame" x="0.0" y="279" width="414" height="583"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="com" rowHeight="46" id="H1U-Bs-rK2">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H1U-Bs-rK2" id="39m-DK-sKv">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Additional Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhL-Hn-ftQ">
+                                                    <rect key="frame" x="10" y="13" width="126" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="MhL-Hn-ftQ" firstAttribute="leading" secondItem="39m-DK-sKv" secondAttribute="leadingMargin" id="Ays-8s-huH"/>
+                                                <constraint firstItem="MhL-Hn-ftQ" firstAttribute="top" secondItem="39m-DK-sKv" secondAttribute="topMargin" constant="2" id="JTX-Oi-Gor"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="guu-do-VMg"/>
+                    </view>
+                    <connections>
+                        <outlet property="detailSections" destination="4fK-4g-NiD" id="7zI-Oh-CbU"/>
+                        <outlet property="profileDetailsView" destination="vHX-Bv-Slx" id="lU2-KV-9y4"/>
+                        <outlet property="profileImage" destination="eZc-3K-N8m" id="NpU-F5-kb1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Tf-4H-tRs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="73.913043478260875" y="170.75892857142856"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="user" width="49" height="48"/>
+        <namedColor name="GradientColorDark">
+            <color red="0.12156862745098039" green="0.36470588235294116" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

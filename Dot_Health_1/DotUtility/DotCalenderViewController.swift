@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import FSCalendar
 import TinyConstraints
-class DotCalenderViewController: UIViewController,FSCalendarDelegate {
+/*class DotCalenderViewController: UIViewController,FSCalendarDelegate {
     var startDate : Date?
     var endDate : String?
     
@@ -40,4 +39,6 @@ class DotCalenderViewController: UIViewController,FSCalendarDelegate {
    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
             self.startDate = date
       }
+
 }
+*/

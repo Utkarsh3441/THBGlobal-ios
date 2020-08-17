@@ -21,16 +21,23 @@ class DotAppointmentTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        dateLabel.font = Theme.labelFontName
-        dateLabel.textColor = Theme.tintcolor
-        issueLabel.font = Theme.labelFontName
-        doctorNameLabel.font = Theme.labelFontName
-        hospitalNameLabel.font = Theme.labelFontNameBold
-        timeLabel.font = Theme.labelFontName
-        statusLabel.font = Theme.labelFontName
+        //to have full length cell separator
+        self.preservesSuperviewLayoutMargins = false
+        self.separatorInset = UIEdgeInsets.zero
+        self.layoutMargins = UIEdgeInsets.zero
         
+        dateLabel.font = UIFont(name: Theme.mainFontName, size: 17)
+        dateLabel.textColor = Theme.tintcolor
+        dateLabel.layer.cornerRadius = 6
+        dateLabel.layer.masksToBounds = true
+        dateLabel.numberOfLines = 3
         dateLabel.contentMode = .center
         dateLabel.lineBreakMode = .byWordWrapping
+        issueLabel.font = UIFont(name: Theme.mainFontName, size: 17)
+        doctorNameLabel.font = UIFont(name: Theme.mainFontName, size: 17)
+        hospitalNameLabel.font = UIFont(name: Theme.mainFontName, size: 17)
+        timeLabel.font = UIFont(name: Theme.mainFontName, size: 17)
+        statusLabel.font = UIFont(name: Theme.mainFontName, size: 17)
         timeLabel.contentMode = .center
         timeLabel.lineBreakMode = .byWordWrapping
         
@@ -48,11 +55,13 @@ class DotAppointmentTableViewCell: UITableViewCell {
         dateFormatter.dateFormat = "dd MMM yyyy"
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm"
-        self.issueLabel.text = appointmentModel.issue
-        self.hospitalNameLabel.text = appointmentModel.hospitalName
-        self.doctorNameLabel.text = appointmentModel.doctorName
-        self.dateLabel.text = dateFormatter.string(from: appointmentModel.date)
-        self.timeLabel.text = timeFormatter.string(from: appointmentModel.date)
+        self.issueLabel.text = appointmentModel.purpose
+        self.hospitalNameLabel.text = appointmentModel.provider_name
+        let dateStringArray = appointmentModel.slot_date.components(separatedBy: " ")
+        self.dateLabel.attributedText = NSAttributedString().createAttributedString(first: dateStringArray[0]+"\n", second: dateStringArray[1]+"\n"+dateStringArray[2], fColor:Theme.tintcolor ?? UIColor.white, sColor: Theme.tintcolor ?? UIColor.white,fBold:true,sBold:false,fSize: 24.0,sSize: 17.0)
+        self.doctorNameLabel.text = appointmentModel.provider_type
+   //     self.dateLabel.text = appointmentModel.slot_date//dateFormatter.string(from: appointmentModel.date)
+        self.timeLabel.text = appointmentModel.start_time//timeFormatter.string(from: appointmentModel.date)
 //        self.statusLabel.text = appointmentModel.status
 //        self.setStatusColor(status: appointmentModel.status)
         self.statusLabel = UtilityFunctions.setStatusColor(status: appointmentModel.status, label: self.statusLabel)

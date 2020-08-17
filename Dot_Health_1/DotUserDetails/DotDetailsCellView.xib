@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" id="KGk-i7-Jjw" customClass="DotDetailsCellView" customModule="Dot_Health_1" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" id="KGk-i7-Jjw" customClass="DotDetailsCellView" customModule="Asha_Cares" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -20,39 +26,65 @@
                         <rect key="frame" x="14" y="18" width="8" height="8"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="8" id="8NT-Vx-8KJ"/>
-                            <constraint firstAttribute="height" constant="8" id="JWj-Ji-Bo6"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" secondItem="pGv-Yc-EJ1" secondAttribute="height" multiplier="1:1" id="JZa-5L-eIe"/>
                         </constraints>
-                        <state key="normal" image="circle.fill" catalog="system"/>
+                        <state key="normal" image="list.bullet" catalog="system"/>
                     </button>
-                    <textField opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" enabled="NO" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Dummy Information" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fMO-Iv-5ZW">
-                        <rect key="frame" x="124" y="5" width="118" height="34"/>
+                    <textField hidden="YES" opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Dummy Information" borderStyle="line" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fMO-Iv-5ZW">
+                        <rect key="frame" x="124" y="5" width="188" height="25"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="13"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                         <textInputTraits key="textInputTraits"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                 <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="tapHerre:" destination="KGk-i7-Jjw" eventType="editingDidEnd" id="w3z-1R-15G"/>
+                        </connections>
                     </textField>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWg-Hy-Zn2">
-                        <rect key="frame" x="30" y="14" width="86" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWg-Hy-Zn2">
+                        <rect key="frame" x="30" y="10" width="99" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="86" id="xEt-vW-MhN"/>
+                            <constraint firstAttribute="width" constant="99" id="xEt-vW-MhN"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                         <color key="textColor" red="0.2457145154" green="0.46548014879999999" blue="0.75297850369999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="test" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MD2-sJ-REq">
+                        <rect key="frame" x="143" y="3" width="169" height="38"/>
+                        <color key="backgroundColor" name="Background"/>
+                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" name="GradientColorlight"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="fMO-Iv-5ZW" secondAttribute="bottom" constant="5" id="Nki-De-NMz"/>
+                    <constraint firstAttribute="bottom" secondItem="pGv-Yc-EJ1" secondAttribute="bottom" constant="18" id="CFF-J8-uqa"/>
+                    <constraint firstAttribute="trailing" secondItem="fMO-Iv-5ZW" secondAttribute="trailing" constant="8" id="Pnb-8x-zJj"/>
+                    <constraint firstAttribute="bottom" secondItem="MD2-sJ-REq" secondAttribute="bottom" constant="3" id="S5n-5U-Lcs"/>
                     <constraint firstItem="CWg-Hy-Zn2" firstAttribute="leading" secondItem="pGv-Yc-EJ1" secondAttribute="trailing" constant="8" id="Tsz-Or-Buh"/>
                     <constraint firstItem="pGv-Yc-EJ1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="afj-Cu-YKh"/>
-                    <constraint firstItem="CWg-Hy-Zn2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="dUD-Xj-cbW"/>
+                    <constraint firstItem="MD2-sJ-REq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="avZ-4X-g4T"/>
+                    <constraint firstItem="CWg-Hy-Zn2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="dUD-Xj-cbW"/>
                     <constraint firstItem="pGv-Yc-EJ1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="gKy-L2-qhI"/>
-                    <constraint firstItem="fMO-Iv-5ZW" firstAttribute="leading" secondItem="CWg-Hy-Zn2" secondAttribute="trailing" constant="8" id="iHQ-7N-ley"/>
-                    <constraint firstAttribute="bottom" secondItem="CWg-Hy-Zn2" secondAttribute="bottom" constant="14" id="nfF-7t-hf3"/>
+                    <constraint firstItem="fMO-Iv-5ZW" firstAttribute="leading" secondItem="CWg-Hy-Zn2" secondAttribute="trailing" constant="-5" id="iHQ-7N-ley"/>
+                    <constraint firstAttribute="trailing" secondItem="MD2-sJ-REq" secondAttribute="trailing" constant="8" id="kiX-wg-VsV"/>
+                    <constraint firstItem="MD2-sJ-REq" firstAttribute="leading" secondItem="CWg-Hy-Zn2" secondAttribute="trailing" constant="14" id="mvX-yv-b1z"/>
+                    <constraint firstAttribute="bottom" secondItem="CWg-Hy-Zn2" secondAttribute="bottom" constant="10" id="nfF-7t-hf3"/>
                     <constraint firstItem="fMO-Iv-5ZW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="rWC-t4-7ml"/>
                 </constraints>
             </tableViewCellContentView>
@@ -62,11 +94,18 @@
                 <outlet property="detailText" destination="fMO-Iv-5ZW" id="gx4-DL-H3o"/>
                 <outlet property="first" destination="CWg-Hy-Zn2" id="bYO-qL-wzf"/>
                 <outlet property="indicatorButton" destination="pGv-Yc-EJ1" id="zWd-V0-zkX"/>
+                <outlet property="textView" destination="MD2-sJ-REq" id="6Gl-Ni-vJP"/>
             </connections>
-            <point key="canvasLocation" x="84" y="107"/>
+            <point key="canvasLocation" x="76.811594202898561" y="93.75"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="circle.fill" catalog="system" width="128" height="121"/>
+        <image name="list.bullet" catalog="system" width="128" height="88"/>
+        <namedColor name="Background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="GradientColorlight">
+            <color red="0.074509803921568626" green="0.792156862745098" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

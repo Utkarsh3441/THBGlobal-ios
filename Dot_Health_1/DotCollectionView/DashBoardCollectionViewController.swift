@@ -26,12 +26,27 @@ class DashBoardCollectionViewController: UIViewController {
 
 }
 extension DashBoardCollectionViewController:setViewControllerAutomatically{
-
+    func showActionSheet(){
+          let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+          let chat = UIAlertAction(title: "Chat", style: .default) { (action) in
+             
+          }
+          let call = UIAlertAction(title: "Audio/Video call", style: .default) { (action) in
+             
+          }
+          let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+          
+          actionSheet.addAction(chat)
+          actionSheet.addAction(call)
+          actionSheet.addAction(cancel)
+          
+          present(actionSheet,animated: true,completion: nil)
+      }
 
 func addChildViewController(_ views:UIViewController, back: Bool) {
     self.navigationController?.pushViewController(views, animated: true)
-    self.navigationController?.navigationBar.barTintColor = Theme.tintcolor
-    self.navigationController?.navigationBar.tintColor = Theme.backgroundColor
+    self.navigationController?.navigationBar.barTintColor = Theme.accentColor
+    self.navigationController?.navigationBar.tintColor = Theme.tintcolor
     self.navigationController?.navigationBar.isTranslucent = false
   
 }

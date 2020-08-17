@@ -12,41 +12,47 @@ import Foundation
 
 protocol APIClient {
     var session: URLSession { get }
-    func callAPI<T: Decodable> (with request: URLRequest, decode: @escaping (Decodable) -> T?,
-                              completion: @escaping (Result<T, APIError>) -> Void)
+    func callAPI<T: Decodable> (with request: URLRequest,modelParser : T.Type,
+    completion: @escaping (Result<AnyObject?, APIError>) -> Void)
 }
 
 extension APIClient {
-    typealias jsonTaskCompletionHandler = (Decodable?, APIError?) -> Void
+    typealias jsonTaskCompletionHandler = (AnyObject?, APIError?) -> Void
     
     private func decodingTask<T: Decodable> (with request: URLRequest, decodingType: T.Type, completion: @escaping jsonTaskCompletionHandler) -> URLSessionDataTask {
         
         let task = session.dataTask(with: request) { (data, response, error) in
-            guard let httpResponse = response as? HTTPURLResponse else {
+            guard let _ = response as? HTTPURLResponse else {
                 completion(nil, .requestFailed)
                 return
             }
-            
-            if httpResponse.statusCode == 200 {
-                if let data = data {
-                    do {
-                        let genericModel = try JSONDecoder().decode(decodingType, from: data)
-                        completion(genericModel, nil)
-                    } catch {
-                        completion(nil, .jsonConversionFailure)
+            if let data = data {
+                do {
+                    if decodingType == String.self{
+                        let genericModel = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
+                        completion(genericModel , nil)
                     }
-                } else {
-                    completion(nil, .invalidData)
+                    else{
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .useDefaultKeys
+                        let genericModel = try decoder.decode(decodingType, from: data)
+                        completion(genericModel as AnyObject,nil)
+                    }
+                } catch {
+                    completion(nil, .jsonConversionFailure)
                 }
             } else {
-                completion(nil, .responseUnsuccessful)
+                completion(nil, .invalidData)
             }
+       
+//                completion(nil, .responseUnsuccessful)
+            
         }
         return task
     }
     
-    func callAPI<T: Decodable> (with request: URLRequest, decode: @escaping (Decodable) -> T?,
-                              completion: @escaping (Result<T, APIError>) -> Void) {
+    func callAPI<T: Decodable> (with request: URLRequest,modelParser : T.Type,
+                              completion: @escaping (Result<AnyObject?, APIError>) -> Void) {
         let task = decodingTask(with: request, decodingType: T.self) { (json, error) in
             
             // Switch to main queue
@@ -60,13 +66,40 @@ extension APIClient {
                     return
                 }
                 
-                if let value = decode(json) {
-                    completion(Result.success(value))
-                } else {
-                    completion(Result.failure(.jsonParsingFailure))
-                }
+//                if let value = decode(json) {
+                    completion(Result.success(json))
+//                } else {
+//                    completion(Results.failure(.jsonParsingFailure))
+//                }
             }
         }
         task.resume()
+    }
+}
+// MARK: - Data Extension
+extension Data {
+    mutating func append<T>(values: [T]) -> Bool {
+        var newData = Data()
+        var status = true
+        
+        if T.self == String.self {
+            for value in values {
+                guard let convertedString = (value as! String).data(using: .utf8) else { status = false; break }
+                newData.append(convertedString)
+            }
+        } else if T.self == Data.self {
+            for value in values {
+                newData.append(value as! Data)
+            }
+        } else {
+            status = false
+        }
+        
+        
+        if status {
+            self.append(newData)
+        }
+        
+        return status
     }
 }

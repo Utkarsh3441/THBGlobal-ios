@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fUM-7Q-3e2">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Dot Add Graph Data View Controller-->
+        <scene sceneID="Vpa-2J-EB6">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="fUM-7Q-3e2" customClass="DotAddGraphDataViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="F26-Ko-ogN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Vu-CT-jAJ">
+                                <rect key="frame" x="20" y="253" width="374" height="274"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blood Pressure" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqw-KE-ekO">
+                                        <rect key="frame" x="20" y="20" width="334" height="35"/>
+                                        <color key="backgroundColor" name="GradientColorDark"/>
+                                        <color key="tintColor" name="Tint"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="Hmb-JA-Gzo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
+                                        <color key="textColor" name="Tint"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="rKl-IF-Zsb">
+                                        <rect key="frame" x="20" y="70" width="334" height="35"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cd-UN-j3c">
+                                                <rect key="frame" x="0.0" y="0.0" width="127" height="35"/>
+                                                <color key="backgroundColor" name="GradientColorDark"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                <color key="textColor" name="Tint"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGz-ua-xlk">
+                                                <rect key="frame" x="207" y="0.0" width="127" height="35"/>
+                                                <color key="backgroundColor" name="GradientColorDark"/>
+                                                <color key="tintColor" name="Tint"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                <color key="textColor" name="Tint"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="SZU-th-qGq"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="fFT-FQ-Vi7">
+                                        <rect key="frame" x="20" y="120" width="334" height="35"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Systolic Pressure -&gt;" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ge2-1f-S2h">
+                                                <rect key="frame" x="0.0" y="0.0" width="127" height="35"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                <color key="textColor" name="Tint"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g7M-3d-Sni">
+                                                <rect key="frame" x="207" y="0.0" width="127" height="35"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="Tint"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="ep4-YL-bgf"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="LIp-Su-LN7">
+                                        <rect key="frame" x="20" y="170" width="334" height="35"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Diastolic Pressure -&gt;" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="TeO-R7-Gtq">
+                                                <rect key="frame" x="0.0" y="0.0" width="127" height="35"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                                <color key="textColor" name="Tint"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qQ8-9k-0fG">
+                                                <rect key="frame" x="207" y="0.0" width="127" height="35"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" name="Tint"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="6ml-Gh-cWM"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="nds-ay-qha"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHJ-d7-b4k" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="224" width="334" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="FOQ-id-zQC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                        <state key="normal" title="Show Graph"/>
+                                        <connections>
+                                            <action selector="showGraphAction:" destination="fUM-7Q-3e2" eventType="touchUpInside" id="HyI-m5-BXp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="fFT-FQ-Vi7" firstAttribute="leading" secondItem="6Vu-CT-jAJ" secondAttribute="leading" constant="20" id="3cB-Qs-dt5"/>
+                                    <constraint firstItem="fFT-FQ-Vi7" firstAttribute="top" secondItem="rKl-IF-Zsb" secondAttribute="bottom" constant="15" id="4XQ-t3-uie"/>
+                                    <constraint firstAttribute="trailing" secondItem="LIp-Su-LN7" secondAttribute="trailing" constant="20" id="5u1-Fk-5Sc"/>
+                                    <constraint firstItem="gHJ-d7-b4k" firstAttribute="leading" secondItem="6Vu-CT-jAJ" secondAttribute="leading" constant="20" id="Dfl-Xv-VIb"/>
+                                    <constraint firstItem="LIp-Su-LN7" firstAttribute="top" secondItem="fFT-FQ-Vi7" secondAttribute="bottom" constant="15" id="GSw-Hn-0bE"/>
+                                    <constraint firstAttribute="trailing" secondItem="fFT-FQ-Vi7" secondAttribute="trailing" constant="20" id="LEe-DP-dIm"/>
+                                    <constraint firstItem="LIp-Su-LN7" firstAttribute="leading" secondItem="6Vu-CT-jAJ" secondAttribute="leading" constant="20" id="MKy-XZ-8fR"/>
+                                    <constraint firstAttribute="trailing" secondItem="gHJ-d7-b4k" secondAttribute="trailing" constant="20" id="Os2-DJ-WPq"/>
+                                    <constraint firstItem="xqw-KE-ekO" firstAttribute="leading" secondItem="6Vu-CT-jAJ" secondAttribute="leading" constant="20" id="SDT-L2-pJt"/>
+                                    <constraint firstAttribute="trailing" secondItem="rKl-IF-Zsb" secondAttribute="trailing" constant="20" id="Sdm-fu-Xqf"/>
+                                    <constraint firstAttribute="height" constant="274" id="bN2-55-F8C"/>
+                                    <constraint firstItem="xqw-KE-ekO" firstAttribute="top" secondItem="6Vu-CT-jAJ" secondAttribute="top" constant="20" id="c8c-BW-fhN"/>
+                                    <constraint firstItem="rKl-IF-Zsb" firstAttribute="leading" secondItem="6Vu-CT-jAJ" secondAttribute="leading" constant="20" id="gsZ-xP-nOV"/>
+                                    <constraint firstItem="xqw-KE-ekO" firstAttribute="centerX" secondItem="6Vu-CT-jAJ" secondAttribute="centerX" id="rh2-Kq-t0B"/>
+                                    <constraint firstItem="gHJ-d7-b4k" firstAttribute="top" secondItem="LIp-Su-LN7" secondAttribute="bottom" constant="19" id="uFB-E1-5vk"/>
+                                    <constraint firstItem="rKl-IF-Zsb" firstAttribute="top" secondItem="xqw-KE-ekO" secondAttribute="bottom" constant="15" id="zKG-uf-UKU"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Vu-CT-jAJ" firstAttribute="leading" secondItem="Os5-jA-aYJ" secondAttribute="leading" constant="20" id="3j0-ed-NZb"/>
+                            <constraint firstItem="6Vu-CT-jAJ" firstAttribute="centerY" secondItem="Os5-jA-aYJ" secondAttribute="centerY" constant="-63" id="Abj-SE-yfr"/>
+                            <constraint firstItem="Os5-jA-aYJ" firstAttribute="trailing" secondItem="6Vu-CT-jAJ" secondAttribute="trailing" constant="20" id="dOJ-h5-7KL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Os5-jA-aYJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="4cd-UN-j3c" id="WQG-ee-wm3"/>
+                        <outlet property="timelabel" destination="MGz-ua-xlk" id="g57-Ye-hT3"/>
+                        <outlet property="vitalNameHeaderLabel" destination="xqw-KE-ekO" id="c4Q-09-YTM"/>
+                        <outlet property="yAxixDataTextField" destination="g7M-3d-Sni" id="tRC-kg-OCT"/>
+                        <outlet property="yAxixDataTextfield2" destination="qQ8-9k-0fG" id="fJe-T5-hw7"/>
+                        <outlet property="yAxixLabel1" destination="Ge2-1f-S2h" id="L4c-H1-tw8"/>
+                        <outlet property="yAxixLabel2" destination="TeO-R7-Gtq" id="lbm-Nx-pnd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LX2-ib-fG8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="200.00000000000003" y="46.875"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="GradientColorDark">
+            <color red="0.12156862745098039" green="0.36470588235294116" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Tint">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

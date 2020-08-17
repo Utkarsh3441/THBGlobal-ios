@@ -29,10 +29,10 @@ class appointmentFunctions{
             }
             
         }
-        static func readAppointment(by id:UUID, complition: @escaping (DotAppointmentModel?) -> () ){
+        static func readAppointment(by id:Int, complition: @escaping (DotAppointmentModel?) -> () ){
             
             DispatchQueue.global(qos: .userInteractive).async {
-                let appointment = MyData.appointmentModelArray.first(where: {$0.id == id})
+                let appointment = MyData.appointmentModelArray.first(where: {$0.patient_id == id})
                 DispatchQueue.main.async {
                           complition(appointment)
                       }

@@ -1,67 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PGa-ER-BHC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PGa-ER-BHC">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Dot Add Appointment View Controller-->
         <scene sceneID="xfF-lw-S7L">
             <objects>
-                <viewController id="PGa-ER-BHC" customClass="DotAddAppointmentViewController" customModule="Dot_Health_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PGa-ER-BHC" customClass="DotAddAppointmentViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dp5-HQ-Kpn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Search By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKq-Of-a4f">
-                                <rect key="frame" x="20" y="44" width="92" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5Q-iD-jtk">
-                                <rect key="frame" x="20" y="93" width="85" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="doctor"/>
-                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                <state key="normal" title="Doctor">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonTouched:" destination="PGa-ER-BHC" eventType="touchUpInside" id="I6N-iy-ZoG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gvg-DR-60r">
-                                <rect key="frame" x="165" y="92" width="85" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="institution"/>
-                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                <state key="normal" title="Institution">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonTouched:" destination="PGa-ER-BHC" eventType="touchUpInside" id="Gwe-sp-Euw"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAd-CN-Vc6">
-                                <rect key="frame" x="309" y="93" width="85" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="facility"/>
-                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                <state key="normal" title="Facility">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonTouched:" destination="PGa-ER-BHC" eventType="touchUpInside" id="hih-1i-Mng"/>
-                                </connections>
-                            </button>
-                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="tKi-V0-LHk">
-                                <rect key="frame" x="20" y="117" width="374" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5t-cx-hym">
+                                <rect key="frame" x="0.0" y="44" width="414" height="99"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search By:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKq-Of-a4f">
+                                        <rect key="frame" x="20" y="8" width="83" height="20"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
+                                        <color key="textColor" name="GradientColorDark"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="14" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NGp-Jr-lEB">
+                                        <rect key="frame" x="20" y="52.5" width="320" height="36"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5Q-iD-jtk">
+                                                <rect key="frame" x="0.0" y="0.0" width="97.5" height="36"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="doctor"/>
+                                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
+                                                <state key="normal" title="Doctor">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="buttonTouched:" destination="PGa-ER-BHC" eventType="touchUpInside" id="I6N-iy-ZoG"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAd-CN-Vc6">
+                                                <rect key="frame" x="111.5" y="0.0" width="97" height="36"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="facility"/>
+                                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
+                                                <state key="normal" title="Facility">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="buttonTouched:" destination="PGa-ER-BHC" eventType="touchUpInside" id="hih-1i-Mng"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="07q-AC-vmK" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                <rect key="frame" x="222.5" y="0.0" width="97.5" height="36"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="ailment"/>
+                                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
+                                                <state key="normal" title="Ailment">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="buttonTouched:" destination="PGa-ER-BHC" eventType="touchUpInside" id="LvA-TG-gQi"/>
+                                                    <segue destination="Le6-cc-ye2" kind="popoverPresentation" popoverAnchorView="07q-AC-vmK" id="Lyo-Qg-Hzp">
+                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                    </segue>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="dAd-CN-Vc6" firstAttribute="centerY" secondItem="V5Q-iD-jtk" secondAttribute="centerY" id="MgJ-7C-SEK"/>
+                                            <constraint firstItem="V5Q-iD-jtk" firstAttribute="centerY" secondItem="NGp-Jr-lEB" secondAttribute="centerY" id="OjA-Wp-gLr"/>
+                                            <constraint firstItem="07q-AC-vmK" firstAttribute="centerY" secondItem="dAd-CN-Vc6" secondAttribute="centerY" id="waQ-Xh-3uJ"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYa-Sx-Qvr">
+                                        <rect key="frame" x="113" y="7.5" width="281" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="3aW-kH-gsf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="16"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wh5-Hx-ruB" customClass="ActionButton" customModule="Asha_Cares" customModuleProvider="target">
+                                        <rect key="frame" x="354" y="50.5" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="U4d-Ii-rbD"/>
+                                            <constraint firstAttribute="width" constant="40" id="tys-23-JkT"/>
+                                        </constraints>
+                                        <state key="normal" image="magnifyingglass" catalog="system"/>
+                                        <connections>
+                                            <action selector="searchAction:" destination="PGa-ER-BHC" eventType="touchUpInside" id="j2o-8a-B3d"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="aYa-Sx-Qvr" firstAttribute="centerY" secondItem="QKq-Of-a4f" secondAttribute="centerY" id="6R6-ul-crH"/>
+                                    <constraint firstItem="wh5-Hx-ruB" firstAttribute="centerY" secondItem="NGp-Jr-lEB" secondAttribute="centerY" id="BZR-qJ-WHJ"/>
+                                    <constraint firstItem="wh5-Hx-ruB" firstAttribute="leading" secondItem="NGp-Jr-lEB" secondAttribute="trailing" constant="14" id="K5i-Rd-7aU"/>
+                                    <constraint firstAttribute="height" constant="99" id="P5Y-Bn-KSg"/>
+                                    <constraint firstItem="NGp-Jr-lEB" firstAttribute="top" secondItem="aYa-Sx-Qvr" secondAttribute="bottom" constant="24" id="QtI-4l-exx"/>
+                                    <constraint firstAttribute="trailing" secondItem="wh5-Hx-ruB" secondAttribute="trailing" constant="20" id="RfT-8J-TbU"/>
+                                    <constraint firstItem="NGp-Jr-lEB" firstAttribute="leading" secondItem="c5t-cx-hym" secondAttribute="leading" constant="20" id="UWf-bF-Nog"/>
+                                    <constraint firstItem="QKq-Of-a4f" firstAttribute="top" secondItem="c5t-cx-hym" secondAttribute="top" constant="8" id="g8R-9M-4gU"/>
+                                    <constraint firstItem="QKq-Of-a4f" firstAttribute="leading" secondItem="c5t-cx-hym" secondAttribute="leading" constant="20" id="jfh-mU-iBF"/>
+                                    <constraint firstItem="aYa-Sx-Qvr" firstAttribute="leading" secondItem="QKq-Of-a4f" secondAttribute="trailing" constant="10" id="tPu-YX-8K5"/>
+                                    <constraint firstAttribute="trailing" secondItem="aYa-Sx-Qvr" secondAttribute="trailing" constant="20" id="wV9-3c-YUr"/>
+                                    <constraint firstAttribute="bottom" secondItem="wh5-Hx-ruB" secondAttribute="bottom" constant="8.5" id="xJM-ee-ODa"/>
+                                </constraints>
+                            </view>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="tKi-V0-LHk">
+                                <rect key="frame" x="20" y="143" width="374" height="56"/>
                                 <color key="tintColor" name="Tint"/>
                                 <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -70,51 +123,82 @@
                                     <string>Title</string>
                                 </scopeButtonTitles>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pHf-an-I1a">
-                                <rect key="frame" x="0.0" y="194" width="414" height="702"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ryH-w1-zrd" userLabel="Horizontal Line">
+                                <rect key="frame" x="0.0" y="214" width="414" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="Accent"/>
+                                <accessibility key="accessibilityConfiguration" label="Horizontal Line"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="eNP-Jc-5dL"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="Accent"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pHf-an-I1a">
+                                <rect key="frame" x="0.0" y="225" width="414" height="651"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="137" id="LmP-HM-hil" customClass="DotDoctorTableViewCell" customModule="Dot_Health_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="137" id="LmP-HM-hil" customClass="DotDoctorTableViewCell" customModule="Asha_Cares" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="137"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LmP-HM-hil" id="EVb-uR-7xW">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="137"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vhr-ar-9hX">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vhr-ar-9hX">
                                                     <rect key="frame" x="20" y="10" width="102" height="117"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uqv-2m-O7Q">
-                                                    <rect key="frame" x="145" y="11" width="200" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="KohinoorDevanagari-Semibold" family="Kohinoor Devanagari" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Speciality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vay-LK-0ln">
-                                                    <rect key="frame" x="145" y="40" width="200" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hospital" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ux0-Ef-guL">
-                                                    <rect key="frame" x="145" y="69" width="200" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lh4-vf-MKO">
-                                                    <rect key="frame" x="354" y="58" width="40" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nCq-pX-Yw8">
+                                                    <rect key="frame" x="142" y="24.5" width="206" height="88"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uqv-2m-O7Q">
+                                                            <rect key="frame" x="0.0" y="0.0" width="206" height="24"/>
+                                                            <fontDescription key="fontDescription" name="KohinoorDevanagari-Semibold" family="Kohinoor Devanagari" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speciality" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vay-LK-0ln">
+                                                            <rect key="frame" x="0.0" y="32" width="206" height="24"/>
+                                                            <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hospital" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ux0-Ef-guL">
+                                                            <rect key="frame" x="0.0" y="64" width="206" height="24"/>
+                                                            <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lh4-vf-MKO">
+                                                    <rect key="frame" x="356" y="56.5" width="50" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="mSz-Jc-iOm"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="lh4-vf-MKO" secondAttribute="trailing" constant="8" id="5Sp-PA-q7Z"/>
+                                                <constraint firstItem="vhr-ar-9hX" firstAttribute="centerY" secondItem="EVb-uR-7xW" secondAttribute="centerY" id="B16-fu-K7m"/>
+                                                <constraint firstItem="vhr-ar-9hX" firstAttribute="leading" secondItem="EVb-uR-7xW" secondAttribute="leading" constant="20" id="B4n-yD-Kdy"/>
+                                                <constraint firstItem="nCq-pX-Yw8" firstAttribute="leading" secondItem="vhr-ar-9hX" secondAttribute="trailing" constant="20" id="CQC-bf-2O5"/>
+                                                <constraint firstItem="nCq-pX-Yw8" firstAttribute="centerY" secondItem="EVb-uR-7xW" secondAttribute="centerY" id="brO-7a-3gF"/>
+                                                <constraint firstItem="vhr-ar-9hX" firstAttribute="width" secondItem="EVb-uR-7xW" secondAttribute="width" multiplier="0.246377" id="cOF-eW-6Yj"/>
+                                                <constraint firstItem="lh4-vf-MKO" firstAttribute="leading" secondItem="nCq-pX-Yw8" secondAttribute="trailing" constant="8" id="duW-jc-O47"/>
+                                                <constraint firstItem="lh4-vf-MKO" firstAttribute="centerY" secondItem="EVb-uR-7xW" secondAttribute="centerY" id="gTb-1N-7jg"/>
+                                                <constraint firstItem="vhr-ar-9hX" firstAttribute="height" secondItem="EVb-uR-7xW" secondAttribute="height" multiplier="0.854015" id="paO-Qb-wRp"/>
+                                                <constraint firstItem="lh4-vf-MKO" firstAttribute="height" secondItem="EVb-uR-7xW" secondAttribute="height" multiplier="0.175182" id="vCf-Eh-abi"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="doctorImageView" destination="vhr-ar-9hX" id="0oo-UW-aZB"/>
@@ -126,52 +210,33 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ryH-w1-zrd">
-                                <rect key="frame" x="0.0" y="185" width="414" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" name="Tint"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07q-AC-vmK">
-                                <rect key="frame" x="120" y="42" width="85" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration" identifier="ailment"/>
-                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                <state key="normal" title="Ailment">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonTouched:" destination="PGa-ER-BHC" eventType="touchUpInside" id="LvA-TG-gQi"/>
-                                    <segue destination="Le6-cc-ye2" kind="popoverPresentation" popoverAnchorView="07q-AC-vmK" id="Lyo-Qg-Hzp">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYa-Sx-Qvr">
-                                <rect key="frame" x="213" y="44" width="181" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="16"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LLl-H9-XkS" firstAttribute="trailing" secondItem="tKi-V0-LHk" secondAttribute="trailing" constant="20" id="1V5-Yv-BYh"/>
+                            <constraint firstItem="pHf-an-I1a" firstAttribute="top" secondItem="ryH-w1-zrd" secondAttribute="bottom" constant="10" id="1lo-UV-hkA"/>
+                            <constraint firstAttribute="bottom" secondItem="pHf-an-I1a" secondAttribute="bottom" constant="20" id="GA4-1I-x3d"/>
+                            <constraint firstItem="ryH-w1-zrd" firstAttribute="top" secondItem="tKi-V0-LHk" secondAttribute="bottom" constant="15" id="Gjb-4Q-h9T"/>
+                            <constraint firstItem="c5t-cx-hym" firstAttribute="leading" secondItem="LLl-H9-XkS" secondAttribute="leading" id="Q3Z-rc-OKQ"/>
+                            <constraint firstItem="tKi-V0-LHk" firstAttribute="top" secondItem="c5t-cx-hym" secondAttribute="bottom" id="SvY-jv-4BS"/>
+                            <constraint firstItem="ryH-w1-zrd" firstAttribute="leading" secondItem="dp5-HQ-Kpn" secondAttribute="leading" id="WJq-vI-WGU"/>
+                            <constraint firstItem="tKi-V0-LHk" firstAttribute="leading" secondItem="LLl-H9-XkS" secondAttribute="leading" constant="20" id="aWo-mT-Fnp"/>
+                            <constraint firstItem="c5t-cx-hym" firstAttribute="trailing" secondItem="LLl-H9-XkS" secondAttribute="trailing" id="oLn-Np-0xB"/>
+                            <constraint firstItem="pHf-an-I1a" firstAttribute="trailing" secondItem="LLl-H9-XkS" secondAttribute="trailing" id="p51-F2-Iob"/>
+                            <constraint firstItem="c5t-cx-hym" firstAttribute="top" secondItem="LLl-H9-XkS" secondAttribute="top" id="sff-u4-NMY"/>
+                            <constraint firstItem="pHf-an-I1a" firstAttribute="leading" secondItem="LLl-H9-XkS" secondAttribute="leading" id="uir-QU-8BY"/>
+                            <constraint firstAttribute="trailing" secondItem="ryH-w1-zrd" secondAttribute="trailing" id="zKR-uE-KSQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LLl-H9-XkS"/>
                     </view>
                     <connections>
                         <outlet property="ailmentButton" destination="07q-AC-vmK" id="vDS-DA-h1j"/>
                         <outlet property="doctorButton" destination="V5Q-iD-jtk" id="rR9-LK-wRR"/>
                         <outlet property="doctorListTableView" destination="pHf-an-I1a" id="cCU-PT-c2z"/>
-                        <outlet property="institutionButton" destination="Gvg-DR-60r" id="6Ia-Nl-j7D"/>
+                        <outlet property="searchButton" destination="wh5-Hx-ruB" id="Ivz-os-lT0"/>
                         <outlet property="selectedAilmentLabel" destination="aYa-Sx-Qvr" id="Qhi-AL-cl6"/>
                         <outlet property="specialityButton" destination="dAd-CN-Vc6" id="OfT-qp-NHS"/>
+                        <outlet property="topViewHeightConstraint" destination="P5Y-Bn-KSg" id="d4r-QC-ko9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNS-mu-gBn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -191,38 +256,47 @@
         <!--Dot Ailment View Controller-->
         <scene sceneID="Zch-lc-GrE">
             <objects>
-                <viewController id="Le6-cc-ye2" customClass="DotAilmentViewController" customModule="Dot_Health_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Le6-cc-ye2" customClass="DotAilmentViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gkx-EE-eyW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="5" sectionFooterHeight="50" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCd-ts-bjx">
-                                <rect key="frame" x="20" y="44" width="374" height="716"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="5" sectionFooterHeight="50" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCd-ts-bjx">
+                                <rect key="frame" x="20" y="20" width="374" height="788"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="70" id="OkS-P2-LZU" customClass="DotAilmentTableViewCell" customModule="Dot_Health_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="70" id="OkS-P2-LZU" customClass="DotAilmentTableViewCell" customModule="Asha_Cares" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OkS-P2-LZU" id="5DQ-Dd-5WK">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CIb-lM-VSr">
-                                                    <rect key="frame" x="-1" y="10" width="374" height="48"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CIb-lM-VSr">
+                                                    <rect key="frame" x="1" y="11" width="372" height="48"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ailment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQ2-3k-fK3">
-                                                            <rect key="frame" x="140" y="16" width="91" height="24"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ailment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQ2-3k-fK3">
+                                                            <rect key="frame" x="140.5" y="12" width="91" height="24"/>
                                                             <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstItem="RQ2-3k-fK3" firstAttribute="height" secondItem="CIb-lM-VSr" secondAttribute="height" multiplier="0.5" id="Wpi-M3-3zK"/>
+                                                        <constraint firstItem="RQ2-3k-fK3" firstAttribute="centerY" secondItem="CIb-lM-VSr" secondAttribute="centerY" id="chW-kL-tTP"/>
+                                                        <constraint firstItem="RQ2-3k-fK3" firstAttribute="centerX" secondItem="CIb-lM-VSr" secondAttribute="centerX" id="gDn-Zz-9UL"/>
+                                                        <constraint firstItem="RQ2-3k-fK3" firstAttribute="width" secondItem="CIb-lM-VSr" secondAttribute="width" multiplier="0.244624" id="uVW-ld-DBi"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="CIb-lM-VSr" firstAttribute="centerY" secondItem="5DQ-Dd-5WK" secondAttribute="centerY" id="Xtl-e3-8yp"/>
+                                                <constraint firstItem="CIb-lM-VSr" firstAttribute="leading" secondItem="5DQ-Dd-5WK" secondAttribute="leading" constant="1" id="bZ7-qT-rj2"/>
+                                                <constraint firstItem="CIb-lM-VSr" firstAttribute="centerX" secondItem="5DQ-Dd-5WK" secondAttribute="centerX" id="lQU-TE-6AY"/>
+                                                <constraint firstAttribute="trailing" secondItem="CIb-lM-VSr" secondAttribute="trailing" constant="1" id="z6P-ma-5TP"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="ailmentLabel" destination="RQ2-3k-fK3" id="cNd-PA-kWQ"/>
@@ -233,6 +307,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="YCd-ts-bjx" firstAttribute="leading" secondItem="Emk-vo-dRN" secondAttribute="leading" constant="20" id="CE2-aW-8I2"/>
+                            <constraint firstItem="Emk-vo-dRN" firstAttribute="trailing" secondItem="YCd-ts-bjx" secondAttribute="trailing" constant="20" id="DZ4-6w-fcC"/>
+                            <constraint firstItem="Emk-vo-dRN" firstAttribute="bottom" secondItem="YCd-ts-bjx" secondAttribute="bottom" id="yV2-1F-Ydo"/>
+                            <constraint firstItem="YCd-ts-bjx" firstAttribute="top" secondItem="Emk-vo-dRN" secondAttribute="top" constant="20" id="zjm-ol-ecz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Emk-vo-dRN"/>
                     </view>
                     <connections>
@@ -245,8 +325,15 @@
         </scene>
     </scenes>
     <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <namedColor name="Accent">
+            <color red="0.078431372549019607" green="0.2627450980392157" blue="0.44705882352941179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="GradientColorDark">
+            <color red="0.12156862745098039" green="0.36470588235294116" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="Tint">
-            <color red="0.18500000238418579" green="0.43399998545646667" blue="0.72899997234344482" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

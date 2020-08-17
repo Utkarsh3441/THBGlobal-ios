@@ -9,19 +9,19 @@
 import UIKit
 
 class doctorFunctions{
-static func createAvailableDoctors(doctorModel: DoctorModel) {
+    static func createAvailableDoctors(doctorModel: DoctorModel) {
         MyData.doctorModelArray.append(doctorModel)
     }
- static func readDoctors(complition: @escaping () -> ()) {
+    static func readDoctors(complition: @escaping () -> ()) {
         // Replace with real data code
         DispatchQueue.global(qos: .userInteractive).async {
             if MyData.doctorModelArray.count == 0
             {
                 MyData.doctorModelArray = MockData.createMockDoctors()
-//                Data.tripModelArray.append(TripModel(title: "GOA"))
-//                Data.tripModelArray.append(TripModel(title: "COORG"))
-//                Data.tripModelArray.append(TripModel(title: "GOKARNA"))
-             
+                //                Data.tripModelArray.append(TripModel(title: "GOA"))
+                //                Data.tripModelArray.append(TripModel(title: "COORG"))
+                //                Data.tripModelArray.append(TripModel(title: "GOKARNA"))
+                
             }
             DispatchQueue.main.async {
                 complition()
@@ -29,4 +29,25 @@ static func createAvailableDoctors(doctorModel: DoctorModel) {
         }
         
     }
+}
+
+
+class facilityFunctions{
+    static func createAvailableFacility(facilityModel: FacilityModel) {
+        MyData.facilityModelArray.append(facilityModel)
+    }
+    static func readFacilities(complition: @escaping () -> ()) {
+        // Replace with real data code
+        DispatchQueue.global(qos: .userInteractive).async {
+            if MyData.facilityModelArray.count == 0
+            {
+                MyData.facilityModelArray = MockData.createMockFacility()
+            }
+            DispatchQueue.main.async {
+                complition()
+            }
+        }
+        
+    }
+    
 }

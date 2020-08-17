@@ -3,11 +3,20 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DotDetailsView" customModule="Dot_Health_1" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DotDetailsView" customModule="Asha_Cares" customModuleProvider="target">
             <connections>
                 <outlet property="LabelStackView" destination="YxJ-IR-xoN" id="grB-qO-kv0"/>
                 <outlet property="detailsShow" destination="Iem-Be-LhB" id="bfP-Bq-tyX"/>
@@ -25,13 +34,13 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VGm-g2-ueb">
+                <view clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VGm-g2-ueb">
                     <rect key="frame" x="0.0" y="44" width="414" height="201"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="adult-beard-boy-casual-220453" translatesAutoresizingMaskIntoConstraints="NO" id="lGD-in-WNP" customClass="AnimatedImageView" customModule="Kingfisher">
-                            <rect key="frame" x="8" y="20" width="106" height="166"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adult-beard-boy-casual-220453" translatesAutoresizingMaskIntoConstraints="NO" id="lGD-in-WNP" customClass="AnimatedImageView" customModule="Kingfisher">
+                            <rect key="frame" x="8" y="20" width="106" height="120"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="lGD-in-WNP" secondAttribute="height" multiplier="21:32" constant="-15.40625" id="NMB-1Z-kdE"/>
+                                <constraint firstAttribute="width" secondItem="lGD-in-WNP" secondAttribute="height" multiplier="21:32" constant="27.25" id="NMB-1Z-kdE"/>
                             </constraints>
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                             <userDefinedRuntimeAttributes>
@@ -49,7 +58,7 @@
                                         <constraint firstAttribute="height" constant="20" id="EcG-J1-HSX"/>
                                         <constraint firstAttribute="width" constant="270" id="puH-Mf-suY"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="KohinoorGujarati-Bold" family="Kohinoor Gujarati" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -59,7 +68,7 @@
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="270" id="0w1-Gt-fca"/>
                                         <constraint firstAttribute="height" constant="20" id="nJv-9d-vz9"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="KohinoorGujarati-Bold" family="Kohinoor Gujarati" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -70,7 +79,7 @@
                                         <constraint firstAttribute="width" constant="80" id="PA5-7b-WLJ"/>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="270" id="bng-SB-00w"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="KohinoorGujarati-Bold" family="Kohinoor Gujarati" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <variation key="default">
@@ -85,7 +94,7 @@
                                         <constraint firstAttribute="height" constant="20" id="B1N-zh-laW"/>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="270" id="Quc-Wa-QxG"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="KohinoorGujarati-Bold" family="Kohinoor Gujarati" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -96,7 +105,7 @@
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="270" id="dkg-av-xic"/>
                                         <constraint firstAttribute="height" constant="20" id="ugY-9d-XV9"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="KohinoorGujarati-Bold" family="Kohinoor Gujarati" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <variation key="default">
@@ -111,7 +120,7 @@
                                         <constraint firstAttribute="height" constant="20" id="SnO-hB-oyg"/>
                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="270" id="mdf-1W-YAR"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="KohinoorGujarati-Bold" family="Kohinoor Gujarati" pointSize="14"/>
+                                    <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -129,17 +138,26 @@
                                 <constraint firstItem="SNV-lv-tSU" firstAttribute="height" secondItem="vLA-wO-Czh" secondAttribute="height" id="wtM-ON-VFD"/>
                             </constraints>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iem-Be-LhB" customClass="DotButtonUtility" customModule="Dot_Health_1" customModuleProvider="target">
-                            <rect key="frame" x="134" y="148" width="272" height="38"/>
-                            <color key="backgroundColor" red="0.1199301059" green="0.40820829780000001" blue="0.49186783839999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iem-Be-LhB" customClass="DotWhiteButton" customModule="Asha_Cares" customModuleProvider="target">
+                            <rect key="frame" x="8" y="160" width="398" height="38"/>
+                            <color key="backgroundColor" name="Background"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="cf8-aP-9Nd"/>
                                 <constraint firstAttribute="height" constant="38" id="pj9-Oz-IL8"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="My Details">
-                                <color key="titleColor" red="0.99998790029999995" green="0.9999936223" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="titleColor" name="Accent"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="Accent"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="ShowDetails:" destination="-1" eventType="touchUpInside" id="koK-6E-K2R"/>
                             </connections>
@@ -148,14 +166,14 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="lGD-in-WNP" firstAttribute="leading" secondItem="VGm-g2-ueb" secondAttribute="leading" constant="8" id="6hP-eA-hvL"/>
-                        <constraint firstItem="lGD-in-WNP" firstAttribute="top" secondItem="VGm-g2-ueb" secondAttribute="top" constant="8" id="Jl6-gn-dmj"/>
+                        <constraint firstItem="lGD-in-WNP" firstAttribute="top" secondItem="VGm-g2-ueb" secondAttribute="top" constant="20" id="Jl6-gn-dmj"/>
                         <constraint firstItem="YxJ-IR-xoN" firstAttribute="top" secondItem="VGm-g2-ueb" secondAttribute="top" constant="20" id="MKm-Ph-wXh"/>
-                        <constraint firstItem="Iem-Be-LhB" firstAttribute="top" secondItem="YxJ-IR-xoN" secondAttribute="bottom" constant="8" id="ZzN-4y-hNx"/>
+                        <constraint firstItem="Iem-Be-LhB" firstAttribute="top" secondItem="YxJ-IR-xoN" secondAttribute="bottom" constant="20" id="ZzN-4y-hNx"/>
                         <constraint firstAttribute="trailing" secondItem="Iem-Be-LhB" secondAttribute="trailing" constant="8" id="boZ-ut-p40"/>
-                        <constraint firstItem="Iem-Be-LhB" firstAttribute="leading" secondItem="lGD-in-WNP" secondAttribute="trailing" constant="20" id="fcR-hw-My8"/>
-                        <constraint firstItem="lGD-in-WNP" firstAttribute="bottom" secondItem="Iem-Be-LhB" secondAttribute="bottom" constant="7" id="gl6-Pm-qC2"/>
-                        <constraint firstAttribute="bottom" secondItem="lGD-in-WNP" secondAttribute="bottom" constant="8" id="i3W-oZ-Tjw"/>
-                        <constraint firstAttribute="bottom" secondItem="Iem-Be-LhB" secondAttribute="bottom" constant="15" id="pcg-46-LFG"/>
+                        <constraint firstItem="Iem-Be-LhB" firstAttribute="leading" secondItem="lGD-in-WNP" secondAttribute="trailing" constant="-106" id="fcR-hw-My8"/>
+                        <constraint firstItem="lGD-in-WNP" firstAttribute="bottom" secondItem="Iem-Be-LhB" secondAttribute="bottom" constant="-58" id="gl6-Pm-qC2"/>
+                        <constraint firstAttribute="bottom" secondItem="lGD-in-WNP" secondAttribute="bottom" constant="61" id="i3W-oZ-Tjw"/>
+                        <constraint firstAttribute="bottom" secondItem="Iem-Be-LhB" secondAttribute="bottom" constant="3" id="pcg-46-LFG"/>
                         <constraint firstAttribute="trailing" secondItem="YxJ-IR-xoN" secondAttribute="trailing" constant="9.5" id="saw-x1-5iG"/>
                         <constraint firstItem="YxJ-IR-xoN" firstAttribute="leading" secondItem="lGD-in-WNP" secondAttribute="trailing" constant="20.5" id="x0A-Dm-PLE"/>
                     </constraints>
@@ -227,5 +245,11 @@
     </objects>
     <resources>
         <image name="adult-beard-boy-casual-220453" width="3476" height="5214"/>
+        <namedColor name="Accent">
+            <color red="0.078431372549019607" green="0.2627450980392157" blue="0.44705882352941179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

@@ -1,30 +1,71 @@
 PODS:
-  - FSCalendar (2.8.1)
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
+  - FittedSheets (1.4.6)
   - Kingfisher (5.14.0):
     - Kingfisher/Core (= 5.14.0)
   - Kingfisher/Core (5.14.0)
   - LBTATools (1.0.12)
+  - PayUIndia-Custom-Browser (6.0)
+  - PayUmoney_CoreSDK (4.1):
+    - PayUIndia-Custom-Browser (~> 6.0)
+  - PayUmoney_PnP (2.5.2):
+    - PayUmoney_CoreSDK
+  - QuickBlox (2.17.4)
+  - Quickblox-WebRTC (2.7.5):
+    - QuickBlox (>= 2.7.5)
+  - SDWebImage (4.4.8):
+    - SDWebImage/Core (= 4.4.8)
+  - SDWebImage/Core (4.4.8)
+  - SVProgressHUD (2.2.5)
   - TinyConstraints (4.0.1)
+  - TTTAttributedLabel (2.0.0)
 
 DEPENDENCIES:
-  - FSCalendar
+  - Charts (~> 3.5.0)
+  - FittedSheets
   - Kingfisher (~> 5.0)
   - LBTATools
+  - PayUmoney_PnP
+  - QuickBlox (~> 2.17.4)
+  - Quickblox-WebRTC (~> 2.7.4)
+  - SDWebImage (~> 4.4.7)
+  - SVProgressHUD (~> 2.2.5)
   - TinyConstraints
+  - TTTAttributedLabel (~> 2.0.0)
 
 SPEC REPOS:
   trunk:
-    - FSCalendar
+    - Charts
+    - FittedSheets
     - Kingfisher
     - LBTATools
+    - PayUIndia-Custom-Browser
+    - PayUmoney_CoreSDK
+    - PayUmoney_PnP
+    - QuickBlox
+    - Quickblox-WebRTC
+    - SDWebImage
+    - SVProgressHUD
     - TinyConstraints
+    - TTTAttributedLabel
 
 SPEC CHECKSUMS:
-  FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  FittedSheets: 7f37fee2567d15dcde391f31eccbffb660ddebf0
   Kingfisher: 7b64389a43139c903ec434788344c288217c792d
   LBTATools: 389a901a01b9a56bea5682c40cd6e23530f40015
+  PayUIndia-Custom-Browser: 61097aa039fdf579193cf8cf8ecfe6d81574966d
+  PayUmoney_CoreSDK: ba7f43dabacec2658dcceda0cf9d957bd1d826ac
+  PayUmoney_PnP: 322171ad495ee6d925bdbc013feced0b77433ad9
+  QuickBlox: 992be26bc127313991a1337dfd98c9359832c147
+  Quickblox-WebRTC: 6be5253719fc8b747408fdac53985d04d40f3172
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
 
-PODFILE CHECKSUM: 821a9fa1c7873cdf358fd8bad65866aa680c4b66
+PODFILE CHECKSUM: 55b4ab3a2df899ac61dfe41048fcc743c0e03cc5
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3

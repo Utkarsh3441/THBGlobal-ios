@@ -12,24 +12,26 @@ class DotAilmentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cellBGView: UIView!
     @IBOutlet weak var ailmentLabel: UILabel!
+
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        configureCell()
         
     }
 
+    func configureCell() {
+        self.backgroundColor = .white
+        self.ailmentLabel.textColor = .white
+        self.cellBGView.backgroundColor = Theme.gradientColorDark
+        self.cellBGView.layer.shadowOpacity = 1
+        self.cellBGView.layer.shadowOffset = CGSize.zero
+        self.cellBGView.layer.shadowColor = UIColor.darkGray.cgColor
+        self.cellBGView.layer.cornerRadius = 10
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        if(selected){
-            self.backgroundColor = .white
-            self.ailmentLabel.textColor = .white
-            self.cellBGView.backgroundColor = #colorLiteral(red: 0.1665293276, green: 0.5254830718, blue: 0.7482460141, alpha: 1)
-            self.cellBGView.layer.shadowOpacity = 1
-            self.cellBGView.layer.shadowOffset = CGSize.zero
-            self.cellBGView.layer.shadowColor = UIColor.darkGray.cgColor
-            self.cellBGView.layer.cornerRadius = 10
-        }
-       
 
         // Configure the view for the selected state
     }

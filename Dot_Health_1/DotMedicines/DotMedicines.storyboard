@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OB7-zh-fmn">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Dot Medicines Controller-->
+        <scene sceneID="Ba0-uM-tUE">
+            <objects>
+                <viewController id="OB7-zh-fmn" customClass="DotMedicinesController" customModule="Dot_Health_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rmk-io-kfe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FOr-Sd-6PX">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="med" textLabel="OJj-De-DT4" imageView="FaR-gv-OHK" rowHeight="76" style="IBUITableViewCellStyleDefault" id="h5e-p3-wkV">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="76"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h5e-p3-wkV" id="7Xf-3O-8N1">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OJj-De-DT4">
+                                                    <rect key="frame" x="59" y="0.0" width="335" height="76"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <viewLayoutGuide key="safeArea" id="zSw-Zu-M4T"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="tag.fill" catalog="system" id="FaR-gv-OHK">
+                                                    <rect key="frame" x="20.5" y="28" width="23" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Tint"/>
+                                        <color key="tintColor" name="Background"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="OB7-zh-fmn" id="2eK-T0-mge"/>
+                                    <outlet property="delegate" destination="OB7-zh-fmn" id="xKg-Hg-sWc"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Pb3-gd-Y1g" firstAttribute="trailing" secondItem="FOr-Sd-6PX" secondAttribute="trailing" id="Od7-k2-o7I"/>
+                            <constraint firstItem="FOr-Sd-6PX" firstAttribute="top" secondItem="Pb3-gd-Y1g" secondAttribute="top" id="YcH-AV-cnf"/>
+                            <constraint firstItem="Pb3-gd-Y1g" firstAttribute="bottom" secondItem="FOr-Sd-6PX" secondAttribute="bottom" id="jzO-25-17V"/>
+                            <constraint firstItem="FOr-Sd-6PX" firstAttribute="leading" secondItem="Pb3-gd-Y1g" secondAttribute="leading" id="ob2-uU-yPG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pb3-gd-Y1g"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableViw" destination="FOr-Sd-6PX" id="Zht-bo-PWj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Da-tg-gtx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="94.419642857142847"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="tag.fill" catalog="system" width="128" height="116"/>
+        <namedColor name="Background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Tint">
+            <color red="0.0" green="0.74900001287460327" blue="0.6470000147819519" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

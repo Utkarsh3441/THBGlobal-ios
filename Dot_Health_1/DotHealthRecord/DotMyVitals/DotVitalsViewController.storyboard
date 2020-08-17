@@ -1,140 +1,215 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OwI-Qm-ecb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OwI-Qm-ecb">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Dot Vitals View Controller-->
         <scene sceneID="HWt-H2-kiP">
             <objects>
-                <viewController storyboardIdentifier="Main" id="OwI-Qm-ecb" customClass="DotVitalsViewController" customModule="Dot_Health_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main" id="OwI-Qm-ecb" customClass="DotVitalsViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VNg-fb-YTo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CSV-Pl-huv">
-                                <rect key="frame" x="7" y="0.0" width="401" height="183"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcH-bp-MeG">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hHM-1F-FMn">
-                                        <rect key="frame" x="13" y="8" width="128" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Semibold" family="Kohinoor Devanagari" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tlI-HE-OUh">
-                                        <rect key="frame" x="13" y="109" width="162" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                        <state key="normal" title="   Respiratory Rate" image="smallcircle.fill.circle" catalog="system">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kce-Eg-8qz">
-                                        <rect key="frame" x="13" y="45" width="162" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                        <state key="normal" title="   Blood Pressure" image="smallcircle.fill.circle.fill" catalog="system">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bDb-5D-7vE">
-                                        <rect key="frame" x="217" y="109" width="164" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                        <state key="normal" title="   Blood Sugar" image="smallcircle.fill.circle" catalog="system">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WtL-JR-mcW">
-                                        <rect key="frame" x="13" y="77" width="174" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                        <state key="normal" title="   Body Composition" image="smallcircle.fill.circle" catalog="system">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKD-7I-mQO">
-                                        <rect key="frame" x="217" y="45" width="164" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                        <state key="normal" title="   Pulse rate" image="smallcircle.fill.circle" catalog="system">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lin-kI-PFu">
-                                        <rect key="frame" x="13" y="141" width="170" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="End Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2Ie-Lv-gZP">
-                                        <rect key="frame" x="217" y="141" width="170" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xr-Po-Swq">
-                                        <rect key="frame" x="217" y="77" width="164" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                        <state key="normal" title="   Weight" image="smallcircle.fill.circle" catalog="system">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZR-on-pBb">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ox4-8p-XBG">
+                                                <rect key="frame" x="20" y="20" width="334" height="34"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Gx-e3-ra2">
+                                                <rect key="frame" x="354" y="20" width="40" height="34"/>
+                                                <color key="backgroundColor" name="GradientColorDark"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="40" id="Obb-rc-AGE"/>
+                                                </constraints>
+                                                <color key="tintColor" name="Tint"/>
+                                                <state key="normal" image="plus" catalog="system"/>
+                                                <connections>
+                                                    <action selector="selectType:" destination="OwI-Qm-ecb" eventType="touchUpInside" id="66F-dv-Mqn"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NJ7-Nu-UYo">
+                                                <rect key="frame" x="20" y="74" width="374" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rD-aT-Qhk" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="40"/>
+                                                        <color key="backgroundColor" name="GradientColorDark"/>
+                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                                        <color key="tintColor" name="Tint"/>
+                                                        <state key="normal" title="Date"/>
+                                                        <connections>
+                                                            <action selector="selectDateAction:" destination="OwI-Qm-ecb" eventType="touchUpInside" id="Kx9-9g-drz"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Upg-re-mlK" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                        <rect key="frame" x="129.5" y="0.0" width="115" height="40"/>
+                                                        <color key="backgroundColor" name="GradientColorDark"/>
+                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                                        <color key="tintColor" name="Tint"/>
+                                                        <state key="normal" title="Time"/>
+                                                        <connections>
+                                                            <action selector="selectTimeAction:" destination="OwI-Qm-ecb" eventType="touchUpInside" id="qVd-oS-OTN"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4s-L6-DIh" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                        <rect key="frame" x="259.5" y="0.0" width="114.5" height="40"/>
+                                                        <color key="backgroundColor" name="GradientColorDark"/>
+                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                                        <color key="tintColor" name="Tint"/>
+                                                        <state key="normal" title="Time List"/>
+                                                        <connections>
+                                                            <action selector="selectTimeListAction:" destination="OwI-Qm-ecb" eventType="touchUpInside" id="H7X-NC-gDn"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="4si-3B-dcs"/>
+                                                </constraints>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEc-FL-Iho" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="134" width="374" height="40"/>
+                                                <color key="backgroundColor" name="GradientColorDark"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="yBO-N4-cJc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                                <color key="tintColor" name="Tint"/>
+                                                <state key="normal" title="Blood Pressure"/>
+                                                <connections>
+                                                    <segue destination="FSr-Xs-KLb" kind="showDetail" identifier="toAddGraphDataSegue" id="MAE-gk-PN9"/>
+                                                </connections>
+                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="4vC-t7-nbD">
+                                                <rect key="frame" x="20" y="624" width="374" height="40"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWy-aw-CHD" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="40"/>
+                                                        <color key="backgroundColor" name="GradientColorDark"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="114.5" id="WcC-1k-3iB"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                                        <color key="tintColor" name="Tint"/>
+                                                        <state key="normal" title="Edit"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sba-0n-ast" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                        <rect key="frame" x="259.5" y="0.0" width="114.5" height="40"/>
+                                                        <color key="backgroundColor" name="GradientColorDark"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="114.5" id="zvE-w9-5kS"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                                        <color key="tintColor" name="Tint"/>
+                                                        <state key="normal" title="Save"/>
+                                                        <connections>
+                                                            <action selector="saveAction:" destination="OwI-Qm-ecb" eventType="touchUpInside" id="Cff-FF-0VI"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="bfg-0J-aXQ"/>
+                                                </constraints>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaJ-U1-5QG" customClass="LineChartView" customModule="Charts">
+                                                <rect key="frame" x="20" y="194" width="374" height="410"/>
+                                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="410" id="Ayb-zD-fmE"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="4vC-t7-nbD" secondAttribute="bottom" constant="149" id="0pe-CJ-3ms"/>
+                                            <constraint firstItem="xaJ-U1-5QG" firstAttribute="top" secondItem="SEc-FL-Iho" secondAttribute="bottom" constant="20" id="5yT-fb-G4N"/>
+                                            <constraint firstItem="6Gx-e3-ra2" firstAttribute="height" secondItem="Ox4-8p-XBG" secondAttribute="height" id="ACy-MX-7W0"/>
+                                            <constraint firstItem="4vC-t7-nbD" firstAttribute="leading" secondItem="eZR-on-pBb" secondAttribute="leading" constant="20" id="E12-dg-KU9"/>
+                                            <constraint firstItem="xaJ-U1-5QG" firstAttribute="leading" secondItem="eZR-on-pBb" secondAttribute="leading" constant="20" id="FtD-ja-oXu"/>
+                                            <constraint firstAttribute="trailing" secondItem="SEc-FL-Iho" secondAttribute="trailing" constant="20" id="Ka8-MU-qZQ"/>
+                                            <constraint firstItem="6Gx-e3-ra2" firstAttribute="top" secondItem="eZR-on-pBb" secondAttribute="top" constant="20" id="M19-WH-og0"/>
+                                            <constraint firstItem="6Gx-e3-ra2" firstAttribute="leading" secondItem="Ox4-8p-XBG" secondAttribute="trailing" id="MXz-yw-c29"/>
+                                            <constraint firstItem="Ox4-8p-XBG" firstAttribute="leading" secondItem="eZR-on-pBb" secondAttribute="leading" constant="20" id="OMi-ax-e1z"/>
+                                            <constraint firstAttribute="trailing" secondItem="6Gx-e3-ra2" secondAttribute="trailing" constant="20" id="ST5-1l-bP5"/>
+                                            <constraint firstItem="NJ7-Nu-UYo" firstAttribute="leading" secondItem="eZR-on-pBb" secondAttribute="leading" constant="20" id="URB-Fl-jbo"/>
+                                            <constraint firstAttribute="trailing" secondItem="NJ7-Nu-UYo" secondAttribute="trailing" constant="20" id="bjg-pb-HCc"/>
+                                            <constraint firstItem="SEc-FL-Iho" firstAttribute="leading" secondItem="eZR-on-pBb" secondAttribute="leading" constant="20" id="dIR-cc-XRm"/>
+                                            <constraint firstAttribute="trailing" secondItem="4vC-t7-nbD" secondAttribute="trailing" constant="20" id="kqt-I7-0zV"/>
+                                            <constraint firstItem="4vC-t7-nbD" firstAttribute="top" secondItem="xaJ-U1-5QG" secondAttribute="bottom" constant="20" id="lwh-nF-d94"/>
+                                            <constraint firstItem="6Gx-e3-ra2" firstAttribute="centerY" secondItem="Ox4-8p-XBG" secondAttribute="centerY" id="nRN-Ho-Npq"/>
+                                            <constraint firstItem="NJ7-Nu-UYo" firstAttribute="top" secondItem="Ox4-8p-XBG" secondAttribute="bottom" constant="20" id="osV-bG-keb"/>
+                                            <constraint firstItem="SEc-FL-Iho" firstAttribute="top" secondItem="NJ7-Nu-UYo" secondAttribute="bottom" constant="20" id="pna-3W-56o"/>
+                                            <constraint firstItem="Ox4-8p-XBG" firstAttribute="top" secondItem="eZR-on-pBb" secondAttribute="top" constant="20" id="sft-uo-LB0"/>
+                                            <constraint firstAttribute="trailing" secondItem="xaJ-U1-5QG" secondAttribute="trailing" constant="20" id="tVa-uZ-yt3"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BXO-IP-arZ">
-                                <rect key="frame" x="7" y="200" width="401" height="468"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="chart1" translatesAutoresizingMaskIntoConstraints="NO" id="uTh-MK-YeY">
-                                        <rect key="frame" x="0.0" y="8" width="401" height="452"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kEk-sU-dfw">
-                                <rect key="frame" x="0.0" y="191" width="414" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.85368093519999999" green="0.85368093519999999" blue="0.85368093519999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.85368093519999999" green="0.85368093519999999" blue="0.85368093519999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                                <constraints>
+                                    <constraint firstItem="eZR-on-pBb" firstAttribute="width" secondItem="dcH-bp-MeG" secondAttribute="width" id="Jtr-Qo-QIs"/>
+                                    <constraint firstItem="eZR-on-pBb" firstAttribute="top" secondItem="dcH-bp-MeG" secondAttribute="top" id="Mur-Y1-f5p"/>
+                                    <constraint firstItem="eZR-on-pBb" firstAttribute="bottom" secondItem="dcH-bp-MeG" secondAttribute="bottom" id="NmD-J7-aLo"/>
+                                    <constraint firstItem="eZR-on-pBb" firstAttribute="leading" secondItem="dcH-bp-MeG" secondAttribute="leading" id="lbm-RO-f7l"/>
+                                    <constraint firstItem="eZR-on-pBb" firstAttribute="trailing" secondItem="dcH-bp-MeG" secondAttribute="trailing" id="q9h-Z5-VHF"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="IVx-31-N7a"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="WDr-r8-eUh"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dcH-bp-MeG" firstAttribute="top" secondItem="A6N-9u-5Xk" secondAttribute="top" id="2Id-L1-THB"/>
+                            <constraint firstItem="A6N-9u-5Xk" firstAttribute="bottom" secondItem="dcH-bp-MeG" secondAttribute="bottom" id="7xy-IT-P5C"/>
+                            <constraint firstItem="dcH-bp-MeG" firstAttribute="trailing" secondItem="A6N-9u-5Xk" secondAttribute="trailing" id="u8y-G5-4Q5"/>
+                            <constraint firstItem="dcH-bp-MeG" firstAttribute="leading" secondItem="A6N-9u-5Xk" secondAttribute="leading" id="yQP-xn-Nd1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="A6N-9u-5Xk"/>
                     </view>
+                    <connections>
+                        <outlet property="lineChartView" destination="xaJ-U1-5QG" id="6Y0-Y9-oes"/>
+                        <outlet property="selectDateButton" destination="0rD-aT-Qhk" id="Sey-Xe-L1X"/>
+                        <outlet property="selectTimeButton" destination="Upg-re-mlK" id="uX8-lD-kIt"/>
+                        <outlet property="selectedVitalAddDataButton" destination="SEc-FL-Iho" id="8fo-kp-0z4"/>
+                        <outlet property="timeListButton" destination="R4s-L6-DIh" id="jQ0-kp-LYN"/>
+                        <outlet property="vitalListTextField" destination="Ox4-8p-XBG" id="nl9-S0-CfN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XMH-oe-rwN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1226.0869565217392" y="-298.66071428571428"/>
         </scene>
+        <!--DotAddGraphDataViewController-->
+        <scene sceneID="zVs-NN-Vez">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DotAddGraphDataViewController" id="FSr-Xs-KLb" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="e7d-qL-HKA"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m0H-xF-TC9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-514" y="-378"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="chart1" width="425" height="273"/>
-        <image name="smallcircle.fill.circle" catalog="system" width="64" height="60"/>
-        <image name="smallcircle.fill.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="GradientColorDark">
+            <color red="0.12156862745098039" green="0.36470588235294116" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Tint">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

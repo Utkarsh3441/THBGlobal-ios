@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-sample-videochat-webrtc-swift/Pods-sample-videochat-webrtc-swift-frameworks.sh
+${PODS_ROOT}/QuickBlox/Quickblox.framework
+${PODS_ROOT}/Quickblox-WebRTC/QuickbloxWebRTC.framework
+${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework

@@ -1,6 +1,0 @@
-framework module Pods_Dot_Health_1Tests {
-  umbrella header "Pods-Dot_Health_1Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
