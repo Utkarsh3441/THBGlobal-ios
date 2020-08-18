@@ -40,7 +40,7 @@ class UtilityFunctions{
         case "Attended":
             label.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
             
-        case "Scheduled":
+        case "scheduled":
             label.textColor = #colorLiteral(red: 1, green: 0.462533474, blue: 0, alpha: 1)
            
         case "Missed":

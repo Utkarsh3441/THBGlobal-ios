@@ -22,6 +22,7 @@ class DotAppointmentsViewController: UIViewController {
     var selectedTextField : UITextField?
    // var calenderPopover = DotCalenderViewController()
     var itemName: String?
+    var keyArray = ["appointment_info","appointment_provider_info","appointment_slot_info"]
     @IBOutlet weak var appointmentTableView: UITableView!
      private let client = DotConnectionClient()
     override func viewDidLoad() {
@@ -80,7 +81,7 @@ class DotAppointmentsViewController: UIViewController {
         guard let appointmentDetailsVC = segue.destination as? DotAppointmentDetailsViewController else { return }
         let _ = appointmentDetailsVC.view
         if let cellView = sender as? UITableViewCell,  let indexOfselectedRow = self.appointmentTableView.indexPath(for: cellView)?.row{
-           let selectedAppointment = MyData.appointmentModelArray[indexOfselectedRow]
+           let selectedAppointment =  MyData.appointmentModelArray[indexOfselectedRow]
            /* if let appointmentDetailModel = selectedAppointment.appointmentDetailModel[indexOfselectedRow] as? AppointmentDetailModel{
                       appointmentDetailsVC.detailsSetup(appointmentDetailModel: appointmentDetailModel)
                  }*/
@@ -147,22 +148,39 @@ extension DotAppointmentsViewController{
                         switch result {
                         case .success(let model2Result):
                             SVProgressHUD.dismiss()
+                            if let appointmentData = (model2Result as? NSDictionary)?.value(forKey: "data") as? NSArray{
+                                appointmentFunctions.readAppointments(appointmentArray: appointmentData, complition: {[unowned self] in
+                                    
+                                    self.appointmentTableView.reloadData()
+                                   
+                                })
+                             /*   for appointment in appointmentData{
+                                  print(appointment)
+                                    let providerInfo = (appointment as? NSDictionary)?.value(forKey: "appointment_provider_info")
+                                    let  appointmentInfo = (appointment as? NSDictionary)?.value(forKey: "appointment_info")
+                                    let appointmentSlotInfo = (appointment as? NSDictionary)?.value(forKey: "appointment_slot_info")
+                                    let appointmentDict = [String:Any]()
+                                   
+                                }*/
+                            }
+                          
+                            
                             if let model = model2Result as? [DotAppointmentModel]{
                                 MyData.appointmentModelArray = model
                                 print("Fetched doctor:",MyData.appointmentModelArray)
-                                appointmentFunctions.readAppointments(complition: {[unowned self] in
-                                                  
-                                                  self.appointmentTableView.reloadData()
-                                                 
-                                              })
+                              appointmentFunctions.readAppointments(appointmentArray: [], complition: {[unowned self] in
+                                    
+                                    self.appointmentTableView.reloadData()
+                                   
+                                })
                             }
                             else{
                                 print("error occured")
-                                appointmentFunctions.readAppointments(complition: {[unowned self] in
-                                           
-                                           self.appointmentTableView.reloadData()
-                                          
-                                       })
+                             appointmentFunctions.readAppointments(appointmentArray: [], complition: {[unowned self] in
+                                    
+                                    self.appointmentTableView.reloadData()
+                                   
+                                })
                                   SVProgressHUD.dismiss()
                             }
                         case .failure(let error):

@@ -57,8 +57,8 @@ class DotAppointmentTableViewCell: UITableViewCell {
         timeFormatter.dateFormat = "HH:mm"
         self.issueLabel.text = appointmentModel.purpose
         self.hospitalNameLabel.text = appointmentModel.provider_name
-        let dateStringArray = appointmentModel.slot_date.components(separatedBy: " ")
-        self.dateLabel.attributedText = NSAttributedString().createAttributedString(first: dateStringArray[0]+"\n", second: dateStringArray[1]+"\n"+dateStringArray[2], fColor:Theme.tintcolor ?? UIColor.white, sColor: Theme.tintcolor ?? UIColor.white,fBold:true,sBold:false,fSize: 24.0,sSize: 17.0)
+        let dateStringArray = appointmentModel.slot_date.components(separatedBy: "-")
+        self.dateLabel.attributedText = NSAttributedString().createAttributedString(first: dateStringArray[2]+"\n", second: dateStringArray[1]+"\n"+dateStringArray[0], fColor:Theme.tintcolor ?? UIColor.white, sColor: Theme.tintcolor ?? UIColor.white,fBold:true,sBold:false,fSize: 24.0,sSize: 17.0)
         self.doctorNameLabel.text = appointmentModel.provider_type
    //     self.dateLabel.text = appointmentModel.slot_date//dateFormatter.string(from: appointmentModel.date)
         self.timeLabel.text = appointmentModel.start_time//timeFormatter.string(from: appointmentModel.date)
