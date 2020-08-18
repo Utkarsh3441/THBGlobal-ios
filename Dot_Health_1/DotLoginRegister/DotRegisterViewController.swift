@@ -217,6 +217,7 @@ class DotRegisterViewController: LBTAFormController {
                     tf.delegate = self
                     tf.accessibilityIdentifier = "Password"
                     tf.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
+                    tf.isSecureTextEntry = true
                     password = tf
                     formContainerStackView.addArrangedSubview(tf)
                 }
@@ -226,6 +227,7 @@ class DotRegisterViewController: LBTAFormController {
                     tf.delegate = self
                     tf.accessibilityIdentifier = "Confirm Password"
                     tf.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
+                tf.isSecureTextEntry = true
                     confirmPassword = tf
                     formContainerStackView.addArrangedSubview(tf)
                 }
