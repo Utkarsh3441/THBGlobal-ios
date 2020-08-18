@@ -44,11 +44,8 @@ class DotSettingsViewController: UIViewController {
            present(alertController, animated: true, completion: nil)
        }
        func signingOut(){
-//           navigationController?.popToRootViewController(animated: true)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let sameViewController = storyboard.instantiateViewController(withIdentifier: "log") as! DotLoginViewController
-        self.navigationController?.pushViewController(sameViewController, animated: true)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+           navigationController?.popToRootViewController(animated: true)
+        
        }
     /*
     // MARK: - Navigation

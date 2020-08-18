@@ -16,6 +16,8 @@ class DotLoginViewController: UIViewController {
     @IBOutlet weak var bgImage: UIImageView!
      @IBOutlet weak var maskImage: UIImageView!
     @IBOutlet weak var proImage: UIImageView!
+    @IBOutlet weak var TCPlabel:UILabel!
+    @IBOutlet weak var TCPView:UITextView!
     var iconClick = true
     var autoSignIn = false
     private var User = ""
@@ -36,6 +38,12 @@ class DotLoginViewController: UIViewController {
         signIn.isEnabled = true
         signIn.titleLabel?.textAlignment = .right
         
+        let attributedString = NSMutableAttributedString().createAttributedString(first: "              Privacy Policy | Terms and Conditions", second: "", fColor: Theme.backgroundColor!, sColor: .white, fBold: true, sBold: false, fSize: 16, sSize: 16)
+        let linkSet1 = attributedString.setAsLink(textToFind: "Privacy Policy", linkURL:  "https://www.ashacares.com/privacy-policy")
+        let linkSet2 = attributedString.setAsLink(textToFind: "Terms and Conditions", linkURL:  "https://www.ashacares.com/terms-of-use")
+        if linkSet1 && linkSet2 {
+            TCPView.attributedText = attributedString
+        }
 //        passwordTextField.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
 //        userNameTextField.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
         
