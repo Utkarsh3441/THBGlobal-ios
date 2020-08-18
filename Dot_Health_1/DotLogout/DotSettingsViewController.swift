@@ -7,17 +7,31 @@
 //
 
 import UIKit
-
+import WebKit
+import TinyConstraints
+import SVProgressHUD
 class DotSettingsViewController: UIViewController {
  @IBOutlet weak var tableViw : UITableView!
  @IBOutlet weak var logOut : UIButton!
     var dataArray = ["My Profile","Change Password","My Payment","FAQ","Terms and Conditions","Privacy Policy"]
     var imgArray = [#imageLiteral(resourceName: "My-Profile"),#imageLiteral(resourceName: "Change-Password"),#imageLiteral(resourceName: "My-Payment"),#imageLiteral(resourceName: "FAQ"),#imageLiteral(resourceName: "Terms-and-Conditions"),#imageLiteral(resourceName: "Privacy-Policy")]
+    lazy var WebVc = UIViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
+        WebVc.view.addSubview(webView)
+        webView.edgesToSuperview()
+        
                 // Do any additional setup after loading the view.
     }
-    
+    lazy var webView:WKWebView = {
+        let webConfiguration = WKWebViewConfiguration()
+        let webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        return webView
+    }()
+   
     @IBAction func logOutAction(_ sender: Any) {
     let alertController = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
            alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (_) in
@@ -30,7 +44,11 @@ class DotSettingsViewController: UIViewController {
            present(alertController, animated: true, completion: nil)
        }
        func signingOut(){
-           navigationController?.popToRootViewController(animated: true)
+//           navigationController?.popToRootViewController(animated: true)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let sameViewController = storyboard.instantiateViewController(withIdentifier: "log") as! DotLoginViewController
+        self.navigationController?.pushViewController(sameViewController, animated: true)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
        }
     /*
     // MARK: - Navigation
@@ -58,18 +76,43 @@ extension DotSettingsViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if dataArray[indexPath.row] == "My Profile"{
             let storyBoard : UIStoryboard = UIStoryboard(name: "DotDetailsStoryboard", bundle:nil)
             let nextViewController = storyBoard.instantiateInitialViewController() as! DotEditDetailsViewController
-            //nextViewController.itemName = "Mtalk to THB"
-//            nextViewController.profileData = editPatientDetails
             let _ = nextViewController.view
-            self.navigationController?.pushViewController(nextViewController, animated: true)
+            self.present(nextViewController, animated: true, completion: nil)
             
         }
         else if dataArray[indexPath.row] == "My Payment"{
-           
-                        self.navigationController?.pushViewController(DotPaymentsController(), animated: true)
+           self.present(DotPaymentsController(), animated: true, completion: nil)
         }
+        else if dataArray[indexPath.row] == "FAQ"{
+           
+            let myRequest = URLRequest(url: URL(string: "https://www.ashacares.com/faq")!)
+            webView.load(myRequest)
+        
+            self.present(WebVc, animated: true, completion: nil)
+        }
+        else if dataArray[indexPath.row] == "Terms and Conditions"{
+    
+                       let myRequest = URLRequest(url: URL(string: "https://www.ashacares.com/terms-of-use")!)
+                       webView.load(myRequest)
+                       self.present(WebVc, animated: true, completion: nil)
+            
+        }
+        else if dataArray[indexPath.row] == "Privacy Policy"{
+                                  let myRequest = URLRequest(url: URL(string: "https://www.ashacares.com/privacy-policy")!)
+                                  webView.load(myRequest)
+                                  self.present(WebVc, animated: true, completion: nil)
+        }
+    }
+}
+extension DotSettingsViewController: WKUIDelegate,WKNavigationDelegate{
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        SVProgressHUD.show()
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        SVProgressHUD.dismiss()
     }
 }

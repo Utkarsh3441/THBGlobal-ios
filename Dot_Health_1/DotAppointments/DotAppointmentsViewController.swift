@@ -134,7 +134,7 @@ extension DotAppointmentsViewController{
         SVProgressHUD.setDefaultMaskType(.custom)
         // Query item for doc
         var queryItem = [URLQueryItem]()
-        queryItem = [ URLQueryItem(name: "userId", value:"17"), URLQueryItem(name: "userType", value: "patients")]
+        queryItem = [ URLQueryItem(name: "userId", value:"\(loginData.user_id ?? 17)"), URLQueryItem(name: "userType", value: "patients")]
         let urlString = "appointments"
         
           // Query item for facility

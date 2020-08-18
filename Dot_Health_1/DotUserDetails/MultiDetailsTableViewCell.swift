@@ -71,6 +71,10 @@ class MultiDetailsTableViewCell: UITableViewCell,UITextFieldDelegate {
         self.noButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
         self.yesButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
     }
+    func disableEnableViews(check:Bool){
+        self.yesButton.isEnabled = check
+        self.noButton.isEnabled = check
+    }
     @IBAction func startEdit(_ sender: UIButton) {
         switch sender.tag {
         case 0:

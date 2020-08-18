@@ -58,6 +58,7 @@ class DotLoginViewController: UIViewController {
      }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
+        tabBarController?.tabBar.isHidden = true
         checkLoginData(){ [weak self]result in
             guard let self = self else { return }
             if result{
@@ -172,6 +173,7 @@ class DotLoginViewController: UIViewController {
                case .failure(let error):
                     self.signIn.hideLoading()
                     SVProgressHUD.dismiss()
+                    self.maskImage.isHidden = true
                    print("the error \(error)")
                }
            }

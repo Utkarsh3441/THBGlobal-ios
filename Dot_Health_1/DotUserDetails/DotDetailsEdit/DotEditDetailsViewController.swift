@@ -10,13 +10,15 @@ import UIKit
 import TinyConstraints
 import Photos
 import SVProgressHUD
-class DotEditDetailsViewController: UIViewController,MultiTableViewDelegate,TableViewDelegate {
+class DotEditDetailsViewController: UIViewController,MultiTableViewDelegate,TableViewDelegate,editTableDelegate {
+    
 @IBOutlet weak var profileDetailsView: UIView!
 @IBOutlet weak var detailSections:   UITableView!
 @IBOutlet weak var profileImage:   UIImageView!
 var myPictureController = UIImagePickerController()
 var profileData:[String:AnyObject]?
-let data:NSMutableDictionary = ["Personal Details":["Name","Email ","DOB","Country","State","City","Gender","Address 1","Address 2","Phone No","Pincode"],"Habits":["Smoking","Drinking","Exercise"],"Basic Details":["Nationality":"Indian","MemberShip Number":"123456","Primary COmmunicatio n":"ABCD","Address 1":"DHEF","Address 2":"IJKL","Phone NO":"12345","Insurance Details":"Random Id"]]
+var habitIsEdited = false
+let data:NSMutableDictionary = ["Personal Details":["Name","Email ","DOB","Country","State","City","Gender","Address 1","Address 2","Phone No","Pincode"],"Habits":["Smoking","Drinking","Exercise"],"Basic Details":["Nationality":"Indian","MemberShip Number":"123456","Primary Communicatio n":"ABCD","Address 1":"DHEF","Address 2":"IJKL","Phone NO":"12345","Insurance Details":"Random Id"]]
 let dataSort = [["patient_name","patient_email","patient_dob","patient_country","patient_state","patient_city","patient_gender","patient_address1","patient_address2","patient_mobile","patient_pincode","Additional Details","MemberShip Number","Insurance Details"],["Smoking","Drinking","Exercise"],["Nationality","MemberShip Number","patient_address1","patient_address2","patient_mobile","Insurance Details"]]
     var test1 = [["Name","Email ","DOB","Country","State","City","Gender","Address 1","Address 2","Phone No","Pincode","Additional Details","MemberShip Number","Insurance Details"],["Smoking","Drinking","Exercise"]]
     var test2 = ["Nationality","MemberShip Number","Primary COmmunication","Address 1","Address 2","Phone NO","Insurance Details"]
@@ -53,13 +55,14 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_country",
             getUserDetails()
         }
     }
-    func callbackSetValue(){
-        
+    func refreshTable(data: [String : AnyObject]) {
+        profileData = data
+        detailSections.reloadData()
     }
   func afterClickingReturnInTextFields(cell: MultiDetailsTableViewCell) {
             
             print(cell.firstText.text ?? "")
-        }
+    }
     func afterClickingReturnInTextField(cell: DotDetailsCellView) {
         var arr = data
         ((arr[sectionNames[cell.section]] as? NSDictionary)?.mutableCopy() as? NSMutableDictionary)!.setValue(cell.detailText.text ?? kblankString, forKey: dataSort[cell.section][cell.row])
@@ -69,17 +72,25 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_country",
         let openDetailsObj = DotOpenEditDetails()
         switch (button.accessibilityIdentifier){
         case "Personal Details":openDetailsObj.userData = profileData ?? [:]
-            self.navigationController?.pushViewController(openDetailsObj, animated: true)
-//        case "Basic Details":openDetailsObj.registerItem = test2
-//            self.navigationController?.pushViewController(openDetailsObj, animated: true)
+        openDetailsObj.delegate = self
+            self.present(openDetailsObj, animated: true, completion: nil)
+        case "Habits":
+            if habitIsEdited{
+                habitIsEdited = false
+            }
+            else{
+                habitIsEdited = true
+            }
+            
+            detailSections.reloadData()
         default:
             print("no data found")
         }
         
         
-        self.navigationController?.navigationBar.topItem?.title = "Edit Details"
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+//        self.navigationController?.navigationBar.topItem?.title = "Edit Details"
+//        self.navigationController?.navigationBar.tintColor = .white
+//        self.navigationController?.setNavigationBarHidden(false, animated: true)
        }
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = "User Details"
@@ -186,6 +197,7 @@ extension DotEditDetailsViewController: UITableViewDelegate, UITableViewDataSour
                cell.tableViewDelegate = self
                cell.row = indexPath.row
                cell.section = indexPath.section
+               cell.disableEnableViews(check: habitIsEdited)
                if let val = (data[sectionNames[indexPath.section]] as? NSDictionary)?[dataSort[indexPath.section][indexPath.row]] as? String{
                    if let iseditable = val.components(separatedBy: "|").first,let frequency = val.components(separatedBy: "|").last{
                        switch iseditable{
@@ -248,11 +260,17 @@ extension DotEditDetailsViewController: UITableViewDelegate, UITableViewDataSour
        let frame: CGRect = tableView.frame
         let DoneBut = CustomButton(type: .roundedRect)
         DoneBut.frame =  CGRect(x: frame.width-70, y: 8, width: 60, height: 25)
-        DoneBut.setTitle("Edit", for: .normal)
+        
         DoneBut.backgroundColor = Theme.accentColor
         DoneBut.setTitleColor(.white, for: .normal)
         DoneBut.layer.cornerRadius = 5
         DoneBut.accessibilityIdentifier = sectionNames[section]
+        if sectionNames[section] == "Habits" && habitIsEdited{
+            DoneBut.setTitle("Save", for: .normal)
+        }
+        else{
+            DoneBut.setTitle("Edit", for: .normal)
+        }
         DoneBut.addTarget(self, action: #selector(editSave(_:)), for: .touchUpInside)
         let headerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 359, height: 55))
         headerView.alpha = 1.0

@@ -118,7 +118,7 @@
                     <connections>
                         <segue destination="mKf-DL-dkF" kind="relationship" relationship="viewControllers" id="aXp-TQ-B0A"/>
                         <segue destination="x3R-sr-xdA" kind="relationship" relationship="viewControllers" id="kKA-L9-CUs"/>
-                        <segue destination="JHz-yU-2DO" kind="relationship" relationship="viewControllers" id="dMO-KD-Eno"/>
+                        <segue destination="VH6-qW-tUy" kind="relationship" relationship="viewControllers" id="Dks-Xy-aHy"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zmu-LX-iVN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -599,7 +599,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q57-cL-ZQt">
-                                <rect key="frame" x="10" y="88" width="394" height="447"/>
+                                <rect key="frame" x="10" y="92" width="394" height="443"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="88" id="rjF-L2-yre">
@@ -627,18 +627,33 @@
                                     <action selector="logOutAction:" destination="VH6-qW-tUy" eventType="touchUpInside" id="GB5-hh-FQd"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4PF-2K-LdM">
+                                <rect key="frame" x="0.0" y="44" width="414" height="0.0"/>
+                                <color key="barTintColor" name="Accent"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" name="Background"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Settings" id="0PY-gw-YQN"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="4PF-2K-LdM" firstAttribute="top" secondItem="taQ-Dx-ae3" secondAttribute="top" id="34R-hs-hwg"/>
                             <constraint firstItem="taQ-Dx-ae3" firstAttribute="bottom" secondItem="Cqk-GB-6lk" secondAttribute="bottom" constant="130" id="9j6-eb-1RP"/>
                             <constraint firstItem="taQ-Dx-ae3" firstAttribute="trailing" secondItem="q57-cL-ZQt" secondAttribute="trailing" constant="10" id="A35-aa-0VH"/>
+                            <constraint firstItem="4PF-2K-LdM" firstAttribute="leading" secondItem="taQ-Dx-ae3" secondAttribute="leading" id="ILb-SW-yiF"/>
                             <constraint firstItem="q57-cL-ZQt" firstAttribute="leading" secondItem="taQ-Dx-ae3" secondAttribute="leading" constant="10" id="RZJ-fs-qkX"/>
                             <constraint firstItem="Cqk-GB-6lk" firstAttribute="top" secondItem="q57-cL-ZQt" secondAttribute="bottom" constant="88" id="bvc-hD-2I3"/>
+                            <constraint firstItem="4PF-2K-LdM" firstAttribute="trailing" secondItem="taQ-Dx-ae3" secondAttribute="trailing" id="bzT-pE-pF2"/>
                             <constraint firstItem="Cqk-GB-6lk" firstAttribute="centerX" secondItem="q57-cL-ZQt" secondAttribute="centerX" id="dhB-6n-eyo"/>
-                            <constraint firstItem="q57-cL-ZQt" firstAttribute="top" secondItem="taQ-Dx-ae3" secondAttribute="top" id="tVA-sN-a2o"/>
+                            <constraint firstItem="q57-cL-ZQt" firstAttribute="top" secondItem="4PF-2K-LdM" secondAttribute="bottom" constant="48" id="loN-iI-j2l"/>
+                            <constraint firstItem="q57-cL-ZQt" firstAttribute="top" secondItem="taQ-Dx-ae3" secondAttribute="top" constant="48" id="tVA-sN-a2o"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="taQ-Dx-ae3"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Setting" image="active-setting" selectedImage="active-setting" id="Bev-du-bkz"/>
                     <navigationItem key="navigationItem" title="Settings" id="3Aa-NF-hKc"/>
                     <connections>
                         <outlet property="logOut" destination="Cqk-GB-6lk" id="sC0-79-sqm"/>
@@ -661,9 +676,6 @@
                         <color key="backgroundColor" name="Accent"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="VH6-qW-tUy" kind="relationship" relationship="rootViewController" id="DRE-vc-Wfa"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yop-me-RUM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
