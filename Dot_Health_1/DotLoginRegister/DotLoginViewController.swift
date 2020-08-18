@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import WebKit
 class DotLoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: DotTextFieldUtility!
      public static let shared = DotLoginViewController()
@@ -24,6 +25,15 @@ class DotLoginViewController: UIViewController {
     private var password = ""
     var eyeButton:UIButton = UIButton(type: .custom)
     private let client = DotConnectionClient()
+    lazy var webView:WKWebView = {
+        let webConfiguration = WKWebViewConfiguration()
+        let webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        return webView
+    }()
+     lazy var WebVc = UIViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround() 
@@ -37,7 +47,8 @@ class DotLoginViewController: UIViewController {
         signIn.setTitle("Sign In", for: .normal)
         signIn.isEnabled = true
         signIn.titleLabel?.textAlignment = .right
-        
+        WebVc.view.addSubview(webView)
+        webView.edgesToSuperview()
         let attributedString = NSMutableAttributedString().createAttributedString(first: "              Privacy Policy | Terms and Conditions", second: "", fColor: Theme.backgroundColor!, sColor: .white, fBold: true, sBold: false, fSize: 16, sSize: 16)
         let linkSet1 = attributedString.setAsLink(textToFind: "Privacy Policy", linkURL:  "https://www.ashacares.com/privacy-policy")
         let linkSet2 = attributedString.setAsLink(textToFind: "Terms and Conditions", linkURL:  "https://www.ashacares.com/terms-of-use")
@@ -104,6 +115,11 @@ class DotLoginViewController: UIViewController {
         print("sign in clicked")
         self.signIn.showLoading()
         self.signInUser(account:keyChainPrefix.patientAccount.rawValue)
+    }
+    @IBAction func forgotPassword(_ sender: Any) {
+        let myRequest = URLRequest(url: URL(string: "https://www.ashacares.com/forgot-password")!)
+        webView.load(myRequest)
+        self.present(WebVc, animated: true, completion: nil)
     }
     func signInAct(account:String) {
       let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -188,4 +204,12 @@ class DotLoginViewController: UIViewController {
        }
     
     
+}
+extension DotLoginViewController: WKUIDelegate,WKNavigationDelegate{
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        SVProgressHUD.show()
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        SVProgressHUD.dismiss()
+    }
 }

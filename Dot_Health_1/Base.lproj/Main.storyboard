@@ -83,7 +83,7 @@
             <objects>
                 <viewController id="tLC-Eg-YdA" customClass="DotDashboardViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O1c-ks-ffK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="tintColor" name="Tint"/>
@@ -545,6 +545,9 @@
                                 <state key="normal" title="Forgot Password?">
                                     <color key="titleColor" name="Tint"/>
                                 </state>
+                                <connections>
+                                    <action selector="forgotPassword:" destination="ZfE-3j-mYP" eventType="touchUpInside" id="e0m-h0-d4N"/>
+                                </connections>
                             </button>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PatientScreen" translatesAutoresizingMaskIntoConstraints="NO" id="3B8-04-GAj">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
@@ -609,7 +612,7 @@
             <objects>
                 <viewController id="VH6-qW-tUy" customClass="DotSettingsViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZTJ-Cu-FV0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q57-cL-ZQt">

@@ -103,6 +103,11 @@ extension DotSettingsViewController: UITableViewDelegate, UITableViewDataSource 
                                   webView.load(myRequest)
                                   self.present(WebVc, animated: true, completion: nil)
         }
+        else if dataArray[indexPath.row] == "Change Password"{
+                                  let myRequest = URLRequest(url: URL(string: "https://www.ashacares.com/forgot-password")!)
+                                  webView.load(myRequest)
+                                  self.present(WebVc, animated: true, completion: nil)
+        }
     }
 }
 extension DotSettingsViewController: WKUIDelegate,WKNavigationDelegate{
