@@ -63,7 +63,7 @@ extension DotTimeSlotViewController {
         
         dataSource = DataSource(collectionView: CardsCollectionView, cellProvider: { (collectionView, indexpath, mov) -> DotTimeSlotsCollectionCell? in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DotTimeSlotsCollectionCell.reuseIdentifier, for: indexpath) as? DotTimeSlotsCollectionCell else{fatalError("Could not create new cell")}
-            cell.nameLabel.text =  self.doctorDash[indexpath.row]
+            cell.nameLabel.text =  self.selectedTimeDimensionArray[indexpath.row]
 //            cell.nameButton.setTitle( self.doctorDash[indexpath.row] , for: .normal)
             cell.isSelect = mov.isSelect ?? false
             if self.green.contains(mov.id ?? 0){
@@ -82,11 +82,19 @@ extension DotTimeSlotViewController {
             return cell
         })
     }
-     func createDummyData() {
+     func createDummyData(selectedSeg:Int) {
         var dummyContacts: [DotSlotsModel] = []
-        let count = doctorDash.count
+       
+        switch selectedSeg{
+        case 0: self.selectedTimeDimensionArray = morningSlots
+        case 1:self.selectedTimeDimensionArray = noonSlots
+        case 2:self.selectedTimeDimensionArray = eveningSlots
+        default:
+            print("no data found")
+        }
+        let count = self.selectedTimeDimensionArray.count
         for i in 0..<count {
-           dummyContacts.append(DotSlotsModel(cardName: "\(self.doctorDash[i])", cardTitle: "Test\(i)",isSelect: false,id: i))
+           dummyContacts.append(DotSlotsModel(cardName: "\(self.selectedTimeDimensionArray[i])", cardTitle: "Test\(i)",isSelect: false,id: i))
             
         }
         dummyModel = dummyContacts
@@ -106,9 +114,19 @@ extension DotTimeSlotViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
     var selectItem = dummyModel[item.id ?? 0]
-    selectItem.isSelect = !(selectItem.isSelect ?? false)
-    dummyModel.remove(at: item.id ?? 0)
-    dummyModel.insert(selectItem, at: item.id ?? 0)
+    dummyModel = dummyModel.map { (model) -> DotSlotsModel in
+        var tempModel = model
+        if tempModel.id == item.id{
+            tempModel.isSelect = true
+        }
+        else{
+            tempModel.isSelect = false
+        }
+        return tempModel
+    }
+//    selectItem.isSelect = !(selectItem.isSelect ?? false)
+//    dummyModel.remove(at: item.id ?? 0)
+//    dummyModel.insert(selectItem, at: item.id ?? 0)
     applySnapshot(items: dummyModel)
 //    dummyModel[indexPath.row]
 //    switch item.cardName {

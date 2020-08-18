@@ -44,11 +44,8 @@ class DotSettingsViewController: UIViewController {
            present(alertController, animated: true, completion: nil)
        }
        func signingOut(){
-//           navigationController?.popToRootViewController(animated: true)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let sameViewController = storyboard.instantiateViewController(withIdentifier: "log") as! DotLoginViewController
-        self.navigationController?.pushViewController(sameViewController, animated: true)
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+           navigationController?.popToRootViewController(animated: true)
+        
        }
     /*
     // MARK: - Navigation
@@ -103,6 +100,11 @@ extension DotSettingsViewController: UITableViewDelegate, UITableViewDataSource 
         }
         else if dataArray[indexPath.row] == "Privacy Policy"{
                                   let myRequest = URLRequest(url: URL(string: "https://www.ashacares.com/privacy-policy")!)
+                                  webView.load(myRequest)
+                                  self.present(WebVc, animated: true, completion: nil)
+        }
+        else if dataArray[indexPath.row] == "Change Password"{
+                                  let myRequest = URLRequest(url: URL(string: "https://www.ashacares.com/forgot-password")!)
                                   webView.load(myRequest)
                                   self.present(WebVc, animated: true, completion: nil)
         }

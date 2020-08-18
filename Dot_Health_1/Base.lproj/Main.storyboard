@@ -83,7 +83,7 @@
             <objects>
                 <viewController id="tLC-Eg-YdA" customClass="DotDashboardViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O1c-ks-ffK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <color key="tintColor" name="Tint"/>
@@ -518,8 +518,9 @@
                                 <color key="textColor" name="Tint"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy Policy | Terms And Conditions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BWb-lP-AiM">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BWb-lP-AiM">
                                 <rect key="frame" x="72" y="837" width="291" height="21"/>
+                                <color key="tintColor" name="Background"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="PSH-Ex-RnI"/>
                                 </constraints>
@@ -527,6 +528,13 @@
                                 <color key="textColor" name="Background"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Privacy Policy | Terms And Conditions" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TyJ-Bp-96k">
+                                <rect key="frame" x="20" y="825" width="374" height="35"/>
+                                <color key="textColor" name="Background"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8K-f8-JHu">
                                 <rect key="frame" x="281" y="590" width="113" height="30"/>
                                 <constraints>
@@ -537,6 +545,9 @@
                                 <state key="normal" title="Forgot Password?">
                                     <color key="titleColor" name="Tint"/>
                                 </state>
+                                <connections>
+                                    <action selector="forgotPassword:" destination="ZfE-3j-mYP" eventType="touchUpInside" id="e0m-h0-d4N"/>
+                                </connections>
                             </button>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PatientScreen" translatesAutoresizingMaskIntoConstraints="NO" id="3B8-04-GAj">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
@@ -544,7 +555,9 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="ImL-6k-xia" firstAttribute="trailing" secondItem="TyJ-Bp-96k" secondAttribute="trailing" constant="20" id="42R-pe-H3w"/>
                             <constraint firstItem="ImL-6k-xia" firstAttribute="bottom" secondItem="H2y-2V-IBf" secondAttribute="bottom" id="4Zg-z9-FgH"/>
+                            <constraint firstItem="ImL-6k-xia" firstAttribute="bottom" secondItem="TyJ-Bp-96k" secondAttribute="bottom" constant="2" id="5gV-SO-e2m"/>
                             <constraint firstItem="ImL-6k-xia" firstAttribute="trailing" secondItem="3B8-04-GAj" secondAttribute="trailing" id="5sD-ij-SuF"/>
                             <constraint firstItem="RL2-Mg-DYw" firstAttribute="top" secondItem="VgP-pK-vvv" secondAttribute="bottom" constant="77" id="9QJ-os-kzg"/>
                             <constraint firstItem="RL2-Mg-DYw" firstAttribute="top" secondItem="g8K-f8-JHu" secondAttribute="bottom" constant="122" id="Api-w2-3sF"/>
@@ -560,6 +573,7 @@
                             <constraint firstItem="2n9-yW-Opx" firstAttribute="leading" secondItem="ImL-6k-xia" secondAttribute="leading" constant="47" id="Kco-XL-Fy3"/>
                             <constraint firstItem="ImL-6k-xia" firstAttribute="trailing" secondItem="H2y-2V-IBf" secondAttribute="trailing" id="PQs-Ri-Vew"/>
                             <constraint firstItem="ImL-6k-xia" firstAttribute="trailing" secondItem="9Wf-vd-QD8" secondAttribute="trailing" constant="20" id="Pr2-La-Unp"/>
+                            <constraint firstItem="TyJ-Bp-96k" firstAttribute="leading" secondItem="ImL-6k-xia" secondAttribute="leading" constant="20" id="SRr-20-8TA"/>
                             <constraint firstItem="9Wf-vd-QD8" firstAttribute="top" secondItem="2n9-yW-Opx" secondAttribute="bottom" constant="30" id="T5c-mK-tfc"/>
                             <constraint firstItem="g8K-f8-JHu" firstAttribute="top" secondItem="9Wf-vd-QD8" secondAttribute="bottom" constant="4" id="UvE-aO-e16"/>
                             <constraint firstItem="BWb-lP-AiM" firstAttribute="bottom" secondItem="ImL-6k-xia" secondAttribute="bottom" constant="-4" id="XXi-hQ-eEq"/>
@@ -572,12 +586,15 @@
                             <constraint firstItem="ImL-6k-xia" firstAttribute="trailing" secondItem="g8K-f8-JHu" secondAttribute="trailing" constant="20" id="lC7-wU-SGP"/>
                             <constraint firstItem="3B8-04-GAj" firstAttribute="top" secondItem="ic0-B2-bHX" secondAttribute="topMargin" id="mFu-wE-Fvg"/>
                             <constraint firstItem="BWb-lP-AiM" firstAttribute="top" secondItem="RL2-Mg-DYw" secondAttribute="bottom" constant="65" id="mgd-Eh-ig7"/>
+                            <constraint firstItem="TyJ-Bp-96k" firstAttribute="top" secondItem="RL2-Mg-DYw" secondAttribute="bottom" constant="53" id="rWM-jL-Wgg"/>
                             <constraint firstItem="RL2-Mg-DYw" firstAttribute="leading" secondItem="ImL-6k-xia" secondAttribute="leading" constant="29" id="vA7-e2-P4T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ImL-6k-xia"/>
                     </view>
                     <navigationItem key="navigationItem" id="UVw-Gn-FNq"/>
                     <connections>
+                        <outlet property="TCPView" destination="TyJ-Bp-96k" id="4iH-Kb-I5E"/>
+                        <outlet property="TCPlabel" destination="BWb-lP-AiM" id="yOM-As-3BH"/>
                         <outlet property="bgImage" destination="H2y-2V-IBf" id="C7F-vS-F3s"/>
                         <outlet property="maskImage" destination="3B8-04-GAj" id="m96-Bt-zm6"/>
                         <outlet property="passwordTextField" destination="oib-FD-CQl" id="OTX-qx-sp7"/>
@@ -588,14 +605,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xas-dw-UHM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3723" y="-845"/>
+            <point key="canvasLocation" x="-3723.188405797102" y="-845.08928571428567"/>
         </scene>
         <!--Settings-->
         <scene sceneID="xeG-8K-onc">
             <objects>
                 <viewController id="VH6-qW-tUy" customClass="DotSettingsViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZTJ-Cu-FV0">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q57-cL-ZQt">

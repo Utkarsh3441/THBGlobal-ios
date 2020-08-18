@@ -70,6 +70,7 @@ class DotRegisterViewController: LBTAFormController {
         "Uttarakhand",
       "West Bengal"
     ]
+     var unchecked = true
     let countryPicker = UIPickerView()
     let statePicker = UIPickerView()
     let genderPicker = UIPickerView()
@@ -77,12 +78,23 @@ class DotRegisterViewController: LBTAFormController {
     var stateList : [String]?
     var toolBar = UIToolbar()
     var footer = UIView(backgroundColor: UIColor.white.withAlphaComponent(0.8))
+    var checkBoxView = UIView(backgroundColor: .clear)
     @objc fileprivate func handleCancel() {
         dismiss(animated: true)
     }
     @objc fileprivate func handleRegister() {
          register()
        }
+    @objc fileprivate func handleAgreement(sender:UIButton) {
+           if unchecked {
+               sender.setImage(UIImage(systemName:"checkmark.square.fill"), for: .normal)
+               unchecked = false
+           }
+           else {
+               sender.setImage( UIImage(systemName:"checkmark.square"), for: .normal)
+               unchecked = true
+           }
+          }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Enter Details"
@@ -102,7 +114,25 @@ class DotRegisterViewController: LBTAFormController {
         view.addSubview(footer)
         footer.edges(to: view, excluding: .top, insets: .bottom(0), isActive: true)
         footer.constrainHeight(100)
-        
+        let Check = UIButton(title: "", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: .clear, target: self, action: #selector(handleAgreement))
+        Check.tintColor = Theme.gradientColorLight
+        Check.setImage( UIImage(systemName:"checkmark.square"), for: .normal)
+        let lab = UITextView()
+        lab.isEditable = false;
+        lab.dataDetectorTypes = UIDataDetectorTypes.all
+        lab.backgroundColor = .clear
+        let attributedString = NSMutableAttributedString().createAttributedString(first:"I agree to the Asha's Terms Of Service & Privacy Policy", second: "", fColor: .darkGray, sColor: .white, fBold: true, sBold: false, fSize: 14, sSize: 0)
+        let linkSet1 = attributedString.setAsLink(textToFind: "Privacy Policy", linkURL:  "https://www.ashacares.com/privacy-policy")
+        let linkSet2 = attributedString.setAsLink(textToFind: "Terms Of Service", linkURL:  "https://www.ashacares.com/terms-of-use")
+        if linkSet1 && linkSet2 {
+            lab.attributedText = attributedString
+        }
+        checkBoxView.addSubview(Check)
+        checkBoxView.addSubview(lab)
+        Check.edges(to: checkBoxView, insets: .bottom(5) + .top(5) + .left(2), isActive: true)
+     
+        lab.edges(to: checkBoxView, insets: .bottom(5) + .top(7) + .right(5) + .left(35), isActive: true)
+         Check.rightToLeft(of: lab)
         footer.addSubview(signUpButton)
         signUpButton.edges(to: footer, insets: .bottom(25) + .top(25) + .right(20) + .left(20), isActive: true)
         signUpButton.layer.cornerRadius = 4
@@ -209,7 +239,10 @@ class DotRegisterViewController: LBTAFormController {
             
             
         }
+        formContainerStackView.addArrangedSubview(checkBoxView)
         formContainerStackView.addArrangedSubview(cancelButton)
+       
+        checkBoxView.constrainHeight(52)
         formContainerStackView.spacing = 25
 //        signUpButton.constrainHeight(heightCons)
         createToolbar()
@@ -278,7 +311,10 @@ class DotRegisterViewController: LBTAFormController {
                 showAlertView("Invalid Entries", message: "Please enter valid inputs")
                 return
             }
-          
+            if unchecked{
+                showAlertView("Information", message: "Please Accept Asha's Terms Of Service & Privacy Policy")
+                return
+            }
             // Query item
             let queryItem = [ URLQueryItem(name: "keyName", value: "ValueName") ]
             guard let body = try? JSONSerialization.data(withJSONObject: parameters1) else { return }
