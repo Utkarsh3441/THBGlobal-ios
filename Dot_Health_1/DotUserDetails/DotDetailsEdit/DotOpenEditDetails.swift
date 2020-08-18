@@ -10,10 +10,15 @@ import Foundation
 import LBTATools
 import SVProgressHUD
 import TinyConstraints
+@objc protocol editTableDelegate: NSObjectProtocol{
+
+    func refreshTable(data: [String:AnyObject])
+}
 class DotOpenEditDetails: LBTAFormController {
     var heightCons : CGFloat = 0.0
     let client = DotConnectionClient()
-     var registerItems = ["Name","Date Of Birth","Country","State","City","Address 1","Address 2","Mobile No","Gender","Pincode","MemberShip Number","Emergency Contact Number"]
+    weak var delegate:editTableDelegate?
+    var registerItems = ["Name","Date Of Birth","Country","State","City","Address 1","Address 2","Mobile No","Gender","Pincode","MemberShip Number(optional)","Emergency Contact Number(optional)"]
     var dataSort = ["patient_name","patient_dob","patient_country","patient_state","patient_city","patient_address1","patient_address2","patient_mobile","patient_gender","patient_pincode","membership_number","emergency_contact_number"]
     var optionalVals = ["membership_number","emergency_contact_number"]
     var editDetails = ["patient_name":"",
@@ -98,6 +103,7 @@ class DotOpenEditDetails: LBTAFormController {
     let countryList = Locale.isoRegionCodes.compactMap { Locale.current.localizedString(forRegionCode: $0) }
     var stateList : [String]?
     var toolBar = UIToolbar()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,6 +118,9 @@ class DotOpenEditDetails: LBTAFormController {
         formContainerStackView.layoutMargins = .init(top: 25, left: 24, bottom: 30, right: 24)
         //        formContainerStackView.backgroundColor = .white
         //        view.backgroundColor = UIColor.white.withAlphaComponent(1)
+        let headerLabel = UILabel(text: "Edit Details", font: .boldSystemFont(ofSize: 18), textColor: Theme.accentColor!, textAlignment: .center, numberOfLines: 0)
+        formContainerStackView.addArrangedSubview(headerLabel)
+        headerLabel.constrainHeight(50)
         if !(registerItems.isEmpty ){
             (0...(registerItems.count )-1).forEach { (i) in
                 if registerItems[i] == "State" {
@@ -148,10 +157,10 @@ class DotOpenEditDetails: LBTAFormController {
                     
                     let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear,height: heightCons)
                     tf.delegate = self
-                    tf.addStartLabel()
                     genderPicker.delegate = self
                     tf.accessibilityIdentifier = "Gender"
                     tf.text = userData[dataSort[i]] as? String
+                    tf.addStartLabel()
                     tf.inputView = genderPicker
                     tf.borderWidth = 1.0
                     tf.borderColor = Theme.accentColor
@@ -164,10 +173,10 @@ class DotOpenEditDetails: LBTAFormController {
                     let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear,height: heightCons)
                     tf.delegate = self
                     tf.accessibilityIdentifier = "dob"
-                    tf.addStartLabel()
                     tf.borderWidth = 1.0
                     tf.borderColor = Theme.accentColor
                     tf.text = userData[dataSort[i]] as? String
+                    tf.addStartLabel()
                     formContainerStackView.addArrangedSubview(tf)
                 }
                     
@@ -269,9 +278,7 @@ extension DotOpenEditDetails{
             case .success(let model2Result):
     
                 guard let model2Result = model2Result as? [String:AnyObject] else { return }
-                let controller = (self.navigationController?.viewControllers[1] as? DotEditDetailsViewController)
-                controller?.profileData = model2Result
-                controller?.detailSections.reloadData()
+                self.delegate?.refreshTable(data: model2Result)
                 print(model2Result)
             case .failure(let error):
                
