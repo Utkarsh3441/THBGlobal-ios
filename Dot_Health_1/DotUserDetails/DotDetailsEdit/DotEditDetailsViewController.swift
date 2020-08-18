@@ -283,6 +283,7 @@ extension DotEditDetailsViewController: UITableViewDelegate, UITableViewDataSour
        }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            print("~* make some magic at row: \(indexPath.row) *~")
+        tableView.deselectRow(at: indexPath, animated: true)
        }
        
        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

@@ -55,7 +55,6 @@
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="test" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MD2-sJ-REq">
                         <rect key="frame" x="143" y="3" width="169" height="38"/>
-                        <color key="backgroundColor" name="Background"/>
                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -101,9 +100,6 @@
     </objects>
     <resources>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
-        <namedColor name="Background">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="GradientColorlight">
             <color red="0.074509803921568626" green="0.792156862745098" blue="0.75686274509803919" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
