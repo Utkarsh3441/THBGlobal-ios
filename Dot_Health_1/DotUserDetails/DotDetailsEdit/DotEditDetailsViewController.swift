@@ -99,6 +99,36 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_country",
     }
     
     func presendPhotoPickerController() {
+           let alertController = UIAlertController(title: "", message: "Upload profile photo?".localized, preferredStyle: .actionSheet)
+              let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel action"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
+                  alertController.dismiss(animated: true) {() -> Void in }
+              })
+              alertController.addAction(cancelAction)
+              let cameraRollAction = UIAlertAction(title: NSLocalizedString("Open library".localized, comment: "Open library action"), style: .default, handler: {(_ action: UIAlertAction) -> Void in
+                  if UI_USER_INTERFACE_IDIOM() == .pad {
+                      OperationQueue.main.addOperation({() -> Void in
+                        self.myPictureController.sourceType = .photoLibrary
+                          self.present( self.myPictureController, animated: true) {() -> Void in }
+                      })
+                  }
+                  else {
+                       self.myPictureController.sourceType = .photoLibrary
+                      self.present( self.myPictureController, animated: true) {() -> Void in }
+                  }
+              })
+              let cameraAction = UIAlertAction(title: "Camera", style: .default){
+                  UIAlertAction in
+                  if(UIImagePickerController .isSourceTypeAvailable(.camera)){
+                       self.myPictureController.sourceType = .camera
+                      self.present( self.myPictureController, animated: true, completion: nil)
+                  } else {
+                      self.showAlertView("Camera Not Supported", message: "")
+                    
+                  }
+              }
+              alertController.addAction(cameraRollAction)
+              alertController.addAction(cameraAction)
+          present(alertController, animated: true) {() -> Void in }
            
            myPictureController.allowsEditing =  true
            myPictureController.delegate = self
