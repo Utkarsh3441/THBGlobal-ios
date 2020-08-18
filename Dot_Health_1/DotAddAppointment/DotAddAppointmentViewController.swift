@@ -126,7 +126,7 @@ extension DotAddAppointmentViewController{
     func getMedication(){
         SVProgressHUD.show()
         let api: API = .api1
-        let endpoint: Endpoint = api.getPostAPIEndpointForMedication(urlString: "\(api.rawValue)patients/13/medications", queryItems: nil, headers: nil, body: nil)
+        let endpoint: Endpoint = api.getPostAPIEndpointForMedication(urlString: "\(api.rawValue)patients/\(loginData.user_id ?? 17)/medications", queryItems: nil, headers: nil, body: nil)
         client.callAPI(with: endpoint.request, modelParser: [MyMedicineModel].self) { [weak self] result in
             guard let self = self else { return }
             switch result {

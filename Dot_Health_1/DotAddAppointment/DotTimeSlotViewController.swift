@@ -42,6 +42,10 @@ class DotTimeSlotViewController: UIViewController {
     var CardsCollectionView: UICollectionView! = nil
     var identiFierForView:String?
     var doctorDash = ["2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM","2:00 PM - 2:45 PM"]//make didset
+    
+    var morningSlots = ["08:00 AM - 08:45 Am","09:00 AM - 09:45 AM","10:00 AM - 10:45 AM","11:00 AM - 11:45 AM","12:00 AM - 12:45 AM"]
+    var noonSlots = ["01:00 PM - 01:45 PM","02:00 PM - 02:45 PM","03:00 PM - 03:45 PM","04:00 PM - 04:45 PM","05:00 PM - 05:45 PM"]
+    var eveningSlots = ["06:00 PM - 06:45 PM","07:00 PM - 07:45 PM","08:00 PM - 08:45 PM","09:00 PM - 09:45 PM"]
     var green = [3,6,9,11]
     var red = [4,12,13,14]
 
