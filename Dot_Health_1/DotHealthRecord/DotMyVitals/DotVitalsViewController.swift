@@ -53,7 +53,7 @@ class DotVitalsViewController: UIViewController ,ChartViewDelegate{
         selectTimeButton.setTitle( timeFormatter.string(from: Date())
         , for: .normal)
         vitalListTextField.text = "Temperature"
-        selectedVitalAddDataButton.setTitle("Temperature", for: .normal)
+        selectedVitalAddDataButton.setTitle("Add Temperature", for: .normal)
        // self.getVitalData()
      //   self.customizeLineChart()
     }
@@ -203,7 +203,7 @@ extension DotVitalsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         vitalListTextField.text = dataItems[indexPath.row]
-        selectedVitalAddDataButton.setTitle(dataItems[indexPath.row], for: .normal)
+        selectedVitalAddDataButton.setTitle("Add "+dataItems[indexPath.row], for: .normal)
         removeTransparentView()
     }
 }

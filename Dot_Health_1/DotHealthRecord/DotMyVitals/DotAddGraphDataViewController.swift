@@ -24,41 +24,49 @@ class DotAddGraphDataViewController: UIViewController {
     @IBOutlet weak var yAxixLabel2: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var myMutableStringTitle = NSMutableAttributedString()
+          let Name  = "Enter Title" // PlaceHolderText
+
+        myMutableStringTitle = NSMutableAttributedString(string:Name, attributes: [NSAttributedString.Key.font:UIFont(name: Theme.mainFontName, size: 17.0)!]) // Font
+        myMutableStringTitle.addAttribute(NSAttributedString.Key.foregroundColor, value: Theme.tintcolor ?? UIColor.white, range:NSRange(location:0,length:Name.count))    // Color
+          yAxixDataTextField.attributedPlaceholder = myMutableStringTitle
+        
         vitalNameHeaderLabel.text = vitalHeader
         dateLabel.text = date
         timelabel.text = time
         switch vitalHeader {
-        case "Blood Pressure":
+        case "Add Blood Pressure":
             self.showFields()
-        case "Temperature":
+        case "Add Temperature":
             self.yAxixLabel1.text = vitalHeader
             self.yAxixDataTextField.placeholder = "celsius"
             self.hideFields()
-        case "Height":
+        case "Add Height":
             self.yAxixLabel1.text = vitalHeader
             self.yAxixDataTextField.placeholder = "cm"
             self.hideFields()
-        case "Weight":
+        case "Add Weight":
             self.yAxixLabel1.text = vitalHeader
             self.yAxixDataTextField.placeholder = "kg"
             self.hideFields()
-        case "Pulse":
+        case "Add Pulse":
             self.yAxixLabel1.text = vitalHeader
             self.yAxixDataTextField.placeholder = "BPM"
             self.hideFields()
-        case "Respiration Rate":
+        case "Add Respiration Rate":
             self.yAxixLabel1.text = vitalHeader
             self.yAxixDataTextField.placeholder = "BPM"
             self.hideFields()
-        case "Oxygen Saturation":
+        case "Add Oxygen Saturation":
             self.yAxixLabel1.text = vitalHeader
             self.yAxixDataTextField.placeholder = "percent"
             self.hideFields()
-        case "Calories Burned":
+        case "Add Calories Burned":
             self.yAxixLabel1.text = vitalHeader
             self.yAxixDataTextField.placeholder = "kcal"
             self.hideFields()
-        case "Blood Sugar":
+        case "Add Blood Sugar":
             self.yAxixLabel1.text = vitalHeader
             self.yAxixDataTextField.placeholder = "mmol/L"
             self.hideFields()

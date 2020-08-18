@@ -39,7 +39,7 @@
                                                     <constraint firstAttribute="width" constant="40" id="Obb-rc-AGE"/>
                                                 </constraints>
                                                 <color key="tintColor" name="Tint"/>
-                                                <state key="normal" image="plus" catalog="system"/>
+                                                <state key="normal" image="chevron.down" catalog="system"/>
                                                 <connections>
                                                     <action selector="selectType:" destination="OwI-Qm-ecb" eventType="touchUpInside" id="66F-dv-Mqn"/>
                                                 </connections>
@@ -204,7 +204,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <namedColor name="GradientColorDark">
             <color red="0.12156862745098039" green="0.36470588235294116" blue="0.70588235294117652" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
