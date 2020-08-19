@@ -21,10 +21,19 @@ class appointmentFunctions{
                 var appointmentDict = [String:Any]()
                 appointmentDict["provider_name"] = providerInfo["provider_name"]
                 appointmentDict["provider_type"] = providerInfo["provider_type"]
+                appointmentDict["provider_id"] = providerInfo["provider_id"]
+                
+                appointmentDict["patient_id"] = appointmentInfo["patient_id"]
                 appointmentDict["status"] = appointmentInfo["status"]
+                 appointmentDict["appointment_id"] = appointmentInfo["appointment_id"]
+                appointmentDict["doctor_slot_id"] = appointmentInfo["doctor_slot_id"]
+                 appointmentDict["payment_id"] = appointmentInfo["payment_id"]
+                appointmentDict["purpose"] = appointmentInfo["purpose"]
+                 appointmentDict["remarks"] = appointmentInfo["remarks"]
+                
                  appointmentDict["slot_date"] = appointmentSlotInfo["slot_date"]
-                 appointmentDict["purpose"] = appointmentInfo["purpose"]
                  appointmentDict["start_time"] = appointmentSlotInfo["start_time"]
+                appointmentDict["end_time"] = appointmentSlotInfo["end_time"]
                 
                 appointmentArrayToDisplay.append(appointmentDict)
                 
