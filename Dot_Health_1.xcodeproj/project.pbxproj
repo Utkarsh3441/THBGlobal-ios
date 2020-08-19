@@ -190,8 +190,6 @@
 		F34D105E24E5AA2500093359 /* DotAddGraphDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34D105D24E5AA2500093359 /* DotAddGraphDataViewController.swift */; };
 		F34F523D24B796A400BEA92D /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F34F523C24B796A400BEA92D /* Auth.storyboard */; };
 		F35AF6482497E0B00035833D /* AppointmentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AF6472497E0B00035833D /* AppointmentDetailModel.swift */; };
-		F35AF64A2497E8870035833D /* DotAppointmentDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F35AF6492497E8870035833D /* DotAppointmentDetailViewController.storyboard */; };
-		F35AF64C2497E8AA0035833D /* DotAppointmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35AF64B2497E8AA0035833D /* DotAppointmentDetailViewController.swift */; };
 		F3623BC5248D355B0082025A /* DotAppointmentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3623BC3248D355B0082025A /* DotAppointmentsViewController.swift */; };
 		F3623BC8248D47E80082025A /* colours.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3623BC7248D47E80082025A /* colours.xcassets */; };
 		F366316024A793D400614E07 /* DotTimeSlotViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F366315F24A793D400614E07 /* DotTimeSlotViewController.storyboard */; };
@@ -487,8 +485,6 @@
 		F34D105D24E5AA2500093359 /* DotAddGraphDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotAddGraphDataViewController.swift; sourceTree = "<group>"; };
 		F34F523C24B796A400BEA92D /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		F35AF6472497E0B00035833D /* AppointmentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailModel.swift; sourceTree = "<group>"; };
-		F35AF6492497E8870035833D /* DotAppointmentDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DotAppointmentDetailViewController.storyboard; sourceTree = "<group>"; };
-		F35AF64B2497E8AA0035833D /* DotAppointmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotAppointmentDetailViewController.swift; sourceTree = "<group>"; };
 		F3623BC3248D355B0082025A /* DotAppointmentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotAppointmentsViewController.swift; sourceTree = "<group>"; };
 		F3623BC7248D47E80082025A /* colours.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = colours.xcassets; sourceTree = "<group>"; };
 		F366315F24A793D400614E07 /* DotTimeSlotViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DotTimeSlotViewController.storyboard; sourceTree = "<group>"; };
@@ -853,8 +849,6 @@
 				F3623BC3248D355B0082025A /* DotAppointmentsViewController.swift */,
 				F347192A24929EA0000CB0B1 /* DotAppointmentTableViewCell.swift */,
 				F3CA03B8249568ED00373944 /* DotAppointmentsViewController.storyboard */,
-				F35AF6492497E8870035833D /* DotAppointmentDetailViewController.storyboard */,
-				F35AF64B2497E8AA0035833D /* DotAppointmentDetailViewController.swift */,
 				F314A6092498578A006B8D0D /* DotAppointmentDetailTableViewCell.swift */,
 				F31F0EE8249A579F00D64E7F /* DotAppointmentDetailsViewController.swift */,
 				F31F0EEA249A57C600D64E7F /* DotAppointmentDetailsViewController.storyboard */,
@@ -1931,7 +1925,6 @@
 				F3DCB565249DED790069507F /* DotVitalsViewController.storyboard in Resources */,
 				F36B116724B64C4D00122B05 /* busy.wav in Resources */,
 				F341C68E24C8C62C00795965 /* ToolbarContentView.xib in Resources */,
-				F35AF64A2497E8870035833D /* DotAppointmentDetailViewController.storyboard in Resources */,
 				F341C69924C8C62C00795965 /* ChatNotificationCell.xib in Resources */,
 				F36B115D24B64C2A00122B05 /* QAUsers.plist in Resources */,
 				F341C69524C8C62C00795965 /* ChatAttachmentOutgoingCell.xib in Resources */,
@@ -2129,7 +2122,6 @@
 				F36B117E24B64CB800122B05 /* ToolBar.swift in Sources */,
 				F341C6B524C8C62C00795965 /* DarkenedHoleView.swift in Sources */,
 				F341C6DC24C8C62C00795965 /* NewCreateNewDialogVC.swift in Sources */,
-				F35AF64C2497E8AA0035833D /* DotAppointmentDetailViewController.swift in Sources */,
 				F3471920249280ED000CB0B1 /* DotAppointmentModel.swift in Sources */,
 				2B1C878424E5197A00B67D8D /* DotCareSheet.swift in Sources */,
 				2B43AB9524859FF5003C4B19 /* Result.swift in Sources */,
