@@ -197,7 +197,6 @@
                                             <outlet property="issueLabel" destination="2AV-Hh-QH1" id="oQh-fa-Kux"/>
                                             <outlet property="statusLabel" destination="n3Z-iR-9ic" id="cW8-el-qGj"/>
                                             <outlet property="timeLabel" destination="ioN-vu-ZFe" id="rwX-JB-VOS"/>
-                                            <segue destination="Bll-Kf-Gbw" kind="presentation" id="YgI-Cg-Fms"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

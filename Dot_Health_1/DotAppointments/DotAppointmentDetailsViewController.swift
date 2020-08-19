@@ -21,22 +21,23 @@ class DotAppointmentDetailsViewController: UIViewController {
     @IBOutlet weak var coordinator: UILabel!
     @IBOutlet weak var remarks: UILabel!
     var appointmentId:UUID?
+    var apptDate:String?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    func detailsSetup(appointmentDetailModel: AppointmentDetailModel){
+    func detailsSetup(appointmentDetailModel: DotAppointmentModel){
        print(appointmentDetailModel)
         self.appointmentStatus = UtilityFunctions.setStatusColor(status: appointmentDetailModel.status, label: self.appointmentStatus)
-        self.facilityName.text = appointmentDetailModel.facilityName
-        self.address.text = appointmentDetailModel.address
-        self.date.text = UtilityFunctions.getDateAsString(inputDate: appointmentDetailModel.date)
-        self.time.text = UtilityFunctions.getTimeAsString(inputTime: appointmentDetailModel.time)
-        self.clinician.text = appointmentDetailModel.clinician
-        self.speciality.text = appointmentDetailModel.speciality
-        self.complaints.text = appointmentDetailModel.complaints
-        self.coordinator.text = appointmentDetailModel.coordinator
+        self.facilityName.text = appointmentDetailModel.provider_name
+        self.address.text = "Not Available"//appointmentDetailModel.address
+        self.date.text = appointmentDetailModel.slot_date
+        self.time.text = appointmentDetailModel.start_time
+        self.clinician.text = "Not Available"//appointmentDetailModel.clinician
+        self.speciality.text = appointmentDetailModel.provider_type
+        self.complaints.text = appointmentDetailModel.purpose
+        self.coordinator.text = "Not Available"// appointmentDetailModel.coordinator
         self.remarks.text = appointmentDetailModel.remarks
     }
 

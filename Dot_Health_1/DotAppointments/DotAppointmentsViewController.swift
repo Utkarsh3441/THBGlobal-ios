@@ -113,15 +113,14 @@ extension DotAppointmentsViewController: UITableViewDataSource, UITableViewDeleg
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        let selectedAppointment = MyData.appointmentModelArray[indexPath.row]
-        //        let storyboard = UIStoryboard(name: String(describing: DotAppointmentDetailsViewController.self), bundle: nil)
-        //               let vc =  storyboard.instantiateInitialViewController() as! DotAppointmentDetailsViewController
-        //               vc.appointmentId = selectedAppointment.id
-        //        let _ = vc.view
-        //        if let appointmentDetailModel = selectedAppointment.appointmentDetailModel.first{
-        //             vc.detailsSetup(appointmentDetailModel: appointmentDetailModel)
-        //        }
-        //
+                let selectedAppointment = MyData.appointmentModelArray[indexPath.row]
+                let storyboard = UIStoryboard(name: String(describing: DotAppointmentDetailsViewController.self), bundle: nil)
+                       let nextViewController =  storyboard.instantiateInitialViewController() as! DotAppointmentDetailsViewController
+                    
+                let _ = nextViewController.view
+        nextViewController.detailsSetup(appointmentDetailModel: MyData.appointmentModelArray[indexPath.row])
+                self.present(nextViewController, animated: true, completion: nil)
+        
         
         
     }
