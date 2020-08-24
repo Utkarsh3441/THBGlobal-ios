@@ -309,6 +309,12 @@ extension DotAddAppointmentViewController:UITableViewDelegate,UITableViewDataSou
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
+        
+        controller?.selectedModel = MyData.myMedicineModelArray[indexPath.row]
+        controller?.makeDateArr()
+        
+          
+        
         if screenName == "Medications"{
             let sheetController = SheetViewController(controller: controller ?? UIViewController(), sizes: [.fixed(250), .halfScreen])
             

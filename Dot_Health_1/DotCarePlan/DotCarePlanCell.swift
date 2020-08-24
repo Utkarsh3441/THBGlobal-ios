@@ -9,7 +9,7 @@
 
 import LBTATools
 
-class DotCarePlanCell: LBTAListCell<DotCarePlanModelGet> {
+class DotCarePlanCell: LBTAListCell<DotCarePlanModel> {
     
     let imageView = UIView(backgroundColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))
     let l1 = UILabel(text: "13", font: .boldSystemFont(ofSize: 20), textColor: Theme.gradientColorDark!, textAlignment: .center, numberOfLines: 0)
@@ -19,15 +19,15 @@ class DotCarePlanCell: LBTAListCell<DotCarePlanModelGet> {
     let messageLabel = UILabel(text: "Hey girl, what's up there? Let's go out and have a drink tonight?", font: .boldSystemFont(ofSize: 14), textColor: .gray, numberOfLines: 2)
     let messageLabel1 = UILabel(text: "Hey girl, what's up there? Let's go out and have a drink tonight?", font: .boldSystemFont(ofSize: 14), textColor: .gray, numberOfLines: 0)
     
-    override var item: DotCarePlanModelGet! {
+    override var item: DotCarePlanModel! {
         didSet {
             nameLabel.text = item.name
 //            imageView.image = UIImage(named: item.userProfileImageName)
             
             messageLabel.text = item.details_one
-            l3.text = item.status
-            switch item.status{
-            case "ACTIVE":l3.textColor = .systemGreen
+            l3.text = item.careplan_date
+            switch item.careplan_date{
+            case "active":l3.textColor = .systemGreen
             default:
                l3.textColor = .systemOrange
             }

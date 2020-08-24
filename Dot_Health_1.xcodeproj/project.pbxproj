@@ -73,6 +73,8 @@
 		2BF005D324C4CC430024E7EE /* DotTimeSlotsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF005D224C4CC430024E7EE /* DotTimeSlotsCollectionCell.swift */; };
 		2BFE0AE2248EE76D00AED5E6 /* ProfileDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFE0AE1248EE76D00AED5E6 /* ProfileDetailModel.swift */; };
 		83BDD54324F1E9A50068E3AC /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BDD54224F1E9A50068E3AC /* info.png */; };
+		83BDD54524F456C90068E3AC /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDD54424F456C80068E3AC /* Dictionary+Extension.swift */; };
+		83BDD54724F46AA00068E3AC /* SharedClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDD54624F46AA00068E3AC /* SharedClass.swift */; };
 		91DFA5B472732531B47B04D3 /* Pods_Dot_Health_1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1385BA697DF3F468FE0651B8 /* Pods_Dot_Health_1Tests.framework */; };
 		9303D98B394F7878A8BAE57D /* Pods_Dot_Health_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC74BB58B2633520DD3FF0D /* Pods_Dot_Health_1.framework */; };
 		F0BC17825B2DB94DE24D08EB /* Pods_Dot_Health_1_Dot_Health_1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277F81B7AFD1D5FD508005F3 /* Pods_Dot_Health_1_Dot_Health_1UITests.framework */; };
@@ -368,6 +370,8 @@
 		571358D0ADFA68253BE409C2 /* Pods-Dot_Health_1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dot_Health_1Tests.debug.xcconfig"; path = "Target Support Files/Pods-Dot_Health_1Tests/Pods-Dot_Health_1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AC74BB58B2633520DD3FF0D /* Pods_Dot_Health_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dot_Health_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BDD54224F1E9A50068E3AC /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		83BDD54424F456C80068E3AC /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		83BDD54624F46AA00068E3AC /* SharedClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedClass.swift; sourceTree = "<group>"; };
 		A145422C41B31D10B87FBB4F /* Pods-Dot_Health_1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dot_Health_1Tests.release.xcconfig"; path = "Target Support Files/Pods-Dot_Health_1Tests/Pods-Dot_Health_1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BD9EDD8B920D0556ADFD6C42 /* Pods-Dot_Health_1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dot_Health_1.debug.xcconfig"; path = "Target Support Files/Pods-Dot_Health_1/Pods-Dot_Health_1.debug.xcconfig"; sourceTree = "<group>"; };
 		EEC2B01A8043009EC7F829C5 /* Pods-Dot_Health_1-Dot_Health_1UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dot_Health_1-Dot_Health_1UITests.debug.xcconfig"; path = "Target Support Files/Pods-Dot_Health_1-Dot_Health_1UITests/Pods-Dot_Health_1-Dot_Health_1UITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -795,6 +799,8 @@
 				F3471924249286CB000CB0B1 /* MockData.swift */,
 				F35AF6472497E0B00035833D /* AppointmentDetailModel.swift */,
 				2BBB90DA249C6F9800E01FE7 /* DotUserDetailsModel.swift */,
+				83BDD54424F456C80068E3AC /* Dictionary+Extension.swift */,
+				83BDD54624F46AA00068E3AC /* SharedClass.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2071,6 +2077,7 @@
 				F341C6E724C8C62C00795965 /* SplashScreenVC.swift in Sources */,
 				2B43AB9D2485A01C003C4B19 /* Model1.swift in Sources */,
 				F36B11C524B64F2C00122B05 /* SliderItemModel.swift in Sources */,
+				83BDD54524F456C90068E3AC /* Dictionary+Extension.swift in Sources */,
 				F341C6C624C8C62C00795965 /* UILabel+Extention.swift in Sources */,
 				F36B118624B64CDE00122B05 /* CallKitManager.swift in Sources */,
 				F36B11D224B6502800122B05 /* UsersViewController.swift in Sources */,
@@ -2180,6 +2187,7 @@
 				F36B119B24B64D2D00122B05 /* BaseSettingsViewController.swift in Sources */,
 				F341C6CA24C8C62C00795965 /* PHAsset+Extention.swift in Sources */,
 				F341C6EE24C8C62C00795965 /* PDFViewController.swift in Sources */,
+				83BDD54724F46AA00068E3AC /* SharedClass.swift in Sources */,
 				F314A60A2498578A006B8D0D /* DotAppointmentDetailTableViewCell.swift in Sources */,
 				F36B119624B64D2400122B05 /* AudioSettingsViewController.swift in Sources */,
 				F36B11B024B64D8B00122B05 /* RecordsViewController.swift in Sources */,
