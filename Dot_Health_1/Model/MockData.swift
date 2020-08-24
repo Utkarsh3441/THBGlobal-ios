@@ -57,7 +57,7 @@ class MockData {
     }
     static func createMockMedicne()->[MyMedicineModel]{
         var mockMedicineModel = [MyMedicineModel]()
-        mockMedicineModel.append(MyMedicineModel(appointment_id: 1, days: 4, dosage_instructions: "2 times a day", drug_name: "Paracetamol", medication_id: 1, patient_id: 1))
+     //   mockMedicineModel.append(MyMedicineModel(days: 4, dosage_instructions: "2 times a day", drug_name: "Paracetamol", medication_id: 1, patient_id: 1))
      /*   mockMedicineModel.append(MyMedicineModel(name: "Paracetamol", speciality: "10 Days", hospitalName: "2 times", price: "$50"))
         mockMedicineModel.append(MyMedicineModel(name: "Paracetamol", speciality: "10 Days", hospitalName: "2 times", price: "$50"))
         mockMedicineModel.append(MyMedicineModel(name: "Paracetamol", speciality: "10 Days", hospitalName: "2 times", price: "$50"))

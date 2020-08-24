@@ -16,6 +16,7 @@ class DotAddAppointmentViewController: UIViewController {
     @IBOutlet weak var specialityButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var doctorListTableView: UITableView!
+    @IBOutlet weak var addButton: ActionButton!
     var selectedAilment : [[String:Any]] = []
     @IBOutlet weak var selectedAilmentLabel: UILabel!
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
@@ -40,6 +41,8 @@ class DotAddAppointmentViewController: UIViewController {
              ailmentButton.isHidden = true
              topViewHeightConstraint.constant = 0
              getMedication()
+             addButton.isHidden = false
+             addButton.createFloatingActionButton()
         }
         else{
             getAilments()
@@ -110,6 +113,10 @@ class DotAddAppointmentViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func addButtonTapped(_ sender: Any) {
+    }
+    
 
     @IBAction func searchAction(_ sender: UIButton) {
         
@@ -134,12 +141,8 @@ extension DotAddAppointmentViewController{
                 SVProgressHUD.dismiss()
                 if let model = model2Result as? [MyMedicineModel]{
                     MyData.myMedicineModelArray = model
-                    print("Fetched doctor:",MyData.myMedicineModelArray)
-                    MyMedicationFunctions.readMyMedicine(complition: {[unowned self] in
-                        
-                        self.doctorListTableView.reloadData()
-                        
-                    })
+                    self.doctorListTableView.reloadData()
+                    print("Fetched Medicines:",MyData.myMedicineModelArray)
                 }
                 else{
                     print("error occured")
@@ -308,20 +311,21 @@ extension DotAddAppointmentViewController:UITableViewDelegate,UITableViewDataSou
         self.selectedIndexPath = indexPath
         if screenName == "Medications"{
             let sheetController = SheetViewController(controller: controller ?? UIViewController(), sizes: [.fixed(250), .halfScreen])
-                   
-                   
-                   sheetController.adjustForBottomSafeArea = false
-                   sheetController.blurBottomSafeArea = true
-                   sheetController.dismissOnBackgroundTap = true
-                   sheetController.extendBackgroundBehindHandle = false
-                   sheetController.topCornersRadius = 15
-                   
-                   sheetController.willDismiss = { _ in
-                       print("Will dismiss ")
-                   }
-                   sheetController.didDismiss = { _ in
-                       print("Will dismiss ")
-                   }
+            
+            
+            sheetController.adjustForBottomSafeArea = false
+            sheetController.blurBottomSafeArea = true
+            sheetController.dismissOnBackgroundTap = true
+            sheetController.extendBackgroundBehindHandle = false
+            sheetController.topCornersRadius = 15
+            
+            
+            sheetController.willDismiss = { _ in
+                print("Will dismiss ")
+            }
+            sheetController.didDismiss = { _ in
+                print("Will dismiss ")
+            }
             self.present(sheetController, animated: false, completion: nil)
         }
         else{
@@ -332,8 +336,6 @@ extension DotAddAppointmentViewController:UITableViewDelegate,UITableViewDataSou
             nextViewController.setUpDoctorDetail(rowIndex:indexPath.row)
             self.show(nextViewController, sender: self)
         }
-        
-        
     }
     
 }

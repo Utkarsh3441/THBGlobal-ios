@@ -45,6 +45,12 @@ struct registerModel:Decodable{
 //    let patient_password:String
 }
 
+struct RegistrationSuccessModel:Decodable{
+    let description:String
+    let message:String
+    let type:String
+}
+
 //struct FacilityModel:Decodable,Hashable{
 //    let name:String
 //    let doe:String

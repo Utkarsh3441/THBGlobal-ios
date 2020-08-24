@@ -48,7 +48,7 @@
                                                 <rect key="frame" x="20" y="74" width="374" height="40"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rD-aT-Qhk" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="179.5" height="40"/>
                                                         <color key="backgroundColor" name="GradientColorDark"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                         <color key="tintColor" name="Tint"/>
@@ -58,7 +58,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Upg-re-mlK" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
-                                                        <rect key="frame" x="129.5" y="0.0" width="115" height="40"/>
+                                                        <rect key="frame" x="194.5" y="0.0" width="179.5" height="40"/>
                                                         <color key="backgroundColor" name="GradientColorDark"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                         <color key="tintColor" name="Tint"/>
@@ -67,8 +67,8 @@
                                                             <action selector="selectTimeAction:" destination="OwI-Qm-ecb" eventType="touchUpInside" id="qVd-oS-OTN"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4s-L6-DIh" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
-                                                        <rect key="frame" x="259.5" y="0.0" width="114.5" height="40"/>
+                                                    <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4s-L6-DIh" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                        <rect key="frame" x="374" y="0.0" width="0.0" height="40"/>
                                                         <color key="backgroundColor" name="GradientColorDark"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                         <color key="tintColor" name="Tint"/>

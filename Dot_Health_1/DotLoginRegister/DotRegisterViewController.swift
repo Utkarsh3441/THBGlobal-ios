@@ -10,6 +10,26 @@ import UIKit
 import LBTATools
 import SVProgressHUD
 import TinyConstraints
+
+enum RegistrationFields: String, CaseIterable {
+    case Name
+    case Email = "Email-ID"
+    case Address1 = "Home/Flat Number"
+    case Address2 = "Locality"
+    case City
+    case Pincode
+    case State
+    case Country
+    case Mobile = "Mobile No"
+    case Gender
+    case DOB = "Date Of Birth"
+    case Password
+    case ConfirmPassword = "Confirm Password"
+    case ReferalCode = "Referal Code (Optional)"
+}
+
+
+
 class DotRegisterViewController: LBTAFormController {
     var countryTextField = UITextField()
     var stateTextField = UITextField()
@@ -19,9 +39,11 @@ class DotRegisterViewController: LBTAFormController {
     var names = ["",""]
     static let shared = DotRegisterViewController()
     var RegisterModels :registerModel?
+    var registrationSuccess:RegistrationSuccessModel?
     let signUpButton = UIButton(title: "Sign Up", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: Theme.gradientColorDark!, target: self, action: #selector(handleRegister))
     let cancelButton = UIButton(title: "", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: .clear, target: self, action: nil)
-    var registerItems = ["Name","Email-ID","Country","State","City","Address 1","Address 2","Mobile No","Gender","Date Of Birth","Password","Confirm Password","Referal Code","Pincode"]
+    var registerItems = [String]()
+    //["Name","Email-ID","Country","State","City","Address 1","Address 2","Mobile No","Gender","Date Of Birth","Password","Confirm Password","Referal Code (Optional)","Pincode"]
     var doubleRegisterItems = ["First Name","Last Name","Ext","Mobile No"]
     var validationDict = [String:Any]()
     var heightCons : CGFloat = 0.0
@@ -30,6 +52,7 @@ class DotRegisterViewController: LBTAFormController {
 //    var parameters = ["patient_name":"animesh","patient_dob":"17-10-1998","patient_gender":"male","patient_email":"ani@gmail.com","patient_mobile":"123456789","patient_password":"123","patient_refcode":"AE9384SE","patient_address1":"test","patient_address2":"test1","patient_city","patient_state",patient_country,patient_pincode]
     var parameters1 = [String:Any]()
     var genders = ["male","female","other"]
+    var countryList = ["India","United Arab Emirates"]
     var states = [
     
         "Andaman and Nicobar Islands",
@@ -74,7 +97,7 @@ class DotRegisterViewController: LBTAFormController {
     let countryPicker = UIPickerView()
     let statePicker = UIPickerView()
     let genderPicker = UIPickerView()
-    let countryList = Locale.isoRegionCodes.compactMap { Locale.current.localizedString(forRegionCode: $0) }
+   // let countryList = Locale.isoRegionCodes.compactMap { Locale.current.localizedString(forRegionCode: $0) }
     var stateList : [String]?
     var toolBar = UIToolbar()
     var footer = UIView(backgroundColor: UIColor.white.withAlphaComponent(0.8))
@@ -109,8 +132,8 @@ class DotRegisterViewController: LBTAFormController {
         formContainerStackView.axis = .vertical
         formContainerStackView.spacing = 12
         formContainerStackView.layoutMargins = .init(top: 25, left: 24, bottom: 30, right: 24)
-//        formContainerStackView.backgroundColor = .white
-//        view.backgroundColor = UIColor.white.withAlphaComponent(1)
+        //        formContainerStackView.backgroundColor = .white
+        //        view.backgroundColor = UIColor.white.withAlphaComponent(1)
         view.addSubview(footer)
         footer.edges(to: view, excluding: .top, insets: .bottom(0), isActive: true)
         footer.constrainHeight(100)
@@ -121,6 +144,9 @@ class DotRegisterViewController: LBTAFormController {
         lab.isEditable = false;
         lab.dataDetectorTypes = UIDataDetectorTypes.all
         lab.backgroundColor = .clear
+        for value in RegistrationFields.allCases {
+            registerItems.append(value.rawValue)
+        }
         let attributedString = NSMutableAttributedString().createAttributedString(first:"I agree to the Asha's Terms Of Service & Privacy Policy", second: "", fColor: .darkGray, sColor: .white, fBold: true, sBold: false, fSize: 14, sSize: 0)
         let linkSet1 = attributedString.setAsLink(textToFind: "Privacy Policy", linkURL:  "https://www.ashacares.com/privacy-policy")
         let linkSet2 = attributedString.setAsLink(textToFind: "Terms Of Service", linkURL:  "https://www.ashacares.com/terms-of-use")
@@ -130,45 +156,35 @@ class DotRegisterViewController: LBTAFormController {
         checkBoxView.addSubview(Check)
         checkBoxView.addSubview(lab)
         Check.edges(to: checkBoxView, insets: .bottom(5) + .top(5) + .left(2), isActive: true)
-     
+        
         lab.edges(to: checkBoxView, insets: .bottom(5) + .top(7) + .right(5) + .left(35), isActive: true)
-         Check.rightToLeft(of: lab)
+        Check.rightToLeft(of: lab)
         footer.addSubview(signUpButton)
         signUpButton.edges(to: footer, insets: .bottom(25) + .top(25) + .right(20) + .left(20), isActive: true)
         signUpButton.layer.cornerRadius = 4
         signUpButton.constrainHeight(50)
         (0...registerItems.count-1).forEach { (i) in
             
-            if i == 0{
+            if registerItems[i] == RegistrationFields.Name.rawValue{
                 let tf1 = FloatingLabelInput(placeholder: "Name", cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
-              
-             
+                
+                
                 tf1.delegate = self
-               
+                
                 tf1.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
                 
                 
                 tf1.accessibilityIdentifier = "Name"
-               
+                
                 formContainerStackView.addArrangedSubview(tf1)
             }
-            else if i == 7{
-                let tf1 = FloatingLabelInput(placeholder: "+91", cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: 60)
+            else if registerItems[i] == RegistrationFields.Mobile.rawValue{
                 
-                let tf2 = FloatingLabelInput(placeholder: "Mobile No", cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white, height: 60)
-                tf2.accessibilityIdentifier = "Mobile No"
-                tf2.delegate = self
-                tf1.isEnabled = false
-                tf2.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
-                let buttonsStackViewa = UIStackView(arrangedSubviews: [tf1, tf2])
-                tf1.constrainWidth(55)
-                tf2.constrainWidth(view.frame.width - 55)
-                buttonsStackViewa.constrainHeight(heightCons)
-                buttonsStackViewa.spacing = 12
-                formContainerStackView.addArrangedSubview(buttonsStackViewa)
-
+                addMobileNumberTextField()
+                
+                
             }
-            else if registerItems[i] == "Country" {
+            else if registerItems[i] == RegistrationFields.Country.rawValue {
                 
                 let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
                 tf.delegate = self
@@ -180,76 +196,154 @@ class DotRegisterViewController: LBTAFormController {
                 countryTextField = tf
                 formContainerStackView.addArrangedSubview(countryTextField)
             }
-            else if registerItems[i] == "State" {
-                    
-                    let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
-                    tf.delegate = self
-                    statePicker.delegate = self
-                    tf.accessibilityIdentifier = "State"
-                    
-                    tf.inputView = statePicker
-                    statePicker.backgroundColor = UIColor.white
-                    stateTextField = tf
-                    formContainerStackView.addArrangedSubview(stateTextField)
-                }
-                else if registerItems[i] == "Gender" {
-                    
-                    let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
-                    tf.delegate = self
-                    genderPicker.delegate = self
-                    tf.accessibilityIdentifier = "Gender"
-                    
-                    tf.inputView = genderPicker
-                    genderPicker.backgroundColor = UIColor.white
-                    genderTextField = tf
-                    formContainerStackView.addArrangedSubview(genderTextField)
-                }
-                else if registerItems[i] == "Date Of Birth" {
-        
-                    let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
-                    tf.delegate = self
-                    tf.accessibilityIdentifier = "dob"
-                    formContainerStackView.addArrangedSubview(tf)
-                }
-                else if registerItems[i] == "Password" {
-                    
-                    let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
-                    tf.delegate = self
-                    tf.accessibilityIdentifier = "Password"
-                    tf.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
-                    tf.isSecureTextEntry = true
-                    password = tf
-                    formContainerStackView.addArrangedSubview(tf)
-                }
-                else if registerItems[i] == "Confirm Password" {
-                    
-                    let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
-                    tf.delegate = self
-                    tf.accessibilityIdentifier = "Confirm Password"
-                    tf.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
+            else if registerItems[i] == RegistrationFields.State.rawValue {
+                
+                addStateTextField()
+            }
+            else if registerItems[i] == RegistrationFields.Gender.rawValue {
+                
+                let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
+                tf.delegate = self
+                genderPicker.delegate = self
+                tf.accessibilityIdentifier = "Gender"
+                
+                tf.inputView = genderPicker
+                genderPicker.backgroundColor = UIColor.white
+                genderTextField = tf
+                formContainerStackView.addArrangedSubview(genderTextField)
+            }
+            else if registerItems[i] == RegistrationFields.DOB.rawValue {
+                
+                let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
+                tf.delegate = self
+                tf.accessibilityIdentifier = RegistrationFields.DOB.rawValue
+                formContainerStackView.addArrangedSubview(tf)
+            }
+            else if registerItems[i] == RegistrationFields.Password.rawValue {
+                
+                addPasswordTextField()
+               
+            }
+            else if registerItems[i] == RegistrationFields.ConfirmPassword.rawValue {
+                
+                let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
+                tf.delegate = self
+                tf.accessibilityIdentifier = "Confirm Password"
+                tf.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
                 tf.isSecureTextEntry = true
-                    confirmPassword = tf
-                    formContainerStackView.addArrangedSubview(tf)
-                }
+                confirmPassword = tf
+                formContainerStackView.addArrangedSubview(tf)
+            }
             else{
-                 let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
+                let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
                 tf.accessibilityIdentifier = registerItems[i]
                 tf.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
                 formContainerStackView.addArrangedSubview(tf)
-                 tf.delegate = self
+                tf.delegate = self
             }
             
             
         }
         formContainerStackView.addArrangedSubview(checkBoxView)
         formContainerStackView.addArrangedSubview(cancelButton)
-       
+        
         checkBoxView.constrainHeight(52)
         formContainerStackView.spacing = 25
-//        signUpButton.constrainHeight(heightCons)
+        //        signUpButton.constrainHeight(heightCons)
         createToolbar()
-
+        
     }
+    
+    func addMobileNumberTextField() {
+        let tf1 = FloatingLabelInput(placeholder: selectedCountryIsIndia() ? "+91" : "+971", cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: 60)
+        
+        let tf2 = FloatingLabelInput(placeholder: "Mobile No", cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white, height: 60)
+        tf1.accessibilityIdentifier = "Country Code"
+        tf2.accessibilityIdentifier = "Mobile No"
+        tf2.delegate = self
+        tf1.isEnabled = false
+        tf2.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
+        let buttonsStackViewa = UIStackView(arrangedSubviews: [tf1, tf2])
+        tf1.constrainWidth(70)
+        tf2.constrainWidth(view.frame.width - 70)
+        buttonsStackViewa.constrainHeight(heightCons)
+        buttonsStackViewa.spacing = 12
+        buttonsStackViewa.tag = 100
+        formContainerStackView.addArrangedSubview(buttonsStackViewa)
+    }
+    func addStateTextField(){
+        let tf = FloatingLabelInput(placeholder: RegistrationFields.State.rawValue, cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
+        tf.delegate = self
+        tf.accessibilityIdentifier = "State"
+         tf.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
+        if  selectedCountryIsIndia()
+        {
+            statePicker.delegate = self
+            tf.inputView = statePicker
+            statePicker.backgroundColor = UIColor.white
+            stateTextField = tf
+            stateTextField.tag = 101
+            formContainerStackView.addArrangedSubview(stateTextField)
+        }
+        else {
+           
+            tf.tag = 101
+            formContainerStackView.addArrangedSubview(tf)
+        }
+    }
+    func addPasswordTextField () {
+        
+        let tf = FloatingLabelInput(placeholder: RegistrationFields.Password.rawValue, cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
+        tf.delegate = self
+        tf.accessibilityIdentifier = "Password"
+        tf.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
+        tf.isSecureTextEntry = true
+        password = tf
+        
+        let infobutton = UIButton(image: UIImage(named: "info.png")!, target: self, action: #selector(infoBtnTapped))
+              
+        let buttonsStackViewa = UIStackView(arrangedSubviews: [tf, infobutton])
+        tf.constrainWidth(view.frame.width - 80)
+        infobutton.constrainWidth(32)
+        buttonsStackViewa.constrainHeight(heightCons)
+        buttonsStackViewa.spacing = 12
+        formContainerStackView.addArrangedSubview(buttonsStackViewa)
+    }
+    func updateStateTextField(){
+        
+        let indexOfState = registerItems.firstIndex(of: RegistrationFields.State.rawValue) ?? 6 // 0
+        if let view =  formContainerStackView.viewWithTag(101) {
+            view.removeFromSuperview()
+            formContainerStackView.removeArrangedSubview(view)
+            statePicker.removeFromSuperview()
+        }
+        
+        let tf = FloatingLabelInput(placeholder: RegistrationFields.State.rawValue, cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .white,height: heightCons)
+        tf.delegate = self
+        tf.accessibilityIdentifier = "State"
+         tf.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
+        if  selectedCountryIsIndia()
+        {
+            statePicker.delegate = self
+            tf.inputView = statePicker
+            statePicker.backgroundColor = UIColor.white
+            stateTextField = tf
+            stateTextField.tag = 101
+            formContainerStackView.insertArrangedSubview(stateTextField, at: indexOfState)
+        }
+        else {
+           
+            tf.tag = 101
+            formContainerStackView.insertArrangedSubview(tf, at: indexOfState)
+        }
+    }
+    
+    
+    @objc func infoBtnTapped(sender: UIButton) {
+        showAlertView("Password should contain minimum 8 cahracters", message: "\n. Minimum 1 special character\n. Minimum 1 upper case character\n. Minimum 1 lower case character\n. Minimum 1 number")
+    }
+
+    
     @objc func tapDone(sender: FloatingLabelInput) {
              view.endEditing(true)
     }
@@ -271,6 +365,12 @@ class DotRegisterViewController: LBTAFormController {
           genderTextField.inputAccessoryView = toolBar
           countryTextField.inputAccessoryView = toolBar
       }
+    func selectedCountryIsIndia() -> Bool {
+        if let country = parameters1["patient_country"] as? String, country == "India" {
+            return true
+        }
+        return false
+    }
     func pushView()->UIViewController
        {
            let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -309,14 +409,19 @@ class DotRegisterViewController: LBTAFormController {
     // MARK:- API Calls
         
         func register() {
-            if !validationDict.isEmpty || !(parameters1.count == (registerItems.count-1)){
-                showAlertView("Invalid Entries", message: "Please enter valid inputs")
+            if (parameters1.count < (registerItems.count-2)){
+                showAlertView("Alert", message: "Please provide valid information.")
                 return
             }
+            if password.text != confirmPassword.text {
+                showAlertView("Alert", message: "Please confirm your password.")
+            }
+            
             if unchecked{
                 showAlertView("Information", message: "Please Accept Asha's Terms Of Service & Privacy Policy")
                 return
             }
+            if validationDict.isEmpty {
             // Query item
             let queryItem = [ URLQueryItem(name: "keyName", value: "ValueName") ]
             guard let body = try? JSONSerialization.data(withJSONObject: parameters1) else { return }
@@ -337,16 +442,28 @@ class DotRegisterViewController: LBTAFormController {
                 case .success(let model2Result):
         
                     guard let model2Result = model2Result else { return }
-                    if let dataModel = model2Result as? NSDictionary ,let type = dataModel["type"] as? String,let desc = dataModel["description"] as? String{
+                    if let dataModel = model2Result as? NSDictionary ,let type = dataModel["type"] as? String,let desc = dataModel["description"] as? String,let message = dataModel["message"] as? String{
                         switch type{
+                        case "Success":
+                            do {
+                            let alert = UIAlertController(title: message, message: desc, preferredStyle: UIAlertController.Style.alert)
+                                alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (_) in
+                                   self.navigationController?.popViewController(animated: true)
+
+                                    }))
+                                self.present(alert, animated: true, completion:nil)
+                            }
                         case "info":
                             do {
-                                DotRegisterViewController.shared.RegisterModels = try JSONDecoder().decode(registerModel.self, from: body)
+                                DotRegisterViewController.shared.registrationSuccess = try JSONDecoder().decode(RegistrationSuccessModel.self, from: body)
+                                
+                                
                             } catch  {
                                 print(error.localizedDescription)
                             }
                         default:
-                            self.showAlertView("Registration Failed", message: desc)
+                            self.showAlertView(message, message: desc)
+                          //  self.navigationController
                         }
                     }
                     else{
@@ -357,6 +474,10 @@ class DotRegisterViewController: LBTAFormController {
                    
                     print("the error \(error)")
                 }
+            }
+          }
+            else {
+                showAlertView("Alert", message: "Please provide valid information.")
             }
         }
      func isValid(login: String?) -> Bool {
@@ -385,7 +506,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         countryPicker.reloadAllComponents()
         statePicker.reloadAllComponents()
-        if textField.accessibilityIdentifier == "dob"{
+        if textField.accessibilityIdentifier == RegistrationFields.DOB.rawValue{
             textField.openDatePicker(modeType: .date)
                }
         return true
@@ -393,7 +514,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         var customField = textField as? FloatingLabelInput
         switch textField.accessibilityIdentifier {
-        case "Name":
+        case  RegistrationFields.Name.rawValue:
             if let val = textField.text{
                 if val == kblankString{
                   validationDict["patient_name"] = "yes"
@@ -425,7 +546,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
                     parameters1["patient_name"] = val
                 }
             }
-        case "Email-ID":
+        case RegistrationFields.Email.rawValue:
             if let val = textField.text,validateEmail(email: val){
                 parameters1["patient_email"] = val
                 customField?.floatingLabelColor = .darkGray
@@ -438,7 +559,8 @@ extension DotRegisterViewController:UITextFieldDelegate{
                 customField?.borderColor = .systemRed
                 validationDict["email"] = "yes"
             }
-        case "Country":
+        case RegistrationFields.Country.rawValue:
+            let previouslySelectedCountry:String? = parameters1["patient_country"] as? String
             if let val = textField.text{
                 if !countryList.contains(val){
                     customField?.floatingLabelColor = .systemRed
@@ -454,8 +576,24 @@ extension DotRegisterViewController:UITextFieldDelegate{
                     validationDict.removeValue(forKey: "country")
                 }
                 
+                if let view =  formContainerStackView.viewWithTag(100) {
+                    for subView in view.subviews {
+                        if subView.accessibilityIdentifier == "Country Code" {
+                            if let txtField = subView as? UITextField {
+                                txtField.placeholder = selectedCountryIsIndia() ? "+91" : "+971"
+                            }
+                        }
+                    }
+                    view.setNeedsLayout()
+                }
+                
+                if previouslySelectedCountry != textField.text && previouslySelectedCountry != nil {
+                    updateStateTextField()
+                }
+              
+                
             }
-        case "Password":
+        case RegistrationFields.Password.rawValue:
             if let val = textField.text,isValid(login: val){
                 parameters1["patient_password"] = val
                 validationDict.removeValue(forKey: "password")
@@ -479,7 +617,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
                 customField?.borderColor = .systemRed
                 validationDict["password"] = "yes"
             }
-        case "Confirm Password":
+        case RegistrationFields.ConfirmPassword.rawValue:
             if let val = textField.text,isValid(login: val), parameters1["patient_password"] as? String == val{
                 customField?.floatingLabelColor = .darkGray
                 customField?.borderWidth = 0
@@ -492,7 +630,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
                 validationDict["Confirm Password"] = "yes"
                 
             }
-        case "Pincode":
+        case RegistrationFields.Pincode.rawValue:
             if let val = textField.text,val.count == 6{
                 if Int(val) != nil{
                     parameters1["patient_pincode"] = val
@@ -513,7 +651,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
                 customField?.borderColor = .systemRed
                 validationDict["pincode"] = "yes"
             }
-        case "Address 2":
+        case RegistrationFields.Address2.rawValue:
             if let val = textField.text,val != kblankString{
                      parameters1["patient_address2"] = val
                     customField?.floatingLabelColor = .darkGray
@@ -528,7 +666,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
                 }
                 
             
-        case "Address 1":
+        case RegistrationFields.Address1.rawValue:
             if let val = textField.text,val != kblankString{
                                 parameters1["patient_address1"] = val
                 validationDict.removeValue(forKey: "address1")
@@ -542,9 +680,9 @@ extension DotRegisterViewController:UITextFieldDelegate{
                            customField?.borderColor = .systemRed
                            }
 
-        case "State":
+        case RegistrationFields.State.rawValue:
             if let val = textField.text{
-                if !states.contains(val){
+                if !states.contains(val) && selectedCountryIsIndia(){
                     customField?.floatingLabelColor = .systemRed
                     customField?.borderWidth = 1
                     customField?.borderColor = .systemRed
@@ -557,7 +695,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
                     validationDict.removeValue(forKey: "state")
                 }
             }
-        case "City":
+        case RegistrationFields.City.rawValue:
             if let val = textField.text,val != kblankString{
                      parameters1["patient_city"] = val
                     customField?.floatingLabelColor = .darkGray
@@ -570,7 +708,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
                 customField?.borderColor = .systemRed
                 }
             
-        case "Gender":
+        case RegistrationFields.Gender.rawValue:
             if let val = textField.text{
                 if !genders.contains(val){
                     validationDict["gender"] = "yes"
@@ -585,7 +723,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
                     validationDict.removeValue(forKey: "gender")
                 }
             }
-        case "Referal Code":
+        case RegistrationFields.ReferalCode.rawValue:
             if let val = textField.text,val != kblankString{
                                 parameters1["patient_refcode"] = val
                                customField?.floatingLabelColor = .darkGray
@@ -598,7 +736,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
                            customField?.borderWidth = 1
                            customField?.borderColor = .systemRed
                            }
-        case "dob":
+        case RegistrationFields.DOB.rawValue:
             if let val = textField.text{
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MMM dd, yyyy"
@@ -616,11 +754,11 @@ extension DotRegisterViewController:UITextFieldDelegate{
                     validationDict["dob"] = "yes"
                 }
             }
-        case "Mobile No":
+        case RegistrationFields.Mobile.rawValue:
             if let val = textField.text,val.count == 10{
                 customField?.floatingLabelColor = .darkGray
                 customField?.borderWidth = 0
-                parameters1["patient_mobile"] = "+91-" + val
+                parameters1["patient_mobile"] = selectedCountryIsIndia() ? "+91-" : "+971-" + val
                 validationDict.removeValue(forKey: "phone")
             }
             else{

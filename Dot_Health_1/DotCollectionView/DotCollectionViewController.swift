@@ -22,10 +22,10 @@ class DotCollectionViewController: UIViewController {
     var collectionSuperView = UIView()
     var dashBoardObj = DotDashboardViewController()
     var CardsCollectionView: UICollectionView! = nil
-    var labelArray = ["My Health Records","Appointments","24/7 Doctor","Talk to Doctor","Health Info","More THB"]//make didset
+    var labelArray = ["My Health Records","Appointments","Contact Care Coordinator","Talk to Doctor","Health Info"]//make //,"More THB"didset
     var imagesArray = [#imageLiteral(resourceName: "Health-Records") ,#imageLiteral(resourceName: "Appointments") ,#imageLiteral(resourceName: "24-7-Doctor"),#imageLiteral(resourceName: "Talk-to-THB"),#imageLiteral(resourceName: "Health-Info"),#imageLiteral(resourceName: "More-THB")]//make Didset
     var identiFierForView:String?
-    var healthRecordLabelArray = ["Vitals","Clinical Visits","Medications","Records","Care Plan","Tele consult"]//make didset
+    var healthRecordLabelArray = ["Vitals","Clinical Visits","Medications","Records","Care Plan"]//,"Tele consult"//make didset
     var healthRecordImages = [#imageLiteral(resourceName: "vitals") ,#imageLiteral(resourceName: "Clinical-Visits") ,#imageLiteral(resourceName: "Medication"),#imageLiteral(resourceName: "Records"),#imageLiteral(resourceName: "Care-Plan"),#imageLiteral(resourceName: "Tele-Consult")]//make Didset
     weak var delegate:setViewControllerAutomatically?
     override func viewDidLoad() {
@@ -113,7 +113,7 @@ extension DotCollectionViewController {
     }
     private func createDummyData() {
            var dummyContacts: [DotCardModel] = []
-           for i in 0..<6 {
+        for i in 0..<labelArray.count {
             self.identiFierForView == "1" ? dummyContacts.append(DotCardModel(cardName: "\(self.healthRecordLabelArray[i])", cardTitle: "Test\(i)")) : dummyContacts.append(DotCardModel(cardName: "\(self.labelArray[i])", cardTitle: "Test\(i)"))
                
            }

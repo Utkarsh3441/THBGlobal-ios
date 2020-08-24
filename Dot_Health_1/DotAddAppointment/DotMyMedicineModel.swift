@@ -17,12 +17,12 @@ struct MyMedicineModel:Decodable {
     var price: String
    */
     
-    var appointment_id:Int
-    var days:Int
-    var dosage_instructions:String
-    var drug_name:String
-    var medication_id:Int
-    var patient_id:Int
+    var days:Int?
+    var dosage_instructions:String?
+    var drug_name:String?
+    var medication_id:Int?
+    var medication_type:String?
+    var patient_id:Int?
     
     
 //    init(appointment_id: Int, days: Int, dosage_instructions: String, drug_name: String, medication_id: Int, patient_id: Int ) {

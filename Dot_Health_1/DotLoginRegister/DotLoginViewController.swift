@@ -195,9 +195,13 @@ class DotLoginViewController: UIViewController {
                   
                    
                case .failure(let error):
+                
                     self.signIn.hideLoading()
                     SVProgressHUD.dismiss()
                     self.maskImage.isHidden = true
+                    if case let APIError.errorAllResponse(description, message, _) = error {
+                        self.showAlertView(message, message: description)
+                    }
                    print("the error \(error)")
                }
            }

@@ -11,16 +11,21 @@ import MobileCoreServices
 import SVProgressHUD
 extension DotRecordsViewController{
 func loadFiles(){
-    SVProgressHUD.show()
+   // SVProgressHUD.show()
+    DispatchQueue.global(qos: .background).async {
+        print("This is run on the background queue")
     SVProgressHUD.setDefaultMaskType(.custom)
     let api : API = .api1
     let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: "http://104.215.179.29/v1/patients/\(loginData.user_id ?? 17)/medicalReports", httpMethod: .get, queryItems: nil, headers: nil, body: nil)
-            client.callAPI(with: endpoint.request, modelParser: [record].self) { [weak self] result in
+        self.client.callAPI(with: endpoint.request, modelParser: [record].self) { [weak self] result in
             guard let self = self else { return }
+             //   print(result)
             switch result {
             case .success(let model2Result):
                 SVProgressHUD.dismiss()
+                 
                 if let model = model2Result as? [record]{
+                    print(model)
                     self.recordsDataArray = model
                     self.applySnapshot(items: model)
 //                    let baseStr = ((model2Result as? NSArray)?.filter({($0 as? record)?.category == "Blood Report"}).first as! record).file_content!
@@ -35,6 +40,7 @@ func loadFiles(){
                 print("the error \(error)")
             }
         }
+    }
     }
     func deleteFiles(items:record){
         SVProgressHUD.show()

@@ -14,6 +14,7 @@ enum APIError: Error {
     case jsonConversionFailure
     case jsonParsingFailure
     case responseUnsuccessful
+    case errorAllResponse(description: String?, message: String?, type: String?)
     
     var localizedDescription: String {
         switch self {
@@ -27,6 +28,12 @@ enum APIError: Error {
             return "JSON Parsing Failure"
         case .responseUnsuccessful:
             return "Response Unsuccessful"
+        case .errorAllResponse:
+            return "Invalid Data"
         }
     }
+}
+
+struct ErrorResponse: Codable {
+    let description, message, type: String?
 }

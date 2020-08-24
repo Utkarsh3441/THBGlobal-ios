@@ -33,7 +33,9 @@ class DotDoctorTableViewCell: UITableViewCell {
         if let myMedicineDataArray = dataArray as? [MyMedicineModel]{
             self.doctorImageView.image = UIImage(named: "medImage")
             self.nameLabel.text = myMedicineDataArray[rowIndex].drug_name
-            self.specialityLabel.text = String(describing: "\(myMedicineDataArray[rowIndex].days) Days")
+            if let days =  myMedicineDataArray[rowIndex].days {
+                self.specialityLabel.text = "\(days) Days"
+            }
             self.hospitalNameLabel.text = myMedicineDataArray[rowIndex].dosage_instructions
             self.priceLabel.text = kblankString
             self.priceLabel.textColor = #colorLiteral(red: 0, green: 0.6795158386, blue: 0, alpha: 1)

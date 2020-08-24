@@ -39,7 +39,14 @@ extension APIClient {
                         completion(genericModel as AnyObject,nil)
                     }
                 } catch {
-                    completion(nil, .jsonConversionFailure)
+                    do {
+                        let result = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                        let error = APIError.errorAllResponse(description: result.description, message: result.message, type: result.type)
+                        completion(nil, error)
+                    }
+                    catch {
+                        completion(nil, .jsonConversionFailure)
+                    }
                 }
             } else {
                 completion(nil, .invalidData)

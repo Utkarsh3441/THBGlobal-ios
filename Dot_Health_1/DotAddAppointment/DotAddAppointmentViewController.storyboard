@@ -210,6 +210,17 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5K-sL-Pnf" customClass="ActionButton" customModule="Asha_Cares" customModuleProvider="target">
+                                <rect key="frame" x="338" y="806" width="56" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <color key="tintColor" name="Tint"/>
+                                <state key="normal" image="plus" catalog="system">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="PGa-ER-BHC" eventType="touchUpInside" id="7DU-Iz-WeP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -230,6 +241,7 @@
                         <viewLayoutGuide key="safeArea" id="LLl-H9-XkS"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="x5K-sL-Pnf" id="HoU-IF-dgE"/>
                         <outlet property="ailmentButton" destination="07q-AC-vmK" id="vDS-DA-h1j"/>
                         <outlet property="doctorButton" destination="V5Q-iD-jtk" id="rR9-LK-wRR"/>
                         <outlet property="doctorListTableView" destination="pHf-an-I1a" id="cCU-PT-c2z"/>
@@ -326,6 +338,7 @@
     </scenes>
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="Accent">
             <color red="0.078431372549019607" green="0.2627450980392157" blue="0.44705882352941179" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

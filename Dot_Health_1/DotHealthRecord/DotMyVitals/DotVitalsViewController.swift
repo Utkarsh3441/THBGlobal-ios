@@ -54,8 +54,8 @@ class DotVitalsViewController: UIViewController ,ChartViewDelegate{
         , for: .normal)
         vitalListTextField.text = "Temperature"
         selectedVitalAddDataButton.setTitle("Add Temperature", for: .normal)
-       // self.getVitalData()
-     //   self.customizeLineChart()
+        self.getVitalData()
+//        self.customizeLineChart()
     }
     @IBAction func selectType(_ sender: UIButton) {
         dataItems = ["Blood Pressure", "Height", "Weight", "Temperature", "Pulse", "Respiration Rate","Oxygen Saturation","Calories Burned","Blood Sugar"]
@@ -345,12 +345,19 @@ extension DotVitalsViewController{
                 if key == "vital_date", let dateString =  value as? String, let dateValue = dateformatter.date(from: dateString) {
                     DotVitalsViewController.xAxisData.append(dateValue)
                 }
-                else if key == "vital_reading"{
-                    print(key)
+                else if key == "vital_reading", let value = value as? String {
+                    
+                 let   stringValue = value.replacingOccurrences(of: "[ |{}]", with: "", options: [.regularExpression])
+                    
+                  if let finalValue = Double(stringValue) {
+                        DotVitalsViewController.yAxixData.append(finalValue)
+                    }
                 }
             }
         }
-        
+        if DotVitalsViewController.yAxixData.count > 0{
+            self.customizeLineChart()
+        }
        
     }
 }

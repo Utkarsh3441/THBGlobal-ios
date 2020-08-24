@@ -40,7 +40,9 @@ struct LoginStatusConstant {
 
 struct LoginNameRegularExtention {
     static let user = "^[^_][\\w\\u00C0-\\u1FFF\\u2C00-\\uD7FF\\s]{2,19}$"
-    static let passord = "^[a-zA-Z][a-zA-Z0-9]{7,14}$"
+   // static let passord = "^[a-zA-Z][a-zA-Z0-9]{7,14}$"
+    static let passord = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$"
+
 }
 
 class LoginTableViewController: UITableViewController {
