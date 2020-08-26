@@ -76,7 +76,7 @@ extension DotAilmentViewController: UITableViewDelegate,UITableViewDataSource{
         }
         if !selectedAilmentServiceArray.contains(where: { $0["name"] as? String == cellValue}){
             self.selectedAilmentServiceArray.append(selectedAilmentService)
-            cell.accessoryType = .checkmark
+           // cell.accessoryType = .checkmark
         }
         else{
             print("deselect row")
@@ -85,8 +85,12 @@ extension DotAilmentViewController: UITableViewDelegate,UITableViewDataSource{
         }
         //let selectedList = Array(selectedAilmentServiceArray.map({$0.keys}))
         callback?(selectedAilmentServiceArray)
+        self.dismiss(animated: true, completion: nil)
         print("Selected ailment:",selectedAilmentServiceArray)
     }
     
     
 }
+
+
+

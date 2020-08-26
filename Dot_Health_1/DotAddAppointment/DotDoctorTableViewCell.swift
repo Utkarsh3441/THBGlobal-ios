@@ -44,17 +44,30 @@ class DotDoctorTableViewCell: UITableViewCell {
         if let doctorArray = dataArray as? [DoctorModel]{
             self.doctorImageView.image = UIImage(named: "DoctorImage")
             self.nameLabel.text = doctorArray[rowIndex].name
-            self.specialityLabel.text = doctorArray[rowIndex].country
-            self.hospitalNameLabel.text = doctorArray[rowIndex].state
-            self.priceLabel.text = "$100"//doctorArray[rowIndex].gender
+            self.specialityLabel.text = doctorArray[rowIndex].specialization
+            self.hospitalNameLabel.text = doctorArray[rowIndex].city
+            if let fees = doctorArray[rowIndex].fees {
+                self.priceLabel.text = "$ \(fees)"
+                self.priceLabel.isHidden = false
+
+            }  else {
+                self.priceLabel.isHidden = true
+            }
             self.priceLabel.textColor = #colorLiteral(red: 0, green: 0.6795158386, blue: 0, alpha: 1)
         }
         if let facilityArray = dataArray as? [FacilityModel]{
             self.nameLabel.text = facilityArray[rowIndex].name
-            self.specialityLabel.text = facilityArray[rowIndex].country
-            self.hospitalNameLabel.text = facilityArray[rowIndex].state
-            self.priceLabel.text = "$100"//doctorArray[rowIndex].gender
-            self.priceLabel.textColor = #colorLiteral(red: 0, green: 0.6795158386, blue: 0, alpha: 1)
+            self.specialityLabel.text = facilityArray[rowIndex].description
+            self.hospitalNameLabel.text = facilityArray[rowIndex].city
+//            if let fees = facilityArray[rowIndex].fees {
+//                self.priceLabel.text = "$ (\(fees)"
+//                self.priceLabel.textColor = #colorLiteral(red: 0, green: 0.6795158386, blue: 0, alpha: 1)
+//                self.priceLabel.isHidden = true
+//            }
+//            else {
+                self.priceLabel.isHidden = true
+           // }
+            
         }
         
     }

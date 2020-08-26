@@ -25,16 +25,16 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="99"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search By:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKq-Of-a4f">
-                                        <rect key="frame" x="20" y="8" width="82" height="20"/>
+                                        <rect key="frame" x="20" y="69" width="83" height="20"/>
                                         <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="17"/>
                                         <color key="textColor" name="GradientColorDark"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="14" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NGp-Jr-lEB">
-                                        <rect key="frame" x="20" y="52.5" width="320" height="36"/>
+                                        <rect key="frame" x="20" y="10" width="360" height="36"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V5Q-iD-jtk">
-                                                <rect key="frame" x="0.0" y="0.0" width="97.5" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="173" height="36"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="doctor"/>
                                                 <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
                                                 <state key="normal" title="Doctor">
@@ -45,7 +45,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAd-CN-Vc6">
-                                                <rect key="frame" x="111.5" y="0.0" width="97" height="36"/>
+                                                <rect key="frame" x="187" y="0.0" width="173" height="36"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="facility"/>
                                                 <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
                                                 <state key="normal" title="Facility">
@@ -55,29 +55,14 @@
                                                     <action selector="buttonTouched:" destination="PGa-ER-BHC" eventType="touchUpInside" id="hih-1i-Mng"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="07q-AC-vmK" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
-                                                <rect key="frame" x="222.5" y="0.0" width="97.5" height="36"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="ailment"/>
-                                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
-                                                <state key="normal" title="Ailment">
-                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="buttonTouched:" destination="PGa-ER-BHC" eventType="touchUpInside" id="LvA-TG-gQi"/>
-                                                    <segue destination="Le6-cc-ye2" kind="popoverPresentation" popoverAnchorView="07q-AC-vmK" id="Lyo-Qg-Hzp">
-                                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                    </segue>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="dAd-CN-Vc6" firstAttribute="centerY" secondItem="V5Q-iD-jtk" secondAttribute="centerY" id="MgJ-7C-SEK"/>
                                             <constraint firstItem="V5Q-iD-jtk" firstAttribute="centerY" secondItem="NGp-Jr-lEB" secondAttribute="centerY" id="OjA-Wp-gLr"/>
-                                            <constraint firstItem="07q-AC-vmK" firstAttribute="centerY" secondItem="dAd-CN-Vc6" secondAttribute="centerY" id="waQ-Xh-3uJ"/>
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYa-Sx-Qvr">
-                                        <rect key="frame" x="112" y="7.5" width="282" height="21"/>
+                                        <rect key="frame" x="113" y="68.5" width="0.0" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="3aW-kH-gsf"/>
                                         </constraints>
@@ -85,11 +70,28 @@
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wh5-Hx-ruB" customClass="ActionButton" customModule="Asha_Cares" customModuleProvider="target">
-                                        <rect key="frame" x="354" y="50.5" width="40" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="72v-4J-mSa" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                        <rect key="frame" x="240" y="61" width="100" height="36"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="ailment"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="udj-t9-siP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
+                                        <state key="normal" title="Ailment">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonTouched:" destination="PGa-ER-BHC" eventType="touchUpInside" id="bbB-ck-m0d"/>
+                                            <segue destination="Le6-cc-ye2" kind="popoverPresentation" popoverAnchorView="72v-4J-mSa" id="uax-aq-UV8">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="100" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wh5-Hx-ruB" customClass="ActionButton" customModule="Asha_Cares" customModuleProvider="target">
+                                        <rect key="frame" x="394" y="8" width="0.0" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="U4d-Ii-rbD"/>
-                                            <constraint firstAttribute="width" constant="40" id="tys-23-JkT"/>
+                                            <constraint firstAttribute="width" id="tys-23-JkT"/>
                                         </constraints>
                                         <state key="normal" image="magnifyingglass" catalog="system"/>
                                         <connections>
@@ -100,21 +102,21 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="aYa-Sx-Qvr" firstAttribute="centerY" secondItem="QKq-Of-a4f" secondAttribute="centerY" id="6R6-ul-crH"/>
+                                    <constraint firstItem="72v-4J-mSa" firstAttribute="centerX" secondItem="c5t-cx-hym" secondAttribute="centerX" multiplier="1.4" id="8Kb-Dr-ZaQ"/>
+                                    <constraint firstItem="aYa-Sx-Qvr" firstAttribute="centerY" secondItem="72v-4J-mSa" secondAttribute="centerY" id="AES-1u-5Uz"/>
                                     <constraint firstItem="wh5-Hx-ruB" firstAttribute="centerY" secondItem="NGp-Jr-lEB" secondAttribute="centerY" id="BZR-qJ-WHJ"/>
                                     <constraint firstItem="wh5-Hx-ruB" firstAttribute="leading" secondItem="NGp-Jr-lEB" secondAttribute="trailing" constant="14" id="K5i-Rd-7aU"/>
                                     <constraint firstAttribute="height" constant="99" id="P5Y-Bn-KSg"/>
-                                    <constraint firstItem="NGp-Jr-lEB" firstAttribute="top" secondItem="aYa-Sx-Qvr" secondAttribute="bottom" constant="24" id="QtI-4l-exx"/>
                                     <constraint firstAttribute="trailing" secondItem="wh5-Hx-ruB" secondAttribute="trailing" constant="20" id="RfT-8J-TbU"/>
                                     <constraint firstItem="NGp-Jr-lEB" firstAttribute="leading" secondItem="c5t-cx-hym" secondAttribute="leading" constant="20" id="UWf-bF-Nog"/>
-                                    <constraint firstItem="QKq-Of-a4f" firstAttribute="top" secondItem="c5t-cx-hym" secondAttribute="top" constant="8" id="g8R-9M-4gU"/>
+                                    <constraint firstItem="NGp-Jr-lEB" firstAttribute="top" secondItem="c5t-cx-hym" secondAttribute="top" constant="10" id="XcF-WO-bsE"/>
+                                    <constraint firstItem="72v-4J-mSa" firstAttribute="top" secondItem="NGp-Jr-lEB" secondAttribute="bottom" constant="15" id="fcQ-cj-FqS"/>
                                     <constraint firstItem="QKq-Of-a4f" firstAttribute="leading" secondItem="c5t-cx-hym" secondAttribute="leading" constant="20" id="jfh-mU-iBF"/>
                                     <constraint firstItem="aYa-Sx-Qvr" firstAttribute="leading" secondItem="QKq-Of-a4f" secondAttribute="trailing" constant="10" id="tPu-YX-8K5"/>
-                                    <constraint firstAttribute="trailing" secondItem="aYa-Sx-Qvr" secondAttribute="trailing" constant="20" id="wV9-3c-YUr"/>
-                                    <constraint firstAttribute="bottom" secondItem="wh5-Hx-ruB" secondAttribute="bottom" constant="8.5" id="xJM-ee-ODa"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="tKi-V0-LHk">
-                                <rect key="frame" x="20" y="143" width="374" height="56"/>
+                            <searchBar contentMode="redraw" misplaced="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="tKi-V0-LHk">
+                                <rect key="frame" x="20" y="143" width="474" height="56"/>
                                 <color key="tintColor" name="Tint"/>
                                 <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -122,6 +124,9 @@
                                     <string>Title</string>
                                     <string>Title</string>
                                 </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="PGa-ER-BHC" id="JmU-wE-oLE"/>
+                                </connections>
                             </searchBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ryH-w1-zrd" userLabel="Horizontal Line">
                                 <rect key="frame" x="0.0" y="214" width="414" height="1"/>
@@ -224,14 +229,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="LLl-H9-XkS" firstAttribute="trailing" secondItem="tKi-V0-LHk" secondAttribute="trailing" constant="20" id="1V5-Yv-BYh"/>
+                            <constraint firstItem="LLl-H9-XkS" firstAttribute="trailing" secondItem="tKi-V0-LHk" secondAttribute="trailing" constant="20" id="0x3-ZF-h9Q"/>
                             <constraint firstItem="pHf-an-I1a" firstAttribute="top" secondItem="ryH-w1-zrd" secondAttribute="bottom" constant="10" id="1lo-UV-hkA"/>
                             <constraint firstAttribute="bottom" secondItem="pHf-an-I1a" secondAttribute="bottom" constant="20" id="GA4-1I-x3d"/>
                             <constraint firstItem="ryH-w1-zrd" firstAttribute="top" secondItem="tKi-V0-LHk" secondAttribute="bottom" constant="15" id="Gjb-4Q-h9T"/>
                             <constraint firstItem="c5t-cx-hym" firstAttribute="leading" secondItem="LLl-H9-XkS" secondAttribute="leading" id="Q3Z-rc-OKQ"/>
                             <constraint firstItem="tKi-V0-LHk" firstAttribute="top" secondItem="c5t-cx-hym" secondAttribute="bottom" id="SvY-jv-4BS"/>
+                            <constraint firstItem="tKi-V0-LHk" firstAttribute="leading" secondItem="LLl-H9-XkS" secondAttribute="leading" constant="20" id="UPI-g6-ca1"/>
                             <constraint firstItem="ryH-w1-zrd" firstAttribute="leading" secondItem="dp5-HQ-Kpn" secondAttribute="leading" id="WJq-vI-WGU"/>
-                            <constraint firstItem="tKi-V0-LHk" firstAttribute="leading" secondItem="LLl-H9-XkS" secondAttribute="leading" constant="20" id="aWo-mT-Fnp"/>
                             <constraint firstItem="c5t-cx-hym" firstAttribute="trailing" secondItem="LLl-H9-XkS" secondAttribute="trailing" id="oLn-Np-0xB"/>
                             <constraint firstItem="pHf-an-I1a" firstAttribute="trailing" secondItem="LLl-H9-XkS" secondAttribute="trailing" id="p51-F2-Iob"/>
                             <constraint firstItem="c5t-cx-hym" firstAttribute="top" secondItem="LLl-H9-XkS" secondAttribute="top" id="sff-u4-NMY"/>
@@ -242,9 +247,10 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="x5K-sL-Pnf" id="HoU-IF-dgE"/>
-                        <outlet property="ailmentButton" destination="07q-AC-vmK" id="vDS-DA-h1j"/>
+                        <outlet property="ailmentButton" destination="72v-4J-mSa" id="njE-UK-hdS"/>
                         <outlet property="doctorButton" destination="V5Q-iD-jtk" id="rR9-LK-wRR"/>
                         <outlet property="doctorListTableView" destination="pHf-an-I1a" id="cCU-PT-c2z"/>
+                        <outlet property="searchBar" destination="tKi-V0-LHk" id="OYk-qq-Lh7"/>
                         <outlet property="searchButton" destination="wh5-Hx-ruB" id="Ivz-os-lT0"/>
                         <outlet property="selectedAilmentLabel" destination="aYa-Sx-Qvr" id="Qhi-AL-cl6"/>
                         <outlet property="specialityButton" destination="dAd-CN-Vc6" id="OfT-qp-NHS"/>
@@ -268,7 +274,7 @@
         <!--Dot Ailment View Controller-->
         <scene sceneID="Zch-lc-GrE">
             <objects>
-                <viewController id="Le6-cc-ye2" customClass="DotAilmentViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Le6-cc-ye2" customClass="DotAilmentViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gkx-EE-eyW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

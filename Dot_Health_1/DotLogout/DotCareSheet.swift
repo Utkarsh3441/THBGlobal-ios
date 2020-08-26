@@ -12,7 +12,7 @@ class DotCareSheet: UIViewController {
     var selectedModel : DotCarePlanModel!
     var arr = Array<Any>()
     var dataItems: DotCarePlanModel?
-    var datArr = ["Name","Details 1","Details 2","Details 3","Details 4","Status"]
+    var datArr = ["Name","Details 1","Details 2","Details 3","Details 4"]
 
     override func viewDidLoad() {
         super.viewDidLoad()

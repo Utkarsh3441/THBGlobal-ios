@@ -56,7 +56,7 @@ class DotOpenEditDetails: LBTAFormController {
 //    var registerItems:[String]?
     let saveButton = UIButton(title: "Save", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: Theme.gradientColorDark!, target: self, action: #selector(handleRegister))
        let cancelButton = UIButton(title: "", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: .green, target: self, action: nil)
-    var genders = ["male","female","other"]
+    var genders = ["Male","Female","Other"]
     var states = [
     
         "Andaman and Nicobar Islands",

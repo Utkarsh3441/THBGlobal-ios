@@ -48,7 +48,7 @@ extension DotTimeSlotViewController {
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(50))
+            heightDimension: .absolute(80))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 3)
         
         //TODO : - Add section header
@@ -82,30 +82,46 @@ extension DotTimeSlotViewController {
             return cell
         })
     }
-     func createDummyData(selectedSeg:Int) {
-        var dummyContacts: [DotSlotsModel] = []
-       
-        switch selectedSeg{
-        case 0: self.selectedTimeDimensionArray = morningSlots
-        case 1:self.selectedTimeDimensionArray = noonSlots
-        case 2:self.selectedTimeDimensionArray = eveningSlots
-        default:
-            print("no data found")
-        }
-        let count = self.selectedTimeDimensionArray.count
-        for i in 0..<count {
-           dummyContacts.append(DotSlotsModel(cardName: "\(self.selectedTimeDimensionArray[i])", cardTitle: "Test\(i)",isSelect: false,id: i))
-            
-        }
-        dummyModel = dummyContacts
-        applySnapshot(items: dummyContacts)
-        
-    }
+//     func createDummyData(selectedSeg:Int) {
+//        var dummyContacts: [DotSlotsModel] = []
+//
+//        switch selectedSeg{
+//        case 0: self.selectedTimeDimensionArray = morningSlots
+//        case 1:self.selectedTimeDimensionArray = noonSlots
+//        case 2:self.selectedTimeDimensionArray = eveningSlots
+//        default:
+//            print("no data found")
+//        }
+//        let count = self.selectedTimeDimensionArray.count
+//        for i in 0..<count {
+//           dummyContacts.append(DotSlotsModel(cardName: "\(self.selectedTimeDimensionArray[i])", cardTitle: "Test\(i)",isSelect: false,id: i))
+//
+//        }
+//        dummyModel = dummyContacts
+//        applySnapshot(items: dummyContacts)
+//
+//    }
     private func applySnapshot(items: [DotSlotsModel]) {
-        
+
         snapshot = DataSourceSnapshot()
         snapshot.appendSections([Section.main])
         snapshot.appendItems(items)
+        dataSource.apply(snapshot,animatingDifferences: true)
+    }
+    
+     func bindData() {
+        
+        var dummyContacts: [DotSlotsModel] = []
+        
+        let count = self.selectedTimeDimensionArray.count
+        for i in 0..<count {
+            dummyContacts.append(DotSlotsModel(cardName: "\(self.selectedTimeDimensionArray[i])", cardTitle: "Test\(i)",isSelect: false,id: i))
+            
+        }
+        dummyModel = dummyContacts
+        snapshot = DataSourceSnapshot()
+        snapshot.appendSections([Section.main])
+        snapshot.appendItems(dummyContacts)
         dataSource.apply(snapshot,animatingDifferences: true)
     }
 }

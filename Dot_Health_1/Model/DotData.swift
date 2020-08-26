@@ -13,6 +13,8 @@ class MyData{
     static var doctorModelArray = [DoctorModel]()
     static var facilityModelArray = [FacilityModel]()
     static var myMedicineModelArray = [MyMedicineModel]()
+    static var patientDetails: registerModel?
+
 }
 class loginData{
     static var user_email:String?

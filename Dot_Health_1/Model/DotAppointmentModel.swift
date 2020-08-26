@@ -25,3 +25,12 @@ struct DotAppointmentModel:Decodable{
     let start_time: String
     let end_time: String
 }
+
+struct DotAppointmentSlotModel:Decodable, Hashable {
+    let slot_date : String?
+    let start_time: String?
+    let end_time: String?
+    let slot_id: Int?
+    let slot_status: String?
+
+}

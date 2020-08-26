@@ -33,6 +33,19 @@ class UtilityFunctions{
         dateFormater.dateStyle = .medium
         return dateFormater.string(from: Date())
     }
+    static func getTodayDateFormat()->String{
+        let dateFormater = DateFormatter()
+        dateFormater.dateStyle = .medium
+        dateFormater.dateFormat = "yyyy-MM-dd"
+        return dateFormater.string(from: Date())
+    }
+    static func getTFormattedDate(date:Date)->String{
+          let dateFormater = DateFormatter()
+          dateFormater.dateStyle = .medium
+          dateFormater.dateFormat = "yyyy-MM-dd"
+          return dateFormater.string(from: date)
+      }
+
     
     //Will return lable with status and status color
     static func setStatusColor(status: String, label: UILabel)->UILabel{

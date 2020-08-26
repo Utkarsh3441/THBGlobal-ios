@@ -64,11 +64,17 @@ extension UIButton {
 }
 extension UITextField{
     
-    func openDatePicker(modeType:UIDatePicker.Mode){
+    func openDatePicker(modeType:UIDatePicker.Mode, pastDate:Bool = true){
            let datePicker = UIDatePicker()
            datePicker.datePickerMode = modeType
             datePicker.backgroundColor = Theme.backgroundColor
-        datePicker.set18YearValidation()
+        if pastDate == false {
+            datePicker.minimumDate = Date()
+            datePicker.maximumDate = maxDateForCalendar()
+        }
+        else {
+            datePicker.set18YearValidation()
+        }
         datePicker.setValue(Theme.accentColor, forKey: "textColor")
         datePicker.perform(Selector(("setHighlightsToday:")), with:Theme.gradientColorDark, afterDelay: 0.5)
             self.inputView = datePicker
@@ -86,6 +92,16 @@ extension UITextField{
            self.inputAccessoryView = toolbar
           // endDateTextField.inputAccessoryView = toolbar
        }
+    func maxDateForCalendar()->Date {
+        let currentDate: Date = Date()
+        let calendar: Calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+        var components: DateComponents = DateComponents()
+        components.calendar = calendar
+        components.year = 1
+        let maxDate: Date = calendar.date(byAdding: components, to: currentDate)!
+        return maxDate
+    }
+    
     @objc func cancelButtonAction(){
         self.resignFirstResponder()
     }
@@ -103,6 +119,8 @@ extension UITextField{
             print(datePicker.date)
             self.text = dateFormater.string(from: datePicker.date)
             self.resignFirstResponder()
+            NotificationCenter.default.post(name: Notification.Name("DateSelected"), object: nil)
+
         }
     }
     func addDoneButton(title: String, target: Any, selector: Selector) {

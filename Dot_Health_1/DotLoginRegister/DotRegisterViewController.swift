@@ -51,7 +51,7 @@ class DotRegisterViewController: LBTAFormController {
     var progress = SVProgressHUD()
 //    var parameters = ["patient_name":"animesh","patient_dob":"17-10-1998","patient_gender":"male","patient_email":"ani@gmail.com","patient_mobile":"123456789","patient_password":"123","patient_refcode":"AE9384SE","patient_address1":"test","patient_address2":"test1","patient_city","patient_state",patient_country,patient_pincode]
     var parameters1 = [String:Any]()
-    var genders = ["male","female","other"]
+    var genders = ["Male","Female","Other"]
     var countryList = ["India","United Arab Emirates"]
     var states = [
     
@@ -506,11 +506,18 @@ extension DotRegisterViewController:UITextFieldDelegate{
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         countryPicker.reloadAllComponents()
         statePicker.reloadAllComponents()
+        if textField.accessibilityIdentifier == RegistrationFields.Email.rawValue {
+            textField.autocapitalizationType = .none
+        }
+        else {
+            textField.autocapitalizationType = .sentences
+        }
         if textField.accessibilityIdentifier == RegistrationFields.DOB.rawValue{
             textField.openDatePicker(modeType: .date)
-               }
+        }
         return true
     }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         var customField = textField as? FloatingLabelInput
         switch textField.accessibilityIdentifier {

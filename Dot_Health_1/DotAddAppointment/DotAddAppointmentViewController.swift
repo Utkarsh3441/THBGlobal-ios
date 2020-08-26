@@ -20,13 +20,15 @@ class DotAddAppointmentViewController: UIViewController {
     var selectedAilment : [[String:Any]] = []
     @IBOutlet weak var selectedAilmentLabel: UILabel!
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     var selectedIndexPath: IndexPath = IndexPath()
+    var searchByDoctor = true
     var screenName : String = kblankString
     let controller = UIStoryboard(name: "DotMedicines", bundle: nil).instantiateInitialViewController() as? DotMedicinesController
      private let client = DotConnectionClient()
     var ailments = [ailment]()
     var services = [service]()
-    var doctorData = [DoctorModel]()
    // var facilityData = [facilityModel]()
     var urlString = ""
     override func viewDidLoad() {
@@ -47,8 +49,16 @@ class DotAddAppointmentViewController: UIViewController {
         else{
             getAilments()
             getServices()
-             self.navigationItem.title = "Add Appointments"
-             topViewHeightConstraint.constant = 99
+            if searchByDoctor == true {
+                fetchDoctorsList(searchItem: nil, searchCity: MyData.patientDetails?.patient_city)
+            } else {
+                fetchFacilityList(searchItem: nil, searchCity: MyData.patientDetails?.patient_city)
+            }
+            doctorButton.createSelectedOptionButton()
+            ailmentButton.setTitle("Ailment", for: .normal)
+            self.specialityButton.createOptionButton()
+            self.navigationItem.title = "Add Appointments"
+            topViewHeightConstraint.constant = 99
         }
         
         
@@ -61,10 +71,16 @@ class DotAddAppointmentViewController: UIViewController {
         ailmentButton.titleLabel?.numberOfLines = 1;
         ailmentButton.titleLabel?.adjustsFontSizeToFitWidth = true;
         ailmentButton.titleLabel?.lineBreakMode = .byClipping;
+        searchBar.placeholder = "Search by city"
+        searchBar.showsCancelButton = true
+
     }
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-           if let destination = segue.destination as? DotAilmentViewController  {
+        if let destination = segue.destination as? DotAilmentViewController  {
+            destination.preferredContentSize = CGSize(width: self.view.frame.width, height: 500)
+            destination.popoverPresentationController?.delegate = self
+
             switch ailmentButton.titleLabel?.text{
             case "Ailment":
                 destination.selectedData = "Ailment"
@@ -75,26 +91,49 @@ class DotAddAppointmentViewController: UIViewController {
             default:
                 print("no data found")
             }
-               
-               destination.callback = {result in
+            
+            destination.callback = {result in
                 self.selectedAilment = result
                 let ailmetServiceList = result.map({$0["name"] as? String}) as? [String]
                 self.selectedAilmentLabel.text = ailmetServiceList?.joined(separator: ", ")
-           }
-        
+                self.fetchDataForAilment()
+            }
+            
         }
         
-            if (segue.identifier == "timeSlotView") &&  self.selectedIndexPath.count > 0{
-                let viewController = segue.destination as? DotTimeSlotViewController
-                viewController?.selectedName = MyData.doctorModelArray[ self.selectedIndexPath.row].name
-                viewController?.selectedSpec = MyData.doctorModelArray[ self.selectedIndexPath.row].country
-                viewController?.selectedHosPitalName = MyData.doctorModelArray[ self.selectedIndexPath.row].state
-                viewController?.selectedPrice = "$100"//MyData.doctorModelArray[ self.selectedIndexPath.row].gender
-                   }
+        if (segue.identifier == "timeSlotView") &&  self.selectedIndexPath.count > 0{
+            let viewController = segue.destination as? DotTimeSlotViewController
+            viewController?.selectedName = MyData.doctorModelArray[ self.selectedIndexPath.row].name ?? ""
+            viewController?.selectedSpec = MyData.doctorModelArray[ self.selectedIndexPath.row].country ?? ""
+            viewController?.selectedHosPitalName = MyData.doctorModelArray[ self.selectedIndexPath.row].state ?? ""
+            if let fees = MyData.doctorModelArray[ self.selectedIndexPath.row].fees {
+                viewController?.selectedPrice = "$ \(fees)"
+            }
+        }
+    }
+    
+    func fetchDataForAilment() {
+        
+        if selectedAilment.count > 0 {
+              print(selectedAilment)
+              if searchByDoctor == true {
+                  fetchDoctorsList(searchItem: selectedAilment, searchCity: MyData.patientDetails?.patient_city)
+              } else {
+                  fetchFacilityList(searchItem: selectedAilment, searchCity: MyData.patientDetails?.patient_city)
+              }
+          }
+    }
+    
+    func searchByQueryItem(searchText:String) {
+        if searchByDoctor == true {
+            fetchDoctorsList(searchItem: nil, searchCity: searchText)
+        }
+        else {
+            fetchFacilityList(searchItem: nil, searchCity: searchText)
+        }
     }
     
     @IBAction func buttonTouched(_ sender: UIButton) {
-        
         switch sender.titleLabel?.text {
         case "Ailment":
             sender.createSelectedOptionButton()
@@ -102,15 +141,26 @@ class DotAddAppointmentViewController: UIViewController {
             sender.createSelectedOptionButton()
             ailmentButton.setTitle("Ailment", for: .normal)
             self.specialityButton.createOptionButton()
+            searchByDoctor = true
+            fetchDoctorsList(searchItem: nil, searchCity: MyData.patientDetails?.patient_city)
+            clearSearchAlimentData()
         case "Facility":
             sender.createSelectedOptionButton()
             ailmentButton.setTitle("Services", for: .normal)
             self.doctorButton.createOptionButton()
+            searchByDoctor = false
+            fetchFacilityList(searchItem: nil, searchCity: MyData.patientDetails?.patient_city)
+            clearSearchAlimentData()
         case "Services":
              sender.createSelectedOptionButton()
         default:
             print("Wrong button")
         }
+    }
+    
+    func clearSearchAlimentData() {
+        selectedAilment = []
+        selectedAilmentLabel.text = ""
     }
     
     
@@ -119,17 +169,12 @@ class DotAddAppointmentViewController: UIViewController {
     
 
     @IBAction func searchAction(_ sender: UIButton) {
-        
-       print(selectedAilment)
-        if selectedAilment.count > 0{
-             searchItemsForQuery(searchItem: selectedAilment)
-        }
-      
+  
     }
     
 }
 //MARK:API CAlls
-extension DotAddAppointmentViewController{
+extension DotAddAppointmentViewController {
     func getMedication(){
         SVProgressHUD.show()
         let api: API = .api1
@@ -183,102 +228,132 @@ extension DotAddAppointmentViewController{
         let api : API = .api1
         let endpoint: Endpoint = api.getPostAPIEndpointForAppointments(urlString: "\(api.rawValue)ailments", queryItems: nil, headers: nil, body: nil)
         client.callAPI(with: endpoint.request, modelParser: [ailment].self) { [weak self] result in
-        guard let self = self else { return }
-        switch result {
-        case .success(let model2Result):
-            
-            if let model = model2Result as? [ailment]{
-                self.ailments = model
+            guard let self = self else { return }
+            switch result {
+            case .success(let model2Result):
+                
+                if let model = model2Result as? [ailment]{
+                    self.ailments = model
+                }
+                else{
+                    print("error occured")
+                }
+            case .failure(let error):
+                
+                print("the error \(error)")
             }
-            else{
-                print("error occured")
-            }
-        case .failure(let error):
-            
-            print("the error \(error)")
         }
     }
-}
-    func searchItemsForQuery(searchItem:[[String:Any]]){
+    
+    func fetchFacilityList(searchItem:[[String:Any]]?, searchCity: String?) {
+        
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.custom)
-        // Query item for doc
-        var queryItem = [URLQueryItem]()
-      //  var urlString = ""
-        if let item = searchItem.first?["name"] as? String,let id = searchItem.first?["id"] as? Int{
-            if ailments.contains(where: {$0.ailment == item}){
-                 queryItem = [ URLQueryItem(name: "ailmentId", value:"\(id)"), URLQueryItem(name: "city", value: "Bangalore")]
-                urlString = "doctors"
-                
+        
+        urlString = "facilities"
+        
+        var queryItem: [URLQueryItem]?
+        if let item = searchItem?.first?["name"] as? String, let id = searchItem?.first?["id"] as? Int {
+            if services.contains(where: {$0.service == item}){
+                queryItem = [URLQueryItem(name: "serviceId", value:"\(id)")]
             }
-            else if services.contains(where: {$0.service == item}){
-                queryItem = [ URLQueryItem(name: "serviceId", value: "\(id)"), URLQueryItem(name: "city", value: "Delhi")]
-                urlString = "facilities"
+        }
+        if let text = searchCity , text.count > 0 {
+            if queryItem != nil {
+                queryItem?.append(URLQueryItem(name: "city", value:"\(text)"))
+            }
+            else {
+                queryItem = [URLQueryItem(name: "city", value:"\(text)")]
             }
         }
         
-          // Query item for facility
         let api : API = .api1
-        let endpoint: Endpoint = api.getPostAPIEndpointForAppointments(urlString: "\(api.rawValue)\(urlString)", queryItems: nil, headers: nil, body: nil)
-        switch urlString{
-        case "doctors":
-            client.callAPI(with: endpoint.request, modelParser: [DoctorModel].self) { [weak self] result in
-                        guard let self = self else { return }
-                        switch result {
-                        case .success(let model2Result):
-                            SVProgressHUD.dismiss()
-                            if let model = model2Result as? [DoctorModel]{
-                                MyData.doctorModelArray = model
-                                print("Fetched doctor:",MyData.doctorModelArray)
-                                doctorFunctions.readDoctors(complition: {[unowned self] in
-                                                  
-                                                  self.doctorListTableView.reloadData()
-                                                 
-                                              })
-                                 SVProgressHUD.dismiss()
-                            }
-                            else{
-                                doctorFunctions.readDoctors(complition: {[unowned self] in
-                                    
-                                    self.doctorListTableView.reloadData()
-                                    
-                                })
-                                print("error occured")
-                                SVProgressHUD.dismiss()
-                            }
-                        case .failure(let error):
-                            SVProgressHUD.dismiss()
-                            print("the error \(error)")
-                        }
-                    }
-        case "facilities":
-            client.callAPI(with: endpoint.request, modelParser: [FacilityModel].self) { [weak self] result in
-                        guard let self = self else { return }
-                        switch result {
-                        case .success(let model2Result):
-                            SVProgressHUD.dismiss()
-                            if let model = model2Result as? [FacilityModel]{
-                                MyData.facilityModelArray = model
-                                print("Facility data :",MyData.facilityModelArray)
-                                // write here to populate facility data in table
-                                facilityFunctions.readFacilities(complition: {[unowned self] in
-                                    
-                                    self.doctorListTableView.reloadData()
-                                    
-                                })
-                            }
-                            else{
-                                print("error occured")
-                            }
-                        case .failure(let error):
-                            SVProgressHUD.dismiss()
-                            print("the error \(error)")
-                        }
-                    }
-        default:
-            print("no data found")
+        let endpoint: Endpoint = api.getPostAPIEndpointForAppointments(urlString: "\(api.rawValue)\(urlString)", queryItems: queryItem, headers: nil, body: nil)
+        
+        client.callAPI(with: endpoint.request, modelParser: [FacilityModel].self) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let model2Result):
+                SVProgressHUD.dismiss()
+                if let model = model2Result as? [FacilityModel]{
+                    MyData.facilityModelArray = model
+                    print("Facility data :",MyData.facilityModelArray)
+                    // write here to populate facility data in table
+                    facilityFunctions.readFacilities(complition: {[unowned self] in
+                        
+                        self.doctorListTableView.reloadData()
+                        
+                    })
+                }
+                else{
+                    print("error occured")
+                }
+            case .failure(let error):
+                
+                SVProgressHUD.dismiss()
+                if case let APIError.errorAllResponse(description, message, _) = error {
+                    self.showAlertView(message, message: description)
+                }
+                print("the error \(error)")
+            }
+        }
+    }
+    
+    func fetchDoctorsList(searchItem:[[String:Any]]?, searchCity: String?) {
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.custom)
+                        
+        urlString = "doctors"
+   
+        var queryItem: [URLQueryItem]?
+        if let item = searchItem?.first?["name"] as? String, let id = searchItem?.first?["id"] as? Int {
+            if ailments.contains(where: {$0.ailment == item}){
+                queryItem = [URLQueryItem(name: "ailmentId", value:"\(id)")]
+            }
         }
         
+        if let text = searchCity , text.count > 0 {
+            if queryItem != nil {
+                queryItem?.append(URLQueryItem(name: "city", value:"\(text)"))
+            }
+            else {
+                queryItem = [URLQueryItem(name: "city", value:"\(text)")]
+            }
+        }
+                        
+            // Query item for facility
+            let api : API = .api1
+            let endpoint: Endpoint = api.getPostAPIEndpointForAppointments(urlString: "\(api.rawValue)\(urlString)", queryItems: queryItem, headers: nil, body: nil)
+            
+            client.callAPI(with: endpoint.request, modelParser: [DoctorModel].self) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let model2Result):
+                    SVProgressHUD.dismiss()
+                    if let model = model2Result as? [DoctorModel]{
+                        MyData.doctorModelArray = model
+                        print("Fetched doctor:",MyData.doctorModelArray)
+                        self.doctorListTableView.reloadData()
+                        SVProgressHUD.dismiss()
+                    }
+                    else{
+                        doctorFunctions.readDoctors(complition: {[unowned self] in
+                            
+                            self.doctorListTableView.reloadData()
+                            
+                        })
+                        print("error occured")
+                        SVProgressHUD.dismiss()
+                    }
+                case .failure(let error):
+                    SVProgressHUD.dismiss()
+                    if case let APIError.errorAllResponse(description, message, _) = error {
+                        self.showAlertView(message, message: description)
+                    }
+                    print("the error \(error)")
+                }
+            }
     }
 }
 //MARK:TableView Delegates
@@ -310,12 +385,9 @@ extension DotAddAppointmentViewController:UITableViewDelegate,UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
         
-        controller?.selectedModel = MyData.myMedicineModelArray[indexPath.row]
-        controller?.makeDateArr()
-        
-          
-        
-        if screenName == "Medications"{
+     if screenName == "Medications"{
+            controller?.selectedModel = MyData.myMedicineModelArray[indexPath.row]
+            controller?.makeDateArr()
             let sheetController = SheetViewController(controller: controller ?? UIViewController(), sizes: [.fixed(250), .halfScreen])
             
             
@@ -337,11 +409,50 @@ extension DotAddAppointmentViewController:UITableViewDelegate,UITableViewDataSou
         else{
             let storyBoard : UIStoryboard = UIStoryboard(name: String(describing: DotTimeSlotViewController.self) , bundle:nil)
             let nextViewController = storyBoard.instantiateInitialViewController() as! DotTimeSlotViewController
-            
-            let _ = nextViewController.view
+           let _ = nextViewController.view
+        
+        if searchByDoctor == true {
+            nextViewController.selectedDoctorId = MyData.doctorModelArray[indexPath.row].doctor_id
             nextViewController.setUpDoctorDetail(rowIndex:indexPath.row)
+        }
+        else {
+            nextViewController.isFacilitySelected = true
+            nextViewController.setUpFacilityDetail(rowIndex:indexPath.row)
+
+        }
+                
+            
+            
             self.show(nextViewController, sender: self)
         }
     }
     
+}
+
+extension DotAddAppointmentViewController:UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text {
+            searchByQueryItem(searchText: text)
+        }
+        searchBar.endEditing(true)
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // Stop doing the search stuff
+        // and clear the text in the search bar
+        searchBar.text = ""
+        // Hide the cancel button
+        searchBar.showsCancelButton = false
+        
+        searchBar.endEditing(true)
+        // You could also change the position, frame etc of the searchBar
+    }
+    
+    
+}
+
+extension DotAddAppointmentViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .currentContext
+    }
 }
