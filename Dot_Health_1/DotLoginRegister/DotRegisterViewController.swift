@@ -796,17 +796,17 @@ extension DotRegisterViewController:UIPickerViewDataSource, UIPickerViewDelegate
         
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
-       {
-           if pickerView == statePicker{
+    {
+        if pickerView == statePicker{
             return states[row]
-                  }
-         else if pickerView == genderPicker{
-             return genders[row]
-         }
-               return countryList[row]
-           
-       
-       }
+        }
+        else if pickerView == genderPicker{
+            return genders[row]
+        }
+        return countryList[row]
+        
+        
+    }
        
        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == statePicker {

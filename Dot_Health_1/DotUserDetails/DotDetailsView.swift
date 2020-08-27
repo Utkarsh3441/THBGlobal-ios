@@ -92,11 +92,24 @@ class DotDetailsView: UIViewController,TableViewDelegate, MultiTableViewDelegate
         configureCollectionView()
         configureCollectionViewDataSource()
         createDummyData()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadProfileData(notification:)), name: Notification.Name("ProfileDataUpdated"), object: nil)
+
     }
+    @objc func reloadProfileData(notification: Notification) {
+        
+        getPatientDetails()
+        
+     }
+    
     func setDetails(){
         LabelStackView.arrangedSubviews.forEach { (lable) in
+            var patientId = ""
+            if let id = patientDetails?.patient_id {
+                patientId = String(id)
+            }
+                        
             switch lable.tag{
-            case 1 : (lable as? UILabel)?.attributedText = NSAttributedString().createAttributedString(first: patientDetails?.patient_name ?? kblankString, second: "               23",fColor: Theme.gradientColorDark ?? .black, sColor: Theme.gradientColorLight!, fBold:true,sBold:true,fSize: 18.0,sSize: 18.0)
+            case 1 : (lable as? UILabel)?.attributedText = NSAttributedString().createAttributedString(first: patientDetails?.patient_name ?? kblankString, second: "                               \(patientId)",fColor: Theme.gradientColorDark ?? .black, sColor: Theme.gradientColorLight!, fBold:true,sBold:true,fSize: 18.0,sSize: 18.0)
             case 2 : (lable as? UILabel)?.attributedText = NSAttributedString().createAttributedString(first: "DOB: ", second: patientDetails?.patient_dob ?? kblankString, fColor:Theme.accentColor ?? #colorLiteral(red: 0.2069825828, green: 0.7254605889, blue: 1, alpha: 1), sColor: .black,fBold:true,sBold:false,fSize: 14.0,sSize: 14.0)
             case 3 : (lable as? UILabel)?.attributedText = NSAttributedString().createAttributedString(first: "Phone no: ", second: patientDetails?.patient_mobile ?? kblankString, fColor: Theme.accentColor ?? #colorLiteral(red: 0.2069825828, green: 0.7254605889, blue: 1, alpha: 1), sColor: .black,fBold:true,sBold:false,fSize: 14.0,sSize: 14.0)
             case 4 : (lable as? UILabel)?.attributedText = NSAttributedString().createAttributedString(first: "Email: ", second: patientDetails?.patient_email ?? kblankString, fColor: Theme.accentColor ?? #colorLiteral(red: 0.2069825828, green: 0.7254605889, blue: 1, alpha: 1), sColor: .black,fBold:true,sBold:false,fSize: 14.0,sSize: 14.0)

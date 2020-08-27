@@ -18,8 +18,8 @@ class DotOpenEditDetails: LBTAFormController {
     var heightCons : CGFloat = 0.0
     let client = DotConnectionClient()
     weak var delegate:editTableDelegate?
-    var registerItems = ["Name","Date Of Birth","Country","State","City","Address 1","Address 2","Mobile No","Gender","Pincode","MemberShip Number(optional)","Emergency Contact Number(optional)"]
-    var dataSort = ["patient_name","patient_dob","patient_country","patient_state","patient_city","patient_address1","patient_address2","patient_mobile","patient_gender","patient_pincode","membership_number","emergency_contact_number"]
+    var registerItems = ["Name","Date Of Birth","Address 1","Address 2","City","State","Country","Mobile No","Gender","Pincode","MemberShip Number(optional)","Emergency Contact Number(optional)"]
+    var dataSort = ["patient_name","patient_dob","patient_address1","patient_address2","patient_city","patient_state","patient_country","patient_mobile","patient_gender","patient_pincode","membership_number","emergency_contact_number"]
     var optionalVals = ["membership_number","emergency_contact_number"]
     var editDetails = ["patient_name":"",
     "patient_dob":"",
@@ -57,6 +57,7 @@ class DotOpenEditDetails: LBTAFormController {
     let saveButton = UIButton(title: "Save", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: Theme.gradientColorDark!, target: self, action: #selector(handleRegister))
        let cancelButton = UIButton(title: "", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: .green, target: self, action: nil)
     var genders = ["Male","Female","Other"]
+    var countryList = ["India","United Arab Emirates"]
     var states = [
     
         "Andaman and Nicobar Islands",
@@ -100,7 +101,6 @@ class DotOpenEditDetails: LBTAFormController {
     let countryPicker = UIPickerView()
     let statePicker = UIPickerView()
     let genderPicker = UIPickerView()
-    let countryList = Locale.isoRegionCodes.compactMap { Locale.current.localizedString(forRegionCode: $0) }
     var stateList : [String]?
     var toolBar = UIToolbar()
     
@@ -127,19 +127,28 @@ class DotOpenEditDetails: LBTAFormController {
                     
                     let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear,height: heightCons)
                     tf.delegate = self
-                    statePicker.delegate = self
                     tf.accessibilityIdentifier = "State"
                     tf.text = userData[dataSort[i]] as? String
                     tf.borderWidth = 1.0
                     tf.borderColor = Theme.accentColor
-                    tf.inputView = statePicker
                     tf.addStartLabel()
-                    statePicker.backgroundColor = UIColor.white
-                    stateTextField = tf
-                    formContainerStackView.addArrangedSubview(stateTextField)
+                    if  selectedCountryIsIndia()
+                    {
+                        statePicker.delegate = self
+                        tf.inputView = statePicker
+                        statePicker.backgroundColor = UIColor.white
+                        stateTextField = tf
+                        stateTextField.tag = 101
+                        formContainerStackView.addArrangedSubview(stateTextField)
+                    }
+                    else {
+                        
+                        tf.tag = 101
+                        formContainerStackView.addArrangedSubview(tf)
+                    }
                 }
                 else if registerItems[i] == "Country" {
-                    
+
                     let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear,height: heightCons)
                     tf.delegate = self
                     tf.accessibilityIdentifier = "Country"
@@ -152,6 +161,9 @@ class DotOpenEditDetails: LBTAFormController {
                     countryPicker.backgroundColor = UIColor.white
                     countryTextField = tf
                     formContainerStackView.addArrangedSubview(countryTextField)
+                }
+                else if registerItems[i] == "Mobile No" {
+                    addMobileNumberTextField(index: i)
                 }
                 else if registerItems[i] == "Gender" {
                     
@@ -177,7 +189,24 @@ class DotOpenEditDetails: LBTAFormController {
                     tf.borderColor = Theme.accentColor
                     tf.text = userData[dataSort[i]] as? String
                     tf.addStartLabel()
+                    tf.isEnabled = false
+                    tf.alpha = 0.5
                     formContainerStackView.addArrangedSubview(tf)
+                    
+                }
+                else if registerItems[i] == "Name" {
+                    
+                    let tf = FloatingLabelInput(placeholder: registerItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear,height: heightCons)
+                    tf.delegate = self
+                    tf.accessibilityIdentifier = "name"
+                    tf.borderWidth = 1.0
+                    tf.borderColor = Theme.accentColor
+                    tf.text = userData[dataSort[i]] as? String
+                    tf.addStartLabel()
+                    tf.isEnabled = false
+                    tf.alpha = 0.5
+                    formContainerStackView.addArrangedSubview(tf)
+                    
                 }
                     
                 else{
@@ -219,9 +248,45 @@ class DotOpenEditDetails: LBTAFormController {
            dismiss(animated: true)
        }
     
-       @objc fileprivate func handleRegister() {
+    @objc fileprivate func handleRegister() {
+        if validationDict.isEmpty {
             updateUserDetails()
+        } else {
+            showAlertView("Alert", message: "Please provide valid information.")
+        }
+    }
+    func selectedCountryIsIndia() -> Bool {
+          if let country = editDetails["patient_country"] as? String, country == "India" {
+              return true
           }
+          return false
+      }
+    
+    func addMobileNumberTextField(index:Int) {
+        let tf1 = FloatingLabelInput(placeholder: selectedCountryIsIndia() ? "+91" : "+971", cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear,height: 60)
+        
+        let tf2 = FloatingLabelInput(placeholder: "Mobile No", cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear, height: 60)
+        tf1.accessibilityIdentifier = "Country Code"
+        tf2.accessibilityIdentifier = "Mobile No"
+        tf2.delegate = self
+        tf1.isEnabled = false
+        tf1.borderWidth = 1.0
+        tf1.addStartLabel()
+        tf2.addStartLabel()
+        tf1.borderColor = Theme.accentColor
+        tf2.borderWidth = 1.0
+        tf2.borderColor = Theme.accentColor
+        tf2.text = userData[dataSort[index]] as? String
+        tf2.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
+        let buttonsStackViewa = UIStackView(arrangedSubviews: [tf1, tf2])
+        tf1.constrainWidth(70)
+        tf2.constrainWidth(view.frame.width - 70)
+        buttonsStackViewa.constrainHeight(heightCons)
+        buttonsStackViewa.spacing = 12
+        buttonsStackViewa.tag = 100
+        formContainerStackView.addArrangedSubview(buttonsStackViewa)
+    }
+    
     func createToolbar()
     {
         toolBar = UIToolbar(frame: CGRect())
@@ -246,6 +311,38 @@ class DotOpenEditDetails: LBTAFormController {
     //        getStates(country: countryTextField.text ?? "")
             view.endEditing(true)
         }
+    
+    func updateStateTextField(){
+        
+        let indexOfState = registerItems.firstIndex(of: "State") ?? 5 // 0
+        if let view =  formContainerStackView.viewWithTag(101) {
+            view.removeFromSuperview()
+            formContainerStackView.removeArrangedSubview(view)
+            statePicker.removeFromSuperview()
+        }
+        
+        let tf = FloatingLabelInput(placeholder: RegistrationFields.State.rawValue, cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear,height: heightCons)
+        tf.delegate = self
+        tf.accessibilityIdentifier = "State"
+        tf.borderWidth = 1.0
+        tf.borderColor = Theme.accentColor
+        tf.addStartLabel()
+         tf.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
+        if  selectedCountryIsIndia()
+        {
+            statePicker.delegate = self
+            tf.inputView = statePicker
+            statePicker.backgroundColor = UIColor.white
+            stateTextField = tf
+            stateTextField.tag = 101
+            formContainerStackView.insertArrangedSubview(stateTextField, at: indexOfState)
+        }
+        else {
+           
+            tf.tag = 101
+            formContainerStackView.insertArrangedSubview(tf, at: indexOfState)
+        }
+    }
 }
 //MARK:API CAlls
 extension DotOpenEditDetails{
@@ -274,14 +371,23 @@ extension DotOpenEditDetails{
             guard let self = self else { return }
             SVProgressHUD.dismiss()
             switch result {
-            
+                
             case .success(let model2Result):
-    
+                
                 guard let model2Result = model2Result as? [String:AnyObject] else { return }
-                self.delegate?.refreshTable(data: model2Result)
                 print(model2Result)
+                if model2Result.returnIntForKey(key: "status") != 400 {
+                    self.delegate?.refreshTable(data: model2Result)
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    self.showAlertView(model2Result.returnStringForKey(key: "title"), message: model2Result.returnStringForKey(key: "detail"))
+                }
+                
             case .failure(let error):
-               
+                SVProgressHUD.dismiss()
+                if case let APIError.errorAllResponse(description, message, _) = error {
+                    self.showAlertView(message, message: description)
+                }
                 print("the error \(error)")
             }
         }
@@ -330,6 +436,7 @@ func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 //                validationDict["email"] = "yes"
 //            }
         case "Country":
+            let previouslySelectedCountry:String? = editDetails["patient_country"] as? String
             if let val = textField.text{
                 if !countryList.contains(val){
                     customField?.floatingLabelColor = .systemRed
@@ -343,6 +450,20 @@ func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
                     customField?.borderWidth = 1
                     editDetails["patient_country"] = val
                     validationDict.removeValue(forKey: "country")
+                }
+                if let view =  formContainerStackView.viewWithTag(100) {
+                    for subView in view.subviews {
+                        if subView.accessibilityIdentifier == "Country Code" {
+                            if let txtField = subView as? UITextField {
+                                txtField.placeholder = selectedCountryIsIndia() ? "+91" : "+971"
+                            }
+                        }
+                    }
+                    view.setNeedsLayout()
+                }
+                
+                if previouslySelectedCountry != textField.text && previouslySelectedCountry != nil {
+                    updateStateTextField()
                 }
                 
             }
@@ -473,6 +594,7 @@ func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
                     editDetails["patient_gender"] = val
                         customField?.floatingLabelColor = Theme.accentColor!
                         customField?.borderWidth = 1
+                    editDetails["patient_gender"] = "test"
                     validationDict.removeValue(forKey: "gender")
                 }
             }

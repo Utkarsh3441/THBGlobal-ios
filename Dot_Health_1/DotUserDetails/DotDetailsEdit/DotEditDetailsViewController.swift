@@ -18,9 +18,9 @@ class DotEditDetailsViewController: UIViewController,MultiTableViewDelegate,Tabl
 var myPictureController = UIImagePickerController()
 var profileData:[String:AnyObject]?
 var habitIsEdited = false
-let data:NSMutableDictionary = ["Personal Details":["Name","Email ","DOB","Country","State","City","Gender","Address 1","Address 2","Phone No","Pincode"],"Habits":["Smoking","Drinking","Exercise"],"Basic Details":["Nationality":"Indian","MemberShip Number":"123456","Primary Communicatio n":"ABCD","Address 1":"DHEF","Address 2":"IJKL","Phone NO":"12345","Insurance Details":"Random Id"]]
-let dataSort = [["patient_name","patient_email","patient_dob","patient_country","patient_state","patient_city","patient_gender","patient_address1","patient_address2","patient_mobile","patient_pincode","Additional Details","MemberShip Number","Insurance Details"],["Smoking","Drinking","Exercise"],["Nationality","MemberShip Number","patient_address1","patient_address2","patient_mobile","Insurance Details"]]
-    var test1 = [["Name","Email ","DOB","Country","State","City","Gender","Address 1","Address 2","Phone No","Pincode","Additional Details","MemberShip Number","Insurance Details"],["Smoking","Drinking","Exercise"]]
+let data:NSMutableDictionary = ["Personal Details":["Name","Email ","DOB","Address 1","Address 2","City","State","Country","Gender","Phone No","Pincode"],"Habits":["Smoking","Drinking","Exercise"],"Basic Details":["Nationality":"Indian","MemberShip Number":"123456","Primary Communicatio n":"ABCD","Address 1":"DHEF","Address 2":"IJKL","Phone NO":"12345","Insurance Details":"Random Id"]]
+let dataSort = [["patient_name","patient_email","patient_dob","patient_address1","patient_address2","patient_city","patient_state","patient_country","patient_gender","patient_mobile","patient_pincode","Additional Details","MemberShip Number","Insurance Details"],["Smoking","Drinking","Exercise"],["Nationality","MemberShip Number","patient_address1","patient_address2","patient_mobile","Insurance Details"]]
+    var test1 = [["Name","Email ","DOB","Address 1","Address 2","City","State","Country","Gender","Phone No","Pincode","Additional Details","MemberShip Number","Insurance Details"],["Smoking","Drinking","Exercise"]]
     var test2 = ["Nationality","MemberShip Number","Primary COmmunication","Address 1","Address 2","Phone NO","Insurance Details"]
     let sectionNames = ["Personal Details","Habits"]
     let client = DotConnectionClient()
@@ -58,6 +58,7 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_country",
     func refreshTable(data: [String : AnyObject]) {
         profileData = data
         detailSections.reloadData()
+        NotificationCenter.default.post(name: Notification.Name("ProfileDataUpdated"), object: nil)
     }
   func afterClickingReturnInTextFields(cell: MultiDetailsTableViewCell) {
             

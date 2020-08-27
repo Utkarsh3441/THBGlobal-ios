@@ -161,11 +161,14 @@ class DotVitalsViewController: UIViewController ,ChartViewDelegate{
             destination.callback = {result in
                 print(result)
                 if let dateString = result["date"],let numberString =  String(result["vitalValue"] ?? "") as? String, let doubleValue = Double(numberString){
-                    DotVitalsViewController.xAxisData.append(dateformatter.date(from: dateString)!)
+                    DotVitalsViewController.xAxisData.insert(dateformatter.date(from: dateString)!, at: 0)
+                    DotVitalsViewController.yAxixData.insert(doubleValue, at: 0)
+
+                   // DotVitalsViewController.xAxisData.append(dateformatter.date(from: dateString)!)
                     
-                    DotVitalsViewController.yAxixData.append(doubleValue)
+                  //  DotVitalsViewController.yAxixData.append(doubleValue)
                     
-                    self.parameterDict = ["vital_date":dateString,"vital_reading":[numberString],"vital_unit":"C"]
+                    self.parameterDict = ["vital_date":dateString,"vital_reading":numberString,"vital_unit":"C"]
                 }
                 
                 
@@ -336,6 +339,8 @@ extension DotVitalsViewController{
     }
     
     func chartDataSetup(chartData: [[String:Any]]){
+        DotVitalsViewController.xAxisData.removeAll()
+        DotVitalsViewController.yAxixData.removeAll()
         print(chartData)
         let dateformatter = DateFormatter()
                dateformatter.dateStyle = .medium
@@ -347,9 +352,9 @@ extension DotVitalsViewController{
                 }
                 else if key == "vital_reading", let value = value as? String {
                     
-                 let   stringValue = value.replacingOccurrences(of: "[ |{}]", with: "", options: [.regularExpression])
+                    let   stringValue = value.replacingOccurrences(of: "[ |{}]", with: "", options: [.regularExpression])
                     
-                  if let finalValue = Double(stringValue) {
+                    if let finalValue = Double(stringValue) {
                         DotVitalsViewController.yAxixData.append(finalValue)
                     }
                 }
