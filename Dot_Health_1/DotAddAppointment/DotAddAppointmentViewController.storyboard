@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5t-cx-hym">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5t-cx-hym">
                                 <rect key="frame" x="0.0" y="44" width="414" height="99"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search By:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QKq-Of-a4f">
@@ -115,8 +115,8 @@
                                     <constraint firstItem="aYa-Sx-Qvr" firstAttribute="leading" secondItem="QKq-Of-a4f" secondAttribute="trailing" constant="10" id="tPu-YX-8K5"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" misplaced="YES" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="tKi-V0-LHk">
-                                <rect key="frame" x="20" y="143" width="474" height="56"/>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="tKi-V0-LHk">
+                                <rect key="frame" x="20" y="143" width="374" height="56"/>
                                 <color key="tintColor" name="Tint"/>
                                 <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -250,6 +250,7 @@
                         <outlet property="ailmentButton" destination="72v-4J-mSa" id="njE-UK-hdS"/>
                         <outlet property="doctorButton" destination="V5Q-iD-jtk" id="rR9-LK-wRR"/>
                         <outlet property="doctorListTableView" destination="pHf-an-I1a" id="cCU-PT-c2z"/>
+                        <outlet property="headerView" destination="c5t-cx-hym" id="YCO-dG-7cL"/>
                         <outlet property="searchBar" destination="tKi-V0-LHk" id="OYk-qq-Lh7"/>
                         <outlet property="searchButton" destination="wh5-Hx-ruB" id="Ivz-os-lT0"/>
                         <outlet property="selectedAilmentLabel" destination="aYa-Sx-Qvr" id="Qhi-AL-cl6"/>

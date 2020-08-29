@@ -103,17 +103,13 @@ class DotTimeSlotViewController: UIViewController {
     
     func fetchTimeSlotForDoctor(selectedDate:String) {
         
-        
-        
         let queryItem = [URLQueryItem(name: "slotDate", value:selectedDate)]
-        
-        
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.custom)
         guard let doctorId = selectedDoctorId else {
             SVProgressHUD.dismiss()
-            self.showHideDataForSlots(isHidden: false)
-
+            self.showHideDataForSlots(isHidden: true)
+            
             return
         }
         

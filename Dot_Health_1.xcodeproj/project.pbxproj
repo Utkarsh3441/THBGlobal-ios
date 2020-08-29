@@ -72,6 +72,8 @@
 		2BF005D124C4CC250024E7EE /* DotTimeSlotsExtention+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF005D024C4CC250024E7EE /* DotTimeSlotsExtention+CollectionView.swift */; };
 		2BF005D324C4CC430024E7EE /* DotTimeSlotsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF005D224C4CC430024E7EE /* DotTimeSlotsCollectionCell.swift */; };
 		2BFE0AE2248EE76D00AED5E6 /* ProfileDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFE0AE1248EE76D00AED5E6 /* ProfileDetailModel.swift */; };
+		837F5D4724F9B90B0099AA9C /* DotAddMedicinesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F5D4624F9B90B0099AA9C /* DotAddMedicinesController.swift */; };
+		837F5D4924F9BE3D0099AA9C /* DotAddMedicine+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F5D4824F9BE3D0099AA9C /* DotAddMedicine+Helper.swift */; };
 		83BDD54324F1E9A50068E3AC /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BDD54224F1E9A50068E3AC /* info.png */; };
 		83BDD54524F456C90068E3AC /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDD54424F456C80068E3AC /* Dictionary+Extension.swift */; };
 		83BDD54724F46AA00068E3AC /* SharedClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83BDD54624F46AA00068E3AC /* SharedClass.swift */; };
@@ -369,6 +371,8 @@
 		3D3E2E2EFB6373E9016C5822 /* Pods-Dot_Health_1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dot_Health_1.release.xcconfig"; path = "Target Support Files/Pods-Dot_Health_1/Pods-Dot_Health_1.release.xcconfig"; sourceTree = "<group>"; };
 		571358D0ADFA68253BE409C2 /* Pods-Dot_Health_1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dot_Health_1Tests.debug.xcconfig"; path = "Target Support Files/Pods-Dot_Health_1Tests/Pods-Dot_Health_1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AC74BB58B2633520DD3FF0D /* Pods_Dot_Health_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dot_Health_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		837F5D4624F9B90B0099AA9C /* DotAddMedicinesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotAddMedicinesController.swift; sourceTree = "<group>"; };
+		837F5D4824F9BE3D0099AA9C /* DotAddMedicine+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DotAddMedicine+Helper.swift"; sourceTree = "<group>"; };
 		83BDD54224F1E9A50068E3AC /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		83BDD54424F456C80068E3AC /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		83BDD54624F46AA00068E3AC /* SharedClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedClass.swift; sourceTree = "<group>"; };
@@ -910,6 +914,8 @@
 			children = (
 				2BE6129124C75E150094039F /* DotMedicines.storyboard */,
 				2BE6129324C75E290094039F /* DotMedicinesController.swift */,
+				837F5D4624F9B90B0099AA9C /* DotAddMedicinesController.swift */,
+				837F5D4824F9BE3D0099AA9C /* DotAddMedicine+Helper.swift */,
 			);
 			path = DotMedicines;
 			sourceTree = "<group>";
@@ -2143,6 +2149,7 @@
 				F341C6A324C8C62C00795965 /* CollectionViewFlowLayoutInvalidationContext.swift in Sources */,
 				F341C6D124C8C62C00795965 /* ChatManager.swift in Sources */,
 				F36B119124B64CEE00122B05 /* InfoModel.swift in Sources */,
+				837F5D4724F9B90B0099AA9C /* DotAddMedicinesController.swift in Sources */,
 				F341C6F324C8CB3100795965 /* ChatCornerView.swift in Sources */,
 				F328102524C634D5005D6728 /* DotMyMedicineModel.swift in Sources */,
 				2BE560D72489810A00EE112E /* DotButtonUtility.swift in Sources */,
@@ -2188,6 +2195,7 @@
 				F341C6CA24C8C62C00795965 /* PHAsset+Extention.swift in Sources */,
 				F341C6EE24C8C62C00795965 /* PDFViewController.swift in Sources */,
 				83BDD54724F46AA00068E3AC /* SharedClass.swift in Sources */,
+				837F5D4924F9BE3D0099AA9C /* DotAddMedicine+Helper.swift in Sources */,
 				F314A60A2498578A006B8D0D /* DotAppointmentDetailTableViewCell.swift in Sources */,
 				F36B119624B64D2400122B05 /* AudioSettingsViewController.swift in Sources */,
 				F36B11B024B64D8B00122B05 /* RecordsViewController.swift in Sources */,

@@ -21,6 +21,8 @@ class DotAddAppointmentViewController: UIViewController {
     @IBOutlet weak var selectedAilmentLabel: UILabel!
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var headerView: UIView!
+    
     @IBOutlet weak var searchBar: UISearchBar!
     var selectedIndexPath: IndexPath = IndexPath()
     var searchByDoctor = true
@@ -165,6 +167,9 @@ class DotAddAppointmentViewController: UIViewController {
     
     
     @IBAction func addButtonTapped(_ sender: Any) {
+        let openDetailsObj = DotAddMedicinesController()
+        openDetailsObj.delegate = self
+        self.present(openDetailsObj, animated: true, completion: nil)
     }
     
 
@@ -173,19 +178,31 @@ class DotAddAppointmentViewController: UIViewController {
     }
     
 }
+
+
+
+extension DotAddAppointmentViewController: addMedicineTableDelegate {
+    func refreshTable(data: [String : AnyObject]) {
+        getMedication()
+//        profileData = data
+//        detailSections.reloadData()
+//        NotificationCenter.default.post(name: Notification.Name("ProfileDataUpdated"), object: nil)
+    }
+}
+
 //MARK:API CAlls
 extension DotAddAppointmentViewController {
     func getMedication(){
         SVProgressHUD.show()
         let api: API = .api1
         let endpoint: Endpoint = api.getPostAPIEndpointForMedication(urlString: "\(api.rawValue)patients/\(loginData.user_id ?? 17)/medications", queryItems: nil, headers: nil, body: nil)
-        client.callAPI(with: endpoint.request, modelParser: [MyMedicineModel].self) { [weak self] result in
+        client.callAPI(with: endpoint.request, modelParser: MyMedicineModelResponse.self) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let model2Result):
                 SVProgressHUD.dismiss()
-                if let model = model2Result as? [MyMedicineModel]{
-                    MyData.myMedicineModelArray = model
+                if let model = model2Result as? MyMedicineModelResponse, model.type == "Success", let medicineModel = model.data {
+                    MyData.myMedicineModelArray = medicineModel
                     self.doctorListTableView.reloadData()
                     print("Fetched Medicines:",MyData.myMedicineModelArray)
                 }
@@ -196,7 +213,9 @@ extension DotAddAppointmentViewController {
             case .failure(let error):
                 
                 SVProgressHUD.dismiss()
-                print("the error \(error)")
+                if case let APIError.errorAllResponse(description, message, _) = error {
+                    self.showAlertView(message, message: description)
+                }
             }
         }
         
@@ -207,19 +226,21 @@ extension DotAddAppointmentViewController {
             let endpoint: Endpoint = api.getPostAPIEndpointForAppointments(urlString: "\(api.rawValue)services", queryItems: nil, headers: nil, body: nil)
             client.callAPI(with: endpoint.request, modelParser: [service].self) { [weak self] result in
             guard let self = self else { return }
-            switch result {
-            case .success(let model2Result):
-                SVProgressHUD.dismiss()
-                if let model = model2Result as? [service]{
-                    self.services = model
+                switch result {
+                case .success(let model2Result):
+                    SVProgressHUD.dismiss()
+                    if let model = model2Result as? [service]{
+                        self.services = model
+                    }
+                    else{
+                        print("error occured")
+                    }
+                case .failure(let error):
+                    SVProgressHUD.dismiss()
+                    if case let APIError.errorAllResponse(description, message, _) = error {
+                        self.showAlertView(message, message: description)
+                    }
                 }
-                else{
-                    print("error occured")
-                }
-            case .failure(let error):
-                SVProgressHUD.dismiss()
-                print("the error \(error)")
-            }
         }
     }
     func getAilments(){
@@ -239,8 +260,10 @@ extension DotAddAppointmentViewController {
                     print("error occured")
                 }
             case .failure(let error):
-                
-                print("the error \(error)")
+                SVProgressHUD.dismiss()
+                if case let APIError.errorAllResponse(description, message, _) = error {
+                    self.showAlertView(message, message: description)
+                }
             }
         }
     }
@@ -326,13 +349,13 @@ extension DotAddAppointmentViewController {
             let api : API = .api1
             let endpoint: Endpoint = api.getPostAPIEndpointForAppointments(urlString: "\(api.rawValue)\(urlString)", queryItems: queryItem, headers: nil, body: nil)
             
-            client.callAPI(with: endpoint.request, modelParser: [DoctorModel].self) { [weak self] result in
+            client.callAPI(with: endpoint.request, modelParser: DoctorModelResponse.self) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let model2Result):
                     SVProgressHUD.dismiss()
-                    if let model = model2Result as? [DoctorModel]{
-                        MyData.doctorModelArray = model
+                    if let model = model2Result as? DoctorModelResponse, model.type == "Success", let doctorModel = model.data {
+                        MyData.doctorModelArray = doctorModel
                         print("Fetched doctor:",MyData.doctorModelArray)
                         self.doctorListTableView.reloadData()
                         SVProgressHUD.dismiss()
@@ -385,11 +408,10 @@ extension DotAddAppointmentViewController:UITableViewDelegate,UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedIndexPath = indexPath
         
-     if screenName == "Medications"{
+        if screenName == "Medications"{
             controller?.selectedModel = MyData.myMedicineModelArray[indexPath.row]
             controller?.makeDateArr()
-            let sheetController = SheetViewController(controller: controller ?? UIViewController(), sizes: [.fixed(250), .halfScreen])
-            
+            let sheetController = SheetViewController(controller: controller ?? UIViewController(), sizes: [.fixed(350), .halfScreen])
             
             sheetController.adjustForBottomSafeArea = false
             sheetController.blurBottomSafeArea = true
@@ -404,7 +426,9 @@ extension DotAddAppointmentViewController:UITableViewDelegate,UITableViewDataSou
             sheetController.didDismiss = { _ in
                 print("Will dismiss ")
             }
-            self.present(sheetController, animated: false, completion: nil)
+            DispatchQueue.main.async {
+                self.present(sheetController, animated: false, completion: nil)
+            }
         }
         else{
             let storyBoard : UIStoryboard = UIStoryboard(name: String(describing: DotTimeSlotViewController.self) , bundle:nil)

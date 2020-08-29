@@ -8,8 +8,13 @@
 
 import Foundation
 
-struct DoctorModel:Codable,Hashable {
+struct DoctorModelResponse:Codable,Hashable {
+    var message: String?
+    var type: String?
+    var data: [DoctorModel]?
+}
 
+struct DoctorModel:Codable,Hashable {
    var doctor_id:Int?
    var name:String?
    var dob:String?

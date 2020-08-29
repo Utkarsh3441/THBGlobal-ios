@@ -8,15 +8,14 @@
 
 import Foundation
 
+struct MyMedicineModelResponse:Decodable {
+    var message: String?
+    var type: String?
+    var data: [MyMedicineModel]?
+}
+
 struct MyMedicineModel:Decodable {
-    /*
-     var id:UUID
-    var name: String
-    var speciality: String
-    var hospitalName: String
-    var price: String
-   */
-    
+ 
     var days:Int?
     var dosage_instructions:String?
     var drug_name:String?
