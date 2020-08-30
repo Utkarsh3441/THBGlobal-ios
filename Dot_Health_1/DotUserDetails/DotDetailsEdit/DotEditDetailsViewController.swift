@@ -10,12 +10,13 @@ import UIKit
 import TinyConstraints
 import Photos
 import SVProgressHUD
-class DotEditDetailsViewController: UIViewController,MultiTableViewDelegate,TableViewDelegate,editTableDelegate {
+class DotEditDetailsViewController: UIViewController,MultiTableViewDelegate,TableViewDelegate,editTableDelegate,addHabitTableDelegate {
     
 @IBOutlet weak var profileDetailsView: UIView!
 @IBOutlet weak var detailSections:   UITableView!
 @IBOutlet weak var profileImage:   UIImageView!
 var myPictureController = UIImagePickerController()
+var habitsData = [DotAddHabitModel]()
 var profileData:[String:AnyObject]?
 var habitIsEdited = false
 let data:NSMutableDictionary = ["Personal Details":["Name","Email ","DOB","Address 1","Address 2","City","State","Country","Gender","Phone No","Pincode"],"Habits":["Smoking","Drinking","Exercise"],"Basic Details":["Nationality":"Indian","MemberShip Number":"123456","Primary Communicatio n":"ABCD","Address 1":"DHEF","Address 2":"IJKL","Phone NO":"12345","Insurance Details":"Random Id"]]
@@ -48,6 +49,8 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_address1"
             detailSections.register(UINib(nibName: "DotDetailsCellView", bundle: nil), forCellReuseIdentifier: "cellId")
             detailSections.register(UINib(nibName: "MultiDetailsTableViewCell", bundle: nil), forCellReuseIdentifier: "multiCell")
             detailSections.register(UINib(nibName: "DotAddDocsTableViewCell", bundle: nil), forCellReuseIdentifier: "docs")
+        getHabitDetails()
+
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -60,6 +63,11 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_address1"
         detailSections.reloadData()
         NotificationCenter.default.post(name: Notification.Name("ProfileDataUpdated"), object: nil)
     }
+    
+    func refreshHabitsTable(data: [String:AnyObject]) {
+        getHabitDetails()
+    }
+    
   func afterClickingReturnInTextFields(cell: MultiDetailsTableViewCell) {
             
             print(cell.firstText.text ?? "")
@@ -69,13 +77,15 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_address1"
         ((arr[sectionNames[cell.section]] as? NSDictionary)?.mutableCopy() as? NSMutableDictionary)!.setValue(cell.detailText.text ?? kblankString, forKey: dataSort[cell.section][cell.row])
         print((arr[sectionNames[cell.section]] as? NSDictionary))
     }
-    @objc func editSave(_ button: UIButton){
-        let openDetailsObj = DotOpenEditDetails()
+    @objc func editSave(_ button: UIButton) {
+        
         switch (button.accessibilityIdentifier){
-        case "Personal Details":openDetailsObj.userData = profileData ?? [:]
-        openDetailsObj.delegate = self
+        case "Personal Details":
+            let openDetailsObj = DotOpenEditDetails()
+            openDetailsObj.userData = profileData ?? [:]
+            openDetailsObj.delegate = self
             self.present(openDetailsObj, animated: true, completion: nil)
-        case "Habits":
+        case "HabitsEdit":
             if habitIsEdited{
                 habitIsEdited = false
             }
@@ -83,16 +93,16 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_address1"
                 habitIsEdited = true
             }
             
+        case "Habits":
+            let openDetailsObj = DotAddHabitController()
+            //     openDetailsObj.userData = profileData ?? [:]
+            openDetailsObj.delegate = self
+            self.present(openDetailsObj, animated: true, completion: nil)
             detailSections.reloadData()
         default:
             print("no data found")
         }
-        
-        
-//        self.navigationController?.navigationBar.topItem?.title = "Edit Details"
-//        self.navigationController?.navigationBar.tintColor = .white
-//        self.navigationController?.setNavigationBarHidden(false, animated: true)
-       }
+    }
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.title = "User Details"
         
@@ -136,6 +146,60 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_address1"
            myPictureController.sourceType = .photoLibrary
            self.present(myPictureController,animated: false)
        }
+    
+    func deleteHabitDetails(index:Int){
+        
+        guard let habitId  = self.habitsData[index].habitId else {
+            return()
+        }
+    // Headers
+        let headers = ["Content-Type":"application/json"]
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.custom)
+        let api: API = .patientsApi
+        let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: "\(api.rawValue)\(loginData.user_id ?? 17)/habits/\(habitId)", httpMethod: .delete, queryItems: nil, headers: headers, body: nil)
+       
+        client.callAPI(with: endpoint.request, modelParser: String.self) { [weak self] result in
+            guard let self = self else { return }
+            SVProgressHUD.dismiss()
+            switch result {
+                
+            case .success(let model2Result):
+                
+                     guard let model2Result = model2Result as? [String:AnyObject] else { return }
+                           print(model2Result)
+                           if model2Result.returnStringForKey(key: "type") == "Success" {
+                               do {
+                                   let alert = UIAlertController(title: "Success", message: model2Result.returnStringForKey(key: "message"), preferredStyle: UIAlertController.Style.alert)
+                                   alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (_) in
+                                     //  self.delegate?.refreshTable(data: model2Result)
+                                     //  self.dismiss(animated: true, completion: nil)
+                                    self.getHabitDetails()
+                                       
+                                   }))
+                                   self.present(alert, animated: true, completion:nil)
+                               }
+                           } else {
+                            if  model2Result.returnStringForKey(key: "title").count > 0, model2Result.returnStringForKey(key: "detail").count > 0 {
+                                
+                                self.showAlertView(model2Result.returnStringForKey(key: "title"), message:model2Result.returnStringForKey(key: "detail"))
+                                
+                                
+                            } else {
+                                self.showAlertView("Alert", message:"Something bad happened.")
+                            }
+                }
+
+                
+            case .failure(let error):
+                SVProgressHUD.dismiss()
+                if case let APIError.errorAllResponse(description, message, _) = error {
+                    self.showAlertView(message, message: description)
+                }
+                print("the error \(error)")
+            }
+        }
+    }
        
        @IBAction func takePhotoAction(_ sender: UIButton) {
            PHPhotoLibrary.requestAuthorization({(status) in
@@ -210,35 +274,92 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_address1"
                  }
              }
          }
+    
+    //MARK:API calls
+    func getHabitDetails(){
+        self.habitsData.removeAll()
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.custom)
+        let api : API = .patientsApi
+        let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: "\(api.rawValue)\(loginData.user_id ?? 17)/habits", httpMethod: .get, queryItems: nil, headers: nil, body: nil)
+        client.callAPI(with: endpoint.request, modelParser: String.self) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let model2Result):
+                SVProgressHUD.dismiss()
+                
+                if let finalResult = model2Result as? Array<Dictionary<String,Any>>
+                {
+                    for model in finalResult
+                    {
+                        self.habitsData.append(DotAddHabitModel.init(dict: model))
+                    }
+                }
+                self.detailSections.reloadData()
+
+                
+            case .failure(let error):
+                SVProgressHUD.dismiss()
+                //                SVProgressHUD.dismiss()
+                print("the error \(error)")
+            }
+        }
+    }
+    
+    func deleteConfirmationAlert(index:Int) {
+        let alert = UIAlertController(title: "Confirm", message: "Are you sure you want to delete selected habit?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (_) in
+            //  self.delegate?.refreshTable(data: model2Result)
+            //  self.dismiss(animated: true, completion: nil)
+            self.deleteHabitDetails(index: index)
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { (_) in
+            //  self.delegate?.refreshTable(data: model2Result)
+            //  self.dismiss(animated: true, completion: nil)
+            
+        }))
+        self.present(alert, animated: true, completion:nil)
+    }
+
+    
 }
 extension DotEditDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+
     func numberOfSections(in tableView: UITableView) -> Int {
            return sectionNames.count
        }
        
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //           return (data.value(forKey: sectionNames[section]) as? NSDictionary)?.count ?? 0
+        if sectionNames[section] == "Habits" {
+            return habitsData.count
+        }
         return dataSort[section].count
            
        }
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            if sectionNames[indexPath.section] == "Habits"{
                guard let cell = tableView.dequeueReusableCell(withIdentifier: "multiCell") as? MultiDetailsTableViewCell else{return UITableViewCell()}
-               cell.first.text = dataSort[indexPath.section][indexPath.row]
+             cell.first.text = habitsData[indexPath.row].habitName
+            if let frequency = habitsData[indexPath.row].frequency, let unit = habitsData[indexPath.row].frequencyUnit {
+                cell.textString = String(frequency) + "  " +  unit.lowercased()
+            }
                cell.tableViewDelegate = self
                cell.row = indexPath.row
                cell.section = indexPath.section
-               cell.disableEnableViews(check: habitIsEdited)
-               if let val = (data[sectionNames[indexPath.section]] as? NSDictionary)?[dataSort[indexPath.section][indexPath.row]] as? String{
-                   if let iseditable = val.components(separatedBy: "|").first,let frequency = val.components(separatedBy: "|").last{
-                       switch iseditable{
-                       case "YES": cell.makeYesEnabled()
-                       cell.textString = frequency
-                       default:
-                           cell.makeNoEnabled()
-                       }
-                   }
-               }
+            //   cell.disableEnableViews(check: habitIsEdited)
+               cell.setUpYesNo()
+//               if let val = (data[sectionNames[indexPath.section]] as? NSDictionary)?[dataSort[indexPath.section][indexPath.row]] as? String{
+//                   if let iseditable = val.components(separatedBy: "|").first,let frequency = val.components(separatedBy: "|").last{
+//                       switch iseditable{
+//                       case "YES": cell.makeYesEnabled()
+//                       cell.textString = frequency
+//                       default:
+//                           cell.makeNoEnabled()
+//                       }
+//                   }
+//               }
                return cell
            }
            else  if sectionNames[indexPath.section] == "DOCS" {
@@ -283,13 +404,28 @@ extension DotEditDetailsViewController: UITableViewDelegate, UITableViewDataSour
            }
        }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           print("~* make some magic at row: \(indexPath.row) *~")
+        
+//        if sectionNames[indexPath.section] == "Habits" && habitIsEdited {
+//            if let  habitID = habitsData[indexPath.row].habitId {
+//                habitIsEdited = false
+//
+//                let openDetailsObj = DotAddHabitController()
+//                //     openDetailsObj.userData = profileData ?? [:]
+//                openDetailsObj.isEditSelected = true
+//                openDetailsObj.selectedHabitID = habitID
+//                openDetailsObj.delegate = self
+//                self.present(openDetailsObj, animated: true, completion: nil)
+//                detailSections.reloadData()
+//            }
+//        }
+        
+        print("~* make some magic at row: \(indexPath.row) *~")
         tableView.deselectRow(at: indexPath, animated: true)
-       }
+    }
        
-       func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-
-       let frame: CGRect = tableView.frame
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let frame: CGRect = tableView.frame
         let DoneBut = CustomButton(type: .roundedRect)
         DoneBut.frame =  CGRect(x: frame.width-70, y: 8, width: 60, height: 25)
         
@@ -297,13 +433,33 @@ extension DotEditDetailsViewController: UITableViewDelegate, UITableViewDataSour
         DoneBut.setTitleColor(.white, for: .normal)
         DoneBut.layer.cornerRadius = 5
         DoneBut.accessibilityIdentifier = sectionNames[section]
-        if sectionNames[section] == "Habits" && habitIsEdited{
-            DoneBut.setTitle("Save", for: .normal)
-        }
-        else{
+        //        if sectionNames[section] == "Habits" && habitIsEdited{
+        //            DoneBut.setTitle("Save", for: .normal)
+        //        }
+        //        else{
+        //            DoneBut.setTitle("Edit", for: .normal)
+        //        }
+        if sectionNames[section] == "Habits" {
+            DoneBut.setTitle("Add", for: .normal)
+        }  else{
             DoneBut.setTitle("Edit", for: .normal)
         }
+        
         DoneBut.addTarget(self, action: #selector(editSave(_:)), for: .touchUpInside)
+        
+        let editBtn = CustomButton(type: .roundedRect)
+        editBtn.frame =  CGRect(x: frame.width-145, y: 8, width: 60, height: 25)
+        
+        editBtn.backgroundColor = Theme.accentColor
+        editBtn.setTitleColor(.white, for: .normal)
+        editBtn.layer.cornerRadius = 5
+        editBtn.accessibilityIdentifier = "HabitsEdit"
+        editBtn.setTitle("Edit", for: .normal)
+        editBtn.addTarget(self, action: #selector(editSave(_:)), for: .touchUpInside)
+        
+        
+        
+        
         let headerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 359, height: 55))
         headerView.alpha = 1.0
         headerView.backgroundColor = #colorLiteral(red: 0.6332181692, green: 0.8114793301, blue: 1, alpha: 1)
@@ -311,16 +467,19 @@ extension DotEditDetailsViewController: UITableViewDelegate, UITableViewDataSour
         headerView.borderColor = Theme.accentColor
         headerView.cornerRadius = 5
         headerView.addSubview(DoneBut)
+//        if sectionNames[section] == "Habits" {
+//         headerView.addSubview(editBtn)
+//        }
         let label = UILabel()
-                   label.frame = CGRect.init(x: 5, y: -2, width: headerView.frame.width-10, height: headerView.frame.height-10)
-                   label.text = sectionNames[section]
-                   label.font = UIFont.boldSystemFont(ofSize: 14) // my custom font
-                   label.textColor = UIColor.darkGray // my custom colour
+        label.frame = CGRect.init(x: 5, y: -2, width: headerView.frame.width-10, height: headerView.frame.height-10)
+        label.text = sectionNames[section]
+        label.font = UIFont.boldSystemFont(ofSize: 14) // my custom font
+        label.textColor = UIColor.darkGray // my custom colour
         //
-                   headerView.addSubview(label)
-         
+        headerView.addSubview(label)
+        
         return headerView
-       }
+    }
        //   func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
        //
        //    let header = view as! UITableViewHeaderFooterView
@@ -353,7 +512,44 @@ extension DotEditDetailsViewController: UITableViewDelegate, UITableViewDataSour
        func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
            return true
        }
+    
+   func tableView(_ tableView: UITableView,
+                      trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+   {
+    if sectionNames[indexPath.section] == "Habits"  {
+        
+        let deleteAction = UIContextualAction(style: .normal, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            self.deleteConfirmationAlert(index:indexPath.row)
+            success(true)
+        })
+        deleteAction.backgroundColor = .red
+        
+        let editAction = UIContextualAction(style: .normal, title:  "Edit", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            if let  habitID = self.habitsData[indexPath.row].habitId {
+                // habitIsEdited = false
+                
+                let openDetailsObj = DotAddHabitController()
+                //     openDetailsObj.userData = profileData ?? [:]
+                openDetailsObj.isEditSelected = true
+                openDetailsObj.selectedHabitID = habitID
+                openDetailsObj.delegate = self
+                DispatchQueue.main.async {
+                    self.present(openDetailsObj, animated: true, completion: nil)
+                    self.detailSections.reloadData()
+                }
+               
+            }
+            success(true)
+        })
+        editAction.backgroundColor = Theme.accentColor!
+        return UISwipeActionsConfiguration(actions: [deleteAction,editAction])
+    }
+    return nil
+    
+    
+    }
 }
+    
 
 extension DotEditDetailsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     

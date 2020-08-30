@@ -72,6 +72,10 @@
 		2BF005D124C4CC250024E7EE /* DotTimeSlotsExtention+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF005D024C4CC250024E7EE /* DotTimeSlotsExtention+CollectionView.swift */; };
 		2BF005D324C4CC430024E7EE /* DotTimeSlotsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF005D224C4CC430024E7EE /* DotTimeSlotsCollectionCell.swift */; };
 		2BFE0AE2248EE76D00AED5E6 /* ProfileDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFE0AE1248EE76D00AED5E6 /* ProfileDetailModel.swift */; };
+		8327406124FADDF000892240 /* DotAddHabitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327406024FADDF000892240 /* DotAddHabitController.swift */; };
+		8327406524FAECFD00892240 /* DotCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327406424FAECFD00892240 /* DotCheckBoxView.swift */; };
+		8327406724FAF5CD00892240 /* DotCheckBoxView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8327406624FAF5CD00892240 /* DotCheckBoxView.xib */; };
+		8327406924FB11FF00892240 /* DotAddHabitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327406824FB11FF00892240 /* DotAddHabitModel.swift */; };
 		837F5D4724F9B90B0099AA9C /* DotAddMedicinesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F5D4624F9B90B0099AA9C /* DotAddMedicinesController.swift */; };
 		837F5D4924F9BE3D0099AA9C /* DotAddMedicine+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F5D4824F9BE3D0099AA9C /* DotAddMedicine+Helper.swift */; };
 		83BDD54324F1E9A50068E3AC /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BDD54224F1E9A50068E3AC /* info.png */; };
@@ -371,6 +375,10 @@
 		3D3E2E2EFB6373E9016C5822 /* Pods-Dot_Health_1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dot_Health_1.release.xcconfig"; path = "Target Support Files/Pods-Dot_Health_1/Pods-Dot_Health_1.release.xcconfig"; sourceTree = "<group>"; };
 		571358D0ADFA68253BE409C2 /* Pods-Dot_Health_1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dot_Health_1Tests.debug.xcconfig"; path = "Target Support Files/Pods-Dot_Health_1Tests/Pods-Dot_Health_1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AC74BB58B2633520DD3FF0D /* Pods_Dot_Health_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dot_Health_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8327406024FADDF000892240 /* DotAddHabitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotAddHabitController.swift; sourceTree = "<group>"; };
+		8327406424FAECFD00892240 /* DotCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotCheckBoxView.swift; sourceTree = "<group>"; };
+		8327406624FAF5CD00892240 /* DotCheckBoxView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DotCheckBoxView.xib; sourceTree = "<group>"; };
+		8327406824FB11FF00892240 /* DotAddHabitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotAddHabitModel.swift; sourceTree = "<group>"; };
 		837F5D4624F9B90B0099AA9C /* DotAddMedicinesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotAddMedicinesController.swift; sourceTree = "<group>"; };
 		837F5D4824F9BE3D0099AA9C /* DotAddMedicine+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DotAddMedicine+Helper.swift"; sourceTree = "<group>"; };
 		83BDD54224F1E9A50068E3AC /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
@@ -833,7 +841,11 @@
 			children = (
 				2B1E976224DE885D00BF41F1 /* DotDetailsEdit */,
 				2BB934F8248ED7E100EA2FA5 /* DotDetailsView.swift */,
+				8327406024FADDF000892240 /* DotAddHabitController.swift */,
+				8327406824FB11FF00892240 /* DotAddHabitModel.swift */,
 				2BB934F9248ED7E100EA2FA5 /* DotDetailsView.xib */,
+				8327406424FAECFD00892240 /* DotCheckBoxView.swift */,
+				8327406624FAF5CD00892240 /* DotCheckBoxView.xib */,
 				2BE6129524C771FF0094039F /* DotAddDocsCell.swift */,
 				2B27F3FF2491A45600A49C72 /* DotDetailsCellView.swift */,
 				2B27F4002491A45600A49C72 /* DotDetailsCellView.xib */,
@@ -1910,6 +1922,7 @@
 				F341C6F124C8C62C00795965 /* Chat.storyboard in Resources */,
 				2BE6129A24C772C20094039F /* DotAddDocsTableViewCell.xib in Resources */,
 				2BE560E5248B0A9300EE112E /* DotDashboardViewController.xib in Resources */,
+				8327406724FAF5CD00892240 /* DotCheckBoxView.xib in Resources */,
 				2B1E976624DE885D00BF41F1 /* DotDetailsStoryboard.storyboard in Resources */,
 				F341C6BE24C8C62C00795965 /* Dialogs.storyboard in Resources */,
 				F341C69F24C8C62C00795965 /* ChatAttachmentIncomingCell.xib in Resources */,
@@ -2085,6 +2098,7 @@
 				F36B11C524B64F2C00122B05 /* SliderItemModel.swift in Sources */,
 				83BDD54524F456C90068E3AC /* Dictionary+Extension.swift in Sources */,
 				F341C6C624C8C62C00795965 /* UILabel+Extention.swift in Sources */,
+				8327406524FAECFD00892240 /* DotCheckBoxView.swift in Sources */,
 				F36B118624B64CDE00122B05 /* CallKitManager.swift in Sources */,
 				F36B11D224B6502800122B05 /* UsersViewController.swift in Sources */,
 				F347192324928399000CB0B1 /* appointmentFunctions.swift in Sources */,
@@ -2222,6 +2236,7 @@
 				2B43AB9A24859FF5003C4B19 /* Endpoint.swift in Sources */,
 				F341C69824C8C62C00795965 /* ChatNotificationCell.swift in Sources */,
 				F36B11AE24B64D8000122B05 /* PlaceholderGenerator.swift in Sources */,
+				8327406124FADDF000892240 /* DotAddHabitController.swift in Sources */,
 				F36B118F24B64CEE00122B05 /* InfoTableViewController.swift in Sources */,
 				F31F0EE9249A579F00D64E7F /* DotAppointmentDetailsViewController.swift in Sources */,
 				2B03C798248D69D000A448F1 /* DotCardCell.swift in Sources */,
@@ -2270,6 +2285,7 @@
 				F34719312492A653000CB0B1 /* Theme.swift in Sources */,
 				2B1E976724DE885D00BF41F1 /* DotOpenEditDetails.swift in Sources */,
 				F341C6C724C8C62C00795965 /* UIButton+Extention.swift in Sources */,
+				8327406924FB11FF00892240 /* DotAddHabitModel.swift in Sources */,
 				F341C6C424C8C62C00795965 /* UIView+Extention.swift in Sources */,
 				F341C6F024C8C62C00795965 /* ParentVideoVC.swift in Sources */,
 				F3F55A7624C489340000E0F4 /* DotPaymentViewController.m in Sources */,

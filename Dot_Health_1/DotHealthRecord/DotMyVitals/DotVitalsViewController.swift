@@ -208,6 +208,7 @@ extension DotVitalsViewController: UITableViewDelegate, UITableViewDataSource {
         vitalListTextField.text = dataItems[indexPath.row]
         selectedVitalAddDataButton.setTitle("Add "+dataItems[indexPath.row], for: .normal)
         removeTransparentView()
+        getVitalData()
     }
 }
 
@@ -316,9 +317,13 @@ extension DotVitalsViewController{
     
     func getVitalData(){
          SVProgressHUD.show()
-            SVProgressHUD.setDefaultMaskType(.custom)
-            let api : API = .patientsApi
-            let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: "\(api.rawValue)\(loginData.user_id ?? 17)/vitals/temperature", httpMethod: .get, queryItems: nil, headers: nil, body: nil)
+        let api : API = .patientsApi
+
+        
+        let urlString = "\(api.rawValue)\(loginData.user_id ?? 17)/vitals/\(vitalListTextField.text?.stringByTrimingSpace().lowercased() ?? "")"
+        
+       SVProgressHUD.setDefaultMaskType(.custom)
+            let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: urlString, httpMethod: .get, queryItems: nil, headers: nil, body: nil)
                     client.callAPI(with: endpoint.request, modelParser: String.self) { [weak self] result in
                     guard let self = self else { return }
                     switch result {
@@ -349,15 +354,41 @@ extension DotVitalsViewController{
             for (key,value) in dataDict{
                 if key == "vital_date", let dateString =  value as? String, let dateValue = dateformatter.date(from: dateString) {
                     DotVitalsViewController.xAxisData.append(dateValue)
-                }
-                else if key == "vital_reading", let value = value as? String {
+                } else if key == "vital_reading" {
+                    var readingValue = ""
+                    if let value = value as? String {
+                        
+                         readingValue = value.replacingOccurrences(of: "[ |{}]", with: "", options: [.regularExpression])
+                        
+                    } else if  let value = value as? Array<String>, let readValue = value.first {
+                        
+                        readingValue = readValue.replacingOccurrences(of: "[ |{}]", with: "", options: [.regularExpression])
+
+                    }
                     
-                    let   stringValue = value.replacingOccurrences(of: "[ |{}]", with: "", options: [.regularExpression])
-                    
-                    if let finalValue = Double(stringValue) {
+                    if let finalValue = Double(readingValue) {
                         DotVitalsViewController.yAxixData.append(finalValue)
                     }
+                    
                 }
+//                else if key == "vital_reading", let value = value as? String {
+//
+//                    let   stringValue = value.replacingOccurrences(of: "[ |{}]", with: "", options: [.regularExpression])
+//
+//                    if let finalValue = Double(stringValue) {
+//                        DotVitalsViewController.yAxixData.append(finalValue)
+//                    }
+//                } else if key == "vital_reading", let value = value as? Array<String> {
+//
+//                    let  stringValue = value.first?.replacingOccurrences(of: "[ |{}]", with: "", options: [.regularExpression])
+//                    if let finalValue = Double(stringValue) {
+//                        DotVitalsViewController.yAxixData.append(finalValue)
+//                    }
+//                }
+                
+//                if let finalValue = Double(stringValue) {
+//                    DotVitalsViewController.yAxixData.append(finalValue)
+//                }
             }
         }
         if DotVitalsViewController.yAxixData.count > 0{

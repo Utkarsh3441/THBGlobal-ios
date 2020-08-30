@@ -16,6 +16,8 @@ class MultiDetailsTableViewCell: UITableViewCell,UITextFieldDelegate {
     @IBOutlet weak var first: UILabel!
      @IBOutlet weak var yesButton: UIButton!
      @IBOutlet weak var noButton: UIButton!
+    @IBOutlet weak var labelFrequency: UILabel!
+    
     var row = 0
       var section = 0
      weak var tableViewDelegate: MultiTableViewDelegate?
@@ -56,10 +58,16 @@ class MultiDetailsTableViewCell: UITableViewCell,UITextFieldDelegate {
     
          didSet {
                
-                   firstText.text = textString
+                   labelFrequency.text = textString
                
            }
        }
+    func setUpYesNo(){
+        self.yesButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+        self.noButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+        self.yesButton.isUserInteractionEnabled = false
+        self.noButton.isUserInteractionEnabled = false
+    }
     func makeYesEnabled(){
         firstText.isHidden = false
         self.yesButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)

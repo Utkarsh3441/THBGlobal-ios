@@ -9,13 +9,20 @@
 import Foundation
 import UIKit
 extension String {
-  func stringByTrimingWhitespace() -> String {
-    let squashed = replacingOccurrences(of: "[ ]+",
-                                        with: " ",
-                                        options: .regularExpression)
-    return squashed.trimmingCharacters(in: .whitespacesAndNewlines)
-  }
+    func stringByTrimingWhitespace() -> String {
+        let squashed = replacingOccurrences(of: "[ ]+",
+                                            with: " ",
+                                            options: .regularExpression)
+        return squashed.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
     
+    
+    func stringByTrimingSpace() -> String {
+        let squashed = replacingOccurrences(of: " ",
+                                            with: "",
+                                            options: .regularExpression)
+        return squashed.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
     var localized: String {
         return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
     }

@@ -209,14 +209,14 @@ class DotDetailsView: UIViewController,TableViewDelegate, MultiTableViewDelegate
                     SVProgressHUD.dismiss()
                     if let item = model2Result{
                         do {
-                                            let data = try JSONSerialization.data(withJSONObject: item)
-                                            self.patientDetails = try JSONDecoder().decode(registerModel.self, from: data)
-                                            self.setDetails()
-                                             MyData.patientDetails = self.patientDetails
-                                            self.editPatientDetails = (item as? [String:AnyObject])!
-                                        } catch  {
-                                            print(error.localizedDescription)
-                                        }
+                            let data = try JSONSerialization.data(withJSONObject: item)
+                            self.patientDetails = try JSONDecoder().decode(registerModel.self, from: data)
+                            self.setDetails()
+                            MyData.patientDetails = self.patientDetails
+                            self.editPatientDetails = (item as? [String:AnyObject])!
+                        } catch  {
+                            print(error.localizedDescription)
+                        }
                         
                     }
                     
