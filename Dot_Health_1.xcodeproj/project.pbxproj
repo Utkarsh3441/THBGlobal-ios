@@ -72,6 +72,7 @@
 		2BF005D124C4CC250024E7EE /* DotTimeSlotsExtention+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF005D024C4CC250024E7EE /* DotTimeSlotsExtention+CollectionView.swift */; };
 		2BF005D324C4CC430024E7EE /* DotTimeSlotsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF005D224C4CC430024E7EE /* DotTimeSlotsCollectionCell.swift */; };
 		2BFE0AE2248EE76D00AED5E6 /* ProfileDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BFE0AE1248EE76D00AED5E6 /* ProfileDetailModel.swift */; };
+		830C8C1A24FBE14C00452549 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830C8C1924FBE14C00452549 /* DatePickerController.swift */; };
 		8327406124FADDF000892240 /* DotAddHabitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327406024FADDF000892240 /* DotAddHabitController.swift */; };
 		8327406524FAECFD00892240 /* DotCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327406424FAECFD00892240 /* DotCheckBoxView.swift */; };
 		8327406724FAF5CD00892240 /* DotCheckBoxView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8327406624FAF5CD00892240 /* DotCheckBoxView.xib */; };
@@ -375,6 +376,7 @@
 		3D3E2E2EFB6373E9016C5822 /* Pods-Dot_Health_1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dot_Health_1.release.xcconfig"; path = "Target Support Files/Pods-Dot_Health_1/Pods-Dot_Health_1.release.xcconfig"; sourceTree = "<group>"; };
 		571358D0ADFA68253BE409C2 /* Pods-Dot_Health_1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dot_Health_1Tests.debug.xcconfig"; path = "Target Support Files/Pods-Dot_Health_1Tests/Pods-Dot_Health_1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		6AC74BB58B2633520DD3FF0D /* Pods_Dot_Health_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dot_Health_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830C8C1924FBE14C00452549 /* DatePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		8327406024FADDF000892240 /* DotAddHabitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotAddHabitController.swift; sourceTree = "<group>"; };
 		8327406424FAECFD00892240 /* DotCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotCheckBoxView.swift; sourceTree = "<group>"; };
 		8327406624FAF5CD00892240 /* DotCheckBoxView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DotCheckBoxView.xib; sourceTree = "<group>"; };
@@ -875,6 +877,7 @@
 				F347192A24929EA0000CB0B1 /* DotAppointmentTableViewCell.swift */,
 				F3CA03B8249568ED00373944 /* DotAppointmentsViewController.storyboard */,
 				F314A6092498578A006B8D0D /* DotAppointmentDetailTableViewCell.swift */,
+				830C8C1924FBE14C00452549 /* DatePickerController.swift */,
 				F31F0EE8249A579F00D64E7F /* DotAppointmentDetailsViewController.swift */,
 				F31F0EEA249A57C600D64E7F /* DotAppointmentDetailsViewController.storyboard */,
 			);
@@ -2139,6 +2142,7 @@
 				2B81DE21249338080012F78A /* DotCalenderViewController.swift in Sources */,
 				F341C6E624C8C62C00795965 /* LoadingButton.swift in Sources */,
 				2B43AB9724859FF5003C4B19 /* APIClient.swift in Sources */,
+				830C8C1A24FBE14C00452549 /* DatePickerController.swift in Sources */,
 				F32BE10B24A520FE00E92A78 /* DotAilmentTableViewCell.swift in Sources */,
 				F341C6C124C8C62C00795965 /* URL+Extention.swift in Sources */,
 				F341C6D024C8C62C00795965 /* ChatStorage.swift in Sources */,

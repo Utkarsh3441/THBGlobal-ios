@@ -22,16 +22,28 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZhZ-Cz-wKK">
                                         <rect key="frame" x="20" y="20" width="150" height="66"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mhv-HP-s5y" customClass="DotTextFieldUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CrB-XM-doY">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="34"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="startDate"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="34" id="Cq8-sd-dxG"/>
-                                                    <constraint firstAttribute="width" constant="150" id="Unu-Be-2bb"/>
+                                                    <constraint firstAttribute="width" constant="150" id="5p1-2O-FGb"/>
+                                                    <constraint firstAttribute="height" constant="34" id="5tw-pi-1Y9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                                <state key="normal" title="Select">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dateActionTappedd:" destination="ukM-5J-ix2" eventType="touchUpInside" id="Rar-A3-hOt"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEf-3G-ruN">
                                                 <rect key="frame" x="36" y="42" width="78.5" height="24"/>
                                                 <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
@@ -43,16 +55,28 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="29H-Ve-3LZ">
                                         <rect key="frame" x="184" y="20" width="150" height="66"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eoq-s2-g0Y" customClass="DotTextFieldUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkp-Hf-3Rz">
                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="34"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="endDate"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="150" id="A86-Li-yGo"/>
-                                                    <constraint firstAttribute="height" constant="34" id="RLf-ap-jmN"/>
+                                                    <constraint firstAttribute="height" constant="34" id="Amb-RD-jh8"/>
+                                                    <constraint firstAttribute="width" constant="150" id="wqC-bN-cya"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                                <state key="normal" title="Select">
+                                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dateActionTappedd:" destination="ukM-5J-ix2" eventType="touchUpInside" id="VuG-kZ-oVE"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tId-jQ-FbI">
                                                 <rect key="frame" x="40.5" y="42" width="69.5" height="24"/>
                                                 <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
@@ -83,10 +107,14 @@
                                                 <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="searchButtonTapped:" destination="ukM-5J-ix2" eventType="touchUpInside" id="x4H-Gq-9hX"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="29H-Ve-3LZ" firstAttribute="top" secondItem="lcg-Sh-Bvf" secondAttribute="top" constant="20" id="03U-Sw-rKY"/>
+                                    <constraint firstItem="CrB-XM-doY" firstAttribute="centerY" secondItem="OGe-hF-iCX" secondAttribute="centerY" id="HSU-WS-RBv"/>
                                     <constraint firstItem="ZhZ-Cz-wKK" firstAttribute="top" secondItem="lcg-Sh-Bvf" secondAttribute="top" constant="20" id="PQH-WK-8SH"/>
                                     <constraint firstItem="29H-Ve-3LZ" firstAttribute="height" secondItem="ZhZ-Cz-wKK" secondAttribute="height" id="QM5-I0-RmZ"/>
                                     <constraint firstAttribute="height" constant="106" id="ToH-36-bht"/>
@@ -95,7 +123,6 @@
                                     <constraint firstItem="lcg-Sh-Bvf" firstAttribute="trailing" secondItem="OGe-hF-iCX" secondAttribute="trailing" constant="20" id="hF6-a1-PTD"/>
                                     <constraint firstItem="ZhZ-Cz-wKK" firstAttribute="leading" secondItem="lcg-Sh-Bvf" secondAttribute="leading" constant="20" id="kyy-PZ-Iol"/>
                                     <constraint firstItem="29H-Ve-3LZ" firstAttribute="width" secondItem="ZhZ-Cz-wKK" secondAttribute="width" id="ltL-EB-Sn0"/>
-                                    <constraint firstItem="OGe-hF-iCX" firstAttribute="centerY" secondItem="Eoq-s2-g0Y" secondAttribute="centerY" id="ytw-ZF-bUE"/>
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="lcg-Sh-Bvf"/>
                                 <userDefinedRuntimeAttributes>
@@ -111,9 +138,10 @@
                                 <rect key="frame" x="0.0" y="158" width="414" height="704"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="separatorColor" name="Accent"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="appointmentCellId" rowHeight="138" id="TP9-YC-Jly" customClass="DotAppointmentTableViewCell" customModule="Asha_Cares" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="appointmentCellId" rowHeight="138" id="TP9-YC-Jly" customClass="DotAppointmentTableViewCell" customModule="Asha_Cares" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="138"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TP9-YC-Jly" id="aVa-Mg-2m7">
@@ -231,10 +259,10 @@
                     <connections>
                         <outlet property="addAppointmentButton" destination="Tgg-Pr-fiM" id="ars-bv-4qk"/>
                         <outlet property="appointmentTableView" destination="bHs-n1-lyg" id="ymZ-EU-UuT"/>
-                        <outlet property="endDateTextField" destination="Eoq-s2-g0Y" id="B6q-fj-9gy"/>
+                        <outlet property="btnEndDate" destination="jkp-Hf-3Rz" id="yoK-ZG-jbz"/>
+                        <outlet property="btnStartDate" destination="CrB-XM-doY" id="hVU-bs-QGa"/>
                         <outlet property="searchButton" destination="OGe-hF-iCX" id="WZY-e7-GIW"/>
                         <outlet property="searchView" destination="OKr-Nr-pBY" id="Qy8-sl-gXq"/>
-                        <outlet property="startDateTextField" destination="Mhv-HP-s5y" id="5as-B4-qaJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EoV-3B-qX4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -266,6 +294,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhW-gf-Nes" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2570" y="328"/>
+        </scene>
+        <!--Date Picker Controller-->
+        <scene sceneID="WYa-i0-hgr">
+            <objects>
+                <viewController storyboardIdentifier="DatePickerController" id="1gZ-9o-wAb" customClass="DatePickerController" customModule="MyTrackle" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dLb-QM-ShB">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="lTi-Wo-cs6">
+                                <rect key="frame" x="0.0" y="-250" width="0.0" height="250"/>
+                                <color key="backgroundColor" red="1" green="0.53333333329999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="RxE-QV-Rpx"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="dateChanged:" destination="1gZ-9o-wAb" eventType="valueChanged" id="BMN-HW-nsT"/>
+                                </connections>
+                            </datePicker>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81E-4F-6ZG">
+                                <rect key="frame" x="0.0" y="-300" width="0.0" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yH-mc-6PW">
+                                        <rect key="frame" x="10" y="10" width="48" height="30"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.42467421290000001" green="0.4246615171" blue="0.4246686697" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancel:" destination="1gZ-9o-wAb" eventType="touchUpInside" id="VSy-VE-quL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VpF-ts-Uo1">
+                                        <rect key="frame" x="-47" y="11" width="37" height="30"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.42467421290000001" green="0.4246615171" blue="0.4246686697" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="done:" destination="1gZ-9o-wAb" eventType="touchUpInside" id="0Xe-AT-a7H"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92144894600000005" green="0.92063152790000002" blue="0.94577074049999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="1Pe-xl-MTS"/>
+                                    <constraint firstAttribute="trailing" secondItem="VpF-ts-Uo1" secondAttribute="trailing" constant="10" id="JQf-39-A1o"/>
+                                    <constraint firstItem="4yH-mc-6PW" firstAttribute="leading" secondItem="81E-4F-6ZG" secondAttribute="leading" constant="10" id="SHG-VT-g7v"/>
+                                    <constraint firstAttribute="centerY" secondItem="4yH-mc-6PW" secondAttribute="centerY" id="l5B-mo-E9z"/>
+                                    <constraint firstItem="4yH-mc-6PW" firstAttribute="centerY" secondItem="VpF-ts-Uo1" secondAttribute="centerY" constant="-1" id="rYd-kn-CCd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.66000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Qg1-ba-NYZ" firstAttribute="trailing" secondItem="81E-4F-6ZG" secondAttribute="trailing" id="Dk0-Nf-YHQ"/>
+                            <constraint firstItem="Qg1-ba-NYZ" firstAttribute="trailing" secondItem="lTi-Wo-cs6" secondAttribute="trailing" id="EE3-Gy-cxi"/>
+                            <constraint firstItem="81E-4F-6ZG" firstAttribute="leading" secondItem="Qg1-ba-NYZ" secondAttribute="leading" id="cmn-cg-PLT"/>
+                            <constraint firstItem="Qg1-ba-NYZ" firstAttribute="bottom" secondItem="lTi-Wo-cs6" secondAttribute="bottom" id="hxm-53-gIA"/>
+                            <constraint firstItem="lTi-Wo-cs6" firstAttribute="top" secondItem="81E-4F-6ZG" secondAttribute="bottom" id="kum-Ji-mHF"/>
+                            <constraint firstItem="lTi-Wo-cs6" firstAttribute="leading" secondItem="Qg1-ba-NYZ" secondAttribute="leading" id="mxK-gN-FZI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Qg1-ba-NYZ"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="0.0" height="0.0"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="4yH-mc-6PW" id="s2s-3b-XQZ"/>
+                        <outlet property="datePicker" destination="lTi-Wo-cs6" id="V4D-72-yin"/>
+                        <outlet property="doneButton" destination="VpF-ts-Uo1" id="d1H-V7-MJA"/>
+                        <outlet property="headerView" destination="81E-4F-6ZG" id="j6s-qh-Rrw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cF6-31-gfE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2409" y="941"/>
         </scene>
     </scenes>
     <resources>

@@ -56,6 +56,12 @@ struct DoctorModel:Codable,Hashable {
     }
 }
 
+struct FacilityModelResponse:Codable,Hashable {
+    var message: String?
+    var type: String?
+    var data: [FacilityModel]?
+}
+
 struct FacilityModel:Codable,Hashable {
 
    let name:String?

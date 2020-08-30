@@ -12,14 +12,14 @@ import SVProgressHUD
 class DotAppointmentsViewController: UIViewController {
     
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var btnStartDate: UIButton!
+    @IBOutlet weak var btnEndDate: UIButton!
     
-    @IBOutlet weak var searchFieldTextField: UITextField!
-    @IBOutlet weak var startDateTextField: UITextField!
-    @IBOutlet weak var endDateTextField: UITextField!
+    var startDate: Date?
+    var endDate: Date?
     
     @IBOutlet weak var addAppointmentButton: UIButton!
     @IBOutlet weak var searchView: UIView!
-    var selectedTextField : UITextField?
     // var calenderPopover = DotCalenderViewController()
     var itemName: String?
     var keyArray = ["appointment_info","appointment_provider_info","appointment_slot_info"]
@@ -32,8 +32,9 @@ class DotAppointmentsViewController: UIViewController {
         let vire = vc.init()
         
         vire.check()
-        startDateTextField.delegate =  self
-        endDateTextField.delegate = self
+        setUpSelectDateButton(button: btnStartDate)
+        setUpSelectDateButton(button: btnEndDate)
+
         appointmentTableView.dataSource = self
         appointmentTableView.delegate = self
         appointmentTableView.rowHeight = 120
@@ -41,35 +42,18 @@ class DotAppointmentsViewController: UIViewController {
         self.navigationItem.title = itemName
         self.searchButton.createFloatingActionButton()
         self.addAppointmentButton.createFloatingActionButton()
+        appointmentTableView.tableFooterView = UIView()
         getAppointments()
     }
     
-    func openDatePicker(){
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        selectedTextField?.inputView = datePicker
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 44))
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelButtonAcction))
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneButtonAcction))
-        let flexibleButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolbar.setItems([cancelButton, flexibleButton, doneButton], animated: false)
-        selectedTextField?.inputAccessoryView = toolbar
-        // endDateTextField.inputAccessoryView = toolbar
+    func setUpSelectDateButton(button:UIButton) {
+        button.backgroundColor = .clear
+        button.layer.cornerRadius = 5
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
     }
-    @objc func cancelButtonAcction(){
-        selectedTextField?.resignFirstResponder()
-        //  endDateTextField.resignFirstResponder()
-    }
-    @objc func doneButtonAcction(dateTextField:UITextField){
-        let dateFormater = DateFormatter()
-        dateFormater.dateStyle = .medium
-        if let datePicker = selectedTextField?.inputView as? UIDatePicker{
-            print(datePicker.date)
-            selectedTextField?.text = dateFormater.string(from: datePicker.date)
-            selectedTextField?.resignFirstResponder()
-            
-        }
-    }
+    
+
     private func showPopup(_ controller: UIViewController, sourceView: UIView) {
         let presentationController = CustomShowPopup.configurePresentation(forController: controller)
         presentationController.sourceView = sourceView
@@ -90,16 +74,72 @@ class DotAppointmentsViewController: UIViewController {
         
         
     }
-}
-extension DotAppointmentsViewController:UITextFieldDelegate{
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.selectedTextField = textField
-        self.openDatePicker()
-        //   calenderPopover.PopView = textField
-        //   calenderPopover.view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        // showPopup(calenderPopover, sourceView: textField)
+    
+    /// Returns block which will be call on date selection completion of calender
+    func datePickerHandler(buttonTag:Int) -> ((Date?, IndexPath)-> Void) {
+        return { [weak self](date, indexPath) in
+            let dateFormater = DateFormatter()
+            dateFormater.dateStyle = .medium
+            if let date = date {
+                if buttonTag == 0 {
+                    self?.startDate = date
+                    if self?.fetchDataForSelectedDates() == true {
+                      self?.btnStartDate.setTitle(dateFormater.string(from: date), for: .normal)
+                    }
+                } else if buttonTag == 1 {
+                    self?.endDate = date
+                    if self?.fetchDataForSelectedDates() == true {
+                    self?.btnEndDate.setTitle(dateFormater.string(from: date), for: .normal)
+                    }
+                }
+            }
+        }
     }
+    
+        
+    func fetchDataForSelectedDates()->Bool {
+        if let startDate = startDate, let endDate = endDate {
+            if startDate > endDate {
+                DispatchQueue.main.async {
+                    self.showAlertView("Alert", message: "Start date can not be less then end date.")
+
+                }
+                return false
+            }
+        }
+        return true
+  }
+
+    @IBAction func dateActionTappedd(_ sender: UIButton) {
+        
+        let viewController = UIStoryboard.init(name: "DotAppointmentsViewController", bundle: Bundle.main).instantiateViewController(withIdentifier: "DatePickerController") as? DatePickerController
+        
+        viewController?.modalPresentationStyle = .custom
+        //  viewController?.maxDate = Date()
+        viewController?.handler = datePickerHandler(buttonTag: sender.tag)
+        
+        AppDelegate.delegate.window!.rootViewController!.present(viewController!, animated: true, completion: nil)
+    }
+    
+    @IBAction func searchButtonTapped(_ sender: Any) {
+        
+        if let startDate = startDate, let endDate = endDate {
+            let startDate =   UtilityFunctions.getTFormattedDate(date:startDate)
+            let endDate =   UtilityFunctions.getTFormattedDate(date:endDate)
+            getAppointments(startDate: startDate, endDate: endDate)
+        } else {
+            self.showAlertView("Alert", message: "Please select start date and end date.")
+        }
+        
+        
+        
+    }
+    
+  
+    
+    
 }
+
 
 extension DotAppointmentsViewController: UITableViewDataSource, UITableViewDelegate{
     
@@ -125,16 +165,26 @@ extension DotAppointmentsViewController: UITableViewDataSource, UITableViewDeleg
         
     }
     
+    
 }
 
 extension DotAppointmentsViewController{
     
-    func getAppointments(){
+    func getAppointments(startDate:String = "", endDate:String = ""){
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.custom)
         // Query item for doc
+        var errorMessage = ""
         var queryItem = [URLQueryItem]()
-        queryItem = [ URLQueryItem(name: "userId", value:"\(loginData.user_id ?? 17)"), URLQueryItem(name: "userType", value: "patients")]
+        if startDate.count > 0 && endDate.count > 0 {
+            queryItem = [ URLQueryItem(name: "userId", value:"\(loginData.user_id ?? 17)"), URLQueryItem(name: "userType", value: "patients"),URLQueryItem(name: "startDate", value:"\(startDate)"),URLQueryItem(name: "endDate", value:"\(endDate)")]
+            errorMessage = "No data found for selected date range."
+        } else {
+            queryItem = [ URLQueryItem(name: "userId", value:"\(loginData.user_id ?? 17)"), URLQueryItem(name: "userType", value: "patients")]
+            errorMessage = "No Appointments Booked."
+
+
+        }
         let urlString = "appointments"
         
         // Query item for facility
@@ -147,22 +197,21 @@ extension DotAppointmentsViewController{
             switch result {
             case .success(let model2Result):
                 SVProgressHUD.dismiss()
-                if let appointmentData = (model2Result as? NSDictionary)?.value(forKey: "data") as? NSArray{
+                if let appointmentData = (model2Result as? NSDictionary)?.value(forKey: "data") as? NSArray, appointmentData.count > 0 {
                     appointmentFunctions.readAppointments(appointmentArray: appointmentData, complition: {[unowned self] in
                         
                         self.appointmentTableView.reloadData()
                         
                     })
-                    
                 }
                 else{
                     print("error occured")
-                    appointmentFunctions.readAppointments(appointmentArray: [], complition: {[unowned self] in
-                        
-                        self.appointmentTableView.reloadData()
-                        
-                    })
                     SVProgressHUD.dismiss()
+
+                    self.showAlertView("Alert", message: errorMessage)
+                    appointmentFunctions.readAppointments(appointmentArray: [], complition: {[unowned self] in
+                        self.appointmentTableView.reloadData()
+                    })
                 }
             case .failure(let error):
                 SVProgressHUD.dismiss()

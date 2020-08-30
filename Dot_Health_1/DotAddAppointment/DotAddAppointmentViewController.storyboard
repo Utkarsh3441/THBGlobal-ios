@@ -117,6 +117,9 @@
                             </view>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="tKi-V0-LHk">
                                 <rect key="frame" x="20" y="143" width="374" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="p3P-Kr-8jD"/>
+                                </constraints>
                                 <color key="tintColor" name="Tint"/>
                                 <offsetWrapper key="searchFieldBackgroundPositionAdjustment" horizontal="0.0" vertical="0.0"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -252,10 +255,12 @@
                         <outlet property="doctorListTableView" destination="pHf-an-I1a" id="cCU-PT-c2z"/>
                         <outlet property="headerView" destination="c5t-cx-hym" id="YCO-dG-7cL"/>
                         <outlet property="searchBar" destination="tKi-V0-LHk" id="OYk-qq-Lh7"/>
+                        <outlet property="searchBarHeightConstraint" destination="p3P-Kr-8jD" id="qOH-TS-iYU"/>
                         <outlet property="searchButton" destination="wh5-Hx-ruB" id="Ivz-os-lT0"/>
                         <outlet property="selectedAilmentLabel" destination="aYa-Sx-Qvr" id="Qhi-AL-cl6"/>
                         <outlet property="specialityButton" destination="dAd-CN-Vc6" id="OfT-qp-NHS"/>
                         <outlet property="topViewHeightConstraint" destination="P5Y-Bn-KSg" id="d4r-QC-ko9"/>
+                        <outlet property="viewLineHorizontal" destination="ryH-w1-zrd" id="tuN-sd-aw8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNS-mu-gBn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

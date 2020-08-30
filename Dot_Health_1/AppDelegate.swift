@@ -35,6 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let backgroundTask = UIBackgroundTaskIdentifier.invalid
         return backgroundTask
     }()
+    
+    static var delegate:AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    
+    
     static var standard: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }

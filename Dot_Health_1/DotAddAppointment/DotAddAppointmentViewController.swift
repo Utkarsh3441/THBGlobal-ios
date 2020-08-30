@@ -21,6 +21,11 @@ class DotAddAppointmentViewController: UIViewController {
     @IBOutlet weak var selectedAilmentLabel: UILabel!
     @IBOutlet weak var topViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var searchBarHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var viewLineHorizontal: UIView!
+    
+    
     @IBOutlet weak var headerView: UIView!
     
     @IBOutlet weak var searchBar: UISearchBar!
@@ -47,6 +52,9 @@ class DotAddAppointmentViewController: UIViewController {
              getMedication()
              addButton.isHidden = false
              addButton.createFloatingActionButton()
+             searchBarHeightConstraint.constant = 0
+            searchBar.isHidden = true
+            viewLineHorizontal.isHidden = true
         }
         else{
             getAilments()
@@ -293,23 +301,26 @@ extension DotAddAppointmentViewController {
         let api : API = .api1
         let endpoint: Endpoint = api.getPostAPIEndpointForAppointments(urlString: "\(api.rawValue)\(urlString)", queryItems: queryItem, headers: nil, body: nil)
         
-        client.callAPI(with: endpoint.request, modelParser: [FacilityModel].self) { [weak self] result in
+        client.callAPI(with: endpoint.request, modelParser: FacilityModelResponse.self) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let model2Result):
+                
                 SVProgressHUD.dismiss()
-                if let model = model2Result as? [FacilityModel]{
-                    MyData.facilityModelArray = model
-                    print("Facility data :",MyData.facilityModelArray)
-                    // write here to populate facility data in table
+                if let model = model2Result as? FacilityModelResponse, model.type == "Success", let facilityModel = model.data {
+                    MyData.facilityModelArray = facilityModel
+                    print("Fetched facility:",MyData.facilityModelArray)
+                    self.doctorListTableView.reloadData()
+                    SVProgressHUD.dismiss()
+                }
+                else{
                     facilityFunctions.readFacilities(complition: {[unowned self] in
                         
                         self.doctorListTableView.reloadData()
                         
                     })
-                }
-                else{
                     print("error occured")
+                    SVProgressHUD.dismiss()
                 }
             case .failure(let error):
                 
