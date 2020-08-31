@@ -28,7 +28,8 @@ class DotAddHabitController: LBTAFormController {
     var habitData:DotAddHabitModel?
     
     
-    var dataLabel = ["Habit Name","Frequency","Frequency Unit","Status"]
+    var dataLabel = ["Habit Name","Frequency","Frequency Unit"]
+    //"Status"
     
     var editDetails = ["habit_name":"",
      "habit_frequency":"",
@@ -81,11 +82,12 @@ class DotAddHabitController: LBTAFormController {
                     
                       if addHabitItems[i] == dataLabel[2] {
                           addCheckBoxTextField(isAlreadyAdded: false)
-                      } else if addHabitItems[i] == dataLabel[3]{
-                        addActiveInactiveTextField(isAlreadyAdded: false)
                       }
+//                        else if addHabitItems[i] == dataLabel[3]{
+//                        addActiveInactiveTextField(isAlreadyAdded: false)
+//                      }
                           
-                      else{
+                      else {
                           let tf = FloatingLabelInput(placeholder: addHabitItems[i], cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear,height: heightCons)
                           if addHabitItems[i] == dataLabel[1]  {
                               tf.keyboardType = .numberPad

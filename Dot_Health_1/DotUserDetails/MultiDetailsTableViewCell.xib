@@ -38,7 +38,7 @@
                         <color key="textColor" red="0.2457145154" green="0.46548014879999999" blue="0.75297850369999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XYP-Tn-UyP">
+                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XYP-Tn-UyP">
                         <rect key="frame" x="131.5" y="8" width="108" height="24"/>
                         <subviews>
                             <button opaque="NO" alpha="0.69999999999999996" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="8yR-1y-3Om">
@@ -73,7 +73,7 @@
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7we-Mv-3Kn">
-                        <rect key="frame" x="336" y="13" width="29" height="14.5"/>
+                        <rect key="frame" x="185.5" y="13" width="29" height="14.5"/>
                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                         <color key="textColor" red="0.24705882352941178" green="0.46666666666666667" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -96,9 +96,9 @@
                     <constraint firstItem="TF1-lT-DvD" firstAttribute="centerY" secondItem="4hl-l4-fEN" secondAttribute="centerY" id="5yu-04-HZy"/>
                     <constraint firstItem="XYP-Tn-UyP" firstAttribute="centerX" secondItem="DFr-Ab-BDD" secondAttribute="centerX" id="Cfo-nG-KhF"/>
                     <constraint firstItem="TF1-lT-DvD" firstAttribute="top" secondItem="DFr-Ab-BDD" secondAttribute="top" constant="3" id="DVM-5K-JVC"/>
+                    <constraint firstItem="7we-Mv-3Kn" firstAttribute="leading" secondItem="DFr-Ab-BDD" secondAttribute="centerX" id="EjF-hr-rr0"/>
                     <constraint firstItem="XYP-Tn-UyP" firstAttribute="leading" relation="lessThanOrEqual" secondItem="j1f-az-E9H" secondAttribute="trailing" constant="50.5" id="J0X-yN-2RB"/>
                     <constraint firstItem="TF1-lT-DvD" firstAttribute="leading" relation="lessThanOrEqual" secondItem="XYP-Tn-UyP" secondAttribute="trailing" constant="45.5" id="J1F-KY-bzm"/>
-                    <constraint firstAttribute="trailing" secondItem="7we-Mv-3Kn" secondAttribute="trailing" constant="6" id="Swz-Br-ocH"/>
                     <constraint firstAttribute="bottom" secondItem="TF1-lT-DvD" secondAttribute="bottom" constant="3" id="Zeo-DC-gig"/>
                     <constraint firstAttribute="bottom" secondItem="XYP-Tn-UyP" secondAttribute="bottom" constant="8" id="Zno-TC-Dbm"/>
                     <constraint firstItem="XYP-Tn-UyP" firstAttribute="centerY" secondItem="j1f-az-E9H" secondAttribute="centerY" id="aa4-lu-NNI"/>
