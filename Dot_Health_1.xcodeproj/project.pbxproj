@@ -77,6 +77,7 @@
 		8327406524FAECFD00892240 /* DotCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327406424FAECFD00892240 /* DotCheckBoxView.swift */; };
 		8327406724FAF5CD00892240 /* DotCheckBoxView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8327406624FAF5CD00892240 /* DotCheckBoxView.xib */; };
 		8327406924FB11FF00892240 /* DotAddHabitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327406824FB11FF00892240 /* DotAddHabitModel.swift */; };
+		83760E7B24FEED8D001CA13E /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83760E7A24FEED8D001CA13E /* PreviewViewController.swift */; };
 		837F5D4724F9B90B0099AA9C /* DotAddMedicinesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F5D4624F9B90B0099AA9C /* DotAddMedicinesController.swift */; };
 		837F5D4924F9BE3D0099AA9C /* DotAddMedicine+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F5D4824F9BE3D0099AA9C /* DotAddMedicine+Helper.swift */; };
 		83BDD54324F1E9A50068E3AC /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BDD54224F1E9A50068E3AC /* info.png */; };
@@ -381,6 +382,7 @@
 		8327406424FAECFD00892240 /* DotCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotCheckBoxView.swift; sourceTree = "<group>"; };
 		8327406624FAF5CD00892240 /* DotCheckBoxView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DotCheckBoxView.xib; sourceTree = "<group>"; };
 		8327406824FB11FF00892240 /* DotAddHabitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotAddHabitModel.swift; sourceTree = "<group>"; };
+		83760E7A24FEED8D001CA13E /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		837F5D4624F9B90B0099AA9C /* DotAddMedicinesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotAddMedicinesController.swift; sourceTree = "<group>"; };
 		837F5D4824F9BE3D0099AA9C /* DotAddMedicine+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DotAddMedicine+Helper.swift"; sourceTree = "<group>"; };
 		83BDD54224F1E9A50068E3AC /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 				2B08423024D5FF9C00975F92 /* DotRecords+CollectionViewExtension.swift */,
 				2B284BDF24D79F4F00DBC1CE /* DotRecords+APIExtensions.swift */,
 				2B284BE124D9349000DBC1CE /* DotRecordsImagePicker+Photos+Camera+extension.swift */,
+				83760E7A24FEED8D001CA13E /* PreviewViewController.swift */,
 			);
 			path = DotRecords;
 			sourceTree = "<group>";
@@ -2215,6 +2218,7 @@
 				83BDD54724F46AA00068E3AC /* SharedClass.swift in Sources */,
 				837F5D4924F9BE3D0099AA9C /* DotAddMedicine+Helper.swift in Sources */,
 				F314A60A2498578A006B8D0D /* DotAppointmentDetailTableViewCell.swift in Sources */,
+				83760E7B24FEED8D001CA13E /* PreviewViewController.swift in Sources */,
 				F36B119624B64D2400122B05 /* AudioSettingsViewController.swift in Sources */,
 				F36B11B024B64D8B00122B05 /* RecordsViewController.swift in Sources */,
 				F36B11A024B64D4600122B05 /* VideoSettingsViewController.swift in Sources */,

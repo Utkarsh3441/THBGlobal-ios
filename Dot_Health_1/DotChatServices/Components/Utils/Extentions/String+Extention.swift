@@ -51,4 +51,57 @@ extension String {
         dateFormatter.dateFormat = "MMM dd, yyyy"
         return dateFormatter.date(from: self)
     }
+    
+    func base64Decoded() -> String? {
+         var st = self;
+         if (self.count % 4 <= 2){
+             st += String(repeating: "=", count: (self.count % 4))
+         }
+         guard let data = Data(base64Encoded: st) else { return nil }
+         return String(data: data, encoding: .utf8)
+     }
+//    func base64ToImage() -> UIImage? {
+//
+//
+//
+//
+//
+//        if let decodedData = Data(base64Encoded: self, options: .ignoreUnknownCharacters) {
+//            let image = UIImage(data: decodedData)
+//        }
+//
+//        if let url = URL(string: self),let data = try? Data(contentsOf: url),let image = UIImage(data: data) {
+//            return image
+//        }
+//        return nil
+//    }
+    
+    func base64ToImage() -> UIImage? {
+        if let url = URL(string: self),let data = try? Data(contentsOf: url),let image = UIImage(data: data) {
+            return image
+        }
+        return nil
+    }
+    
+    func base64ToUrl() -> URL? {
+           if let url = URL(string: self) {
+               return url
+           }
+           return nil
+       }
+    
+    func matches(for regex: String) -> [String] {
+         do {
+             let regex = try NSRegularExpression(pattern: regex)
+             let results = regex.matches(in: self, range:  NSRange(self.startIndex..., in: self))
+             return results.map {
+                 //self.substring(with: Range($0.range, in: self)!)
+                 String(self[Range($0.range, in: self)!])
+             }
+         } catch let error {
+             print("invalid regex: \(error.localizedDescription)")
+             return []
+         }
+     }
+    
 }

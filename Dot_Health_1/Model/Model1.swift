@@ -86,8 +86,22 @@ init(withFileURL url: URL?, filename: String, name: String, mimetype: String) {
     self.mimetype = mimetype
 }
 }
+
+struct RecordResponseData:Decodable {
+    var message: String?
+    var type: String?
+    var data: record?
+}
+
+struct RecordResponse:Decodable {
+    var message: String?
+    var type: String?
+    var data: [record]?
+}
+
 struct record:Codable,Hashable{
     var category:String?
+    var record_name:String?
     var file_content:String?
     var medical_record_id:Int?
     var patient_id:Int?

@@ -49,18 +49,25 @@ class DotRecordsViewController: LBTAFormController {
     @objc fileprivate func uploadFile() {
 //        dismiss(animated: true)
         if !addedRecords.isEmpty{
-        let alert = UIAlertController(title: "Upload", message: "Proceed to Upload files", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel,
-                                      handler: {[weak self](_ action: UIAlertAction) -> Void in
-                                         guard let self = self else { return }
-                                        self.upload(files: self.addedRecords, toURL: nil, withHttpMethod: .post){
-                                                    [weak self] (x,y) in
-                                            print("\(x) and \(y ?? [""])")
-                                                }
-                                      }))
-        self.present(alert, animated: true, completion:{
-           
-        })
+            
+            self.upload(files: self.addedRecords, toURL: nil, withHttpMethod: .post){
+                    [weak self] (x,y) in
+            print("\(x) and \(y ?? [""])")
+            }
+            
+            
+//        let alert = UIAlertController(title: "Upload", message: "Proceed to Upload files", preferredStyle: UIAlertController.Style.alert)
+//        alert.addAction(UIAlertAction(title: "Ok", style: .cancel,
+//                                      handler: {[weak self](_ action: UIAlertAction) -> Void in
+//                                         guard let self = self else { return }
+//                                        self.upload(files: self.addedRecords, toURL: nil, withHttpMethod: .post){
+//                                                    [weak self] (x,y) in
+//                                            print("\(x) and \(y ?? [""])")
+//                                                }
+//                                      }))
+//        self.present(alert, animated: true, completion:{
+//
+//        })
         }
         else{
             self.showAlertView("No Files To Upload", message: kblankString)

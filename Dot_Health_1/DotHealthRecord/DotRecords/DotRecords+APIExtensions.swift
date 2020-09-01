@@ -12,22 +12,21 @@ import SVProgressHUD
 extension DotRecordsViewController{
 func loadFiles(){
    // SVProgressHUD.show()
-    DispatchQueue.global(qos: .background).async {
+//    DispatchQueue.global(qos: .background).async {
         print("This is run on the background queue")
     SVProgressHUD.setDefaultMaskType(.custom)
     let api : API = .api1
     let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: "http://104.215.179.29/v1/patients/\(loginData.user_id ?? 17)/medicalReports", httpMethod: .get, queryItems: nil, headers: nil, body: nil)
-        self.client.callAPI(with: endpoint.request, modelParser: [record].self) { [weak self] result in
+        self.client.callAPI(with: endpoint.request, modelParser: RecordResponse.self) { [weak self] result in
             guard let self = self else { return }
              //   print(result)
             switch result {
             case .success(let model2Result):
                 SVProgressHUD.dismiss()
-                 
-                if let model = model2Result as? [record]{
+                 if let model = model2Result as? RecordResponse, model.type == "Success", let recordModel = model.data {
                     print(model)
-                    self.recordsDataArray = model
-                    self.applySnapshot(items: model)
+                    self.recordsDataArray = recordModel
+                    self.applySnapshot(items: recordModel)
 //                    let baseStr = ((model2Result as? NSArray)?.filter({($0 as? record)?.category == "Blood Report"}).first as! record).file_content!
 //                    let encodingString = baseStr.data(using: .utf8)?.base64EncodedString()//Here combinedString is your string
                 }
@@ -40,8 +39,44 @@ func loadFiles(){
                 print("the error \(error)")
             }
         }
+    //}
     }
+    
+    func pushToPreviewController(encodedString:String) {
+        let previewController = PreviewViewController()
+        previewController.encodedBase64String = encodedString
+        self.present(previewController, animated: true, completion: nil)
     }
+    
+    func loadSelectedFile(indexpath: Int){
+         SVProgressHUD.show()
+        //    DispatchQueue.global(qos: .background).async {
+        print("This is run on the background queue")
+        SVProgressHUD.setDefaultMaskType(.custom)
+        let api : API = .api1
+        let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: "http://104.215.179.29/v1/patients/\(loginData.user_id ?? 17)/medicalReports/\(self.recordsDataArray[indexpath].medical_record_id ?? 0)", httpMethod: .get, queryItems: nil, headers: nil, body: nil)
+        self.client.callAPI(with: endpoint.request, modelParser: RecordResponseData.self) { [weak self] result in
+            guard let self = self else { return }
+            //   print(result)
+            switch result {
+            case .success(let model2Result):
+                SVProgressHUD.dismiss()
+                if let model = model2Result as? RecordResponseData, model.type == "Success", let recordModel = model.data, let fileContent = recordModel.file_content {
+                    if fileContent != "" {
+                        self.pushToPreviewController(encodedString: fileContent)
+                  }
+                }
+                else{
+                    print("error occured")
+                }
+            case .failure(let error):
+                SVProgressHUD.dismiss()
+                //                SVProgressHUD.dismiss()
+                print("the error \(error)")
+            }
+        }
+    }
+
     func deleteFiles(items:record){
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.custom)
@@ -71,7 +106,7 @@ func loadFiles(){
 func upload(files: [record], toURL url: URL?,
                    withHttpMethod httpMethod: HTTPMethod,
                    completion: @escaping(_ result: Result<AnyObject?, APIError>, _ failedFiles: [String]?) -> Void) {
-        
+        // SVProgressHUD.show()
            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
 //               let targetURL = self?.addURLQueryParameters(toURL: url)
             guard let boundary = self?.client.createBoundary() else { return }
@@ -82,8 +117,10 @@ func upload(files: [record], toURL url: URL?,
             let headers = ["content-type":"multipart/form-data; boundary=\(boundary)"]
 //            guard var body = try? JSONSerialization.data(withJSONObject: [:]) else { completion(Result.failure(.invalidData), nil); return }
 //            self?.client.httpBodyParameters.add(value: "12", forKey: "appointment_id")
-            self?.client.httpBodyParameters.add(value: "Blood Report", forKey: "category")
-            self?.client.httpBodyParameters.add(value: "http://104.215.179.29/v1/patients/17/medicalReports", forKey: "storage_link")
+//            self?.client.httpBodyParameters.add(value: files.first?.category ?? "", forKey: "category")
+            self?.client.httpBodyParameters.add(value: "CT Scan", forKey: "category")
+
+            self?.client.httpBodyParameters.add(value: "http://104.215.179.29/v1/patients/\(loginData.user_id ?? 17)/medicalReports", forKey: "storage_link")
             guard var body = self?.client.getHttpBody(withBoundary: boundary) else { return }
             
             let mimType = self?.mimeType(for: (files.first)?.category ?? "")
@@ -96,9 +133,11 @@ func upload(files: [record], toURL url: URL?,
                 guard let self = self else { return }
                 switch result {
                 case .success(let model2Result):
+                    SVProgressHUD.dismiss()
                    print(model2Result)
                    self.addedRecords.removeAll()
                 case .failure(let error):
+                    SVProgressHUD.dismiss()
                    print("the error \(error)")
                 }
             }
@@ -184,9 +223,5 @@ func upload(files: [record], toURL url: URL?,
         }
 
         return mimetype as String
-    }
-    func getImageFromBase64(base64:String) -> UIImage {
-        let imageData = Data(base64Encoded: base64, options: Data.Base64DecodingOptions.ignoreUnknownCharacters)!
-        return UIImage(data: imageData)!
     }
 }

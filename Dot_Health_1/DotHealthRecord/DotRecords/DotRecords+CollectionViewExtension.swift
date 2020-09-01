@@ -112,16 +112,13 @@ extension DotRecordsViewController{
         documentPicker.delegate = self
         present(documentPicker, animated: true, completion: nil)
     }
-    func showPreview(url: String){
+    func showPreview(url: URL) {
         // Instantiate the interaction controller
-                if let file = URL(string: url){
-                    self.documentController = UIDocumentInteractionController.init(url: file)
-                    self.documentController.delegate = self
-                    self.documentController.presentPreview(animated: true)
-        //
-                       }else {
-                           print("File missing! Button has been disabled")
-                       }
+        // if let file = URL(string: url){
+        self.documentController = UIDocumentInteractionController.init(url: url)
+        self.documentController.delegate = self
+        self.documentController.presentPreview(animated: true)
+        //base64ToUrl
     }
 }
 
@@ -129,9 +126,12 @@ extension DotRecordsViewController: UICollectionViewDelegate,UIDocumentPickerDel
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         docIndex = indexPath.row
-        if item.file_content != ""{
-            showPreview(url: item.file_content!)
-        }
+        
+        loadSelectedFile(indexpath: indexPath.row)
+        
+//        if item.file_content != ""{
+//            showPreview(url: item.file_content!)
+//        }
 //        if item.cardName == ""{
 //            openDocumentPicker()
 //        }
