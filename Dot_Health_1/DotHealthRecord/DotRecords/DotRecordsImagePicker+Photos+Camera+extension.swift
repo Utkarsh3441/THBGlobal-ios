@@ -49,18 +49,37 @@ func displayUploadImageDialog(btnSelected: UIButton) {
 }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let imgUrl = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.imageURL.rawValue)] as? URL{
-            let new = record(category:(imgUrl.lastPathComponent), file_content: "\(imgUrl)", medical_record_id: 1, patient_id: 17, storage_link: nil)
+            var new = record(category:(imgUrl.lastPathComponent), file_content: "\(imgUrl)", medical_record_id: 1, patient_id: 17, storage_link: nil)
+            
+            guard let image = info[.originalImage] as? UIImage else {
+                return
+            }
+            guard let imageData: Data = image.jpegData(compressionQuality: 0.4) else {
+                return
+            }
+            // let media = MediaModel()
+            new.imageContent = imageData
+            //                  new.type = "image/jpeg"
+            new.record_name = (info[.imageURL] as? URL)?.lastPathComponent
+            
+            if let text = docTextField.text, text.count > 0 {
+              new.category = text
+            } else {
+               new.category = "Image"
+            }
+            new.medical_record_id = 0
+        
             if recordsDataArray.contains(new) || addedRecords.contains(new){
                 self.showAlertView("Duplicate files", message: "File already present")
             }
             else{
                 recordsDataArray.append(new)
-                                  addedRecords.append(new)
-                                  applySnapshot(items: recordsDataArray)
+                addedRecords.append(new)
+                applySnapshot(items: recordsDataArray)
             }
-                  
+            
         }
-         self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 //    private func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 //        if let imgUrl = info[UIImagePickerController.InfoKey.imageURL.rawValue] as? URL{

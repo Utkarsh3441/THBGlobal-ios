@@ -46,9 +46,9 @@ extension String {
     func toHexEncodedString(uppercase: Bool = true, prefix: String = "", separator: String = "") -> String {
         return unicodeScalars.map { prefix + .init($0.value, radix: 16, uppercase: uppercase) } .joined(separator: separator)
     }
-    func stringToDate()-> Date? {
+    func stringToDate(dateFormat: String = "MMM dd, yyyy")-> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd, yyyy"
+        dateFormatter.dateFormat = dateFormat
         return dateFormatter.date(from: self)
     }
     

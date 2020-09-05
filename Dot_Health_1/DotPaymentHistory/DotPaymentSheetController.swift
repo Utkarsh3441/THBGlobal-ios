@@ -11,26 +11,28 @@ import UIKit
 class DotPaymentSheetController: UIViewController {
     @IBOutlet weak var tableViw : UITableView!
     var selectedModel : DotPaymentsModel!
-    var arr = Array<Any>()
-    var keyMap = NSMutableDictionary()
+    var arrHeader = Array<String>()
+    var arrValue = Array<String>()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViw.rowHeight = 80
-        tableViw.backgroundColor = Theme.gradientColorLight
+        tableViw.backgroundColor = UIColor.white
         // Do any additional setup after loading the view.
     }
     func makeDateArr(){
-        arr.removeAll()
-        keyMap.removeAllObjects()
-        arr.append(selectedModel.tID)
-        keyMap.setValue("Payment ID", forKey: selectedModel.tID)
-        arr.append(selectedModel.price)
-        keyMap.setValue("Price", forKey: selectedModel.price)
-        arr.append(selectedModel.text)
-        keyMap.setValue("Status", forKey: selectedModel.text)
-        arr.append("Help/Support : contact@abc.com")
-        
-        
+        arrValue.removeAll()
+        arrHeader.removeAll()
+        arrValue.append(selectedModel.amount)
+        arrHeader.append("Amount:           $")
+        arrValue.append(String(selectedModel.discountPercentage))
+        arrHeader.append("Discount (%):         $")
+        arrValue.append(String(selectedModel.convenienceFee))
+        arrHeader.append("Convinience Fee:      $")
+        arrValue.append(String(selectedModel.grossTotal))
+        arrHeader.append("Gross Total:        $")
+        arrValue.append(selectedModel.status)
+        arrHeader.append("Status:           ")
     }
     override func viewWillAppear(_ animated: Bool) {
         tableViw.reloadData()
@@ -38,32 +40,17 @@ class DotPaymentSheetController: UIViewController {
 }
 extension DotPaymentSheetController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arr.count
+        return arrValue.count
     }
   
        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let val = arr[indexPath.row] as? String
+        let val = arrHeader[indexPath.row]
+        let val1 = arrValue[indexPath.row]
+
         
-        if (val == selectedModel.price || val == selectedModel.text) && selectedModel.state == 0{
-            
-            cell.textLabel?.attributedText = NSAttributedString().createAttributedString(first: "\(keyMap.value(forKey: val ?? "") ?? ""): ", second: "\(val ?? "")", fColor: .black, sColor: .systemRed,fBold:true,sBold:false,fSize: 14,sSize: 14)
-        }
-        else if (val == selectedModel.price || val == selectedModel.text) && selectedModel.state == 1{
-             cell.textLabel?.attributedText = NSAttributedString().createAttributedString(first: "\(keyMap.value(forKey: val ?? "") ?? ""): ", second: "\(val ?? "")", fColor: .black, sColor: .systemGreen,fBold:true,sBold:false,fSize: 14,sSize: 14)
-        }
-        else if (val == selectedModel.price || val == selectedModel.text) && selectedModel.state == 2{
-              cell.textLabel?.attributedText = NSAttributedString().createAttributedString(first: "\(keyMap.value(forKey: val ?? "") ?? ""): ", second: "\(val ?? "")", fColor: .black, sColor: .systemOrange,fBold:true,sBold:false,fSize: 14,sSize: 14)
-        }
-        else{
-             cell.textLabel?.attributedText = NSAttributedString().createAttributedString(first: "\(keyMap.value(forKey: val ?? "") ?? ""): ", second: "\(val ?? "")", fColor: .black, sColor: .white,fBold:true,sBold:false,fSize: 14,sSize: 14)
-        }
-        if val?.contains("Help/Support") ?? false{
-            
-            cell.textLabel?.attributedText = NSAttributedString().createAttributedString(first: "\(val?.components(separatedBy: ":").first ?? ""): ", second: "\( val?.components(separatedBy: ":").last ?? "")", fColor: #colorLiteral(red: 0.2069825828, green: 0.7254605889, blue: 1, alpha: 1), sColor: .white,fBold:true,sBold:false,fSize: 14,sSize: 14)
-        }
-        cell.textLabel?.font = .systemFont(ofSize: 18)
+        cell.textLabel?.attributedText = NSAttributedString().createAttributedString(first: val, second: val1, fColor: Theme.gradientColorDark!, sColor: .darkGray, fBold: true, sBold: true, fSize: 16, sSize: 16)
         return cell
     }
    

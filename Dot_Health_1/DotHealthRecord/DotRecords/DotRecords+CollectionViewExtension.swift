@@ -95,7 +95,13 @@ extension DotRecordsViewController{
     }
     private func deleteItems(_ item:record) {
     //        snapshot = DataSourceSnapshot()
-        deleteFiles(items: item)
+        if item.medical_record_id != 0 {
+            deleteFiles(items: item)
+        } else {
+            self.addedRecords.removeAll()
+            recordsDataArray.removeLast()
+            applySnapshot(items: recordsDataArray)
+        }
             let delay = 0.2 // Seconds
         if addedRecords.contains(item){
            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {

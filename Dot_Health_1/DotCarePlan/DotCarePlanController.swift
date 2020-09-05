@@ -34,9 +34,9 @@ class DotCarePlanController: LBTAListController<DotCarePlanCell, DotCarePlanMode
             switch result {
             case .success(let model2Result):
                 SVProgressHUD.dismiss()
-                if let finalResult = model2Result as? Array<Dictionary<String,Any>>
+                if let finalResult = model2Result as? Dictionary<String,Any>, let success = finalResult["type"] as? String, success == "Success", let data =  finalResult["data"] as? Array<Dictionary<String,Any>>
                 {
-                    for model in finalResult
+                    for model in data
                     {
                         self.items.append(DotCarePlanModel.init(dict: model))
                         self.arrayItems.append(model)

@@ -100,13 +100,14 @@
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWy-aw-CHD" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="114.5" height="40"/>
-                                                        <color key="backgroundColor" name="GradientColorDark"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="114.5" id="WcC-1k-3iB"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                                        <color key="tintColor" name="Tint"/>
-                                                        <state key="normal" title="Edit"/>
+                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Edit">
+                                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sba-0n-ast" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
                                                         <rect key="frame" x="259.5" y="0.0" width="114.5" height="40"/>

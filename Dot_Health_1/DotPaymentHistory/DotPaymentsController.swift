@@ -8,33 +8,32 @@
 
 import LBTATools
 import FittedSheets
+import SVProgressHUD
 
 class DotPaymentsController: LBTAListController<DotPaymentsCell, DotPaymentsModel>, UICollectionViewDelegateFlowLayout {
     static let sharedInstance = DotPaymentsController()
     var dataItems = [DotPaymentsModel]()
+    private let client = DotConnectionClient()
+
     var controller =  UIStoryboard(name: "DotPaymentSheet", bundle: nil).instantiateInitialViewController() as! DotPaymentSheetController
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getPaymentHistory()
+        self.navigationController?.navigationBar.barTintColor = Theme.accentColor
+        self.navigationController?.navigationBar.tintColor = Theme.tintcolor
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Payment History"
         collectionView.backgroundColor = Theme.backgroundColor
         collectionView.isScrollEnabled = true
         collectionView.flashScrollIndicators()
-        items = [
-            .init(price: "$1300",tID:"TXTN123456", text: "Payment Successful", col: .red, state: 1),
-            .init(price: "$1300",tID:"TXTN123456" ,text: "Payment Failed", col: .red, state: 0),
-            .init(price: "$1300",tID:"TXTN123456" ,text: "Payment Processing", col: .red, state: 2),
-            .init(price: "$1300",tID:"TXTN123456" ,text: "Payment Successful", col: .red, state: 1),
-            .init(price: "$1300",tID:"TXTN123456" ,text: "Payment Failed", col: .red, state: 0),
-            .init(price: "$1300",tID:"TXTN123456" ,text: "Payment Processing", col: .red, state: 2),
-            .init(price: "$1300",tID:"TXTN123456" ,text: "Payment Failed", col: .red, state: 0),
-            .init(price: "$1300",tID:"TXTN123456" ,text: "Payment Successful", col: .red, state: 1),
-            .init(price: "$1300",tID:"TXTN123456" ,text: "Payment Processing", col: .red, state: 2),
-            .init(price: "$1300",tID:"TXTN123456", text: "Payment Failed", col: .red, state: 0)
-            
-        ]
-        DotPaymentsController.sharedInstance.dataItems = items
+
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.frame.width - 20, height: 100)
     }
@@ -63,4 +62,44 @@ class DotPaymentsController: LBTAListController<DotPaymentsCell, DotPaymentsMode
         
         self.present(sheetController, animated: false, completion: nil)
     }
+}
+
+extension DotPaymentsController {
+    
+func getPaymentHistory() {
+    SVProgressHUD.show()
+    
+    var queryItem = [URLQueryItem(name: "userType", value:"patients")]
+    if let userId = loginData.user_id {
+        queryItem.append(URLQueryItem(name: "userId", value: String(userId)))
+
+    }
+   
+    
+    let api: API = .api1
+    let endpoint: Endpoint = api.getPostAPIEndpointForMedication(urlString: "\(api.rawValue)payments", queryItems: queryItem, headers: nil, body: nil)
+    client.callAPI(with: endpoint.request, modelParser: [DotPaymentsModel].self) { [weak self] result in
+        guard let self = self else { return }
+        switch result {
+        case .success(let model2Result):
+            SVProgressHUD.dismiss()
+            
+            if let model = model2Result as? [DotPaymentsModel] {
+                self.items = model
+                DotPaymentsController.sharedInstance.dataItems = self.items
+            }
+            else{
+                print("error occured")
+                SVProgressHUD.dismiss()
+            }
+        case .failure(let error):
+            
+            SVProgressHUD.dismiss()
+            if case let APIError.errorAllResponse(description, message, _) = error {
+                self.showAlertView(message, message: description)
+            }
+        }
+    }
+    
+}
 }

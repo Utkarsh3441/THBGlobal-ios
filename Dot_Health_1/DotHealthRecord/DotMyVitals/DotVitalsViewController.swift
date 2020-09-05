@@ -337,29 +337,31 @@ extension DotVitalsViewController{
     
     
     func getVitalData(){
-         SVProgressHUD.show()
+        SVProgressHUD.show()
         let api : API = .patientsApi
         let urlString = "\(api.rawValue)\(loginData.user_id ?? 17)/vitals/\(getvitalParamName())"
         
-       SVProgressHUD.setDefaultMaskType(.custom)
-            let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: urlString, httpMethod: .get, queryItems: nil, headers: nil, body: nil)
-                    client.callAPI(with: endpoint.request, modelParser: String.self) { [weak self] result in
-                    guard let self = self else { return }
-                    switch result {
-                    case .success(let model2Result):
-                        SVProgressHUD.dismiss()
-                     print(model2Result)
-                        if let fetchedChartData = model2Result as? [[String:Any]]{
-                            self.chartDataSetup(chartData: fetchedChartData)
-                        }
-                        
-                     
-                    case .failure(let error):
-                        SVProgressHUD.dismiss()
-        //                SVProgressHUD.dismiss()
-                        print("the error \(error)")
-                    }
+        SVProgressHUD.setDefaultMaskType(.custom)
+        let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: urlString, httpMethod: .get, queryItems: nil, headers: nil, body: nil)
+        client.callAPI(with: endpoint.request, modelParser: String.self) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let model2Result):
+                SVProgressHUD.dismiss()
+                if let result = model2Result as? Dictionary<String,Any>, let type = result["type"] as? String, type == "Success", let data = result["data"] as? Array<Dictionary<String,Any>>, data.count > 0 {
+                    self.chartDataSetup(chartData: data)
+                } else {
+                    DotVitalsViewController.xAxisData.removeAll()
+                    DotVitalsViewController.yAxixData.removeAll()
+                    self.lineChartView.data = nil
+                    self.lineChartView.clear()
                 }
+            case .failure(let error):
+                SVProgressHUD.dismiss()
+                //                SVProgressHUD.dismiss()
+                print("the error \(error)")
+            }
+        }
     }
     
     func chartDataSetup(chartData: [[String:Any]]){

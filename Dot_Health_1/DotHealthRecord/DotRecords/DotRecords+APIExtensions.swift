@@ -51,7 +51,6 @@ func loadFiles(){
     func loadSelectedFile(indexpath: Int){
          SVProgressHUD.show()
         //    DispatchQueue.global(qos: .background).async {
-        print("This is run on the background queue")
         SVProgressHUD.setDefaultMaskType(.custom)
         let api : API = .api1
         let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: "http://104.215.179.29/v1/patients/\(loginData.user_id ?? 17)/medicalReports/\(self.recordsDataArray[indexpath].medical_record_id ?? 0)", httpMethod: .get, queryItems: nil, headers: nil, body: nil)
@@ -88,10 +87,9 @@ func loadFiles(){
                 case .success(let model2Result):
                     SVProgressHUD.dismiss()
                     if let model = model2Result as? [record]{
+                        self.addedRecords.removeAll()
                         self.recordsDataArray = model
                         self.applySnapshot(items: model)
-    //                    let baseStr = ((model2Result as? NSArray)?.filter({($0 as? record)?.category == "Blood Report"}).first as! record).file_content!
-    //                    let encodingString = baseStr.data(using: .utf8)?.base64EncodedString()//Here combinedString is your string
                     }
                     else{
                         print("error occured")
@@ -106,54 +104,77 @@ func loadFiles(){
 func upload(files: [record], toURL url: URL?,
                    withHttpMethod httpMethod: HTTPMethod,
                    completion: @escaping(_ result: Result<AnyObject?, APIError>, _ failedFiles: [String]?) -> Void) {
-        // SVProgressHUD.show()
-           DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-//               let targetURL = self?.addURLQueryParameters(toURL: url)
-            guard let boundary = self?.client.createBoundary() else { return }
-            let imageFileURL = URL(string: self?.dummyModel[1].cardTitle ?? "")
-           
-//               self?.requestHttpHeaders.add(value: "multipart/form-data; boundary=\(boundary)", forKey: "content-type")
-            self?.headers.add(value: "multipart/form-data; boundary=\(boundary)", forKey: "content-type")
-            let headers = ["content-type":"multipart/form-data; boundary=\(boundary)"]
-//            guard var body = try? JSONSerialization.data(withJSONObject: [:]) else { completion(Result.failure(.invalidData), nil); return }
-//            self?.client.httpBodyParameters.add(value: "12", forKey: "appointment_id")
-//            self?.client.httpBodyParameters.add(value: files.first?.category ?? "", forKey: "category")
-            self?.client.httpBodyParameters.add(value: "CT Scan", forKey: "category")
+    SVProgressHUD.show()
+    //    DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+    guard let boundary = self.client.createBoundary() else { return }
+   
+    let params = ["category": docTextField.text ?? "", "storage_link": "\(API.patientsApi)\(loginData.user_id ?? 17)/medicalReports"] as [String: String]
+    
+    self.headers.add(value: "multipart/form-data; boundary=\(boundary)", forKey: "content-type")
+    var  httpBody = self.createMultiPartHttpBody(parameters: params,
+                                                 boundary: boundary,
+                                                 images: files)
+    let headers = ["content-type":"multipart/form-data; boundary=\(boundary)"]
+    
+    let mimType = self.mimeType(for: (files.first)?.category ?? "")
+    guard let fileurl = URL(string:  (files.first)?.file_content ?? "") else {return}
+    let _ = self.client.add(files:  [FileInfo(withFileURL: fileurl, filename: "sampleImage.png", name: "file_content", mimetype: mimType)], toBody: &httpBody, withBoundary: boundary)
+    self.client.close(body: &httpBody, usingBoundary: boundary)
+    let api: API = .api1
+    let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: "http://104.215.179.29/v1/patients/\(loginData.user_id ?? 17)/medicalReports", httpMethod: httpMethod, queryItems: nil, headers: headers, body: httpBody)
+    self.client.callAPI(with: endpoint.request, modelParser: String.self) { [weak self] result in
+        guard let self = self else { return }
+        switch result {
+        case .success(let model2Result):
+             SVProgressHUD.dismiss()
+            if let model = model2Result as? NSDictionary, let type = model["type"] as? String, let messsage = model["message"] as? String, type == "Success"  {
+                
+                let alert = UIAlertController(title: type, message: messsage, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (_) in
+                    self.addedRecords.removeAll()
+                   self.navigationController?.popViewController(animated: true)
 
-            self?.client.httpBodyParameters.add(value: "http://104.215.179.29/v1/patients/\(loginData.user_id ?? 17)/medicalReports", forKey: "storage_link")
-            guard var body = self?.client.getHttpBody(withBoundary: boundary) else { return }
-            
-            let mimType = self?.mimeType(for: (files.first)?.category ?? "")
-            guard let fileurl = URL(string:  (files.first)?.file_content ?? "") else {return}
-            let _ = self?.client.add(files:  [FileInfo(withFileURL: fileurl, filename: "sampleImage.png", name: "file_content", mimetype: mimType!)], toBody: &body, withBoundary: boundary)
-            self?.client.close(body: &body, usingBoundary: boundary)
-                let api: API = .api1
-            let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: "http://104.215.179.29/v1/patients/\(loginData.user_id ?? 17)/medicalReports", httpMethod: httpMethod, queryItems: nil, headers: headers, body: body)
-            self?.client.callAPI(with: endpoint.request, modelParser: String.self) { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(let model2Result):
-                    SVProgressHUD.dismiss()
-                   print(model2Result)
-                   self.addedRecords.removeAll()
-                case .failure(let error):
-                    SVProgressHUD.dismiss()
-                   print("the error \(error)")
-                }
+                    }))
+                self.present(alert, animated: true, completion:nil)
+            } else {
+                self.showAlertView("Unable to upload file.", message: kblankString)
             }
-//               guard let request = self?.prepareRequest(withURL: targetURL, httpBody: body, httpMethod: httpMethod) else { completion(Results(withError: CustomError.failedToCreateRequest), nil); return }
-//
-//               let sessionConfiguration = URLSessionConfiguration.default
-//               let session = URLSession(configuration: sessionConfiguration)
-//               let task = session.uploadTask(with: request, from: nil, completionHandler: { (data, response, error) in
-//                   completion(Results(withData: data,
-//                                      response: Response(fromURLResponse: response),
-//                                      error: error),
-//                              failedFilenames)
-//               })
-//               task.resume()
-           }
-       }
+        
+        case .failure(let error):
+            SVProgressHUD.dismiss()
+            self.showAlertView("Unable to upload file.", message: kblankString)
+            print("the error \(error)")
+        }
+        //           }
+    }
+    }
+    
+     func createMultiPartHttpBody(parameters: [String: String],
+                                       boundary: String,
+                                       images: [record]) -> Data {
+        
+        let body = NSMutableData()
+        
+        let boundaryPrefix = "--\(boundary)\r\n"
+        
+        for (key, value) in parameters {
+            body.appendString(boundaryPrefix)
+            body.appendString("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+            body.appendString("\(value)\r\n")
+        }
+        
+        for image in images {
+            if let data = image.imageContent {
+                body.appendString(boundaryPrefix)
+                body.appendString("Content-Disposition: form-data; name=\"file_content\"; filename=\"\(image.record_name ?? "")\"\r\n")
+                body.appendString("Content-Type: image/png\r\n\r\n")
+                body.append(data)
+                body.appendString("\r\n")
+            }
+        }
+        body.appendString("--".appending(boundary.appending("--")))
+        return body as Data
+    }
 
 //    func uploads(files: [record], toURL url: URL,
 //                       withHttpMethod httpMethod: HTTPMethod,
@@ -223,5 +244,13 @@ func upload(files: [record], toURL url: URL?,
         }
 
         return mimetype as String
+    }
+}
+
+extension NSMutableData {
+    func appendString(_ string: String) {
+        if let data = string.data(using: String.Encoding.utf8, allowLossyConversion: false) {
+            append(data)
+        }
     }
 }

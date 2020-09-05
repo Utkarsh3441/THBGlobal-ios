@@ -12,9 +12,9 @@ import LBTATools
 class DotCarePlanCell: LBTAListCell<DotCarePlanModel> {
     
     let imageView = UIView(backgroundColor: #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1))
-    let l1 = UILabel(text: "13", font: .boldSystemFont(ofSize: 20), textColor: Theme.gradientColorDark!, textAlignment: .center, numberOfLines: 0)
-    let l2 = UILabel(text: "Apr 2020", font: .boldSystemFont(ofSize: 11), textColor: Theme.gradientColorDark!)
-     let l3 = UILabel(text: "ID: TXT1231N5460", font: .boldSystemFont(ofSize: 15), textColor: .white)
+    let l1 = UILabel(text: "", font: .boldSystemFont(ofSize: 20), textColor: Theme.gradientColorDark!, textAlignment: .center, numberOfLines: 0)
+    let l2 = UILabel(text: "", font: .boldSystemFont(ofSize: 11), textColor: Theme.gradientColorDark!)
+     let l3 = UILabel(text: "ID: ", font: .boldSystemFont(ofSize: 15), textColor: .white)
     let nameLabel = UILabel(text: "User name", font: .boldSystemFont(ofSize: 16))
     let messageLabel = UILabel(text: "Hey girl, what's up there? Let's go out and have a drink tonight?", font: .boldSystemFont(ofSize: 14), textColor: .gray, numberOfLines: 2)
     let messageLabel1 = UILabel(text: "Hey girl, what's up there? Let's go out and have a drink tonight?", font: .boldSystemFont(ofSize: 14), textColor: .gray, numberOfLines: 0)
@@ -30,6 +30,20 @@ class DotCarePlanCell: LBTAListCell<DotCarePlanModel> {
             case "active":l3.textColor = .systemGreen
             default:
                l3.textColor = .systemOrange
+            }
+            let dateFormatter = DateFormatter()
+            if let date = item.careplan_date?.stringToDate(dateFormat: "yyyy-MM-dd") {
+                dateFormatter.dateFormat = "MMM"
+                let month = dateFormatter.string(from: date)
+                
+                dateFormatter.dateFormat = "yyyy"
+                let year = dateFormatter.string(from: date)
+                
+                dateFormatter.dateFormat = "dd"
+                let day = dateFormatter.string(from: date)
+                
+                l1.text = day
+                l2.text = month + "\n" + year
             }
             
         }

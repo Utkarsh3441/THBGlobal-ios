@@ -82,7 +82,9 @@ extension DotSettingsViewController: UITableViewDelegate, UITableViewDataSource 
             
         }
         else if dataArray[indexPath.row] == "My Payment"{
-           self.present(DotPaymentsController(), animated: true, completion: nil)
+            self.navigationController?.pushViewController(DotPaymentsController(), animated: true)
+            self.navigationController?.navigationBar.tintColor = .white
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
         else if dataArray[indexPath.row] == "FAQ"{
            

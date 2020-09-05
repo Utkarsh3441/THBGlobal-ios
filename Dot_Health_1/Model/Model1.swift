@@ -106,6 +106,7 @@ struct record:Codable,Hashable{
     var medical_record_id:Int?
     var patient_id:Int?
     var storage_link:String?
+    var imageContent: Data?
 }
 struct HeaderValues {
     private var values: [String: String] = [:]

@@ -48,26 +48,16 @@ class DotRecordsViewController: LBTAFormController {
     var imgArr = [#imageLiteral(resourceName: "camera1") ,#imageLiteral(resourceName: "gallery") ,#imageLiteral(resourceName: "cloud1") ]
     @objc fileprivate func uploadFile() {
 //        dismiss(animated: true)
-        if !addedRecords.isEmpty{
+        if !addedRecords.isEmpty {
             
-            self.upload(files: self.addedRecords, toURL: nil, withHttpMethod: .post){
+            if let text = docTextField.text, text.count > 0 {
+                self.upload(files: self.addedRecords, toURL: nil, withHttpMethod: .post){
                     [weak self] (x,y) in
-            print("\(x) and \(y ?? [""])")
+                    print("\(x) and \(y ?? [""])")
+                }
+            } else {
+                self.showAlertView("Please provide value for document type", message: kblankString)
             }
-            
-            
-//        let alert = UIAlertController(title: "Upload", message: "Proceed to Upload files", preferredStyle: UIAlertController.Style.alert)
-//        alert.addAction(UIAlertAction(title: "Ok", style: .cancel,
-//                                      handler: {[weak self](_ action: UIAlertAction) -> Void in
-//                                         guard let self = self else { return }
-//                                        self.upload(files: self.addedRecords, toURL: nil, withHttpMethod: .post){
-//                                                    [weak self] (x,y) in
-//                                            print("\(x) and \(y ?? [""])")
-//                                                }
-//                                      }))
-//        self.present(alert, animated: true, completion:{
-//
-//        })
         }
         else{
             self.showAlertView("No Files To Upload", message: kblankString)
@@ -82,7 +72,9 @@ class DotRecordsViewController: LBTAFormController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Records"
         
+        docTextField.delegate = self
         scrollView.alwaysBounceVertical = true
         formContainerStackView.axis = .vertical
         formContainerStackView.spacing = 15
@@ -113,7 +105,7 @@ class DotRecordsViewController: LBTAFormController {
             tf.rightView = downButton
             tf.rightViewMode = .always
             tf.layer.borderWidth = 1
-            
+            tf.delegate = self
             tf.layer.borderColor = UIColor.darkGray.cgColor
             docTextField = tf
             formContainerStackView.addArrangedSubview(tf)
@@ -278,5 +270,12 @@ extension DotRecordsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         removeTransparentView()
+    }
+}
+
+extension DotRecordsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

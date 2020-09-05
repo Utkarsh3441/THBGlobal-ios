@@ -11,7 +11,6 @@ import LBTATools
 
 class PreviewViewController: LBTAFormController {
 
-    
     var encodedBase64String: String?
    
     override func viewDidLoad() {
@@ -21,23 +20,39 @@ class PreviewViewController: LBTAFormController {
     }
     
     func setupLoadView() {
-        scrollView.alwaysBounceVertical = true
+       // scrollView.alwaysBounceVertical = true
         //  view.backgroundColor = UIColor(hex: "#d8e5e2")
         view.backgroundColor = UIColor.white
         formContainerStackView.axis = .vertical
-        formContainerStackView.spacing = 12
         
         formContainerStackView.layoutMargins = .init(top: 25, left: 24, bottom: 30, right: 24)
         
-        let imageView = UIImageView(image: setImageInImageView())
-        imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
+        let imageView = ScaledHeightImageView(image: setImageInImageView())
+       // imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
         imageView.image = setImageInImageView()
+
+        imageView.contentMode = .scaleAspectFit
+        
+        let screenHeight = UIScreen.main.bounds.height
+        let screenWidth = UIScreen.main.bounds.width
+        
         if let width = imageView.image?.size.width , let height = imageView.image?.size.height {
-            imageView.constrainWidth(width)
-            imageView.constrainHeight(height)
+            let ratio = width / height
+            
+            if screenWidth > screenHeight {
+                imageView.constrainWidth(screenWidth)
+                imageView.constrainHeight(width/ratio)
+            } else {
+                imageView.constrainWidth(screenHeight*ratio)
+                imageView.constrainHeight(screenHeight)
+            }
         }
+        
+       // imageView.frame = CGRect(x: 0, y: 0, width: 100, height: screenSize.height - 200)
+        imageView.center = formContainerStackView.center
        formContainerStackView.addArrangedSubview(imageView)
-        let contentRect: CGRect = scrollView.subviews.reduce(into: .zero) { rect, view in
+         formContainerStackView.spacing = 12
+        let contentRect: CGRect = imageView.subviews.reduce(into: .zero) { rect, view in
             rect = rect.union(view.frame)
         }
         scrollView.contentSize = contentRect.size
@@ -83,5 +98,25 @@ class PreviewViewController: LBTAFormController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+class ScaledHeightImageView: UIImageView {
+
+    override var intrinsicContentSize: CGSize {
+
+        if let myImage = self.image {
+            let myImageWidth = myImage.size.width
+            let myImageHeight = myImage.size.height
+            let myViewWidth = self.frame.size.width
+
+            let ratio = myViewWidth/myImageWidth
+            let scaledHeight = myImageHeight * ratio
+
+            return CGSize(width: myViewWidth, height: scaledHeight)
+        }
+
+        return CGSize(width: -1.0, height: -1.0)
+    }
 
 }
