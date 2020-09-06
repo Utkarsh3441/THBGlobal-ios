@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZR-on-pBb">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="630"/>
                                         <subviews>
                                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ox4-8p-XBG">
                                                 <rect key="frame" x="20" y="20" width="334" height="34"/>
@@ -44,11 +44,11 @@
                                                     <action selector="selectType:" destination="OwI-Qm-ecb" eventType="touchUpInside" id="66F-dv-Mqn"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NJ7-Nu-UYo">
-                                                <rect key="frame" x="20" y="74" width="374" height="40"/>
+                                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="NJ7-Nu-UYo">
+                                                <rect key="frame" x="20" y="74" width="374" height="0.0"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0rD-aT-Qhk" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="179.5" height="40"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="179.5" height="0.0"/>
                                                         <color key="backgroundColor" name="GradientColorDark"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                         <color key="tintColor" name="Tint"/>
@@ -58,7 +58,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Upg-re-mlK" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
-                                                        <rect key="frame" x="194.5" y="0.0" width="179.5" height="40"/>
+                                                        <rect key="frame" x="194.5" y="0.0" width="179.5" height="0.0"/>
                                                         <color key="backgroundColor" name="GradientColorDark"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                         <color key="tintColor" name="Tint"/>
@@ -68,7 +68,7 @@
                                                         </connections>
                                                     </button>
                                                     <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4s-L6-DIh" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
-                                                        <rect key="frame" x="374" y="0.0" width="0.0" height="40"/>
+                                                        <rect key="frame" x="374" y="0.0" width="0.0" height="0.0"/>
                                                         <color key="backgroundColor" name="GradientColorDark"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                                         <color key="tintColor" name="Tint"/>
@@ -79,11 +79,11 @@
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="4si-3B-dcs"/>
+                                                    <constraint firstAttribute="height" id="4si-3B-dcs"/>
                                                 </constraints>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEc-FL-Iho" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
-                                                <rect key="frame" x="20" y="134" width="374" height="40"/>
+                                                <rect key="frame" x="20" y="74" width="374" height="40"/>
                                                 <color key="backgroundColor" name="GradientColorDark"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="yBO-N4-cJc"/>
@@ -95,52 +95,31 @@
                                                     <segue destination="FSr-Xs-KLb" kind="showDetail" identifier="toAddGraphDataSegue" id="MAE-gk-PN9"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="4vC-t7-nbD">
-                                                <rect key="frame" x="20" y="624" width="374" height="40"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWy-aw-CHD" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="40"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="114.5" id="WcC-1k-3iB"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" title="Edit">
-                                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sba-0n-ast" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
-                                                        <rect key="frame" x="259.5" y="0.0" width="114.5" height="40"/>
-                                                        <color key="backgroundColor" name="GradientColorDark"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="114.5" id="zvE-w9-5kS"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                                        <color key="tintColor" name="Tint"/>
-                                                        <state key="normal" title="Save"/>
-                                                        <connections>
-                                                            <action selector="saveAction:" destination="OwI-Qm-ecb" eventType="touchUpInside" id="Cff-FF-0VI"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="bfg-0J-aXQ"/>
-                                                </constraints>
-                                            </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xaJ-U1-5QG" customClass="LineChartView" customModule="Charts">
-                                                <rect key="frame" x="20" y="194" width="374" height="410"/>
+                                                <rect key="frame" x="20" y="134" width="374" height="390"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="410" id="Ayb-zD-fmE"/>
+                                                    <constraint firstAttribute="height" constant="390" id="Ayb-zD-fmE"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sba-0n-ast" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                                <rect key="frame" x="150" y="544" width="114.5" height="36"/>
+                                                <color key="backgroundColor" name="GradientColorDark"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="114.5" id="zvE-w9-5kS"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
+                                                <color key="tintColor" name="Tint"/>
+                                                <state key="normal" title="Save"/>
+                                                <connections>
+                                                    <action selector="saveAction:" destination="OwI-Qm-ecb" eventType="touchUpInside" id="Cff-FF-0VI"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="4vC-t7-nbD" secondAttribute="bottom" constant="149" id="0pe-CJ-3ms"/>
                                             <constraint firstItem="xaJ-U1-5QG" firstAttribute="top" secondItem="SEc-FL-Iho" secondAttribute="bottom" constant="20" id="5yT-fb-G4N"/>
                                             <constraint firstItem="6Gx-e3-ra2" firstAttribute="height" secondItem="Ox4-8p-XBG" secondAttribute="height" id="ACy-MX-7W0"/>
-                                            <constraint firstItem="4vC-t7-nbD" firstAttribute="leading" secondItem="eZR-on-pBb" secondAttribute="leading" constant="20" id="E12-dg-KU9"/>
                                             <constraint firstItem="xaJ-U1-5QG" firstAttribute="leading" secondItem="eZR-on-pBb" secondAttribute="leading" constant="20" id="FtD-ja-oXu"/>
                                             <constraint firstAttribute="trailing" secondItem="SEc-FL-Iho" secondAttribute="trailing" constant="20" id="Ka8-MU-qZQ"/>
                                             <constraint firstItem="6Gx-e3-ra2" firstAttribute="top" secondItem="eZR-on-pBb" secondAttribute="top" constant="20" id="M19-WH-og0"/>
@@ -150,13 +129,14 @@
                                             <constraint firstItem="NJ7-Nu-UYo" firstAttribute="leading" secondItem="eZR-on-pBb" secondAttribute="leading" constant="20" id="URB-Fl-jbo"/>
                                             <constraint firstAttribute="trailing" secondItem="NJ7-Nu-UYo" secondAttribute="trailing" constant="20" id="bjg-pb-HCc"/>
                                             <constraint firstItem="SEc-FL-Iho" firstAttribute="leading" secondItem="eZR-on-pBb" secondAttribute="leading" constant="20" id="dIR-cc-XRm"/>
-                                            <constraint firstAttribute="trailing" secondItem="4vC-t7-nbD" secondAttribute="trailing" constant="20" id="kqt-I7-0zV"/>
-                                            <constraint firstItem="4vC-t7-nbD" firstAttribute="top" secondItem="xaJ-U1-5QG" secondAttribute="bottom" constant="20" id="lwh-nF-d94"/>
                                             <constraint firstItem="6Gx-e3-ra2" firstAttribute="centerY" secondItem="Ox4-8p-XBG" secondAttribute="centerY" id="nRN-Ho-Npq"/>
                                             <constraint firstItem="NJ7-Nu-UYo" firstAttribute="top" secondItem="Ox4-8p-XBG" secondAttribute="bottom" constant="20" id="osV-bG-keb"/>
-                                            <constraint firstItem="SEc-FL-Iho" firstAttribute="top" secondItem="NJ7-Nu-UYo" secondAttribute="bottom" constant="20" id="pna-3W-56o"/>
+                                            <constraint firstItem="SEc-FL-Iho" firstAttribute="top" secondItem="NJ7-Nu-UYo" secondAttribute="bottom" id="pna-3W-56o"/>
+                                            <constraint firstItem="Sba-0n-ast" firstAttribute="centerX" secondItem="eZR-on-pBb" secondAttribute="centerX" id="r86-0K-TGQ"/>
                                             <constraint firstItem="Ox4-8p-XBG" firstAttribute="top" secondItem="eZR-on-pBb" secondAttribute="top" constant="20" id="sft-uo-LB0"/>
                                             <constraint firstAttribute="trailing" secondItem="xaJ-U1-5QG" secondAttribute="trailing" constant="20" id="tVa-uZ-yt3"/>
+                                            <constraint firstItem="Sba-0n-ast" firstAttribute="top" secondItem="xaJ-U1-5QG" secondAttribute="bottom" constant="20" id="ucx-Oc-VhB"/>
+                                            <constraint firstAttribute="bottom" secondItem="Sba-0n-ast" secondAttribute="bottom" constant="50" id="ypb-05-OLO"/>
                                         </constraints>
                                     </view>
                                 </subviews>

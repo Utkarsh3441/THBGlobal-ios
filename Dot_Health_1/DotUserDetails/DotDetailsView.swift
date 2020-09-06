@@ -450,16 +450,16 @@ extension DotDetailsView {
         present(documentPicker, animated: true, completion: nil)
     }
     func showPreview(url: String){
-        // Instantiate the interaction controller
-        //        if let file = URL(string: url){
-        //                   let previewQL = QLPreviewController() // 4
-        //                   previewQL.dataSource = self // 5
-        //                   previewQL.currentPreviewItemIndex = docIndex // 6
-        //                    show(previewQL, sender: nil) // 7
-        //
-        //               }else {
-        //                   print("File missing! Button has been disabled")
-        //               }
+    //     Instantiate the interaction controller
+//                if let file = URL(string: url){
+//                           let previewQL = QLPreviewController() // 4
+//                           previewQL.dataSource = self // 5
+//                           previewQL.currentPreviewItemIndex = docIndex // 6
+//                            show(previewQL, sender: nil) // 7
+//        
+//                       }else {
+//                           print("File missing! Button has been disabled")
+//                       }
     }
 }
 

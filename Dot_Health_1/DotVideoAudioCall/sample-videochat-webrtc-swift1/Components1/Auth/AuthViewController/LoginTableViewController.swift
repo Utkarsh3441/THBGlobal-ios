@@ -11,6 +11,7 @@ import Quickblox
 
 struct LoginConstant {
     static let notSatisfyingDeviceToken = "Invalid parameter not satisfying: deviceToken != nil"
+    static let enterToChatting = NSLocalizedString("Enter to Chat", comment: "")
     static let enterToChat = NSLocalizedString("Enter to Video Chat", comment: "")
     static let fullNameDidChange = NSLocalizedString("Full Name Did Change", comment: "")
     static let login = NSLocalizedString("Login", comment: "")

@@ -49,7 +49,7 @@ func displayUploadImageDialog(btnSelected: UIButton) {
 }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let imgUrl = info[UIImagePickerController.InfoKey(rawValue: UIImagePickerController.InfoKey.imageURL.rawValue)] as? URL{
-            var new = record(category:(imgUrl.lastPathComponent), file_content: "\(imgUrl)", medical_record_id: 1, patient_id: 17, storage_link: nil)
+            var new = record(category:(imgUrl.lastPathComponent), file_content: "\(imgUrl)", medical_record_id: 0, patient_id: loginData.user_id ?? 17, storage_link: nil)
             
             guard let image = info[.originalImage] as? UIImage else {
                 return
@@ -61,13 +61,13 @@ func displayUploadImageDialog(btnSelected: UIButton) {
             new.imageContent = imageData
             //                  new.type = "image/jpeg"
             new.record_name = (info[.imageURL] as? URL)?.lastPathComponent
+            new.storage_link = (info[.imageURL] as? URL)?.absoluteString 
             
             if let text = docTextField.text, text.count > 0 {
               new.category = text
             } else {
                new.category = "Image"
             }
-            new.medical_record_id = 0
         
             if recordsDataArray.contains(new) || addedRecords.contains(new){
                 self.showAlertView("Duplicate files", message: "File already present")

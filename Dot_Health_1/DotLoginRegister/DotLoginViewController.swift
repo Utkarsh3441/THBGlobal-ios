@@ -55,6 +55,8 @@ class DotLoginViewController: UIViewController {
         if linkSet1 && linkSet2 {
             TCPView.attributedText = attributedString
         }
+        passwordTextField.delegate = self
+        userNameTextField.delegate = self
 //        passwordTextField.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
 //        userNameTextField.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
         
@@ -215,5 +217,13 @@ extension DotLoginViewController: WKUIDelegate,WKNavigationDelegate{
     }
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         SVProgressHUD.dismiss()
+    }
+}
+
+extension DotLoginViewController : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

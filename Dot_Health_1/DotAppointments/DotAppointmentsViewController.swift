@@ -9,6 +9,10 @@
 import UIKit
 import SVProgressHUD
 
+protocol TalkToDoctorProtocol {
+    func buttonTapped()
+}
+
 class DotAppointmentsViewController: UIViewController {
     
     @IBOutlet weak var searchButton: UIButton!
@@ -153,19 +157,26 @@ extension DotAppointmentsViewController: UITableViewDataSource, UITableViewDeleg
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                let selectedAppointment = MyData.appointmentModelArray[indexPath.row]
-                let storyboard = UIStoryboard(name: String(describing: DotAppointmentDetailsViewController.self), bundle: nil)
-                       let nextViewController =  storyboard.instantiateInitialViewController() as! DotAppointmentDetailsViewController
-                    
-                let _ = nextViewController.view
+        let selectedAppointment = MyData.appointmentModelArray[indexPath.row]
+        let storyboard = UIStoryboard(name: String(describing: DotAppointmentDetailsViewController.self), bundle: nil)
+        let nextViewController =  storyboard.instantiateInitialViewController() as! DotAppointmentDetailsViewController
+        
+        let _ = nextViewController.view
         nextViewController.detailsSetup(appointmentDetailModel: MyData.appointmentModelArray[indexPath.row])
-                self.present(nextViewController, animated: true, completion: nil)
+        nextViewController.talkProtocol = self
+        self.present(nextViewController, animated: true, completion: nil)
         
         
         
     }
     
     
+}
+
+extension DotAppointmentsViewController: TalkToDoctorProtocol {
+    func buttonTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension DotAppointmentsViewController{

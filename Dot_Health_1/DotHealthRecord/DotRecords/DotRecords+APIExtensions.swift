@@ -42,9 +42,10 @@ func loadFiles(){
     //}
     }
     
-    func pushToPreviewController(encodedString:String) {
+    func pushToPreviewController(encodedString:String, fileName: String) {
         let previewController = PreviewViewController()
         previewController.encodedBase64String = encodedString
+        previewController.fileName = fileName
         self.present(previewController, animated: true, completion: nil)
     }
     
@@ -62,7 +63,7 @@ func loadFiles(){
                 SVProgressHUD.dismiss()
                 if let model = model2Result as? RecordResponseData, model.type == "Success", let recordModel = model.data, let fileContent = recordModel.file_content {
                     if fileContent != "" {
-                        self.pushToPreviewController(encodedString: fileContent)
+                        self.pushToPreviewController(encodedString: fileContent, fileName: recordModel.record_name ?? "")
                   }
                 }
                 else{
@@ -118,7 +119,7 @@ func upload(files: [record], toURL url: URL?,
     
     let mimType = self.mimeType(for: (files.first)?.category ?? "")
     guard let fileurl = URL(string:  (files.first)?.file_content ?? "") else {return}
-    let _ = self.client.add(files:  [FileInfo(withFileURL: fileurl, filename: "sampleImage.png", name: "file_content", mimetype: mimType)], toBody: &httpBody, withBoundary: boundary)
+ //   let _ = self.client.add(files:  [FileInfo(withFileURL: fileurl, filename: "sampleImage.png", name: "file_content", mimetype: mimType)], toBody: &httpBody, withBoundary: boundary)
     self.client.close(body: &httpBody, usingBoundary: boundary)
     let api: API = .api1
     let endpoint: Endpoint = api.getPostAPIEndpointForAll(urlString: "http://104.215.179.29/v1/patients/\(loginData.user_id ?? 17)/medicalReports", httpMethod: httpMethod, queryItems: nil, headers: headers, body: httpBody)

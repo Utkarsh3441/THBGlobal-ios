@@ -22,7 +22,9 @@ class DotCollectionViewController: UIViewController {
     var collectionSuperView = UIView()
     var dashBoardObj = DotDashboardViewController()
     var CardsCollectionView: UICollectionView! = nil
-    var labelArray = ["My Health Records","Appointments","Contact Care Coordinator","Talk to Doctor","Health Info"]//make //,"More THB"didset
+//    var labelArray = ["My Health Records","Appointments","Contact Care Coordinator","Talk to Doctor","Health Info"]//make //,"More THB"didset
+    var labelArray = ["My Health Records","Appointments","Contact Care Coordinator","Health Info"]//make //,"More THB"didset
+
     var imagesArray = [#imageLiteral(resourceName: "Health-Records") ,#imageLiteral(resourceName: "Appointments") ,#imageLiteral(resourceName: "24-7-Doctor"),#imageLiteral(resourceName: "Talk-to-THB"),#imageLiteral(resourceName: "Health-Info"),#imageLiteral(resourceName: "More-THB")]//make Didset
     var identiFierForView:String?
     var healthRecordLabelArray = ["Vitals","Clinical Visits","Medications","Records","Care Plan"]//,"Tele consult"//make didset

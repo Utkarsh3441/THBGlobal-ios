@@ -8,27 +8,84 @@
 
 import UIKit
 import LBTATools
+import WebKit
+import PDFKit
 
 class PreviewViewController: LBTAFormController {
 
     var encodedBase64String: String?
+    var fileName: String?
+    var storageLink:String?
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLoadView()
-
+        
+        if storageLink != nil {
+            openUploadedDoc()
+        } else {
+            if checkIfTypeIsImage() == true {
+                openPreviewForImage()
+            } else {
+                openPreviewForDocs()
+            }
+        }
     }
     
-    func setupLoadView() {
-       // scrollView.alwaysBounceVertical = true
-        //  view.backgroundColor = UIColor(hex: "#d8e5e2")
+    func openUploadedDoc() {
+        
+        formContainerStackView.isHidden = true
+        
+        let url = URL(string: storageLink!)
+        let webView = WKWebView(frame: self.view.frame)
+        
+        
+//        if checkIfTypeIsImage() == true {
+//
+//            let data = try? Data(contentsOf: url!)
+//
+//            if let imageData = data {
+//                let image = UIImage(data: imageData)
+//                let screenHeight = UIScreen.main.bounds.height
+//                let screenWidth = UIScreen.main.bounds.width
+//                if let width = image?.size.width , let height = image?.size.height {
+//                    let ratio = width / height
+//
+//                    if screenWidth > screenHeight {
+//                        webView.constrainWidth(screenWidth)
+//                        webView.constrainHeight(width/ratio)
+//                    } else {
+//                        webView.constrainWidth(screenHeight*ratio)
+//                        webView.constrainHeight(screenHeight)
+//                    }
+//                }
+//            }
+//
+//        }
+        webView.loadFileURL(url!, allowingReadAccessTo: url!)
+        webView.center = self.view.center
+        self.view.addSubview(webView)
+    }
+    
+    func checkIfTypeIsImage()-> Bool {
+        
+        let  componentsArr = fileName?.components(separatedBy: ".")
+        if let fileType = componentsArr?.last {
+            
+            if fileType.caseInsensitiveCompare("png") == .orderedSame ||  fileType.caseInsensitiveCompare("jpg") == .orderedSame  ||  fileType.caseInsensitiveCompare("jpeg") == .orderedSame {
+                return true
+            }
+        }
+        return false
+        
+    }
+    
+    func openPreviewForImage() {
         view.backgroundColor = UIColor.white
         formContainerStackView.axis = .vertical
         
         formContainerStackView.layoutMargins = .init(top: 25, left: 24, bottom: 30, right: 24)
         
         let imageView = ScaledHeightImageView(image: setImageInImageView())
-       // imageView.frame = CGRect(x: 0, y: 0, width: 100, height: 200)
         imageView.image = setImageInImageView()
 
         imageView.contentMode = .scaleAspectFit
@@ -47,9 +104,7 @@ class PreviewViewController: LBTAFormController {
                 imageView.constrainHeight(screenHeight)
             }
         }
-        
-       // imageView.frame = CGRect(x: 0, y: 0, width: 100, height: screenSize.height - 200)
-        imageView.center = formContainerStackView.center
+       imageView.center = formContainerStackView.center
        formContainerStackView.addArrangedSubview(imageView)
          formContainerStackView.spacing = 12
         let contentRect: CGRect = imageView.subviews.reduce(into: .zero) { rect, view in
@@ -88,17 +143,25 @@ class PreviewViewController: LBTAFormController {
         return image
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func base64ToData(string:String)->Data? {
+         guard  let fromStringToData = Data(base64Encoded: string, options: .ignoreUnknownCharacters) else {return nil}
+        return fromStringToData
     }
-    */
+    
+    func openPreviewForDocs() {
+        
+        formContainerStackView.isHidden = true
+                
+        if let docData = self.base64ToData(string: encodedBase64String!.padding(toLength: ((encodedBase64String!.count+3)/4)*4, withPad: "=", startingAt: 0)) {
 
+            let webView = WKWebView(frame: self.view.frame)
+            webView.load(docData, mimeType: "application/pdf",
+                         characterEncodingName: "utf-8", baseURL:URL(string: "https://www.google.com")!)
+            webView.center = self.view.center
+            self.view.addSubview(webView)
+      
+        }
+    }
 }
 
 class ScaledHeightImageView: UIImageView {

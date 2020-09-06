@@ -132,18 +132,23 @@ extension DotRecordsViewController: UICollectionViewDelegate,UIDocumentPickerDel
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         docIndex = indexPath.row
+        if item.medical_record_id == 0 {
+            let previewController = PreviewViewController()
+            previewController.storageLink = self.recordsDataArray[docIndex].storage_link
+            self.present(previewController, animated: true, completion: nil)
+        } else {
+            loadSelectedFile(indexpath: indexPath.row)
+        }
         
-        loadSelectedFile(indexpath: indexPath.row)
-        
-//        if item.file_content != ""{
-//            showPreview(url: item.file_content!)
-//        }
-//        if item.cardName == ""{
-//            openDocumentPicker()
-//        }
-//        else{
-//            showPreview(url: item.cardTitle!)
-//        }
+        //        if item.file_content != ""{
+        //            showPreview(url: item.file_content!)
+        //        }
+        //        if item.cardName == ""{
+        //            openDocumentPicker()
+        //        }
+        //        else{
+        //            showPreview(url: item.cardTitle!)
+        //        }
         
     }
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -164,10 +169,27 @@ extension DotRecordsViewController: UICollectionViewDelegate,UIDocumentPickerDel
         print(url.lastPathComponent.split(separator: "_").first!)
         
         print(url.pathExtension)
-//        let newCard = AdddocumentsModel(cardName: "", cardTitle: "", selectedImage: UIImage(), isSelect: false
-       
-        let new = record(category: (url.lastPathComponent) , file_content: "\(url)", medical_record_id: 1, patient_id: 17, storage_link: nil)
-         if recordsDataArray.contains(new) || addedRecords.contains(new){
+        //        let newCard = AdddocumentsModel(cardName: "", cardTitle: "", selectedImage: UIImage(), isSelect: false
+        
+        var new = record(category: (url.lastPathComponent) , file_content: "\(url)", medical_record_id: 0, patient_id: loginData.user_id ?? 17, storage_link: nil)
+        do {
+            let imgData = try Data(contentsOf:url, options:[])
+            new.imageContent = imgData
+        }
+        catch {
+            // can't load image data
+        }
+                new.record_name = url.lastPathComponent
+        new.storage_link =  url.absoluteString
+
+        if let text = docTextField.text, text.count > 0 {
+            new.category = text
+        } else {
+            new.category = "Document"
+        }
+        
+        
+        if recordsDataArray.contains(new) || addedRecords.contains(new){
             self.showAlertView("Duplicate files", message: "File already present")
         }
         else{
@@ -176,13 +198,13 @@ extension DotRecordsViewController: UICollectionViewDelegate,UIDocumentPickerDel
             applySnapshot(items: recordsDataArray)
         }
         
-//        var model = dummyModel.remove(at: docIndex)
-//        model.cardName = (url.lastPathComponent)
-//        model.cardTitle = "\(url)"
-//        model.url = url
-//        dummyModel.insert(model, at: docIndex)
-//        dummyModel.insert(newCard, at: dummyModel.count)
-//        applySnapshot(items: dummyModel)
+        //        var model = dummyModel.remove(at: docIndex)
+        //        model.cardName = (url.lastPathComponent)
+        //        model.cardTitle = "\(url)"
+        //        model.url = url
+        //        dummyModel.insert(model, at: docIndex)
+        //        dummyModel.insert(newCard, at: dummyModel.count)
+        //        applySnapshot(items: dummyModel)
     }
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self

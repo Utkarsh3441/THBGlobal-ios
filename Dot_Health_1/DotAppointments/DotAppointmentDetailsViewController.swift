@@ -20,6 +20,7 @@ class DotAppointmentDetailsViewController: UIViewController {
     @IBOutlet weak var complaints: UILabel!
     @IBOutlet weak var coordinator: UILabel!
     @IBOutlet weak var remarks: UILabel!
+    var talkProtocol: TalkToDoctorProtocol?
     var appointmentId:UUID?
     var apptDate:String?
     override func viewDidLoad() {
@@ -40,6 +41,35 @@ class DotAppointmentDetailsViewController: UIViewController {
         self.coordinator.text = "Not Available"// appointmentDetailModel.coordinator
         self.remarks.text = appointmentDetailModel.remarks
     }
+    
+    @IBAction func talkToDoctorTapped(_ sender: Any) {
+        
+        UserDefaults.standard.set(true, forKey: "isTalkToDoctorClicked")
+        UserDefaults.standard.synchronize()
+        talkProtocol?.buttonTapped()
+        self.dismiss(animated: true, completion: nil)
+//         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//        for controller in self.navigationController!.viewControllers as Array {
+//            if controller.isKind(of: DotDashboardViewController.self) {
+//                self.navigationController!.popToViewController(controller, animated: true)
+//                break
+//            }
+//        if let isTalk = UserDefaults.standard.value(forKey: "isTalkToDoctorClicked") as? Bool {
+//                 if isTalk == true {
+//                     self.navigationController?.popViewController(animated: true)
+//                 }
+//             }
+        }
+
+    
+    func addChildViewController(_ views:UIViewController, back: Bool) {
+          self.navigationController?.pushViewController(views, animated: true)
+          self.navigationController?.navigationBar.barTintColor = Theme.accentColor
+          self.navigationController?.navigationBar.tintColor = Theme.tintcolor
+          self.navigationController?.navigationBar.isTranslucent = false
+        
+      }
+    
 
     /*
     // MARK: - Navigation

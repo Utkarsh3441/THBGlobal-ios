@@ -54,8 +54,15 @@ class DotSettingsViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     func signingOut(){
-        navigationController?.popToRootViewController(animated: true)
-    
+        let _ = self.parent?.navigationController?.popViewController(animated: true)
+
+        // navigationController?.popToRootViewController(animated: true)
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: DotLoginViewController.self) {
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+            }
+        }
     }
     /*
     // MARK: - Navigation

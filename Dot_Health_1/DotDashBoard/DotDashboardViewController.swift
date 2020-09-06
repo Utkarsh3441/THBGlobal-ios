@@ -47,6 +47,16 @@ class DotDashboardViewController: UIViewController {
 
         // Hide the navigation bar on the this view controller
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        if let isTalk = UserDefaults.standard.value(forKey: "isTalkToDoctorClicked") as? Bool {
+            if isTalk == true {
+                UserDefaults.standard.set(false, forKey: "isTalkToDoctorClicked")
+                let storyboard = UIStoryboard(name: "Authorization", bundle: nil)
+                let current = storyboard.instantiateViewController(withIdentifier: "AuthViewController") as! AuthViewController
+                self.addChildViewController(current, back: true)
+            }
+        }
+        
     }
 
     override func viewWillDisappear(_ animated: Bool) {

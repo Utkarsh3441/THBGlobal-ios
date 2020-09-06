@@ -74,13 +74,14 @@ var name: String?
 init(withFileURL url: URL?, filename: String, name: String, mimetype: String) {
     guard let url = url else { return }
 
-    let image = UIImage(data: try! Data(contentsOf:url ))!
-//    if let imageData = image.jpegData(compressionQuality: 0.5){
+    if let image = UIImage(data: try! Data(contentsOf:url )) {
         let base64string = convertImageTobase64(format: .png, image: image)
+        fileContents = base64string
+    }
+//    if let imageData = image.jpegData(compressionQuality: 0.5){
 //    }
     
     
-    fileContents = base64string
     self.filename = filename
     self.name = name
     self.mimetype = mimetype

@@ -83,7 +83,7 @@ class AuthViewController: UITableViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.keyboardDismissMode = .onDrag
         tableView.delaysContentTouches = false
-        navigationItem.title = LoginConstant.enterToChat
+        navigationItem.title = LoginConstant.enterToChatting
         showInfoButton()
         setupViews()
         
@@ -94,7 +94,9 @@ class AuthViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+//
+       
+            
             
         defaultConfiguration()
         
@@ -102,13 +104,18 @@ class AuthViewController: UITableViewController {
         let updateLoginInfo: ((_ status: NetworkConnectionStatus) -> Void)? = { [weak self] status in
             let notConnection = status == .notConnection
             let loginInfo = notConnection ? LoginConstant.checkInternet : LoginConstant.enterUsername
-            let profile = Profile()
-            if profile.isFull == true, notConnection == false {
-                self?.login(fullName: profile.fullName, login: profile.login)
+//            let profile = Profile()
+//            if profile.isFull == true, notConnection == false {
+//                self?.login(fullName: profile.fullName, login: profile.login)
+//            }
+            if let userName = loginData.user_name, let login = loginData.user_email {
+                self?.loginTextField.text = userName
+                self?.userNameTextField.text = login
+                self?.login(fullName: login, login: userName)
             }
             self?.infoText = loginInfo
         }
-        
+
         Reachability.instance.networkStatusBlock = { status in
             updateLoginInfo?(status)
         }
@@ -445,7 +452,7 @@ class AuthViewController: UITableViewController {
            let storyboard = UIStoryboard(name: "Dialogs", bundle: nil)
            let dialogsVC = storyboard.instantiateViewController(withIdentifier: "DialogsViewController") as! DialogsViewController
 //           let dialogsScreen = UINavigationController(rootViewController: dialogsVC)
-        self.navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.2216441333, green: 0.4713830948, blue: 0.9869660735, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = Theme.accentColor!
            self.navigationController?.navigationBar.barStyle = .black
            self.navigationController?.navigationBar.shadowImage = UIImage()
            self.navigationController?.navigationBar.isTranslucent = false

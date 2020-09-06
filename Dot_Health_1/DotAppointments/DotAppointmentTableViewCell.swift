@@ -55,10 +55,18 @@ class DotAppointmentTableViewCell: UITableViewCell {
         dateFormatter.dateFormat = "dd MMM yyyy"
         let timeFormatter = DateFormatter()
         timeFormatter.dateFormat = "HH:mm"
-        self.issueLabel.text = appointmentModel.purpose
+        if appointmentModel.purpose != "Not Available" {
+            self.issueLabel.text = appointmentModel.purpose
+        } else {
+            self.issueLabel.text = ""
+        }
         self.hospitalNameLabel.text = appointmentModel.provider_name
         let dateStringArray = appointmentModel.slot_date.components(separatedBy: "-")
-        self.dateLabel.attributedText = NSAttributedString().createAttributedString(first: dateStringArray[2]+"\n", second: dateStringArray[1]+"\n"+dateStringArray[0], fColor:Theme.tintcolor ?? UIColor.white, sColor: Theme.tintcolor ?? UIColor.white,fBold:true,sBold:false,fSize: 24.0,sSize: 17.0)
+        var monthName = ""
+        if let month = Int(dateStringArray[1]) {
+              monthName = String.monthName(monthId:month)
+        }
+        self.dateLabel.attributedText = NSAttributedString().createAttributedString(first: dateStringArray[2]+"\n", second: monthName+"\n"+dateStringArray[0], fColor:Theme.tintcolor ?? UIColor.white, sColor: Theme.tintcolor ?? UIColor.white,fBold:true,sBold:false,fSize: 24.0,sSize: 17.0)
         self.doctorNameLabel.text = appointmentModel.provider_type
    //     self.dateLabel.text = appointmentModel.slot_date//dateFormatter.string(from: appointmentModel.date)
         self.timeLabel.text = appointmentModel.start_time//timeFormatter.string(from: appointmentModel.date)
