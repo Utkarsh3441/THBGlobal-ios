@@ -35,6 +35,7 @@ class DotTimeSlotViewController: UIViewController {
     var selectedHosPitalName = String()
     var selectedPrice = String()
     var selectedDoctorId: Int?
+    var doctorFees = ""
     var dotAppointmentSlotModel = [DotAppointmentSlotModel]()
     var paymentObject = DotPaymentViewController()
     enum Section :CaseIterable{
@@ -142,7 +143,7 @@ class DotTimeSlotViewController: UIViewController {
     func showHideDataForSlots(isHidden:Bool) {
         self.noSlotsLabel.isHidden = !isHidden
         self.slotsView.isHidden = isHidden
-        self.buttonProceedToPay.isHidden = isHidden
+        self.buttonProceedToPay.isHidden = false
         self.stackViewLegend.isHidden = isHidden
     }
         
@@ -194,6 +195,7 @@ class DotTimeSlotViewController: UIViewController {
         self.hospitalNameLabel.text = MyData.doctorModelArray[rowIndex].state
         if let fees = MyData.doctorModelArray[rowIndex].fees {
             self.priceLabel.text = "$ \(fees)"
+            doctorFees = fees
             self.priceLabel.isHidden = false
         }
         else {
@@ -212,17 +214,23 @@ class DotTimeSlotViewController: UIViewController {
        }
     
     @IBAction func proceedToPayAction(_ sender: UIButton) {
-      let storyBoard : UIStoryboard = UIStoryboard(name: String(describing: DotPaymentViewController.self) , bundle:nil)
-                 let nextViewController = storyBoard.instantiateInitialViewController() as! DotPaymentViewController
-                 
-                 let _ = nextViewController.view
-        nextViewController.doctorImageView.image =  self.doctorImageView.image
-        nextViewController.doctorNameLabel.text = self.nameLabel.text
-        nextViewController.doctorTypeLabel.text =  self.specialityLabel.text
-        nextViewController.doctorAddressLabel.text = self.hospitalNameLabel.text
-        nextViewController.priceLabel.text = self.priceLabel.text
-        nextViewController.priceLabel.textColor =  self.priceLabel.textColor
-                 self.show(nextViewController, sender: self)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let telrController = storyboard.instantiateViewController(withIdentifier: "TelrViewController") as! TelrViewController
+         telrController.amountToBePaid = doctorFees
+        navigationController?.pushViewController(telrController, animated: true)
+
+        //      let storyBoard : UIStoryboard = UIStoryboard(name: String(describing: DotPaymentViewController.self) , bundle:nil)
+        //                 let nextViewController = storyBoard.instantiateInitialViewController() as! DotPaymentViewController
+        //
+        //                 let _ = nextViewController.view
+        //        nextViewController.doctorImageView.image =  self.doctorImageView.image
+        //        nextViewController.doctorNameLabel.text = self.nameLabel.text
+        //        nextViewController.doctorTypeLabel.text =  self.specialityLabel.text
+        //        nextViewController.doctorAddressLabel.text = self.hospitalNameLabel.text
+        //        nextViewController.priceLabel.text = self.priceLabel.text
+        //        nextViewController.priceLabel.textColor =  self.priceLabel.textColor
+        //                 self.show(nextViewController, sender: self)
     }
     
 }

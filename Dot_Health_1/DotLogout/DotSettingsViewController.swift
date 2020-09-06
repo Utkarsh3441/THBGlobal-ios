@@ -31,22 +31,32 @@ class DotSettingsViewController: UIViewController {
         webView.translatesAutoresizingMaskIntoConstraints = false
         return webView
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+      
    
     @IBAction func logOutAction(_ sender: Any) {
-    let alertController = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
-           alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (_) in
-              // KeychainService.removePassword(service: keyChainPrefix.loginSession.rawValue, account: DotLoginViewController.shared.signature ?? kblankString)
-               KeychainService.removePassword(service: keyChainPrefix.loginSession.rawValue, account: keyChainPrefix.patientAccount.rawValue)
-               KeychainService.removePassword(service: keyChainPrefix.loginUsername.rawValue, account: keyChainPrefix.patientAccount.rawValue)
-               self.signingOut()
-           }))
-           alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-           present(alertController, animated: true, completion: nil)
-       }
-       func signingOut(){
-           navigationController?.popToRootViewController(animated: true)
-        
-       }
+        let alertController = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (_) in
+            // KeychainService.removePassword(service: keyChainPrefix.loginSession.rawValue, account: DotLoginViewController.shared.signature ?? kblankString)
+            KeychainService.removePassword(service: keyChainPrefix.loginSession.rawValue, account: keyChainPrefix.patientAccount.rawValue)
+            KeychainService.removePassword(service: keyChainPrefix.loginUsername.rawValue, account: keyChainPrefix.patientAccount.rawValue)
+            self.signingOut()
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    func signingOut(){
+        navigationController?.popToRootViewController(animated: true)
+    
+    }
     /*
     // MARK: - Navigation
 
@@ -83,8 +93,10 @@ extension DotSettingsViewController: UITableViewDelegate, UITableViewDataSource 
         }
         else if dataArray[indexPath.row] == "My Payment"{
             self.navigationController?.pushViewController(DotPaymentsController(), animated: true)
-            self.navigationController?.navigationBar.tintColor = .white
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.tabBarController?.tabBar.isHidden = false
+            self.navigationController?.navigationBar.barTintColor = Theme.accentColor
+            self.navigationController?.navigationBar.tintColor = Theme.tintcolor
+            self.navigationController?.navigationBar.isTranslucent = false
         }
         else if dataArray[indexPath.row] == "FAQ"{
            

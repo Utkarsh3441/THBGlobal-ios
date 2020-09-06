@@ -19,19 +19,12 @@ class DotPaymentsController: LBTAListController<DotPaymentsCell, DotPaymentsMode
     override func viewDidLoad() {
         super.viewDidLoad()
         getPaymentHistory()
-        self.navigationController?.navigationBar.barTintColor = Theme.accentColor
-        self.navigationController?.navigationBar.tintColor = Theme.tintcolor
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.isHidden = false
         navigationItem.title = "Payment History"
+        
         collectionView.backgroundColor = Theme.backgroundColor
         collectionView.isScrollEnabled = true
         collectionView.flashScrollIndicators()
 
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

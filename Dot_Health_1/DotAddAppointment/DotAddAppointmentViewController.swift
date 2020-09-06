@@ -73,6 +73,12 @@ class DotAddAppointmentViewController: UIViewController {
         
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     func configureViewItems(){
         self.doctorButton.createOptionButton()
         self.specialityButton.createOptionButton()
