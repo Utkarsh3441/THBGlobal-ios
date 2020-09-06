@@ -26,7 +26,7 @@ class DotPaymentSheetController: UIViewController {
         arrValue.append(selectedModel.amount)
         arrHeader.append("Amount:           $")
         arrValue.append(String(selectedModel.discountPercentage))
-        arrHeader.append("Discount (%):         $")
+        arrHeader.append("Discount (%):         ")
         arrValue.append(String(selectedModel.convenienceFee))
         arrHeader.append("Convinience Fee:      $")
         arrValue.append(String(selectedModel.grossTotal))
