@@ -281,6 +281,7 @@ extension DotVitalsViewController{
         }
         let line1 = LineChartDataSet(entries: lineChartEntry1, label: "\(vitalListTextField.text!)")
         data.addDataSet(line1)
+        if self.vitalListTextField.text == "Blood Pressure" {
 
         if DotVitalsViewController.y2AxixData.count > 0 {
             for i in 0..<dataPoints.count {
@@ -289,6 +290,7 @@ extension DotVitalsViewController{
         }
         let line2 = LineChartDataSet(entries: lineChartEntry2, label: "\(vitalListTextField.text!)")
         data.addDataSet(line2)
+        }
         
         xaxis.valueFormatter = chartXAxisFormatter
         lineChartView.xAxis.valueFormatter = xaxis.valueFormatter
