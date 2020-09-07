@@ -431,7 +431,7 @@ class DialogsViewController: UITableViewController {
         guard currentUser.isFull == true else {
             return
         }
-        let title = currentUser.fullName.count > 0 ? currentUser.fullName : currentUser.login
+        let title = currentUser.login.count > 0 ? currentUser.login : currentUser.fullName
         self.title = title
     }
 }

@@ -33,37 +33,48 @@ class PreviewViewController: LBTAFormController {
     
     func openUploadedDoc() {
         
-        formContainerStackView.isHidden = true
-        
         let url = URL(string: storageLink!)
-        let webView = WKWebView(frame: self.view.frame)
+        if let data = try? Data(contentsOf: url!), let image = UIImage(data: data)  {
+            
+            view.backgroundColor = UIColor.white
+            formContainerStackView.axis = .vertical
+            formContainerStackView.layoutMargins = .init(top: 25, left: 24, bottom: 30, right: 24)
+      
+            let imageView = ScaledHeightImageView(image: image)
+            imageView.image = image
+            imageView.contentMode = .scaleAspectFit
+            
+            
+            let screenHeight = UIScreen.main.bounds.height
+            let screenWidth = UIScreen.main.bounds.width
+            let width = image.size.width
+            let height = image.size.height
+            let ratio = width / height
+            
+            if screenWidth > screenHeight {
+                imageView.constrainWidth(screenWidth)
+                imageView.constrainHeight(width/ratio)
+            } else {
+                imageView.constrainWidth(screenHeight*ratio)
+                imageView.constrainHeight(screenHeight)
+            }
+            
+            imageView.center = formContainerStackView.center
+            formContainerStackView.addArrangedSubview(imageView)
+            formContainerStackView.spacing = 12
+            let contentRect: CGRect = imageView.subviews.reduce(into: .zero) { rect, view in
+                rect = rect.union(view.frame)
+            }
+            scrollView.contentSize = contentRect.size
+        } else {
+            formContainerStackView.isHidden = true
+            let webView = WKWebView(frame: self.view.frame)
+            
+            webView.loadFileURL(url!, allowingReadAccessTo: url!)
+            webView.center = self.view.center
+            self.view.addSubview(webView)
+        }
         
-        
-//        if checkIfTypeIsImage() == true {
-//
-//            let data = try? Data(contentsOf: url!)
-//
-//            if let imageData = data {
-//                let image = UIImage(data: imageData)
-//                let screenHeight = UIScreen.main.bounds.height
-//                let screenWidth = UIScreen.main.bounds.width
-//                if let width = image?.size.width , let height = image?.size.height {
-//                    let ratio = width / height
-//
-//                    if screenWidth > screenHeight {
-//                        webView.constrainWidth(screenWidth)
-//                        webView.constrainHeight(width/ratio)
-//                    } else {
-//                        webView.constrainWidth(screenHeight*ratio)
-//                        webView.constrainHeight(screenHeight)
-//                    }
-//                }
-//            }
-//
-//        }
-        webView.loadFileURL(url!, allowingReadAccessTo: url!)
-        webView.center = self.view.center
-        self.view.addSubview(webView)
     }
     
     func checkIfTypeIsImage()-> Bool {
