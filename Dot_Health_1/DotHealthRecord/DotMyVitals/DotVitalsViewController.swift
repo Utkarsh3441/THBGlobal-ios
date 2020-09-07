@@ -14,6 +14,7 @@ class DotVitalsViewController: UIViewController ,ChartViewDelegate{
     let client = DotConnectionClient()
     static var xAxisData = [Date]()
     static var yAxixData = [Double]()
+    static var y2AxixData = [Double]()
     var dataItems = [String]()
     let transparentView = UIView()
     let tableView = UITableView()
@@ -160,27 +161,32 @@ class DotVitalsViewController: UIViewController ,ChartViewDelegate{
             destination.vitalHeader = selectedVitalAddDataButton.titleLabel?.text
             destination.callback = {result in
                 print(result)
-                if let dateString = result["date"],let numberString =  String(result["vitalValue"] ?? "") as? String, let doubleValue = Double(numberString){
+                
+                if let dateString = result["date"], let numberString = result["vitalValue"], let unit = result["unit"] {
+                    
                     DotVitalsViewController.xAxisData.insert(dateformatter.date(from: dateString)!, at: 0)
-                    DotVitalsViewController.yAxixData.insert(doubleValue, at: 0)
-
-                   // DotVitalsViewController.xAxisData.append(dateformatter.date(from: dateString)!)
                     
-                  //  DotVitalsViewController.yAxixData.append(doubleValue)
-                    
-                    self.parameterDict = ["vital_date":dateString,"vital_reading":numberString,"vital_unit":"C"]
+                    if self.vitalListTextField.text == "Blood Pressure" {
+                        
+                        let arr = numberString.components(separatedBy: ",")
+                        if let value = arr.first, let finalValue =  Double(value) {
+                            DotVitalsViewController.yAxixData.append(finalValue)
+                        }
+                        if let lastValue = arr.last, let finalValue = Double(lastValue) {
+                            DotVitalsViewController.y2AxixData.append(Double(finalValue))
+                        }
+                    } else {
+                        if let value = Double(numberString) {
+                            DotVitalsViewController.yAxixData.append(value)
+                        }
+                    }
+                    self.parameterDict = ["vital_date":dateString,"vital_reading":numberString,"vital_unit":unit]
                 }
-                
-                
                 if DotVitalsViewController.yAxixData.count > 0{
                     self.customizeLineChart()
                 }
-                
-                
             }
         }
-        
-        
     }
     
     @IBAction func saveAction(_ sender: Any) {
@@ -257,26 +263,63 @@ extension DotVitalsViewController{
     
     func loadLineChart(dataPoints: [Date], values: [Double]) {
         
+        let data = LineChartData()
+        var lineChartEntry1 = [ChartDataEntry]()
+        var lineChartEntry2 = [ChartDataEntry]()
+
+
+        
         let chartXAxisFormatter:ChartXAxisFormatter = ChartXAxisFormatter()
         chartXAxisFormatter.dateFormatter = DateFormatter()
         chartXAxisFormatter.dateFormatter?.dateStyle = .medium
         chartXAxisFormatter.dateFormatter?.timeStyle = .none
-       let xaxis:XAxis = XAxis()
-
-       var dataEntries = [ChartDataEntry]()
-       for i in 0..<dataPoints.count {
-       
-        let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
-        chartXAxisFormatter.stringForValue(Double(i), axis: xaxis)
-         dataEntries.append(dataEntry)
+        let xaxis:XAxis = XAxis()
         
-       }
+       // var dataEntries = [ChartDataEntry]()
+        for i in 0..<dataPoints.count {
+            lineChartEntry1.append(ChartDataEntry(x: Double(i), y: Double(values[i]) ))
+        }
+        let line1 = LineChartDataSet(entries: lineChartEntry1, label: "\(vitalListTextField.text!)")
+        data.addDataSet(line1)
+
+        if DotVitalsViewController.y2AxixData.count > 0 {
+            for i in 0..<dataPoints.count {
+               lineChartEntry2.append(ChartDataEntry(x: Double(i), y: Double(DotVitalsViewController.y2AxixData[i]) ))
+            }
+        }
+        let line2 = LineChartDataSet(entries: lineChartEntry2, label: "\(vitalListTextField.text!)")
+        data.addDataSet(line2)
+        
         xaxis.valueFormatter = chartXAxisFormatter
         lineChartView.xAxis.valueFormatter = xaxis.valueFormatter
-        let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: "\(vitalListTextField.text!)"+" "+"chart")
-       let lineChartData = LineChartData(dataSet: lineChartDataSet)
-       lineChartView.data = lineChartData
-     }
+        
+        lineChartView.data = data
+        
+        
+        
+    
+        
+        // For 2 line chart
+//
+//        var dataEntries2 = [ChartDataEntry]()
+//        for i in 0..<dataPoints.count {
+//
+//            let dataEntry = ChartDataEntry(x: Double(i), y: DotVitalsViewController.y2AxixData[i])
+//            chartXAxisFormatter.stringForValue(Double(i), axis: xaxis)
+//            dataEntries2.append(dataEntry)
+//
+//        }
+        
+        
+        
+        
+    //    let lineChartDataSet = LineChartDataSet(entries: dataEntries, label: "\(vitalListTextField.text!)"+" "+"chart")
+        
+//         let lineChartDataSet2 = LineChartDataSet(entries: dataEntries2, label: "\(vitalListTextField.text!)"+" "+"chart")
+//
+//        let lineChartData = LineChartData(dataSet: [lineChartDataSet, lineChartDataSet2] as? IChartDataSet)
+//        lineChartView.data = lineChartData
+    }
 }
 
 //MARK: API Calls
@@ -376,23 +419,28 @@ extension DotVitalsViewController{
                     DotVitalsViewController.xAxisData.append(dateValue)
                 } else if key == "vital_reading" {
                     var readingValue = ""
-                    if let value = value as? String {
-                         readingValue = value.replacingOccurrences(of: "[ |{}]", with: "", options: [.regularExpression])
-                    } else if  let value = value as? Array<Any>, let readValue = value.first {
+                    
+                    if self.vitalListTextField.text == "Blood Pressure", let vitalValue = value as? String {
                         
+                        let arr = vitalValue.components(separatedBy: ",")
+                        if let value = arr.first, let firstValue =  Double(value), let value2 = arr.last, let lastValue = Double(value2)   {
+                            DotVitalsViewController.yAxixData.append(firstValue)
+                            DotVitalsViewController.y2AxixData.append(Double(lastValue))
+                        }
+                    } else if let value = value as? String {
+                        readingValue = value.replacingOccurrences(of: "[ |{}]", with: "", options: [.regularExpression])
+                    } else if let value = value as? Int {
+                        DotVitalsViewController.yAxixData.append(Double(value))
+                    } else if  let value = value as? Array<Any>, let readValue = value.first {
                         if let value = readValue as? String {
                             readingValue = value.replacingOccurrences(of: "[ |{}]", with: "", options: [.regularExpression])
                         } else if let value = readValue as? Int {
                             DotVitalsViewController.yAxixData.append(Double(value))
                         }
                     }
-                    let arr = readingValue.components(separatedBy: ",")
-                    if let value = arr.first, let finalValue =  Double(value) {
+                    if let finalValue = Double(readingValue) {
                         DotVitalsViewController.yAxixData.append(finalValue)
-                    } else if let value = value as? Int {
-                        DotVitalsViewController.yAxixData.append(Double(value))
                     }
-                    
                 }
             }
         }

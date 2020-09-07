@@ -37,6 +37,8 @@ class DotAddGraphDataViewController: UIViewController {
         timelabel.text = time
         switch vitalHeader {
         case "Add Blood Pressure":
+            self.yAxixDataTextField.placeholder = "mmHg"
+            self.yAxixDataTextfield2.placeholder = "mmHg"
             self.showFields()
         case "Add Temperature":
             self.yAxixLabel1.text = vitalHeader
@@ -86,9 +88,33 @@ class DotAddGraphDataViewController: UIViewController {
         
     }
     @IBAction func showGraphAction(_ sender: Any) {
-        callback?(["date":dateLabel.text ?? "", "time": timelabel.text ?? "", "vitalValue":yAxixDataTextField.text ?? ""])
+        
+        guard let firstTextCount = yAxixDataTextField.text, firstTextCount.count > 0 else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        
+        var addedValue = firstTextCount
+        let firstTextField = yAxixDataTextField.text?.count ?? 0
+        
+        if vitalHeader == "Add Blood Pressure" {
+            let secondTextField = yAxixDataTextfield2.text?.count ?? 0
+            
+            if (firstTextField > 0 && secondTextField == 0) ||  (firstTextField == 0 && secondTextField > 0) {
+                showAlertView("Please provide both required values", message: kblankString)
+                return
+            }
+            if let secondValue = yAxixDataTextfield2.text {
+                addedValue = addedValue + "," + secondValue
+            }
+        }
+        
+        callback?(["date":dateLabel.text ?? "", "time": timelabel.text ?? "", "vitalValue":addedValue, "unit": yAxixDataTextField.placeholder ?? ""])
+        
         dismiss(animated: true, completion: nil)
     }
+}
     
     /*
     // MARK: - Navigation
@@ -100,4 +126,3 @@ class DotAddGraphDataViewController: UIViewController {
     }
     */
 
-}
