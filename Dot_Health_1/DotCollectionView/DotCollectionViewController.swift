@@ -114,13 +114,21 @@ extension DotCollectionViewController {
         })
     }
     private func createDummyData() {
-           var dummyContacts: [DotCardModel] = []
-        for i in 0..<labelArray.count {
-            self.identiFierForView == "1" ? dummyContacts.append(DotCardModel(cardName: "\(self.healthRecordLabelArray[i])", cardTitle: "Test\(i)")) : dummyContacts.append(DotCardModel(cardName: "\(self.labelArray[i])", cardTitle: "Test\(i)"))
-               
-           }
+        var dummyContacts: [DotCardModel] = []
+        
+        if self.identiFierForView == "1" {
+            for i in 0..<healthRecordLabelArray.count {
+                dummyContacts.append(DotCardModel(cardName: "\(self.healthRecordLabelArray[i])", cardTitle: "Test\(i)"))
+            }
+        } else {
+            for i in 0..<labelArray.count {
+                
+                dummyContacts.append(DotCardModel(cardName: "\(self.labelArray[i])", cardTitle: "Test\(i)"))
+            }
+        }
         applySnapshot(items: dummyContacts)
-       }
+    }
+    
     private func applySnapshot(items: [DotCardModel]) {
         
         snapshot = DataSourceSnapshot()

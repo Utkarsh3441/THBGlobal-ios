@@ -42,7 +42,6 @@ class DotVitalsViewController: UIViewController ,ChartViewDelegate{
         timeFormatter.dateStyle = .medium
         timeFormatter.dateFormat = "hh:mm a"
         
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
@@ -387,8 +386,8 @@ extension DotVitalsViewController{
                             DotVitalsViewController.yAxixData.append(Double(value))
                         }
                     }
-                    
-                    if let finalValue = Double(readingValue) {
+                    let arr = readingValue.components(separatedBy: ",")
+                    if let value = arr.first, let finalValue =  Double(value) {
                         DotVitalsViewController.yAxixData.append(finalValue)
                     } else if let value = value as? Int {
                         DotVitalsViewController.yAxixData.append(Double(value))
