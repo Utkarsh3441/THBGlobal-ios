@@ -11,7 +11,7 @@
         <!--Dot Edit Details View Controller-->
         <scene sceneID="taa-nQ-YDl">
             <objects>
-                <viewController storyboardIdentifier="dotEdit" id="izv-Zl-cXd" customClass="DotEditDetailsViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dotEdit" id="izv-Zl-cXd" customClass="DotEditDetailsViewController" customModule="THB_Global" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xXx-AR-DdD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,7 +40,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="vwC-BX-KI6">
                                         <rect key="frame" x="208" y="40" width="120" height="114"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvQ-qX-lOp" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvQ-qX-lOp" customClass="DotButtonUtility" customModule="THB_Global" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="120" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="1aL-65-qsQ"/>
@@ -51,7 +51,7 @@
                                                     <action selector="takePhotoAction:" destination="izv-Zl-cXd" eventType="touchUpInside" id="adr-cT-Jsp"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AF-6D-MTX" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4AF-6D-MTX" customClass="DotButtonUtility" customModule="THB_Global" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="42" width="120" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="eIN-yl-i24"/>
@@ -62,7 +62,7 @@
                                                     <action selector="uploadPhotoAction:" destination="izv-Zl-cXd" eventType="touchUpInside" id="hfZ-1C-01h"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ey-if-hL5" customClass="DotButtonUtility" customModule="Asha_Cares" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ey-if-hL5" customClass="DotButtonUtility" customModule="THB_Global" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="84" width="120" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="rT8-kb-o2i"/>

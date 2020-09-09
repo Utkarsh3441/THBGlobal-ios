@@ -15,7 +15,7 @@ func displayUploadImageDialog(btnSelected: UIButton) {
     let picker = UIImagePickerController()
     picker.delegate = self
     picker.allowsEditing = true
-    let alertController = UIAlertController(title: "", message: "Upload profile photo?".localized, preferredStyle: .actionSheet)
+    let alertController = UIAlertController(title: "", message: "Upload a picture".localized, preferredStyle: .actionSheet)
     let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel action"), style: .cancel, handler: {(_ action: UIAlertAction) -> Void in
         alertController.dismiss(animated: true) {() -> Void in }
     })

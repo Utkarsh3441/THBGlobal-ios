@@ -2527,7 +2527,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Dot_Health_1/Asha Cares.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W7T6GZ77HB;
+				DEVELOPMENT_TEAM = GTW3G87UVM;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2538,7 +2538,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "kakarot.Dot-Health-1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.telemedicine.ashacares;
 				PRODUCT_NAME = "THB Global";
 				SWIFT_OBJC_BRIDGING_HEADER = "Dot_Health_1/DotPayment/Dot_Health_1-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2555,6 +2555,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Dot_Health_1/Asha Cares.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GTW3G87UVM;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2565,7 +2566,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "kakarot.Dot-Health-1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.telemedicine.ashacares;
 				PRODUCT_NAME = "THB Global";
 				SWIFT_OBJC_BRIDGING_HEADER = "Dot_Health_1/DotPayment/Dot_Health_1-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

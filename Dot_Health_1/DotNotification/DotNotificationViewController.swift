@@ -12,7 +12,20 @@ class DotNotificationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Notification"
+        self.navigationController?.navigationBar.barTintColor = Theme.accentColor
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
+        
+        let label = UILabel()
+        label.text = "Work In Progress"
+        label.font = UIFont.boldSystemFont(ofSize: 25) // my custom font
+        label.textColor = UIColor.systemBlue // my custom colour
+        self.view.addSubview(label)
+        label.center(in: self.view)
+       
+        
         // Do any additional setup after loading the view.
     }
     
