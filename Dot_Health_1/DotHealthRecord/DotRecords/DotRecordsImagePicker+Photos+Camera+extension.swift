@@ -64,11 +64,11 @@ func displayUploadImageDialog(btnSelected: UIButton) {
             new.storage_link = (info[.imageURL] as? URL)?.absoluteString 
             
             if let text = docTextField.text, text.count > 0 {
-              new.category = text
+                new.category = text
             } else {
-               new.category = "Image"
+                new.category = "Image"
             }
-        
+            
             if recordsDataArray.contains(new) || addedRecords.contains(new){
                 self.showAlertView("Duplicate files", message: "File already present")
             }
@@ -78,6 +78,34 @@ func displayUploadImageDialog(btnSelected: UIButton) {
                 applySnapshot(items: recordsDataArray)
             }
             
+        } else if let image = info[.originalImage] as? UIImage {
+            guard let imageData: Data = image.jpegData(compressionQuality: 0.4) else {
+                return
+            }
+            
+            var new = record(category:"image.png", file_content: "\(String(describing: (info[.imageURL] as? URL)))", medical_record_id: 0, patient_id: loginData.user_id ?? 17, storage_link: nil)
+            
+            
+            new.imageContent = imageData
+            //                  new.type = "image/jpeg"
+           // new.record_name = (info[.imageURL] as? URL)?.lastPathComponent
+             new.record_name = "UploadedImage.png"
+            new.storage_link = (info[.imageURL] as? URL)?.absoluteString
+            
+            if let text = docTextField.text, text.count > 0 {
+                new.category = text
+            } else {
+                new.category = "Image"
+            }
+            
+            if recordsDataArray.contains(new) || addedRecords.contains(new){
+                self.showAlertView("Duplicate files", message: "File already present")
+            }
+            else{
+                recordsDataArray.append(new)
+                addedRecords.append(new)
+                applySnapshot(items: recordsDataArray)
+            }
         }
         self.dismiss(animated: true, completion: nil)
     }

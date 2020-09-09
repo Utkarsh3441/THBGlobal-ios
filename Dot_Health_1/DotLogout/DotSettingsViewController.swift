@@ -45,9 +45,7 @@ class DotSettingsViewController: UIViewController {
     @IBAction func logOutAction(_ sender: Any) {
         let alertController = UIAlertController(title: nil, message: "Are you sure you want to sign out?", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: { (_) in
-            // KeychainService.removePassword(service: keyChainPrefix.loginSession.rawValue, account: DotLoginViewController.shared.signature ?? kblankString)
-//            KeychainService.removePassword(service: keyChainPrefix.loginSession.rawValue, account: keyChainPrefix.patientAccount.rawValue)
-//            KeychainService.removePassword(service: keyChainPrefix.loginUsername.rawValue, account: keyChainPrefix.patientAccount.rawValue)
+
             DotLoginViewController.autoSignIn = false
             self.signingOut()
         }))

@@ -135,6 +135,8 @@ extension DotRecordsViewController: UICollectionViewDelegate,UIDocumentPickerDel
         if item.medical_record_id == 0 {
             let previewController = PreviewViewController()
             previewController.storageLink = self.recordsDataArray[docIndex].storage_link
+            previewController.fileName = self.recordsDataArray[docIndex].record_name
+            previewController.imageContent = self.recordsDataArray[docIndex].imageContent
             self.present(previewController, animated: true, completion: nil)
         } else {
             loadSelectedFile(indexpath: indexPath.row)

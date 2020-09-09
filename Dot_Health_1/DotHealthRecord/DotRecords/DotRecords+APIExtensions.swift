@@ -117,8 +117,8 @@ func upload(files: [record], toURL url: URL?,
                                                  images: files)
     let headers = ["content-type":"multipart/form-data; boundary=\(boundary)"]
     
-    let mimType = self.mimeType(for: (files.first)?.category ?? "")
-    guard let fileurl = URL(string:  (files.first)?.file_content ?? "") else {return}
+//    let mimType = self.mimeType(for: (files.first)?.category ?? "")
+//    guard let fileurl = URL(string:  (files.first)?.file_content ?? "") else {return}
  //   let _ = self.client.add(files:  [FileInfo(withFileURL: fileurl, filename: "sampleImage.png", name: "file_content", mimetype: mimType)], toBody: &httpBody, withBoundary: boundary)
     self.client.close(body: &httpBody, usingBoundary: boundary)
     let api: API = .api1
@@ -130,13 +130,20 @@ func upload(files: [record], toURL url: URL?,
              SVProgressHUD.dismiss()
             if let model = model2Result as? NSDictionary, let type = model["type"] as? String, let messsage = model["message"] as? String, type == "Success"  {
                 
-                let alert = UIAlertController(title: type, message: messsage, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (_) in
-                    self.addedRecords.removeAll()
-                   self.navigationController?.popViewController(animated: true)
-
-                    }))
-                self.present(alert, animated: true, completion:nil)
+                self.addedRecords.removeAll()
+                self.loadFiles()
+                
+                self.showAlertView(type, message: messsage)
+                
+                
+                
+//                let alert = UIAlertController(title: type, message: messsage, preferredStyle: UIAlertController.Style.alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (_) in
+//
+//                   self.navigationController?.popViewController(animated: true)
+//
+//                    }))
+//                self.present(alert, animated: true, completion:nil)
             } else {
                 self.showAlertView("Unable to upload file.", message: kblankString)
             }

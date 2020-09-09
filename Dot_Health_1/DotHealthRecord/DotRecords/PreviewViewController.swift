@@ -16,6 +16,8 @@ class PreviewViewController: LBTAFormController {
     var encodedBase64String: String?
     var fileName: String?
     var storageLink:String?
+    var imageContent: Data?
+
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +99,7 @@ class PreviewViewController: LBTAFormController {
         formContainerStackView.layoutMargins = .init(top: 25, left: 24, bottom: 30, right: 24)
         
         let imageView = ScaledHeightImageView(image: setImageInImageView())
-        imageView.image = setImageInImageView()
+       // imageView.image = setImageInImageView()
 
         imageView.contentMode = .scaleAspectFit
         
@@ -142,14 +144,13 @@ class PreviewViewController: LBTAFormController {
     func setImageInImageView()-> UIImage? {
         
         var image: UIImage? = nil
-
-        guard let encodedString = encodedBase64String else { return image}
         
-        if let imageFetch = self.base64ToImage(base64String: encodedString.padding(toLength: ((encodedString.count+3)/4)*4, withPad: "=", startingAt: 0)) {
-            
+        if let encodedString = encodedBase64String , let imageFetch = self.base64ToImage(base64String: encodedString.padding(toLength: ((encodedString.count+3)/4)*4, withPad: "=", startingAt: 0))
+        {
             image = imageFetch
             return image
-            
+        } else if let image_content = imageContent  {
+            return UIImage(data: image_content)
         }
         return image
     }

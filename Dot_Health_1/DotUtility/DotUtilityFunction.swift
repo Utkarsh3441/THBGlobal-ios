@@ -9,11 +9,7 @@
 import Foundation
 import UIKit
 import Security
-enum keyChainPrefix:String{
-    case loginSession = "sessions"
-    case loginUsername = "user"
-    case patientAccount = "patients"
-}
+
 class UtilityFunctions{
     
     static func getDateAsString(inputDate:Date)->String{

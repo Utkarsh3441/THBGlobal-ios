@@ -88,13 +88,8 @@ class DotLoginViewController: UIViewController {
                             self.maskImage.isHidden = false
                             DotLoginViewController.autoSignIn = true
                             
-                            self.signInUser(account:keyChainPrefix.patientAccount.rawValue)
-            //                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            //                    let sameViewController = storyboard.instantiateViewController(withIdentifier: "mainTab") as! DotTabViewController
-            //                    self.navigationController?.pushViewController(sameViewController, animated: true)
-            //                    self.navigationController?.setNavigationBarHidden(true, animated: true)
-                            
-                            
+                            self.signInUser()
+         
                         }
             else{
                     self.maskImage.isHidden = true
@@ -106,15 +101,17 @@ class DotLoginViewController: UIViewController {
         
     }
     func checkLoginData(completion :@escaping (Bool) -> Void){
-        if let pass = (KeychainService.loadPassword(service: keyChainPrefix.loginSession.rawValue, account: keyChainPrefix.patientAccount.rawValue)),let user = (KeychainService.loadPassword(service: keyChainPrefix.loginUsername.rawValue, account: keyChainPrefix.patientAccount.rawValue)) {
+        let defaults = UserDefaults.standard
+        
+        if let pass = defaults.string(forKey: "Password"), let user = defaults.string(forKey: "UserName") {
             password = pass
             User = user
+            userNameTextField.text = user
+            passwordTextField.text = pass
             if DotLoginViewController.autoSignIn == true {
                 completion(true)
             }
             else{
-                userNameTextField.text = user
-                passwordTextField.text = pass
                 completion(false)
             }
         }
@@ -126,14 +123,14 @@ class DotLoginViewController: UIViewController {
     @IBAction func signInAction(_ sender: Any) {
         print("sign in clicked")
         self.signIn.showLoading()
-        self.signInUser(account:keyChainPrefix.patientAccount.rawValue)
+        self.signInUser()
     }
     @IBAction func forgotPassword(_ sender: Any) {
         let myRequest = URLRequest(url: URL(string: "https://www.ashacares.com/forgot-password")!)
         webView.load(myRequest)
         self.present(WebVc, animated: true, completion: nil)
     }
-    func signInAct(account:String) {
+    func signInAct() {
       let storyboard = UIStoryboard(name: "Main", bundle: nil)
       let sameViewController = storyboard.instantiateViewController(withIdentifier: "mainTab") as! DotTabViewController
       self.navigationController?.pushViewController(sameViewController, animated: true)
@@ -149,16 +146,19 @@ class DotLoginViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .white
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    func setConstants(userDetails:loginDetails?){
-        KeychainService.savePassword(service: "sessions", account: keyChainPrefix.patientAccount.rawValue , data: self.passwordTextField.text ?? kblankString)
-        KeychainService.savePassword(service: keyChainPrefix.loginUsername.rawValue, account: keyChainPrefix.patientAccount.rawValue , data: self.userNameTextField.text ?? kblankString)
+    func setConstants(userDetails:loginDetails?) {
+        let defaults = UserDefaults.standard
+        defaults.set(self.userNameTextField.text ?? kblankString, forKey: "UserName")
+        defaults.set(self.passwordTextField.text ?? kblankString, forKey: "Password")
+
+       
         loginData.user_email = userDetails?.user_email
         loginData.user_id = userDetails?.user_id
         loginData.user_name = userDetails?.user_name
         loginData.user_type = userDetails?.user_type
     }
     // MARK:- API Calls
-    func signInUser(account:String){
+    func signInUser(){
         if DotLoginViewController.autoSignIn == true
 {
             SVProgressHUD.show(withStatus: "Signing In, Please Wait.")
@@ -174,7 +174,7 @@ class DotLoginViewController: UIViewController {
            var paramsDictionary = [String:String]()
         paramsDictionary["username"] = DotLoginViewController.autoSignIn ? User : (userNameTextField.text ?? kblankString) //"john@doe10.com"
         paramsDictionary["password"] = DotLoginViewController.autoSignIn ? password : (passwordTextField.text ?? kblankString) //password
-           paramsDictionary["usertype"] = account
+           paramsDictionary["usertype"] = "patients"
 
            guard let body = try? JSONSerialization.data(withJSONObject: paramsDictionary) else { return }
 
@@ -199,7 +199,7 @@ class DotLoginViewController: UIViewController {
                        self.maskImage.isHidden = true
                        default:
                         self.setConstants(userDetails: dataModel.data.first)
-                        self.signInAct(account: keyChainPrefix.patientAccount.rawValue)
+                        self.signInAct()
                        }
                    }else {
                            self.showAlertView("Login Failed", message: "Some Error Occured")
