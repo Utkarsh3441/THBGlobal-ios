@@ -11,7 +11,7 @@
 #import "DotPaymentViewController.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <PlugNPlay/PlugNPlay.h>
-#import "Asha_Cares-Swift.h"
+#import "THB_Global-Swift.h"
 
 
 #define SCROLLVIEW_HEIGHT 600

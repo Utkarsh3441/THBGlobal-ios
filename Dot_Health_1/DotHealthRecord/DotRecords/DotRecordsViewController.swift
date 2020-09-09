@@ -44,7 +44,7 @@ class DotRecordsViewController: LBTAFormController {
       var dataItems = [String]()
     let signUpButton = UIButton(title: "Appointment ID                                  ", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: Theme.gradientColorDark!, target: self, action: nil)
     let uploadButton = UIButton(title: "Upload Files", titleColor: .white, font: .boldSystemFont(ofSize: 16), backgroundColor: Theme.accentColor!, target: self, action: #selector(uploadFile))
-    var buttonsArr = ["Take Photo","Open Documents","Share Cloud Link"]
+    var buttonsArr = ["Take Photo","Upload Documents","Share Cloud Link"]
     var imgArr = [#imageLiteral(resourceName: "camera1") ,#imageLiteral(resourceName: "gallery") ,#imageLiteral(resourceName: "cloud1") ]
     @objc fileprivate func uploadFile() {
 //        dismiss(animated: true)
@@ -129,7 +129,7 @@ class DotRecordsViewController: LBTAFormController {
             switch buttonsArr[i]{
             case "Take Photo" : cameraButton = buttons1
             cameraButton.addTarget(self, action: #selector(self.openCamera), for: .touchUpInside)
-            case "Open Documents": docsButton = buttons1
+            case "Upload Documents": docsButton = buttons1
             docsButton.addTarget(self, action: #selector(self.openDocs), for: .touchUpInside)
             default:
                 print("not buttons")

@@ -11,7 +11,7 @@
         <!--My Appointments-->
         <scene sceneID="b2l-J3-p1U">
             <objects>
-                <viewController id="ukM-5J-ix2" customClass="DotAppointmentsViewController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ukM-5J-ix2" customClass="DotAppointmentsViewController" customModule="THB_Global" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8WT-WT-g5z">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,7 +85,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGe-hF-iCX" customClass="ActionButton" customModule="Asha_Cares" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OGe-hF-iCX" customClass="ActionButton" customModule="THB_Global" customModuleProvider="target">
                                         <rect key="frame" x="354" y="17" width="40" height="40"/>
                                         <color key="backgroundColor" name="GradientColorDark"/>
                                         <constraints>
@@ -141,7 +141,7 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="appointmentCellId" rowHeight="138" id="TP9-YC-Jly" customClass="DotAppointmentTableViewCell" customModule="Asha_Cares" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="appointmentCellId" rowHeight="138" id="TP9-YC-Jly" customClass="DotAppointmentTableViewCell" customModule="THB_Global" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="138"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TP9-YC-Jly" id="aVa-Mg-2m7">
@@ -229,7 +229,7 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgg-Pr-fiM" customClass="ActionButton" customModule="Asha_Cares" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tgg-Pr-fiM" customClass="ActionButton" customModule="THB_Global" customModuleProvider="target">
                                 <rect key="frame" x="338" y="806" width="56" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <color key="tintColor" name="Tint"/>
@@ -298,7 +298,7 @@
         <!--Date Picker Controller-->
         <scene sceneID="WYa-i0-hgr">
             <objects>
-                <viewController storyboardIdentifier="DatePickerController" id="1gZ-9o-wAb" customClass="DatePickerController" customModule="Asha_Cares" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DatePickerController" id="1gZ-9o-wAb" customClass="DatePickerController" customModule="THB_Global" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dLb-QM-ShB">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

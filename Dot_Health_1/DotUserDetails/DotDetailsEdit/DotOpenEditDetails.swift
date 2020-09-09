@@ -42,12 +42,7 @@ class DotOpenEditDetails: LBTAFormController {
     "insured":true,
     "insurance_company_name":"",
     "insurance_validity":"",
-    "primary_health_issue":"",
-    "parent_id":1,
-    "verified":true,
-    "verification_token":"",
-    "verification_token_expiry":"",
-    "status":""] as [String : Any]
+    "primary_health_issue":""] as [String : Any]
     var countryTextField = UITextField()
     var stateTextField = UITextField()
     var genderTextField = UITextField()
@@ -357,6 +352,7 @@ extension DotOpenEditDetails{
         for (key, value) in editDetails where (value as? String == kblankString || value as? [String] == [""]) {
            editDetails.removeValue(forKey: key)
         }
+        editDetails.removeValue(forKey: "verified")
         guard let body = try? JSONSerialization.data(withJSONObject: editDetails) else { return }
        
         

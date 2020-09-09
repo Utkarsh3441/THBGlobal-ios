@@ -143,7 +143,8 @@ class DotTimeSlotViewController: UIViewController {
     func showHideDataForSlots(isHidden:Bool) {
         self.noSlotsLabel.isHidden = !isHidden
         self.slotsView.isHidden = isHidden
-        self.buttonProceedToPay.isHidden = false
+        self.buttonProceedToPay.isEnabled = !isHidden
+        self.buttonProceedToPay.alpha = isHidden ? 0.5 : 1
         self.stackViewLegend.isHidden = isHidden
     }
         

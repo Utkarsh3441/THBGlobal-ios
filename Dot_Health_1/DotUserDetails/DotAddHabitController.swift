@@ -285,6 +285,7 @@ class DotAddHabitController: LBTAFormController {
        }
     
     @objc fileprivate func handleSaveButtonTapped() {
+        view.endEditing(true)
         if validationDict.isEmpty {
             isEditSelected == true ? editHabitDetails() : addHabitDetails()
         } else {
