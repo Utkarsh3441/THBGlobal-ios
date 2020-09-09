@@ -462,7 +462,7 @@ func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
                     view.setNeedsLayout()
                 }
                 
-                if previouslySelectedCountry != textField.text && previouslySelectedCountry != nil {
+                if previouslySelectedCountry != textField.text {
                     updateStateTextField()
                 }
                 
@@ -594,7 +594,6 @@ func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
                     editDetails["patient_gender"] = val
                         customField?.floatingLabelColor = Theme.accentColor!
                         customField?.borderWidth = 1
-                    editDetails["patient_gender"] = "test"
                     validationDict.removeValue(forKey: "gender")
                 }
             }

@@ -34,7 +34,7 @@ struct registerModel:Decodable{
     let patient_gender:String
     let patient_email:String
     let patient_mobile:String
-    let patient_refcode:String
+    let patient_refcode:String?
     let patient_city:String
     let patient_pincode:String
     let patient_address1:String

@@ -12,6 +12,7 @@ import WebKit
 class DotLoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: DotTextFieldUtility!
      public static let shared = DotLoginViewController()
+    public static var autoSignIn = true
     @IBOutlet weak var userNameTextField: DotTextFieldUtility!
     @IBOutlet weak var signIn: LoadingButton!
     @IBOutlet weak var bgImage: UIImageView!
@@ -20,7 +21,6 @@ class DotLoginViewController: UIViewController {
     @IBOutlet weak var TCPlabel:UILabel!
     @IBOutlet weak var TCPView:UITextView!
     var iconClick = true
-    var autoSignIn = false
     private var User = ""
     private var password = ""
     var eyeButton:UIButton = UIButton(type: .custom)
@@ -80,11 +80,13 @@ class DotLoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
         tabBarController?.tabBar.isHidden = true
+        
+        
         checkLoginData(){ [weak self]result in
             guard let self = self else { return }
             if result{
                             self.maskImage.isHidden = false
-                            self.autoSignIn = true
+                            DotLoginViewController.autoSignIn = true
                             
                             self.signInUser(account:keyChainPrefix.patientAccount.rawValue)
             //                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -96,22 +98,30 @@ class DotLoginViewController: UIViewController {
                         }
             else{
                     self.maskImage.isHidden = true
-                    self.autoSignIn = false
+                    DotLoginViewController.autoSignIn = false
+
                 
             }
         }
         
     }
     func checkLoginData(completion :@escaping (Bool) -> Void){
-    if let pass = (KeychainService.loadPassword(service: keyChainPrefix.loginSession.rawValue, account: keyChainPrefix.patientAccount.rawValue)),let user = (KeychainService.loadPassword(service: keyChainPrefix.loginUsername.rawValue, account: keyChainPrefix.patientAccount.rawValue)){
-        password = pass
-        User = user
-        completion(true)
-    }
-    else{
+        if let pass = (KeychainService.loadPassword(service: keyChainPrefix.loginSession.rawValue, account: keyChainPrefix.patientAccount.rawValue)),let user = (KeychainService.loadPassword(service: keyChainPrefix.loginUsername.rawValue, account: keyChainPrefix.patientAccount.rawValue)) {
+            password = pass
+            User = user
+            if DotLoginViewController.autoSignIn == true {
+                completion(true)
+            }
+            else{
+                userNameTextField.text = user
+                passwordTextField.text = pass
+                completion(false)
+            }
+        }
+        else{
             completion(false)
         }
-    
+        
     }
     @IBAction func signInAction(_ sender: Any) {
         print("sign in clicked")
@@ -149,7 +159,8 @@ class DotLoginViewController: UIViewController {
     }
     // MARK:- API Calls
     func signInUser(account:String){
-        if autoSignIn{
+        if DotLoginViewController.autoSignIn == true
+{
             SVProgressHUD.show(withStatus: "Signing In, Please Wait.")
         }
            // Query item
@@ -161,8 +172,8 @@ class DotLoginViewController: UIViewController {
            
            // Body as dictionary
            var paramsDictionary = [String:String]()
-        paramsDictionary["username"] = autoSignIn ? User : (userNameTextField.text ?? kblankString) //"john@doe10.com"
-        paramsDictionary["password"] = autoSignIn ? password : (passwordTextField.text ?? kblankString) //password
+        paramsDictionary["username"] = DotLoginViewController.autoSignIn ? User : (userNameTextField.text ?? kblankString) //"john@doe10.com"
+        paramsDictionary["password"] = DotLoginViewController.autoSignIn ? password : (passwordTextField.text ?? kblankString) //password
            paramsDictionary["usertype"] = account
 
            guard let body = try? JSONSerialization.data(withJSONObject: paramsDictionary) else { return }
@@ -177,7 +188,8 @@ class DotLoginViewController: UIViewController {
                guard let self = self else { return }
                switch result {
                case .success(let model2Result):
-                   self.signIn.hideLoading()
+                   DotLoginViewController.autoSignIn = true
+                    self.signIn.hideLoading()
                    SVProgressHUD.dismiss()
                    guard let model2Result = model2Result else { return }
                    print(model2Result)
@@ -197,7 +209,7 @@ class DotLoginViewController: UIViewController {
                   
                    
                case .failure(let error):
-                
+                    DotLoginViewController.autoSignIn = false
                     self.signIn.hideLoading()
                     SVProgressHUD.dismiss()
                     self.maskImage.isHidden = true

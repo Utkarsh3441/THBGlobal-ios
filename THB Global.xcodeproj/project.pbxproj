@@ -353,7 +353,7 @@
 		2B38B08D2492CE7700E47409 /* MultiDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		2B38B08E2492CE7700E47409 /* MultiDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultiDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		2B42BA6924DFDB3B0028EBDD /* Asha Cares.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Asha Cares.entitlements"; sourceTree = "<group>"; };
-		2B43AB5024859DFF003C4B19 /* Asha Cares.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Asha Cares.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B43AB5024859DFF003C4B19 /* THB Global.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "THB Global.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B43AB5324859DFF003C4B19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B43AB5524859DFF003C4B19 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2B43AB5724859DFF003C4B19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -729,7 +729,7 @@
 		2B43AB5124859DFF003C4B19 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2B43AB5024859DFF003C4B19 /* Asha Cares.app */,
+				2B43AB5024859DFF003C4B19 /* THB Global.app */,
 				2B43AB6924859E04003C4B19 /* Dot_Health_1Tests.xctest */,
 				2B43AB7424859E04003C4B19 /* Dot_Health_1UITests.xctest */,
 			);
@@ -1864,7 +1864,7 @@
 			);
 			name = Dot_Health_1;
 			productName = Dot_Health_1;
-			productReference = 2B43AB5024859DFF003C4B19 /* Asha Cares.app */;
+			productReference = 2B43AB5024859DFF003C4B19 /* THB Global.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2B43AB6824859E04003C4B19 /* Dot_Health_1Tests */ = {
@@ -1930,7 +1930,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2B43AB4B24859DFE003C4B19 /* Build configuration list for PBXProject "Dot_Health_1" */;
+			buildConfigurationList = 2B43AB4B24859DFE003C4B19 /* Build configuration list for PBXProject "THB Global" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -2539,7 +2539,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "kakarot.Dot-Health-1";
-				PRODUCT_NAME = "Asha Cares";
+				PRODUCT_NAME = "THB Global";
 				SWIFT_OBJC_BRIDGING_HEADER = "Dot_Health_1/DotPayment/Dot_Health_1-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2566,7 +2566,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "kakarot.Dot-Health-1";
-				PRODUCT_NAME = "Asha Cares";
+				PRODUCT_NAME = "THB Global";
 				SWIFT_OBJC_BRIDGING_HEADER = "Dot_Health_1/DotPayment/Dot_Health_1-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2660,7 +2660,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2B43AB4B24859DFE003C4B19 /* Build configuration list for PBXProject "Dot_Health_1" */ = {
+		2B43AB4B24859DFE003C4B19 /* Build configuration list for PBXProject "THB Global" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B43AB7B24859E04003C4B19 /* Debug */,

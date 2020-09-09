@@ -54,7 +54,6 @@ class DotRegisterViewController: LBTAFormController {
     var genders = ["Male","Female","Other"]
     var countryList = ["India","United Arab Emirates"]
     var states = [
-    
         "Andaman and Nicobar Islands",
         "Andhra Pradesh",
         "Arunachal Pradesh",
@@ -432,7 +431,7 @@ class DotRegisterViewController: LBTAFormController {
             SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.custom)
             let api: API = .api1
-            let endpoint: Endpoint = api.getPostAPIEndpoint(urlString: "\(api.rawValue)patients", queryItems: queryItem, headers: headers, body: body)
+            let endpoint: Endpoint = api.getPostAPIEndpoint(urlString: "\(api.rawValue)patients", queryItems: nil, headers: headers, body: body)
             
             client.registerUser(from: endpoint) { [weak self] result in
                 guard let self = self else { return }
@@ -594,7 +593,7 @@ extension DotRegisterViewController:UITextFieldDelegate{
                     view.setNeedsLayout()
                 }
                 
-                if previouslySelectedCountry != textField.text && previouslySelectedCountry != nil {
+                if previouslySelectedCountry != textField.text {
                     updateStateTextField()
                 }
               
@@ -735,10 +734,10 @@ extension DotRegisterViewController:UITextFieldDelegate{
                                 parameters1["patient_refcode"] = val
                                customField?.floatingLabelColor = .darkGray
                                customField?.borderWidth = 0
-                validationDict.removeValue(forKey: "ref")
+              //  validationDict.removeValue(forKey: "ref")
                        }else{
                               
-                           validationDict["ref"] = "yes"
+                  //         validationDict["ref"] = "yes"
                            customField?.floatingLabelColor = .systemRed
                            customField?.borderWidth = 1
                            customField?.borderColor = .systemRed

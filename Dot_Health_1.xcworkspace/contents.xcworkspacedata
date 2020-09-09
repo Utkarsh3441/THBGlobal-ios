@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Dot_Health_1.xcodeproj">
+      location = "group:/Users/amitsharma/Documents/asha-ios/THB Global.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
