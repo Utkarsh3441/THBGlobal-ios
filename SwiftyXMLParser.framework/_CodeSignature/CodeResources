@@ -4,110 +4,146 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/TelrSDK-Swift.h</key>
+		<key>Headers/SwiftyXMLParser-Swift.h</key>
 		<data>
-		eDQTMAsMxYZiDJOyjgmziTnKMrI=
+		BafDmH1ExJLPUVa2o3ZDtKERcWo=
 		</data>
-		<key>Headers/TelrSDK.h</key>
+		<key>Headers/SwiftyXMLParser-umbrella.h</key>
 		<data>
-		etV8+2CcC0S22CcKWmkkhf5V+n4=
+		VUP8u0hfCDqQ4wopgJOx2pBt0yQ=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		MycFe455fH75pztyQsSMbUVqpGI=
+		cSgh4JM2OqsUO5pgJMrpDM+yqss=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		rBY1dVbjKc8p1wn2KG3ffWC9RRw=
+		5W0/76Fjv/zpt1X4vg6W/CfaxOk=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/Project/x86_64.swiftsourceinfo</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<data>
-		rBY1dVbjKc8p1wn2KG3ffWC9RRw=
+		5W0/76Fjv/zpt1X4vg6W/CfaxOk=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		dsDhbMsBilHm46D4YYCQWIl3OQc=
+		0+7/B5YrObLJbZkMMNdqzULd/1k=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		YnroXexURhBQDhWeKbkr5ATsdp8=
+		b14S/2jj2iwCNK6ISgsPp9SG/Ww=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/x86_64.swiftdoc</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		dsDhbMsBilHm46D4YYCQWIl3OQc=
+		0+7/B5YrObLJbZkMMNdqzULd/1k=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/x86_64.swiftmodule</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		YnroXexURhBQDhWeKbkr5ATsdp8=
+		b14S/2jj2iwCNK6ISgsPp9SG/Ww=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		a5FLlsSRPZKYNXFf/p+lpisO6pI=
+		o2l8xrvyxMMHByZSooXXLNfG11A=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/TelrSDK-Swift.h</key>
+		<key>Headers/SwiftyXMLParser-Swift.h</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			BafDmH1ExJLPUVa2o3ZDtKERcWo=
+			</data>
 			<key>hash2</key>
 			<data>
-			aoWYucq5aKYwEdLBWdDl7gMFRrK3mqNqJPWLqoH8Fvg=
+			ujPNDPd6m7XfiiHYqN3UX/CjYPUHcP/PbEbs7rYtk6c=
 			</data>
 		</dict>
-		<key>Headers/TelrSDK.h</key>
+		<key>Headers/SwiftyXMLParser-umbrella.h</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			VUP8u0hfCDqQ4wopgJOx2pBt0yQ=
+			</data>
 			<key>hash2</key>
 			<data>
-			CnwG9BXk6x6/3oUNzgjh4zSe481BB79BqD4gNVbQbXg=
+			ATGAOU8uAkdphBBdH5zRqxVHURfrfirR7vFPLf5uIA4=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			5W0/76Fjv/zpt1X4vg6W/CfaxOk=
+			</data>
 			<key>hash2</key>
 			<data>
-			EL5XG5NZYOhLJ+6m2ky7OXDyEKp6Zo8VlojH21MnLio=
+			jFP77w7F6maIjvkwvp3zDER00aeSQ2q/HHX8ud8Gvos=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/Project/x86_64.swiftsourceinfo</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			5W0/76Fjv/zpt1X4vg6W/CfaxOk=
+			</data>
 			<key>hash2</key>
 			<data>
-			EL5XG5NZYOhLJ+6m2ky7OXDyEKp6Zo8VlojH21MnLio=
+			jFP77w7F6maIjvkwvp3zDER00aeSQ2q/HHX8ud8Gvos=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			0+7/B5YrObLJbZkMMNdqzULd/1k=
+			</data>
 			<key>hash2</key>
 			<data>
-			VvdDCd3L8dWAq44SqALezqhD+NpUI6Nl4cfGUIhvMMs=
+			HNlKdAFRdBbLQyt5ylPmXScwUKvXKEcAK9o9XRQxxtY=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			b14S/2jj2iwCNK6ISgsPp9SG/Ww=
+			</data>
 			<key>hash2</key>
 			<data>
-			Tr+rWyUvnwwNz2YFjzeBtDpeVDmp7tGaFM6bnR4vDMk=
+			Tz28dkwndTBefFzT4qxjLfmNOUxN4Q7/v/hJ5jtXczw=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/x86_64.swiftdoc</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			0+7/B5YrObLJbZkMMNdqzULd/1k=
+			</data>
 			<key>hash2</key>
 			<data>
-			VvdDCd3L8dWAq44SqALezqhD+NpUI6Nl4cfGUIhvMMs=
+			HNlKdAFRdBbLQyt5ylPmXScwUKvXKEcAK9o9XRQxxtY=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/x86_64.swiftmodule</key>
+		<key>Modules/SwiftyXMLParser.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			b14S/2jj2iwCNK6ISgsPp9SG/Ww=
+			</data>
 			<key>hash2</key>
 			<data>
-			Tr+rWyUvnwwNz2YFjzeBtDpeVDmp7tGaFM6bnR4vDMk=
+			Tz28dkwndTBefFzT4qxjLfmNOUxN4Q7/v/hJ5jtXczw=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			o2l8xrvyxMMHByZSooXXLNfG11A=
+			</data>
 			<key>hash2</key>
 			<data>
-			cRtqKUzdGC1U4zYqUesVKg2WB9eGZtMZLycot0TlH4w=
+			6GRsQNQTmFTeGITG8pFAzdP2o15aKKJCbUuv+GjWgP0=
 			</data>
 		</dict>
 	</dict>
