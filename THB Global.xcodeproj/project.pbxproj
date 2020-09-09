@@ -80,14 +80,14 @@
 		83760E7B24FEED8D001CA13E /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83760E7A24FEED8D001CA13E /* PreviewViewController.swift */; };
 		837F5D4724F9B90B0099AA9C /* DotAddMedicinesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F5D4624F9B90B0099AA9C /* DotAddMedicinesController.swift */; };
 		837F5D4924F9BE3D0099AA9C /* DotAddMedicine+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F5D4824F9BE3D0099AA9C /* DotAddMedicine+Helper.swift */; };
-		837FF7FA250985C200484BD8 /* AEXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF7F6250985B900484BD8 /* AEXML.framework */; };
-		837FF7FB250985C200484BD8 /* AEXML.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF7F6250985B900484BD8 /* AEXML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		837FF7FC250985C400484BD8 /* Pods_Dot_Health_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC74BB58B2633520DD3FF0D /* Pods_Dot_Health_1.framework */; };
 		837FF7FD250985C400484BD8 /* Pods_Dot_Health_1.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC74BB58B2633520DD3FF0D /* Pods_Dot_Health_1.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		837FF7FE250985C600484BD8 /* SwiftyXMLParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF7F4250985B800484BD8 /* SwiftyXMLParser.framework */; };
-		837FF7FF250985C600484BD8 /* SwiftyXMLParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF7F4250985B800484BD8 /* SwiftyXMLParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		837FF800250985C800484BD8 /* TelrSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF7F5250985B900484BD8 /* TelrSDK.framework */; };
-		837FF801250985C800484BD8 /* TelrSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF7F5250985B900484BD8 /* TelrSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		837FF808250987CA00484BD8 /* AEXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF803250987BE00484BD8 /* AEXML.framework */; };
+		837FF809250987CA00484BD8 /* AEXML.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF803250987BE00484BD8 /* AEXML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		837FF80A250987CB00484BD8 /* SwiftyXMLParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF804250987BE00484BD8 /* SwiftyXMLParser.framework */; };
+		837FF80B250987CB00484BD8 /* SwiftyXMLParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF804250987BE00484BD8 /* SwiftyXMLParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		837FF80C250987CD00484BD8 /* TelrSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF802250987BE00484BD8 /* TelrSDK.framework */; };
+		837FF80D250987CD00484BD8 /* TelrSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 837FF802250987BE00484BD8 /* TelrSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		83B3BACC2504530A00D6C3AB /* ResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B3BACA2504530A00D6C3AB /* ResultController.swift */; };
 		83B3BACF2504533600D6C3AB /* TelrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B3BACE2504533600D6C3AB /* TelrViewController.swift */; };
 		83BDD54324F1E9A50068E3AC /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 83BDD54224F1E9A50068E3AC /* info.png */; };
@@ -314,10 +314,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				837FF809250987CA00484BD8 /* AEXML.framework in Embed Frameworks */,
+				837FF80B250987CB00484BD8 /* SwiftyXMLParser.framework in Embed Frameworks */,
+				837FF80D250987CD00484BD8 /* TelrSDK.framework in Embed Frameworks */,
 				837FF7FD250985C400484BD8 /* Pods_Dot_Health_1.framework in Embed Frameworks */,
-				837FF7FF250985C600484BD8 /* SwiftyXMLParser.framework in Embed Frameworks */,
-				837FF801250985C800484BD8 /* TelrSDK.framework in Embed Frameworks */,
-				837FF7FB250985C200484BD8 /* AEXML.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,9 +411,9 @@
 		83760E7A24FEED8D001CA13E /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		837F5D4624F9B90B0099AA9C /* DotAddMedicinesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotAddMedicinesController.swift; sourceTree = "<group>"; };
 		837F5D4824F9BE3D0099AA9C /* DotAddMedicine+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DotAddMedicine+Helper.swift"; sourceTree = "<group>"; };
-		837FF7F4250985B800484BD8 /* SwiftyXMLParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyXMLParser.framework; sourceTree = "<group>"; };
-		837FF7F5250985B900484BD8 /* TelrSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TelrSDK.framework; sourceTree = "<group>"; };
-		837FF7F6250985B900484BD8 /* AEXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AEXML.framework; sourceTree = "<group>"; };
+		837FF802250987BE00484BD8 /* TelrSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TelrSDK.framework; sourceTree = "<group>"; };
+		837FF803250987BE00484BD8 /* AEXML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AEXML.framework; sourceTree = "<group>"; };
+		837FF804250987BE00484BD8 /* SwiftyXMLParser.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyXMLParser.framework; sourceTree = "<group>"; };
 		83B3BACA2504530A00D6C3AB /* ResultController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultController.swift; sourceTree = "<group>"; };
 		83B3BACE2504533600D6C3AB /* TelrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelrViewController.swift; sourceTree = "<group>"; };
 		83BDD54224F1E9A50068E3AC /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
@@ -625,10 +625,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				837FF80A250987CB00484BD8 /* SwiftyXMLParser.framework in Frameworks */,
+				837FF808250987CA00484BD8 /* AEXML.framework in Frameworks */,
+				837FF80C250987CD00484BD8 /* TelrSDK.framework in Frameworks */,
 				837FF7FC250985C400484BD8 /* Pods_Dot_Health_1.framework in Frameworks */,
-				837FF7FE250985C600484BD8 /* SwiftyXMLParser.framework in Frameworks */,
-				837FF800250985C800484BD8 /* TelrSDK.framework in Frameworks */,
-				837FF7FA250985C200484BD8 /* AEXML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -976,9 +976,9 @@
 		62D340774B9A212C6325E510 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				837FF7F6250985B900484BD8 /* AEXML.framework */,
-				837FF7F4250985B800484BD8 /* SwiftyXMLParser.framework */,
-				837FF7F5250985B900484BD8 /* TelrSDK.framework */,
+				837FF803250987BE00484BD8 /* AEXML.framework */,
+				837FF804250987BE00484BD8 /* SwiftyXMLParser.framework */,
+				837FF802250987BE00484BD8 /* TelrSDK.framework */,
 				6AC74BB58B2633520DD3FF0D /* Pods_Dot_Health_1.framework */,
 				277F81B7AFD1D5FD508005F3 /* Pods_Dot_Health_1_Dot_Health_1UITests.framework */,
 				1385BA697DF3F468FE0651B8 /* Pods_Dot_Health_1Tests.framework */,
