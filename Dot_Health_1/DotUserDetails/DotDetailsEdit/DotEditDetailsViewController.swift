@@ -289,6 +289,8 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_address1"
            alert.addAction(UIAlertAction(title: "Cancle", style: .cancel, handler: nil))
            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
                self.profileImage.image = UIImage(named: "user")
+               self.profilePictureDelegate?.updateProfilePictur(image: self.profileImage.image)
+               self.saveProfilePicture(photoString: "",isDeleted: true)
            }))
            present(alert, animated: true, completion: nil)
        }
@@ -306,13 +308,6 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_address1"
                      if let item = model2Result{
                      
                         self.profileData = (item as? [String:AnyObject])!
-//
-//                        if let encodedString = item["photo"]  as? String, let image = encodedString.base64ToImage() {
-//                            DispatchQueue.main.async {
-//                                self.profileImage.image = image
-//                            }
-//                        }
-                        
                         self.detailSections.reloadData()
                          
                      }
@@ -361,6 +356,7 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_address1"
         alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: { (_) in
             //  self.delegate?.refreshTable(data: model2Result)
             //  self.dismiss(animated: true, completion: nil)
+           
             self.deleteHabitDetails(index: index)
             
         }))
@@ -372,7 +368,7 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_address1"
         self.present(alert, animated: true, completion:nil)
     }
     
-    func saveProfilePicture(photoString: String?) {
+    func saveProfilePicture(photoString: String?, isDeleted: Bool = false) {
         
         if var profileData = profileData {
             
@@ -400,8 +396,15 @@ let dataSort = [["patient_name","patient_email","patient_dob","patient_address1"
                 switch result {
                     
                 case .success(let model2Result):
+                    if let item = model2Result{
+                        self.profileData = (item as? [String:AnyObject])!
+                        self.detailSections.reloadData()
+                        
+                    }
                     
-                 self.showAlertView("Profile picture updated successfully.", message: kblankString)
+                    let message = isDeleted ? "Profile picture deleted successfully." : "Profile picture updated successfully."
+                    
+                 self.showAlertView(message, message: kblankString)
                     
                     
                 case .failure(let error):

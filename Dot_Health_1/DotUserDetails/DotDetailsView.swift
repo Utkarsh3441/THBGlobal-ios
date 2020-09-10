@@ -250,7 +250,7 @@ class DotDetailsView: UIViewController,TableViewDelegate, MultiTableViewDelegate
 
     func base64ToImage(base64String: String?) -> UIImage?{
         if (base64String?.isEmpty)! {
-            return #imageLiteral(resourceName: "no_image_found")
+            return UIImage(named: "user")
         }else {
             // Separation part is optional, depends on your Base64String !
             let tempImage = base64String?.components(separatedBy: ",")
