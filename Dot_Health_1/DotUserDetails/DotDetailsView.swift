@@ -10,6 +10,8 @@ import UIKit
 import TinyConstraints
 import QuickLook
 import SVProgressHUD
+import Kingfisher
+
 enum Section :CaseIterable{
     case main
 }
@@ -26,6 +28,7 @@ class DotDetailsView: UIViewController,TableViewDelegate, MultiTableViewDelegate
     let client = DotConnectionClient()
     var patientDetails:registerModel?
     var editPatientDetails:[String:AnyObject]?
+    @IBOutlet weak var profileImage: AnimatedImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var dob: UILabel!
     @IBOutlet weak var language: UILabel!
@@ -141,7 +144,9 @@ class DotDetailsView: UIViewController,TableViewDelegate, MultiTableViewDelegate
         let storyBoard : UIStoryboard = UIStoryboard(name: "DotDetailsStoryboard", bundle:nil)
         let nextViewController = storyBoard.instantiateInitialViewController() as! DotEditDetailsViewController
         //nextViewController.itemName = "Mtalk to THB"
+        nextViewController.profileImag = profileImage.image
         nextViewController.profileData = editPatientDetails
+        nextViewController.profilePictureDelegate = self
         let _ = nextViewController.view
         
         delegate?.addChildViewController(nextViewController, back: false)
@@ -212,6 +217,7 @@ class DotDetailsView: UIViewController,TableViewDelegate, MultiTableViewDelegate
                             let data = try JSONSerialization.data(withJSONObject: item)
                             self.patientDetails = try JSONDecoder().decode(registerModel.self, from: data)
                             self.setDetails()
+                            self.setProfilePicture(str: item["photo"] as? String)
                             MyData.patientDetails = self.patientDetails
                             self.editPatientDetails = (item as? [String:AnyObject])!
                         } catch  {
@@ -227,6 +233,37 @@ class DotDetailsView: UIViewController,TableViewDelegate, MultiTableViewDelegate
                 }
             }
         }
+    
+    func setProfilePicture (str: String?) {
+        
+        var image: UIImage? = nil
+        
+        if let encodedString = str , let imageFetch = self.base64ToImage(base64String: encodedString.padding(toLength: ((encodedString.count+3)/4)*4, withPad: "=", startingAt: 0))
+        {
+            image = imageFetch
+            DispatchQueue.main.async {
+                self.profileImage.image = image
+            }
+        }
+    }
+        
+
+    func base64ToImage(base64String: String?) -> UIImage?{
+        if (base64String?.isEmpty)! {
+            return #imageLiteral(resourceName: "no_image_found")
+        }else {
+            // Separation part is optional, depends on your Base64String !
+            let tempImage = base64String?.components(separatedBy: ",")
+            if let data = tempImage?.first {
+                let dataDecoded : Data = Data(base64Encoded: data, options: .ignoreUnknownCharacters)!
+                let decodedimage = UIImage(data: dataDecoded)
+                return decodedimage
+            }
+        }
+        return nil
+    }
+   
+    
 }
 protocol setViewAutomatically : class{
     func addChildView(_ view: UIView, back:Bool)
@@ -492,6 +529,16 @@ extension DotDetailsView: UICollectionViewDelegate,UIDocumentPickerDelegate,UIDo
     }
     func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
         return self
+    }
+}
+
+extension DotDetailsView: ProfilePictureUpdatedProtocol {
+    func updateProfilePictur(image:UIImage?) {
+        if let image = image {
+            DispatchQueue.main.async {
+                self.profileImage.image = image
+            }
+        }
     }
 }
 

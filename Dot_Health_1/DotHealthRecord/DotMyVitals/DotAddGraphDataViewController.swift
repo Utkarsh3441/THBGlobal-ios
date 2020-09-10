@@ -37,9 +37,9 @@ class DotAddGraphDataViewController: UIViewController {
         timelabel.text = time
         switch vitalHeader {
         case "Add Blood Pressure":
-            self.yAxixDataTextField.placeholder = "mmHg"
-            self.yAxixDataTextfield2.placeholder = "mmHg"
             self.showFields()
+            self.yAxixDataTextfield2.placeholder = "mmHg"
+            self.yAxixDataTextField.placeholder = "mmHg"
         case "Add Temperature":
             self.yAxixLabel1.text = vitalHeader
             self.yAxixDataTextField.placeholder = "celsius"

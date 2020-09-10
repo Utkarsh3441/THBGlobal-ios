@@ -42,7 +42,7 @@ struct registerModel:Decodable{
     let patient_country:String
     let patient_state:String
     let patient_id:Int
-//    let patient_password:String
+    let photo: String?
 }
 
 struct RegistrationSuccessModel:Decodable{
@@ -141,3 +141,4 @@ func convertImageTobase64(format: ImageFormat, image:UIImage) -> String? {
        }
        return imageData?.base64EncodedString()
    }
+

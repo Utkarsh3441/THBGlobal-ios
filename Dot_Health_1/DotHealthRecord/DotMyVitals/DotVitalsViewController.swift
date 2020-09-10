@@ -182,9 +182,10 @@ class DotVitalsViewController: UIViewController ,ChartViewDelegate{
                     }
                     self.parameterDict = ["vital_date":dateString,"vital_reading":numberString,"vital_unit":unit]
                 }
-                if DotVitalsViewController.yAxixData.count > 0{
-                    self.customizeLineChart()
-                }
+                self.sendVitalDataTosave()
+//                if DotVitalsViewController.yAxixData.count > 0{
+//                    self.customizeLineChart()
+//                }
             }
         }
     }
@@ -350,7 +351,7 @@ extension DotVitalsViewController{
             case .success(let model2Result):
     
                 guard let model2Result = model2Result else { return }
-                
+                self.getVitalData()
                 print(model2Result)
             case .failure(let error):
                
@@ -397,6 +398,7 @@ extension DotVitalsViewController{
                 } else {
                     DotVitalsViewController.xAxisData.removeAll()
                     DotVitalsViewController.yAxixData.removeAll()
+                    DotVitalsViewController.y2AxixData.removeAll()
                     self.lineChartView.data = nil
                     self.lineChartView.clear()
                 }
@@ -411,6 +413,8 @@ extension DotVitalsViewController{
     func chartDataSetup(chartData: [[String:Any]]){
         DotVitalsViewController.xAxisData.removeAll()
         DotVitalsViewController.yAxixData.removeAll()
+        DotVitalsViewController.y2AxixData.removeAll()
+
         print(chartData)
         let dateformatter = DateFormatter()
                dateformatter.dateStyle = .medium
