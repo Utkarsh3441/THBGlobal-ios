@@ -47,7 +47,6 @@ class DotAddMedicinesController: LBTAFormController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         for value in dataLabel {
             addMedicineItems.append(value)
         }
@@ -230,13 +229,12 @@ extension DotAddMedicinesController{
 extension DotAddMedicinesController:UITextFieldDelegate{
 
   
-func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-    if textField.accessibilityIdentifier == "dob"{
-        textField.openDatePicker(modeType: .date)
-           }
-    return true
- 
-}
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField.accessibilityIdentifier == "dob"{
+            textField.openDatePicker(modeType: .date)
+        }
+      return true
+    }
     
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
@@ -310,6 +308,11 @@ func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
             }
    
         case AddMedicineModel.Prescribed.rawValue:
+//            if textField.text?.count == 0 {
+//                genderPicker.selectRow(0, inComponent: 0, animated: true)
+//                textField.text = dropDown[0]
+//                textField.placeholder = "Prescribed"
+//            }
             if let val = textField.text{
                 if !dropDown.contains(val){
                     validationDict[AddMedicineModel.Prescribed.rawValue] = "yes"
@@ -319,10 +322,11 @@ func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
                 }
                 else{
                     editDetails["medication_type"] = val
-                        customField?.floatingLabelColor = Theme.accentColor!
-                        customField?.borderWidth = 1
+                    customField?.floatingLabelColor = Theme.accentColor!
+                    customField?.borderWidth = 1
                     validationDict.removeValue(forKey: AddMedicineModel.Prescribed.rawValue)
                 }
+                
             }
 
 
@@ -359,7 +363,6 @@ extension DotAddMedicinesController:UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
         return dropDown.count
         
     }

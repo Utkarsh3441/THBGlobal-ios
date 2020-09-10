@@ -4,110 +4,146 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/TelrSDK-Swift.h</key>
+		<key>Headers/AEXML-Swift.h</key>
 		<data>
-		eDQTMAsMxYZiDJOyjgmziTnKMrI=
+		dQ0rhHA4BvE60Nf54mzE2qQ3QVc=
 		</data>
-		<key>Headers/TelrSDK.h</key>
+		<key>Headers/AEXML-umbrella.h</key>
 		<data>
-		etV8+2CcC0S22CcKWmkkhf5V+n4=
+		TIPhzikfsRe96574HgKa/8H+FJ0=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		MycFe455fH75pztyQsSMbUVqpGI=
+		XbMHEbnPvrpPcXC6UfGGmsRrnFc=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
+		<key>Modules/AEXML.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		rBY1dVbjKc8p1wn2KG3ffWC9RRw=
+		/CH+/7ZYJ9pfpgOIq6509NbF+Sw=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/Project/x86_64.swiftsourceinfo</key>
+		<key>Modules/AEXML.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<data>
-		rBY1dVbjKc8p1wn2KG3ffWC9RRw=
+		/CH+/7ZYJ9pfpgOIq6509NbF+Sw=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<key>Modules/AEXML.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		dsDhbMsBilHm46D4YYCQWIl3OQc=
+		jC2VNbUWwY3FGMK+1321E+3N+RQ=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<key>Modules/AEXML.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		YnroXexURhBQDhWeKbkr5ATsdp8=
+		CavI6079tiC2+hM/6yMVK3gNKvc=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/x86_64.swiftdoc</key>
+		<key>Modules/AEXML.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		dsDhbMsBilHm46D4YYCQWIl3OQc=
+		jC2VNbUWwY3FGMK+1321E+3N+RQ=
 		</data>
-		<key>Modules/TelrSDK.swiftmodule/x86_64.swiftmodule</key>
+		<key>Modules/AEXML.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		YnroXexURhBQDhWeKbkr5ATsdp8=
+		CavI6079tiC2+hM/6yMVK3gNKvc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		a5FLlsSRPZKYNXFf/p+lpisO6pI=
+		wdVAaOARjvPOJK1LzZKyP6XS8AE=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Headers/TelrSDK-Swift.h</key>
+		<key>Headers/AEXML-Swift.h</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			dQ0rhHA4BvE60Nf54mzE2qQ3QVc=
+			</data>
 			<key>hash2</key>
 			<data>
-			aoWYucq5aKYwEdLBWdDl7gMFRrK3mqNqJPWLqoH8Fvg=
+			4AyKg0C1kUi9C5EuD/UFnNtzvzqKwzm9Qc6yRrt9Hh0=
 			</data>
 		</dict>
-		<key>Headers/TelrSDK.h</key>
+		<key>Headers/AEXML-umbrella.h</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			TIPhzikfsRe96574HgKa/8H+FJ0=
+			</data>
 			<key>hash2</key>
 			<data>
-			CnwG9BXk6x6/3oUNzgjh4zSe481BB79BqD4gNVbQbXg=
+			EyEuFCH5cuZWYivKwvFAbJNbh8Gw/BNyImYlL2Hayz0=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
+		<key>Modules/AEXML.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			/CH+/7ZYJ9pfpgOIq6509NbF+Sw=
+			</data>
 			<key>hash2</key>
 			<data>
-			EL5XG5NZYOhLJ+6m2ky7OXDyEKp6Zo8VlojH21MnLio=
+			vBGf/n1XEodI6Z3rdD76e5JpBXOcyQQovwZ0wT4Wm8s=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/Project/x86_64.swiftsourceinfo</key>
+		<key>Modules/AEXML.swiftmodule/Project/x86_64.swiftsourceinfo</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			/CH+/7ZYJ9pfpgOIq6509NbF+Sw=
+			</data>
 			<key>hash2</key>
 			<data>
-			EL5XG5NZYOhLJ+6m2ky7OXDyEKp6Zo8VlojH21MnLio=
+			vBGf/n1XEodI6Z3rdD76e5JpBXOcyQQovwZ0wT4Wm8s=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
+		<key>Modules/AEXML.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			jC2VNbUWwY3FGMK+1321E+3N+RQ=
+			</data>
 			<key>hash2</key>
 			<data>
-			VvdDCd3L8dWAq44SqALezqhD+NpUI6Nl4cfGUIhvMMs=
+			y60h5rTSdw8PWjnYgdPwgrOKeDRel7KlGZk6DUGgq3k=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
+		<key>Modules/AEXML.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			CavI6079tiC2+hM/6yMVK3gNKvc=
+			</data>
 			<key>hash2</key>
 			<data>
-			Tr+rWyUvnwwNz2YFjzeBtDpeVDmp7tGaFM6bnR4vDMk=
+			wqUfszXT5l53I6PqcW7jVE0hgFNFYCEEGMwAjcumEAk=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/x86_64.swiftdoc</key>
+		<key>Modules/AEXML.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			jC2VNbUWwY3FGMK+1321E+3N+RQ=
+			</data>
 			<key>hash2</key>
 			<data>
-			VvdDCd3L8dWAq44SqALezqhD+NpUI6Nl4cfGUIhvMMs=
+			y60h5rTSdw8PWjnYgdPwgrOKeDRel7KlGZk6DUGgq3k=
 			</data>
 		</dict>
-		<key>Modules/TelrSDK.swiftmodule/x86_64.swiftmodule</key>
+		<key>Modules/AEXML.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			CavI6079tiC2+hM/6yMVK3gNKvc=
+			</data>
 			<key>hash2</key>
 			<data>
-			Tr+rWyUvnwwNz2YFjzeBtDpeVDmp7tGaFM6bnR4vDMk=
+			wqUfszXT5l53I6PqcW7jVE0hgFNFYCEEGMwAjcumEAk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			wdVAaOARjvPOJK1LzZKyP6XS8AE=
+			</data>
 			<key>hash2</key>
 			<data>
-			cRtqKUzdGC1U4zYqUesVKg2WB9eGZtMZLycot0TlH4w=
+			xR1W+nIrkUl252SSuUAvREyA0yZwBba7/gFXLnU3aPA=
 			</data>
 		</dict>
 	</dict>

@@ -258,20 +258,36 @@ class DotOpenEditDetails: LBTAFormController {
       }
     
     func addMobileNumberTextField(index:Int) {
-        let tf1 = FloatingLabelInput(placeholder: selectedCountryIsIndia() ? "+91" : "+971", cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear,height: 60)
+        var firstTxt = ""
+        var secondTxt = ""
+        
+        if let mobileNumber = userData[dataSort[index]] as? String {
+            let fullNameArr = mobileNumber.components(separatedBy: "-")
+           
+            if fullNameArr[0].count < 4 {
+                firstTxt = fullNameArr[0]
+                secondTxt = fullNameArr[1]
+            } else {
+                secondTxt = fullNameArr[0]
+            }
+            
+        }
+
+        let tf1 = FloatingLabelInput(placeholder: "Mobile No" , cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear,height: 60)
         
         let tf2 = FloatingLabelInput(placeholder: "Mobile No", cornerRadius: 5, keyboardType: .emailAddress, backgroundColor: .clear, height: 60)
         tf1.accessibilityIdentifier = "Country Code"
         tf2.accessibilityIdentifier = "Mobile No"
         tf2.delegate = self
-        tf1.isEnabled = false
+        tf1.isEnabled = true
+        tf1.text = firstTxt.count > 0 ? firstTxt : selectedCountryIsIndia() ? "+91" : "+971"
         tf1.borderWidth = 1.0
         tf1.addStartLabel()
         tf2.addStartLabel()
         tf1.borderColor = Theme.accentColor
         tf2.borderWidth = 1.0
         tf2.borderColor = Theme.accentColor
-        tf2.text = userData[dataSort[index]] as? String
+        tf2.text = secondTxt
         tf2.addDoneButton(title: "DONE", target: self, selector: #selector(tapDone(sender:)))
         let buttonsStackViewa = UIStackView(arrangedSubviews: [tf1, tf2])
         tf1.constrainWidth(70)
