@@ -129,18 +129,7 @@ class DotDetailsView: UIViewController,TableViewDelegate, MultiTableViewDelegate
     @IBAction func ShowDetails(_ sender: Any) {
         table = constTableView
         mainView = constView
-//        if detailsShow.titleLabel?.text != " Back"{
-//            detailsShow.setTitle(" Back", for: .normal)
-//            detailsShow.setImage(UIImage(systemName: "arrow.left")?.withTintColor(Theme.accentColor ?? UIColor.systemBlue), for: .normal)
-//            delegate?.addChildView(mainView,back: false)
-//            table.edgesToSuperview()
-//        }
-//        else{
-//            detailsShow.setTitle("Details", for: .normal)
-//            detailsShow.setImage(UIImage(), for: .normal)
-//            delegate?.addChildView(mainView,back: true)
-//
-//        }
+
         let storyBoard : UIStoryboard = UIStoryboard(name: "DotDetailsStoryboard", bundle:nil)
         let nextViewController = storyBoard.instantiateInitialViewController() as! DotEditDetailsViewController
         //nextViewController.itemName = "Mtalk to THB"
